@@ -1,0 +1,26 @@
+test_lint_detects_secret (test_kb.LintTests) ... ok
+test_lint_reports_bad_entries (test_kb.LintTests) ... ok
+test_lint_reports_index_drift (test_kb.LintTests) ... ok
+test_unknown_skill_warns_but_strict_fails (test_kb.LintTests) ... ok
+test_capability_query_uses_registry (test_kb.QueryTests) ... ok
+test_device_query_hits_and_counts_hits (test_kb.QueryTests) ... ok
+test_query_output_has_no_full_text (test_kb.QueryTests) ... ok
+test_stale_hidden_unless_requested (test_kb.QueryTests) ... ok
+test_merge_promotes_after_second_independent_run (test_kb.RecordTests) ... ok
+test_record_creates_pending_entries_and_index (test_kb.RecordTests) ... ok
+test_record_is_idempotent (test_kb.RecordTests) ... ok
+test_record_rejects_hash_mismatch (test_kb.RecordTests) ... ok
+test_record_rejects_missing_evidence (test_kb.RecordTests) ... ok
+test_record_rejects_secret_in_receipt (test_kb.RecordTests) ... ok
+test_scanner_fail_closed (test_kb.RecordTests) ... ok
+test_supersede_keeps_old_entry (test_kb.RecordTests) ... ok
+test_generated_entries_conform_to_schema (test_kb.SchemaTests) ... ok
+test_receipt_schema_requires_core_fields (test_kb.SchemaTests) ... ok
+test_sync_pulls_upstream (test_kb.SyncTests) ... ok
+test_sync_pushes_feature_branch_only (test_kb.SyncTests) ... ok
+test_sync_refuses_main_push (test_kb.SyncTests) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.224s
+
+OK

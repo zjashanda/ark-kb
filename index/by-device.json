@@ -1,0 +1,19 @@
+{
+  "schema": "index.v1",
+  "index": "by-device",
+  "generated_at": "2026-11-06T10:33:04Z",
+  "keys": {
+    "agentlinux": [
+      "kb-knowledge-60d65219fd43",
+      "kb-method-0205df2c95f8",
+      "kb-method-9b11d61e6bed",
+      "kb-run-42681662dc2c"
+    ],
+    "tcldut": [
+      "kb-knowledge-1cbdc4c52cf2"
+    ],
+    "win009": [
+      "kb-knowledge-0e8f85cddf7a"
+    ]
+  }
+}

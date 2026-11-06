@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/zjashanda/ark-kb/schema/entry.v1.json",
+  "title": "entry.v1",
+  "description": "知识条目。没有证据的结论不进库；冲突不删旧条目，用 superseded_by 指向新条目。",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "type",
+    "scope",
+    "title",
+    "claim",
+    "evidence",
+    "confidence",
+    "status",
+    "superseded_by",
+    "source_skill",
+    "created",
+    "hits"
+  ],
+  "properties": {
+    "schema": { "const": "entry.v1" },
+    "id": { "type": "string", "pattern": "^kb-(knowledge|method|run|bug)-[0-9a-f]{12}$" },
+    "type": { "enum": ["knowledge", "method", "run", "bug"] },
+    "scope": { "$ref": "#/$defs/scope" },
+    "title": { "type": "string", "minLength": 1 },
+    "claim": { "type": "string", "minLength": 1 },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/evidence" }
+    },
+    "confidence": { "enum": ["high", "medium", "low"] },
+    "status": { "enum": ["pending", "active", "stale", "superseded"] },
+    "superseded_by": { "type": ["string", "null"] },
+    "source_skill": { "type": ["string", "null"] },
+    "created": { "type": "string", "format": "date-time" },
+    "updated": { "type": "string", "format": "date-time" },
+    "hits": { "type": "integer", "minimum": 0 },
+    "validations": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "tags": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "scope": {
+      "type": "object",
+      "properties": {
+        "device": { "type": ["string", "null"] },
+        "project": { "type": ["string", "null"] },
+        "firmware": { "type": ["string", "null"] },
+        "platform": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["kind", "ref"],
+      "properties": {
+        "kind": { "enum": ["run", "file", "commit", "issue", "url"] },
+        "ref": { "type": "string", "minLength": 1 },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "verified": { "type": "boolean" },
+        "note": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,53 @@
+[
+  {
+    "name": "lstest",
+    "repo": "zjashanda/lstest",
+    "layer": "capability",
+    "status": "active",
+    "capability": "通用测试验证与压测框架：日志发现、串口证据、音频播放、时序断言",
+    "platform": ["windows", "linux"],
+    "projects": ["通用"],
+    "hardware": ["日志串口", "播报声卡", "录音声卡"],
+    "depends_skills": [],
+    "depends_pkgs": ["pyserial"],
+    "entry": "scripts/lstest.py",
+    "reuse": "high",
+    "scope_note": "通用，按项目写 profile 即可复用",
+    "replaced_by": null,
+    "last_verified": "2026-11-06"
+  },
+  {
+    "name": "cskflashtest",
+    "repo": "zjashanda/cskflashtest",
+    "layer": "capability",
+    "status": "active",
+    "capability": "CSK 串口烧录与烧录压测：下电、进 boot、烧录、启动日志校验",
+    "platform": ["windows"],
+    "projects": ["通用"],
+    "hardware": ["控制串口", "烧录串口"],
+    "depends_skills": ["lstest"],
+    "depends_pkgs": ["pyserial"],
+    "entry": "scripts/burn.py",
+    "reuse": "medium",
+    "scope_note": "只适用 CSK 系列，其他芯片不可用",
+    "replaced_by": null,
+    "last_verified": "2026-11-06"
+  },
+  {
+    "name": "lstts",
+    "repo": "zjashanda/lstts",
+    "layer": "kernel",
+    "status": "active",
+    "capability": "IndexTTS 语音合成：音色克隆、情感参考、静态语料重生成",
+    "platform": ["windows", "linux"],
+    "projects": ["通用"],
+    "hardware": ["无"],
+    "depends_skills": [],
+    "depends_pkgs": ["lstts-core"],
+    "entry": "scripts/synthesize.py",
+    "reuse": "high",
+    "scope_note": "通用，云端音色库需要 token",
+    "replaced_by": null,
+    "last_verified": "2026-11-06"
+  }
+]
