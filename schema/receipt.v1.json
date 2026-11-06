@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/zjashanda/ark-kb/schema/receipt.v1.json",
+  "title": "run.receipt.v1",
+  "description": "执行回执契约。执行方只写本机文件，不依赖网络；大文件只记路径与 sha256。",
+  "type": "object",
+  "required": [
+    "run_id",
+    "task",
+    "skill",
+    "skill_version",
+    "scope",
+    "result",
+    "totals",
+    "failures",
+    "bugs_found",
+    "evidence_dir",
+    "evidence_sha256",
+    "lessons",
+    "confidence",
+    "started_at",
+    "ended_at"
+  ],
+  "properties": {
+    "schema": { "const": "run.receipt.v1" },
+    "run_id": { "type": "string", "minLength": 8 },
+    "task": { "type": "string", "minLength": 1 },
+    "skill": { "type": "string", "minLength": 1 },
+    "skill_version": { "type": "string", "minLength": 1 },
+    "scope": { "$ref": "#/$defs/scope" },
+    "result": { "enum": ["pass", "fail", "blocked", "invalid", "needs_review"] },
+    "totals": { "type": "object" },
+    "failures": { "type": "array", "items": { "$ref": "#/$defs/failure" } },
+    "bugs_found": { "type": "array", "items": { "$ref": "#/$defs/bug" } },
+    "evidence_dir": { "type": "string", "minLength": 1 },
+    "evidence_sha256": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+    },
+    "lessons": { "type": "array", "items": { "$ref": "#/$defs/lesson" } },
+    "confidence": { "enum": ["high", "medium", "low"] },
+    "started_at": { "type": "string", "format": "date-time" },
+    "ended_at": { "type": "string", "format": "date-time" },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "scope": {
+      "type": "object",
+      "properties": {
+        "device": { "type": ["string", "null"] },
+        "project": { "type": ["string", "null"] },
+        "firmware": { "type": ["string", "null"] },
+        "platform": { "type": ["string", "null"] }
+      },
+      "additionalProperties": true
+    },
+    "failure": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "round": { "type": "integer", "minimum": 0 },
+        "reason": { "type": "string" },
+        "attribution": { "enum": ["device", "bench", "corpus", "tool", "unknown"] },
+        "evidence": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": true
+    },
+    "bug": {
+      "type": "object",
+      "required": ["title", "claim"],
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string", "minLength": 1 },
+        "claim": { "type": "string", "minLength": 1 },
+        "severity": { "enum": ["blocker", "major", "minor"] },
+        "firmware": { "type": ["string", "null"] }
+      },
+      "additionalProperties": true
+    },
+    "lesson": {
+      "type": "object",
+      "required": ["type", "title", "claim"],
+      "properties": {
+        "type": { "enum": ["knowledge", "method"] },
+        "title": { "type": "string", "minLength": 1 },
+        "claim": { "type": "string", "minLength": 1 },
+        "confidence": { "enum": ["high", "medium", "low"] }
+      },
+      "additionalProperties": true
+    }
+  }
+}

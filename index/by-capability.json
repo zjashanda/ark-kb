@@ -1,0 +1,79 @@
+{
+  "schema": "index.v1",
+  "index": "by-capability",
+  "generated_at": "2026-11-06T10:33:04Z",
+  "keys": {
+    "arkkb": [
+      "kb-knowledge-60d65219fd43",
+      "kb-method-0205df2c95f8",
+      "kb-method-9b11d61e6bed",
+      "kb-run-42681662dc2c"
+    ],
+    "csk": [
+      "kb-knowledge-f23119d4a433"
+    ],
+    "indextts": [
+      "kb-knowledge-d81c3d1877cc"
+    ],
+    "ssh": [
+      "kb-knowledge-0e8f85cddf7a"
+    ],
+    "tcl": [
+      "kb-knowledge-0e8f85cddf7a",
+      "kb-knowledge-1cbdc4c52cf2",
+      "kb-method-677defa1dbca"
+    ],
+    "uac": [
+      "kb-knowledge-1cbdc4c52cf2"
+    ],
+    "venv": [
+      "kb-knowledge-49d383c0b8a1",
+      "kb-knowledge-72b7856e1559"
+    ],
+    "体积门禁": [
+      "kb-knowledge-49d383c0b8a1"
+    ],
+    "判定": [
+      "kb-method-677defa1dbca"
+    ],
+    "发布门禁": [
+      "kb-knowledge-72b7856e1559",
+      "kb-knowledge-f23119d4a433"
+    ],
+    "台架": [
+      "kb-knowledge-0e8f85cddf7a",
+      "kb-knowledge-1cbdc4c52cf2"
+    ],
+    "归因": [
+      "kb-method-677defa1dbca"
+    ],
+    "录音": [
+      "kb-knowledge-1cbdc4c52cf2"
+    ],
+    "执行通道": [
+      "kb-knowledge-0e8f85cddf7a"
+    ],
+    "残留": [
+      "kb-knowledge-72b7856e1559",
+      "kb-knowledge-f23119d4a433"
+    ],
+    "烧录": [
+      "kb-knowledge-f23119d4a433"
+    ],
+    "离线语音": [
+      "kb-method-677defa1dbca"
+    ],
+    "规范": [
+      "kb-knowledge-d81c3d1877cc"
+    ],
+    "语音合成": [
+      "kb-knowledge-d81c3d1877cc"
+    ],
+    "通用": [
+      "kb-knowledge-49d383c0b8a1",
+      "kb-knowledge-72b7856e1559",
+      "kb-knowledge-d81c3d1877cc",
+      "kb-knowledge-f23119d4a433"
+    ]
+  }
+}

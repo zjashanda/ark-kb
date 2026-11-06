@@ -1,0 +1,49 @@
+{
+  "schema": "run.receipt.v1",
+  "run_id": "run-20261106-kb-v1-selftest",
+  "task": "ark-kb v1 工具链自检（单测 21 条）",
+  "skill": "skill-kb",
+  "skill_version": "1.0.0",
+  "scope": {
+    "device": "agent-linux",
+    "project": "ark-kb",
+    "firmware": null,
+    "platform": "linux"
+  },
+  "result": "pass",
+  "totals": {
+    "tests": 21,
+    "test_failures": 0
+  },
+  "failures": [],
+  "bugs_found": [],
+  "evidence_dir": "evidence",
+  "evidence_sha256": [
+    "815d7d26c31075cede135cef2c8c6034ecc9d12521741c46f547695fa8089b19",
+    "ce13b77dae26b5a515ba113e33cc64b47fac962f2c80b827c9c9fa30d9620ed3"
+  ],
+  "lessons": [
+    {
+      "type": "method",
+      "title": "回执证据必须校验哈希，不接受“路径像证据”",
+      "claim": "record 要按 evidence_sha256 在 evidence_dir 里实际比对文件；只检查字段非空会让坏证据静默入库。目录不在本机时才降级为路径 + 哈希登记，并标注未校验。",
+      "confidence": "medium"
+    },
+    {
+      "type": "method",
+      "title": "凭据扫描器缺失时失败关闭",
+      "claim": "公开仓库的入库路径必须复用 skill-git 的 SECRET_PATTERNS；找不到扫描器就退出码 3，只有显式 --allow-missing-scanner 才降级，避免“静默不扫描”。",
+      "confidence": "medium"
+    },
+    {
+      "type": "knowledge",
+      "title": "query 命中计数会写盘",
+      "claim": "kb.py query 默认给命中条目 hits += 1 并回写 entries；只读检出或并发查询要用 --no-hit-count，否则会因写盘失败告警或产生本地改动。",
+      "confidence": "medium"
+    }
+  ],
+  "confidence": "medium",
+  "started_at": "2026-11-06T09:41:20Z",
+  "ended_at": "2026-11-06T09:41:20Z",
+  "notes": "本轮只验证工具链本身，不代表任何真机能力；条目库 lint 在 record 之后单独执行。"
+}

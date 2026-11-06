@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/zjashanda/ark-kb/schema/index.v1.json",
+  "title": "index.v1",
+  "description": "索引由 tools/kb.py 生成，不要手改。键名统一小写，值是条目 id。",
+  "type": "object",
+  "required": ["schema", "index", "generated_at", "keys"],
+  "properties": {
+    "schema": { "const": "index.v1" },
+    "index": { "enum": ["by-device", "by-capability", "by-skill"] },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "keys": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "string", "pattern": "^kb-(knowledge|method|run|bug)-[0-9a-f]{12}$" }
+      }
+    }
+  },
+  "additionalProperties": false
+}

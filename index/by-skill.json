@@ -1,0 +1,25 @@
+{
+  "schema": "index.v1",
+  "index": "by-skill",
+  "generated_at": "2026-11-06T10:33:04Z",
+  "keys": {
+    "cskflashtest": [
+      "kb-knowledge-f23119d4a433"
+    ],
+    "lstts": [
+      "kb-knowledge-d81c3d1877cc"
+    ],
+    "melotts": [
+      "kb-knowledge-49d383c0b8a1"
+    ],
+    "omnipickup": [
+      "kb-knowledge-72b7856e1559"
+    ],
+    "skillkb": [
+      "kb-knowledge-60d65219fd43",
+      "kb-method-0205df2c95f8",
+      "kb-method-9b11d61e6bed",
+      "kb-run-42681662dc2c"
+    ]
+  }
+}
