@@ -877,7 +877,7 @@
     "name": "tcl-test-sub",
     "repo": "zjashanda/tcl-test-sub",
     "layer": "capability",
-    "status": "legacy",
+    "status": "active",
     "capability": "TCL 双麦空调语音验证与压测：唤醒加命令识别长稳、2s/20s 交替间隔、489 条核心命令覆盖、在线交互探测与双串口证据。",
     "platform": [
       "windows"
