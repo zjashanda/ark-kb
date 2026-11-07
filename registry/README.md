@@ -4,6 +4,11 @@ NoahsArk 工作区 35 个仓库的能力、适用设备/项目与可用状态的
 
 本版只做清点，不改任何被调查仓库；所有描述来自仓库 README、`SKILL.md`、顶层目录与最近提交，不包含代码、配置或凭据内容。
 
+相关文档：
+
+- [`docs/capability-boundaries.md`](../docs/capability-boundaries.md)：`Polaris` / `Trisolaris` / `mars-moon` 的选型边界（不合并的理由）。
+- [`docs/high-reuse-usage.md`](../docs/high-reuse-usage.md)：`reuse: high` 的「谁在用、怎么调用」及证据强度。
+
 ## 数据来源与范围
 
 - 采集：GitHub API 只读（`zjashanda`，35 个仓库，其中 4 个私有），采集日期 2026-11-06。
@@ -28,7 +33,7 @@ NoahsArk 工作区 35 个仓库的能力、适用设备/项目与可用状态的
 - `legacy`：项目已收尾、绑定单一项目，但资产与方法论仍可复用；新任务不应默认选它。
 - `archived`：已被替代或与方舟无关，只作历史参照。
 
-当前分布：`active` 24 / `legacy` 9 / `archived` 2；分层 `spec` 4 / `kernel` 4 / `capability` 13 / `tool` 12 / `orchestration` 2；复用 `high` 17 / `medium` 11 / `low` 7。
+当前分布：`active` 24 / `legacy` 8 / `archived` 3；分层 `spec` 4 / `kernel` 4 / `capability` 13 / `tool` 12 / `orchestration` 2；复用 `high` 17 / `medium` 11 / `low` 7。
 
 ## 对照表
 
@@ -54,19 +59,19 @@ NoahsArk 工作区 35 个仓库的能力、适用设备/项目与可用状态的
 
 | 仓库 | 能干什么 | 项目 | 硬件 | 平台 | 复用 | 状态 | 最近推送 | 备注 |
 |---|---|---|---|---|---|---|---|---|
-| `arcs-aopu-test` | 奥普/ARCS 离线语音验证与压测：唤醒/ASR 串口日志验证、重启首唤醒、全词表 MP3 覆盖、阈值协议切换与整夜压测。 | ARCS-aopu | 日志串口、播报声卡 | Win | low | legacy | 2026-06-26 |  |
+| `arcs-aopu-test` | 奥普/ARCS 离线语音验证与压测：唤醒/ASR 串口日志验证、重启首唤醒、全词表 MP3 覆盖、阈值协议切换与整夜压测。 | ARCS-aopu | 日志串口、播报声卡 | Win | low | legacy | 2026-11-07 | 设备/串口/语料已写明适用边界 |
 | `bootship` | OBU/I2S 录音压测与音频质量分析：设备侧 tinyplay/tinycap、上下电队列、ASIO/XMOS 本地录音、空白/缺失/通道错乱检测与固件对比报告。 | OBU-bootship | 设备串口、I2S 录音、USB 声卡、ASIO | Win/Linux | medium | legacy | 2026-06-16 |  |
-| `cskflashtest` | CSK 串口烧录与烧录压测：控制口下电、进 boot、上电，Uart_Burn_Tool 烧录，退出 boot，校验启动日志并统计多轮结果。 | 通用 | 控制串口、烧录口、日志口 | Win | medium | active | 2026-11-06 | 内嵌 `lstest/` 副本 |
+| `cskflashtest` | CSK 串口烧录与烧录压测：控制口下电、进 boot、上电，Uart_Burn_Tool 烧录，退出 boot，校验启动日志并统计多轮结果。 | 通用 | 控制串口、烧录口、日志口 | Win | medium | active | 2026-11-07 | 外部依赖 `lstest`（已删内嵌副本） |
 | `duya-ota-powercut` | 杜亚双设备 OTA 写入/升级随机断电压测：COM27 共享控制口、COM22/21 日志口、flash.md5 校验与逐轮留证。 | duya-OTA | 控制串口、日志口、电源控制 | Win | low | legacy | 2026-05-25 |  |
 | `mars-belt` | MarsPlatform 固件打包→烧录→验证的自治流程：自动决策、自动执行、自动恢复，含平台 API 校验、音频合成与报告/邮件链路。 | MarsPlatform | 烧录口、控制串口、播报声卡 | Win | medium | active | 2026-09-20 |  |
-| `mars-moon` | 把需求文档、词表 Excel、tone.h 与固件打成可迁移 bundle，生成 spec/cases/deviceInfo，执行 dry-run、烧录、runner 与结果归档。 | duya-curtain | 烧录口、日志串口、播报声卡 | Win | medium | legacy | 2026-04-23 | README 清单残留 `.git/` |
+| `mars-moon` | 把需求文档、词表 Excel、tone.h 与固件打成可迁移 bundle，生成 spec/cases/deviceInfo，执行 dry-run、烧录、runner 与结果归档。 | duya-curtain | 烧录口、日志串口、播报声卡 | Win | medium | legacy | 2026-11-07 | bundle 化定位；已改为只依赖 `listenai-play` |
 | `mideaSmoke` | 美的烟机/CSK6012 单点烧录与烧录后判定：uut-burn.on/off 进出烧录、Uart_Burn_Tool 烧录整包、校验启动健康与异常重启。 | CSK6012-midea-smoke | 日志口、烧录口、控制口 | Win | low | legacy | 2026-05-29 |  |
-| `Polaris` | 语音设备真机 BDD 验证框架：Cucumber 用例 + 固定 runner + Event Runtime 事件断言，输出 PASS/FAIL/BLOCKED/TIMING_AMBIGUOUS。 | 通用 | 日志串口、控制串口、播报声卡、录音声卡 | Win | high | active | 2026-07-02 |  |
-| `polaris-device-validation` | Polaris 旧版真机验证实现（同源 Cucumber/Event Runtime），2026-06 后停更，保留为历史参照。 | 通用 | 日志串口、控制串口、播报声卡、录音声卡 | Win | low | archived | 2026-06-04 | 由 `Polaris` 替代 |
+| `Polaris` | 语音设备真机 BDD 验证框架：Cucumber 用例 + 固定 runner + Event Runtime 事件断言，输出 PASS/FAIL/BLOCKED/TIMING_AMBIGUOUS。 | 通用 | 日志串口、控制串口、播报声卡、录音声卡 | Win | high | active | 2026-11-07 | frontmatter name 已对齐为 `Polaris`；58MiB 超体积门禁 |
+| `polaris-device-validation` | Polaris 旧版真机验证实现（同源 Cucumber/Event Runtime），2026-06 后停更，保留为历史参照。 | 通用 | 日志串口、控制串口、播报声卡、录音声卡 | Win | low | archived | 2026-11-07 | 由 `Polaris` 替代；两仓库曾同名 |
 | `power-on-record-check` | 上电→等录音声卡枚举→立即录音→指定声卡播报→收尾断电的多轮压测，输出轮次 CSV/JSON、串口原文与工具日志。 | 通用 | 控制串口、录音声卡、播报声卡 | Win | medium | active | 2026-09-08 |  |
 | `scanpen-api-test` | ScanPen 设备 AP/CP 双串口 API 验证与压测：version、trans_start、xtts_start，按正则判定并流式落盘两侧日志。 | ScanPen | AP 口、CP 口 | Win | low | legacy | 2026-06-29 |  |
-| `tcl-test-sub` | TCL 双麦空调语音验证与压测：唤醒加命令识别长稳、2s/20s 交替间隔、489 条核心命令覆盖、在线交互探测与双串口证据。 | TCL-ac | 日志串口、命令口、播报声卡 | Win | low | legacy | 2026-07-28 |  |
-| `Trisolaris` | 离线语音多项目验证：需求→方案/用例→烧录→播放→串口证据→断言，内置小度风扇与好太太晾衣机的项目资产和验证池。 | CSK5062-xiaodu-fan / CSK3022-htt-clothes-airer | 烧录口、日志串口、控制串口、播报声卡 | Win/Linux | medium | legacy | 2026-06-04 |  |
+| `tcl-test-sub` | TCL 双麦空调语音验证与压测：唤醒加命令识别长稳、2s/20s 交替间隔、489 条核心命令覆盖、在线交互探测与双串口证据。 | TCL-ac | 日志串口、命令口、播报声卡 | Win | low | legacy | 2026-11-07 | 设备/串口/语料已写明适用边界 |
+| `Trisolaris` | 离线语音多项目验证：需求→方案/用例→烧录→播放→串口证据→断言，内置小度风扇与好太太晾衣机的项目资产和验证池。 | CSK5062-xiaodu-fan / CSK3022-htt-clothes-airer | 烧录口、日志串口、控制串口、播报声卡 | Win/Linux | medium | legacy | 2026-11-07 | 项目沉淀定位；内嵌 `listenai-play` 整份副本 |
 
 ### 工具支撑层（tool）
 
@@ -78,7 +83,7 @@ NoahsArk 工作区 35 个仓库的能力、适用设备/项目与可用状态的
 | `fileball` | 把内网 FTP/NAS 固件 zip 转成 OTA 命令：连 Wi-Fi、FileStation 下载解压、取 OTA bin、上传 OSS、校验公开 URL 并生成 ota.set.url。 | 通用 / OTA 交付 | — | Win | medium | active | 2026-06-23 |  |
 | `generate-html-report` | 把日志、统计与测试结果转成结论先行的 HTML 报告：证据链、异常分类、复核口径，可另出邮件内联版。 | 通用 | — | Win/Linux | high | active | 2026-06-26 |  |
 | `line-net-monitor` | 按线路配置分段探测防火墙、光猫、电信/腾讯 DNS 与应用层 DNS，每 5 分钟统计丢包与时延并归因到内网/接入网/外网。 | 通用 | 防火墙、光猫 | Win | medium | active | 2026-11-03 |  |
-| `listenai-laid-installer` | 在 PowerShell、bash、zsh profile 中安装并验证 laid 命令，Windows 附带 audio-list 端点列表与稳定 USB 标识。 | 通用 | 声卡、ListenAI 声卡 | Win/Linux | medium | legacy | 2026-07-29 | 由 `listenai-play` 替代 |
+| `listenai-laid-installer` | 已降级为文档入口：说明 `laid` / `audio-list` 安装与验证；安装脚本唯一来源是 `listenai-play`。 | 通用 | 声卡、ListenAI 声卡 | Win/Linux | medium | archived | 2026-11-07 | 由 `listenai-play` 替代；本仓库已无脚本副本 |
 | `melotts` | 自包含本地 MeloTTS 中英文语音合成：内置模型、虚拟环境与 NLTK 数据，离线批量输出 WAV。 | 通用 | — | Linux | high | active | 2026-05-08 | `.venv/`、`models/`、`outputs/` 入库 |
 | `omni-pickup` | Windows 多 Host API 原始 PCM 录音：按索引或名称选 DirectSound/WASAPI/WDM-KS/ASIO 端点，自定义采样率、通道、位深与时长。 | 通用 | 录音声卡、USB 声卡、ASIO | Win | high | active | 2026-09-20 | `.venv/`、`build/`、`dist/` 入库 |
 | `qw-email-handle` | 企业邮箱收发的通用 CLI：SMTP 发信（含附件/HTML），IMAP 只读查收件箱并按发件人、主题、日期、未读状态筛选。 | 通用 | — | Win/Linux | high | active | 2026-06-23 |  |
@@ -104,7 +109,7 @@ NoahsArk                -> lstest
 power-on-record-check   -> listenai-play        （随包内嵌副本）
 tcl-test-sub            -> listenai-play, trails, skill-creator
 Trisolaris              -> burn_bundle
-mars-moon               -> burn_bundle, listenai-play, listenai-laid-installer
+mars-moon               -> burn_bundle, listenai-play
 trails                  -> skill-creator
 ```
 
@@ -114,18 +119,22 @@ trails                  -> skill-creator
 
 | 仓库 | 现象 | 影响 | 建议 |
 |---|---|---|---|
-| `cskflashtest` | 仓库内嵌完整 `lstest/` 副本；而 `SKILL.md` 明写“不复制、不修改 lstest，运行时当作公共库” | 文档与事实矛盾，副本会随 lstest 升级漂移 | 删除副本，改为依赖 `lstest`；本版只记录，不动代码 |
+| `cskflashtest` | ~~仓库内嵌完整 `lstest/` 副本~~ | **已修复（2026-11-07）**：删副本，改为外部依赖 `lstest`（已安装包 → `LSTEST_HOME` → 同级目录），lint 复跑 pass | 无 |
 | `omni-pickup` | `.venv/`、`build/`、`dist/` 入库（仓库 26MB） | 二进制与虚拟环境入库，跨机不可移植 | 脚本必须走随包 `.venv`；后续改为构建产物不入库 |
-| `mars-moon` | README 的 Skill layout 仍列出 `.git/` 条目 | 远端仓库无法跟踪 `.git`，说明打包清点把本地目录带进了清单 | 清理清单与本地打包流程 |
+| `mars-moon` | README 的 Skill layout 曾列出 `.git/` 条目 | 远端仓库无法跟踪 `.git`；同时原先依赖已归档的 `listenai-laid-installer` | 已清理布局清单；bootstrap 改为只依赖 `listenai-play` |
 | `usb-tree` | `.omo/run-continuation/ses_*.json` 入库 | 会话续跑状态进入发布包 | 加入 `.gitignore` |
 | `melotts` | `.venv/`、`models/`、`outputs/`、`vendor/` 入库（130MB） | 自包含是设计目标，但 `outputs/` 属历史结果 | 保留模型与 vendor，清理 `outputs/` |
 | `NoahsArk` | 唯一带 `.github/` 的仓库 | 其余 34 个仓库无 CI，测试靠本地 `python -m unittest` | 给内核层仓库补最小 CI |
 | `a4m-Jenkins` | 74MB 私有历史工程 | 与设备测试无关，拉取成本高 | 保持归档，不下载 |
+| `listenai-laid-installer` | ~~仓库内 `install_laid_windows.ps1` / `install_laid_linux.sh` 与 `listenai-play` 同源~~ | **已修复（2026-11-07）**：删脚本副本，降级为文档入口，`status=archived` | 无 |
+| `Trisolaris` | `tools/audio/listenai-play` 是 `listenai-play` 的整份副本 | 升级时要同步两份，否则播放行为漂移 | 后续改为外部依赖（需真机回归，本轮未动） |
+| `power-on-record-check` | 随包 `scripts/tools/listenai_play.py` 有自己的副本，且旁边没有 `install_laid_*` | `install_laid` 分支在缺脚本时会失败 | 后续改外部依赖；本轮只记录 |
+| `Polaris` | 仓库 58MiB，超过 skill-git 50MiB 门禁；代码里写死 `C:\Users\Administrator\.codex\skills\listenai-play\...` | 发布被门禁拦住；换机器/用户后播放路径失效 | 大文件资产外置；播放路径改为配置项或 `LSTEST_HOME` 式解析 |
 
 ## 待确认
 
 1. **`Polaris` 的状态**：issue 正文把 `Polaris` 举例为 `legacy`，但采集事实是 2026-07-02 仍在更新、`polaris-device-validation` 已明确由它替代（`功能对应关系.md` 也定为“A 为主”）。本版按 `active` 记录；若确认要归 `legacy`，只需改这一条。
-2. **9 个 `legacy` 是“项目收尾”判断，不是“代码坏掉”**：`tcl-test-sub`、`scanpen-api-test`、`arcs-aopu-test`、`bootship`、`mideaSmoke`、`duya-ota-powercut`、`mars-moon`、`Trisolaris`、`listenai-laid-installer` 仍可运行；若其中某个项目仍在交付，应改回 `active`。
+2. **8 个 `legacy` 是“项目收尾”判断，不是“代码坏掉”**：`tcl-test-sub`、`scanpen-api-test`、`arcs-aopu-test`、`bootship`、`mideaSmoke`、`duya-ota-powercut`、`mars-moon`、`Trisolaris` 仍可运行；若其中某个项目仍在交付，应改回 `active`。
 3. **4 个私有仓库的依赖未核验**（`zhsh`、`fileball`、`qw-email-handle`、`a4m-Jenkins`）：只能读 README，`depends_pkgs` 标为“待核验”，后续有权限时补齐。
 4. **`Trisolaris` 的定位**：它同时是项目资产库和通用验证池。本版按“项目绑定”记 `legacy`；若定位为长期复用的多项目框架，应改 `active`。
 
