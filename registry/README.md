@@ -33,7 +33,7 @@ NoahsArk 工作区 35 个仓库的能力、适用设备/项目与可用状态的
 - `legacy`：项目已收尾、绑定单一项目，但资产与方法论仍可复用；新任务不应默认选它。
 - `archived`：已被替代或与方舟无关，只作历史参照。
 
-当前分布：`active` 24 / `legacy` 8 / `archived` 3；分层 `spec` 4 / `kernel` 4 / `capability` 13 / `tool` 12 / `orchestration` 2；复用 `high` 17 / `medium` 11 / `low` 7。
+当前分布：`active` 25 / `legacy` 7 / `archived` 3；分层 `spec` 4 / `kernel` 4 / `capability` 13 / `tool` 12 / `orchestration` 2；复用 `high` 17 / `medium` 11 / `low` 7。
 
 ## 对照表
 
@@ -70,7 +70,7 @@ NoahsArk 工作区 35 个仓库的能力、适用设备/项目与可用状态的
 | `polaris-device-validation` | Polaris 旧版真机验证实现（同源 Cucumber/Event Runtime），2026-06 后停更，保留为历史参照。 | 通用 | 日志串口、控制串口、播报声卡、录音声卡 | Win | low | archived | 2026-11-07 | 由 `Polaris` 替代；两仓库曾同名 |
 | `power-on-record-check` | 上电→等录音声卡枚举→立即录音→指定声卡播报→收尾断电的多轮压测，输出轮次 CSV/JSON、串口原文与工具日志。 | 通用 | 控制串口、录音声卡、播报声卡 | Win | medium | active | 2026-09-08 |  |
 | `scanpen-api-test` | ScanPen 设备 AP/CP 双串口 API 验证与压测：version、trans_start、xtts_start，按正则判定并流式落盘两侧日志。 | ScanPen | AP 口、CP 口 | Win | low | legacy | 2026-06-29 |  |
-| `tcl-test-sub` | TCL 双麦空调语音验证与压测：唤醒加命令识别长稳、2s/20s 交替间隔、489 条核心命令覆盖、在线交互探测与双串口证据。 | TCL-ac | 日志串口、命令口、播报声卡 | Win | low | legacy | 2026-11-07 | 设备/串口/语料已写明适用边界 |
+| `tcl-test-sub` | TCL 双麦空调语音验证与压测：唤醒加命令识别长稳、2s/20s 交替间隔、489 条核心命令覆盖、在线交互探测与双串口证据。 | TCL-ac | 日志串口、命令口、播报声卡 | Win | low | active | 2026-11-07 | 设备/串口/语料已写明适用边界；2026-11-07 按现场证据改回 active（TCL-ac 仍在 win009 台架交付，NOAH-20） |
 | `Trisolaris` | 离线语音多项目验证：需求→方案/用例→烧录→播放→串口证据→断言，内置小度风扇与好太太晾衣机的项目资产和验证池。 | CSK5062-xiaodu-fan / CSK3022-htt-clothes-airer | 烧录口、日志串口、控制串口、播报声卡 | Win/Linux | medium | legacy | 2026-11-07 | 项目沉淀定位；内嵌 `listenai-play` 整份副本 |
 
 ### 工具支撑层（tool）
@@ -134,7 +134,7 @@ trails                  -> skill-creator
 ## 待确认
 
 1. **`Polaris` 的状态**：issue 正文把 `Polaris` 举例为 `legacy`，但采集事实是 2026-07-02 仍在更新、`polaris-device-validation` 已明确由它替代（`功能对应关系.md` 也定为“A 为主”）。本版按 `active` 记录；若确认要归 `legacy`，只需改这一条。
-2. **8 个 `legacy` 是“项目收尾”判断，不是“代码坏掉”**：`tcl-test-sub`、`scanpen-api-test`、`arcs-aopu-test`、`bootship`、`mideaSmoke`、`duya-ota-powercut`、`mars-moon`、`Trisolaris` 仍可运行；若其中某个项目仍在交付，应改回 `active`。
+2. **7 个 `legacy` 是“项目收尾”判断，不是“代码坏掉”**：`scanpen-api-test`、`arcs-aopu-test`、`bootship`、`mideaSmoke`、`duya-ota-powercut`、`mars-moon`、`Trisolaris` 仍可运行；若其中某个项目仍在交付，应改回 `active`。`tcl-test-sub` 已于 2026-11-07 按现场证据（TCL-ac 仍在 win009 台架交付，NOAH-20）改回 `active`。
 3. **4 个私有仓库的依赖未核验**（`zhsh`、`fileball`、`qw-email-handle`、`a4m-Jenkins`）：只能读 README，`depends_pkgs` 标为“待核验”，后续有权限时补齐。
 4. **`Trisolaris` 的定位**：它同时是项目资产库和通用验证池。本版按“项目绑定”记 `legacy`；若定位为长期复用的多项目框架，应改 `active`。
 
