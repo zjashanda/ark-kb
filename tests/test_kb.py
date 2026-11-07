@@ -183,6 +183,34 @@ class RecordTests(KBTestBase):
                 code, _, _ = record(self.root, receipt, "--allow-missing-scanner", scanner=False)
                 self.assertEqual(code, 0)
 
+    def test_record_propagates_capability_tags(self) -> None:
+        """回执自带的 tags 必须落到条目上，否则 --capability 英文能力名永远查不到。"""
+        receipt = write_receipt(
+            self.root,
+            "run-20261107T100000Z-tagged",
+            device="CSK7",
+            project="TCL",
+            lessons=[lesson(title="algo.restart 可恢复", claim="停摆后 0.2 秒恢复")],
+            bugs=[{"title": "1-3 分钟必崩", "claim": "exception:8000000c", "tags": ["crash"]}],
+            override={"tags": ["wake-recognition", "wake-recognition", " "]},
+        )
+        self.assertEqual(record(self.root, receipt)[0], 0)
+        entries = self.entries()
+        self.assertTrue(all(entry.get("tags") for entry in entries))
+        for entry in entries:
+            self.assertIn("wake-recognition", entry["tags"])
+        bug = next(entry for entry in entries if entry["type"] == "bug")
+        self.assertEqual(bug["tags"], ["crash", "wake-recognition"])
+        code, out, err = run_kb(
+            "query", "--root", self.root, "--device", "CSK7",
+            "--capability", "wake-recognition", "--json",
+        )
+        self.assertEqual(code, 0, err)
+        payload = json.loads(out)
+        self.assertGreaterEqual(payload["returned"], 3)
+        by_capability = json.loads((self.root / "index" / "by-capability.json").read_text(encoding="utf-8"))
+        self.assertIn("wakerecognition", by_capability["keys"])
+
     def test_merge_promotes_after_second_independent_run(self) -> None:
         first = write_receipt(self.root, "run-20261106T100000Z-a", lessons=[lesson()])
         second = write_receipt(self.root, "run-20261106T110000Z-b", lessons=[lesson()])

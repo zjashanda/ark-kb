@@ -361,10 +361,22 @@ def receipt_evidence(receipt: dict, receipt_path: Path, root: Path, warnings: li
     ]
 
 
+def clean_tags(*groups) -> list[str]:
+    """收集能力标签并去重排序；空值/非字符串直接丢弃，避免脏 tags 进公开仓库。"""
+    tags: set[str] = set()
+    for group in groups:
+        for item in group or []:
+            text = str(item).strip()
+            if text:
+                tags.add(text)
+    return sorted(tags)
+
+
 def new_entry(entry_type: str, scope: dict, title: str, claim: str, evidence: list[dict],
-              confidence: str, source_skill: str | None, run_id: str) -> dict:
+              confidence: str, source_skill: str | None, run_id: str,
+              tags: list[str] | None = None) -> dict:
     stamp = now_iso()
-    return {
+    entry = {
         "schema": "entry.v1",
         "id": entry_id(entry_type, scope, title, claim),
         "type": entry_type,
@@ -386,6 +398,10 @@ def new_entry(entry_type: str, scope: dict, title: str, claim: str, evidence: li
         "hits": 0,
         "validations": [run_id],
     }
+    tags = clean_tags(tags)
+    if tags:
+        entry["tags"] = tags
+    return entry
 
 
 def evidence_key(item: dict) -> tuple[str, str, str]:
@@ -404,6 +420,9 @@ def merge_entry(existing: dict, candidate: dict) -> dict:
         if run_id not in validations:
             validations.append(run_id)
     existing["validations"] = validations
+    merged_tags = clean_tags(existing.get("tags"), candidate.get("tags"))
+    if merged_tags:
+        existing["tags"] = merged_tags
     if len(validations) >= 2 and existing["status"] in ("pending", "stale"):
         existing["status"] = "active"
     if existing["status"] == "stale" and len(validations) < 2:
@@ -440,12 +459,15 @@ def receipt_to_entries(receipt: dict, receipt_path: Path, root: Path, warnings: 
     run_id = receipt["run_id"]
     totals = receipt.get("totals") or {}
     totals_text = "，".join(f"{key}={value}" for key, value in totals.items()) or "无"
+    # 标签是 query --capability 唯一的命中通道：条目自身没有 capability 字段，
+    # 英文能力名（如 wake-recognition）必须由回执带下来，否则入库后仍查不到。
+    receipt_tags = receipt.get("tags")
     claim = (
         f"{receipt['result'].upper()}｜任务：{receipt['task']}｜"
         f"失败 {len(receipt.get('failures') or [])} 项，缺陷 {len(receipt.get('bugs_found') or [])} 项｜{totals_text}"
     )
     entries = [new_entry("run", scope, f"执行记录：{receipt['task']}", claim, evidence,
-                         receipt["confidence"], skill, run_id)]
+                         receipt["confidence"], skill, run_id, tags=receipt_tags)]
     for lesson in receipt.get("lessons") or []:
         entries.append(
             new_entry(
@@ -457,11 +479,13 @@ def receipt_to_entries(receipt: dict, receipt_path: Path, root: Path, warnings: 
                 lesson.get("confidence") or receipt["confidence"],
                 skill,
                 run_id,
+                tags=clean_tags(receipt_tags, lesson.get("tags")),
             )
         )
     for bug in receipt.get("bugs_found") or []:
         entries.append(
-            new_entry("bug", scope, bug["title"], bug["claim"], evidence, "medium", skill, run_id)
+            new_entry("bug", scope, bug["title"], bug["claim"], evidence, "medium", skill, run_id,
+                      tags=clean_tags(receipt_tags, bug.get("tags")))
         )
     return entries
 

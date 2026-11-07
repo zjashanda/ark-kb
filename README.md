@@ -63,6 +63,7 @@ python3 tools/kb.py record --receipt docs/receipts/20261106-kb-selftest/run.rece
 - 在本机能找到 `evidence_dir` 时逐个比对哈希；找不到时降级为“路径 + 哈希”登记并告警。
 - 命中凭据规则直接拒绝；找不到扫描器同样拒绝（见“安全”）。
 - 生成 1 条 `run` 条目 + 每条 lesson 1 条 `knowledge`/`method` 条目 + 每条 bug 1 条 `bug` 条目，初始 `pending`。
+- 回执可带 `tags`（顶层、lesson、bug 三处均可），会原样落到条目上；`query --capability` 只认条目 tags / 台账能力词，英文能力名（如 `wake-recognition`）必须由回执 tags 带下来，否则入库后仍查不到。
 - 同一 `run_id` 重复入库会被跳过（幂等）。
 
 ### 2. 检索
