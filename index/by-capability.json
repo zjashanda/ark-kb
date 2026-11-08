@@ -1,8 +1,27 @@
 {
   "schema": "index.v1",
   "index": "by-capability",
-  "generated_at": "2026-11-08T08:06:52Z",
+  "generated_at": "2026-11-08T15:21:37Z",
   "keys": {
+    "070200duya上下电压测": [
+      "kb-knowledge-88c26f79e24e",
+      "kb-run-f60371bd6f63"
+    ],
+    "072800海信venusa": [
+      "kb-knowledge-3db633b31720",
+      "kb-run-c89631a45873"
+    ],
+    "0820j22口语机": [
+      "kb-knowledge-925d7610efe3",
+      "kb-run-6344a8616a9a"
+    ],
+    "102200cskflashst": [
+      "kb-knowledge-860c9541cf5b"
+    ],
+    "7z": [
+      "kb-knowledge-2916d95fae4c",
+      "kb-knowledge-e8f95404834d"
+    ],
     "8hstress": [
       "kb-bug-241022256518",
       "kb-bug-6d8501377c4c",
@@ -14,11 +33,61 @@
       "kb-run-3228baa6c3f6",
       "kb-run-96ecdf985bf1"
     ],
+    "acpagent": [
+      "kb-knowledge-caca7f7575e0"
+    ],
+    "administrator": [
+      "kb-knowledge-0ae54f485403",
+      "kb-knowledge-bcf7e219149e",
+      "kb-knowledge-c468c0db264d",
+      "kb-run-1a48d7f2a981",
+      "kb-run-46391d930853"
+    ],
+    "aitestplatformv2p0": [
+      "kb-knowledge-916e07e391e6"
+    ],
+    "algorithmres": [
+      "kb-knowledge-6bf281a90ba3"
+    ],
+    "apache24": [
+      "kb-knowledge-9c32a51b95e0"
+    ],
+    "apitest": [
+      "kb-knowledge-a3f57e355bd0"
+    ],
+    "arcs": [
+      "kb-knowledge-b91dc97a69a9",
+      "kb-run-a2f0b2d74853"
+    ],
     "arkkb": [
       "kb-knowledge-60d65219fd43",
       "kb-method-0205df2c95f8",
       "kb-method-9b11d61e6bed",
       "kb-run-42681662dc2c"
+    ],
+    "autobus": [
+      "kb-knowledge-268e925c68ea",
+      "kb-knowledge-2a741da4275d",
+      "kb-knowledge-a2384c000ec4",
+      "kb-knowledge-d2cec26fa6cd",
+      "kb-knowledge-ed76f4dfc89a",
+      "kb-knowledge-feb0bf5cd480",
+      "kb-run-b8cf4b15ad72"
+    ],
+    "bigvgan": [
+      "kb-knowledge-18d89b2df319"
+    ],
+    "bootship": [
+      "kb-run-de3c85783334"
+    ],
+    "capabilityreset": [
+      "kb-run-f60371bd6f63"
+    ],
+    "capabilitystress": [
+      "kb-run-f60371bd6f63"
+    ],
+    "controlplane": [
+      "kb-knowledge-263318a6f30a"
     ],
     "crashbudgetstop": [
       "kb-bug-241022256518",
@@ -42,12 +111,144 @@
       "kb-run-3228baa6c3f6",
       "kb-run-96ecdf985bf1"
     ],
+    "cskflashtest": [
+      "kb-knowledge-4fd5f42ad8ac",
+      "kb-knowledge-a21615df5eb0"
+    ],
+    "cucumberagenttesting": [
+      "kb-knowledge-1526bbcba2e6",
+      "kb-knowledge-15281dfa20fa",
+      "kb-knowledge-38673b5b2496",
+      "kb-knowledge-417b7abe3db2",
+      "kb-knowledge-45478709270c",
+      "kb-knowledge-5a049519bb04",
+      "kb-knowledge-70e75a100608",
+      "kb-knowledge-96e0209b7b13"
+    ],
+    "data": [
+      "kb-knowledge-c1168b720bf6"
+    ],
+    "deployed": [
+      "kb-knowledge-615a77c011d6"
+    ],
     "devicehang": [
       "kb-bug-241022256518",
       "kb-bug-a3551c1a2f80",
       "kb-knowledge-0f2bab9750fc",
       "kb-method-fd3858d4baad",
       "kb-run-96ecdf985bf1"
+    ],
+    "docs": [
+      "kb-knowledge-cd7857c9f72e"
+    ],
+    "duyaota": [
+      "kb-knowledge-260bf6607048"
+    ],
+    "fieldsurvey": [
+      "kb-knowledge-00d4164803ec",
+      "kb-knowledge-02a423cc120b",
+      "kb-knowledge-04795330a10d",
+      "kb-knowledge-0752551f0f71",
+      "kb-knowledge-086dbb060b09",
+      "kb-knowledge-09b57b2851ef",
+      "kb-knowledge-0ae54f485403",
+      "kb-knowledge-0d5a4ad0b7f2",
+      "kb-knowledge-0e3b3594e9f2",
+      "kb-knowledge-12ad8268bd7d",
+      "kb-knowledge-1526bbcba2e6",
+      "kb-knowledge-15281dfa20fa",
+      "kb-knowledge-1742dbbbb9aa",
+      "kb-knowledge-18d89b2df319",
+      "kb-knowledge-1b32b15b429f",
+      "kb-knowledge-1d8e1778ca97",
+      "kb-knowledge-1da9f7a10cd9",
+      "kb-knowledge-260bf6607048",
+      "kb-knowledge-263318a6f30a",
+      "kb-knowledge-268e925c68ea",
+      "kb-knowledge-2916d95fae4c",
+      "kb-knowledge-2a741da4275d",
+      "kb-knowledge-2d1efa122543",
+      "kb-knowledge-31caa0374c16",
+      "kb-knowledge-38673b5b2496",
+      "kb-knowledge-387165acc1e1",
+      "kb-knowledge-3db633b31720",
+      "kb-knowledge-4111d89d7050",
+      "kb-knowledge-417b7abe3db2",
+      "kb-knowledge-432c9f14e4d1",
+      "kb-knowledge-44439c2ad1db",
+      "kb-knowledge-45478709270c",
+      "kb-knowledge-4ebe878111fc",
+      "kb-knowledge-4fd5f42ad8ac",
+      "kb-knowledge-54293a841357",
+      "kb-knowledge-5913806ca3f5",
+      "kb-knowledge-59342cda5c78",
+      "kb-knowledge-596b8b3f277b",
+      "kb-knowledge-5a049519bb04",
+      "kb-knowledge-5c0eec0fd978",
+      "kb-knowledge-5f6ac21b82c5",
+      "kb-knowledge-615a77c011d6",
+      "kb-knowledge-641b221d9aa3",
+      "kb-knowledge-67fc2594f781",
+      "kb-knowledge-6bf281a90ba3",
+      "kb-knowledge-70cb66251b2a",
+      "kb-knowledge-70e75a100608",
+      "kb-knowledge-72f8344b45ab",
+      "kb-knowledge-736f257cabd5",
+      "kb-knowledge-76e83bb2a187",
+      "kb-knowledge-7a65fd7d0e57",
+      "kb-knowledge-82d350d32daa",
+      "kb-knowledge-860c9541cf5b",
+      "kb-knowledge-88c26f79e24e",
+      "kb-knowledge-916e07e391e6",
+      "kb-knowledge-925d7610efe3",
+      "kb-knowledge-96724e4c13ec",
+      "kb-knowledge-96e0209b7b13",
+      "kb-knowledge-9c32a51b95e0",
+      "kb-knowledge-9de68ed9e2d4",
+      "kb-knowledge-a04808bf37a7",
+      "kb-knowledge-a21615df5eb0",
+      "kb-knowledge-a2384c000ec4",
+      "kb-knowledge-a3f57e355bd0",
+      "kb-knowledge-a7d1ddac143c",
+      "kb-knowledge-ac4460ce8b31",
+      "kb-knowledge-b21e5b7c74e8",
+      "kb-knowledge-b38a78002656",
+      "kb-knowledge-b62f825710d5",
+      "kb-knowledge-b91dc97a69a9",
+      "kb-knowledge-b9b8093f628c",
+      "kb-knowledge-bce7f5be4e3f",
+      "kb-knowledge-bcf7e219149e",
+      "kb-knowledge-bfcf986b8948",
+      "kb-knowledge-c0b88ff62cc4",
+      "kb-knowledge-c1168b720bf6",
+      "kb-knowledge-c468c0db264d",
+      "kb-knowledge-c991dedf2f63",
+      "kb-knowledge-caca7f7575e0",
+      "kb-knowledge-cae96a3e7d2a",
+      "kb-knowledge-cbe54ea2271a",
+      "kb-knowledge-cd216afc5de5",
+      "kb-knowledge-cd7857c9f72e",
+      "kb-knowledge-ce14f761b628",
+      "kb-knowledge-cebac04d7348",
+      "kb-knowledge-cf88b9a68af8",
+      "kb-knowledge-d133dabbd009",
+      "kb-knowledge-d2cec26fa6cd",
+      "kb-knowledge-d381e2e2abac",
+      "kb-knowledge-d3ab0e9bdc84",
+      "kb-knowledge-d3c2f42b373e",
+      "kb-knowledge-d68aefff8b43",
+      "kb-knowledge-d9fa583169f3",
+      "kb-knowledge-db6a7aa78623",
+      "kb-knowledge-dc4899665de4",
+      "kb-knowledge-dd083f0453ad",
+      "kb-knowledge-e865dd518477",
+      "kb-knowledge-e8f95404834d",
+      "kb-knowledge-ed76f4dfc89a",
+      "kb-knowledge-feb0bf5cd480",
+      "kb-knowledge-ffe1f7824254"
+    ],
+    "gegeikun2yearshalf": [
+      "kb-knowledge-a7d1ddac143c"
     ],
     "hi3863": [
       "kb-bug-241022256518",
@@ -60,8 +261,66 @@
       "kb-run-3228baa6c3f6",
       "kb-run-96ecdf985bf1"
     ],
+    "home": [
+      "kb-knowledge-387165acc1e1",
+      "kb-knowledge-d9fa583169f3"
+    ],
     "indextts": [
       "kb-knowledge-d81c3d1877cc"
+    ],
+    "jenkinswork": [
+      "kb-knowledge-67fc2594f781",
+      "kb-knowledge-76e83bb2a187",
+      "kb-knowledge-a04808bf37a7",
+      "kb-knowledge-bfcf986b8948"
+    ],
+    "lstest": [
+      "kb-knowledge-5913806ca3f5",
+      "kb-knowledge-ac4460ce8b31",
+      "kb-knowledge-cae96a3e7d2a"
+    ],
+    "marsbelt": [
+      "kb-knowledge-72f8344b45ab"
+    ],
+    "marsbeltbroken1782444950dbb589": [
+      "kb-knowledge-086dbb060b09"
+    ],
+    "marsmoon": [
+      "kb-knowledge-1da9f7a10cd9"
+    ],
+    "marssdk": [
+      "kb-knowledge-0e3b3594e9f2"
+    ],
+    "marstoolchain": [
+      "kb-knowledge-44439c2ad1db"
+    ],
+    "melotts": [
+      "kb-knowledge-1742dbbbb9aa",
+      "kb-knowledge-d3ab0e9bdc84"
+    ],
+    "mideacsk6ap": [
+      "kb-knowledge-12ad8268bd7d"
+    ],
+    "mideacsk6wb01": [
+      "kb-knowledge-b9b8093f628c"
+    ],
+    "mideapost": [
+      "kb-knowledge-82d350d32daa"
+    ],
+    "mideasmoketest": [
+      "kb-knowledge-dd083f0453ad"
+    ],
+    "mideasmoketestbak": [
+      "kb-knowledge-b62f825710d5"
+    ],
+    "noahsark": [
+      "kb-knowledge-d68aefff8b43"
+    ],
+    "ocplus": [
+      "kb-knowledge-cebac04d7348"
+    ],
+    "onlinetesttmp": [
+      "kb-knowledge-1b32b15b429f"
     ],
     "operatorinterrupt": [
       "kb-bug-241022256518",
@@ -71,14 +330,393 @@
       "kb-method-5a97db5bfc22",
       "kb-run-3228baa6c3f6"
     ],
+    "orionsynapse": [
+      "kb-knowledge-00d4164803ec"
+    ],
+    "polaris": [
+      "kb-knowledge-31caa0374c16",
+      "kb-knowledge-d381e2e2abac"
+    ],
+    "polarisbroken17824449678fd78b": [
+      "kb-knowledge-db6a7aa78623"
+    ],
+    "polarisbroken1783422572ac6c7c": [
+      "kb-knowledge-0752551f0f71"
+    ],
+    "polarisbroken17841003394166d4": [
+      "kb-knowledge-9de68ed9e2d4"
+    ],
+    "polarisbroken1784201456e6ea61": [
+      "kb-knowledge-596b8b3f277b"
+    ],
+    "polarisdevicevalidation": [
+      "kb-knowledge-1d8e1778ca97"
+    ],
+    "polarislatest20260624": [
+      "kb-knowledge-4111d89d7050"
+    ],
+    "project070200duya上下电压测": [
+      "kb-knowledge-88c26f79e24e"
+    ],
+    "project072800海信venusa": [
+      "kb-knowledge-3db633b31720"
+    ],
+    "project0820j22口语机": [
+      "kb-knowledge-925d7610efe3"
+    ],
+    "project102200cskflashst": [
+      "kb-knowledge-860c9541cf5b"
+    ],
+    "project7z": [
+      "kb-knowledge-2916d95fae4c",
+      "kb-knowledge-e8f95404834d"
+    ],
+    "projectacpagent": [
+      "kb-knowledge-caca7f7575e0"
+    ],
+    "projectadministrator": [
+      "kb-knowledge-0ae54f485403",
+      "kb-knowledge-bcf7e219149e",
+      "kb-knowledge-c468c0db264d"
+    ],
+    "projectaitestplatformv2p0": [
+      "kb-knowledge-916e07e391e6"
+    ],
+    "projectalgorithmres": [
+      "kb-knowledge-6bf281a90ba3"
+    ],
+    "projectapache24": [
+      "kb-knowledge-9c32a51b95e0"
+    ],
+    "projectapitest": [
+      "kb-knowledge-a3f57e355bd0"
+    ],
+    "projectarcs": [
+      "kb-knowledge-b91dc97a69a9"
+    ],
+    "projectautobus": [
+      "kb-knowledge-268e925c68ea",
+      "kb-knowledge-2a741da4275d",
+      "kb-knowledge-a2384c000ec4",
+      "kb-knowledge-d2cec26fa6cd",
+      "kb-knowledge-ed76f4dfc89a",
+      "kb-knowledge-feb0bf5cd480"
+    ],
+    "projectbigvgan": [
+      "kb-knowledge-18d89b2df319"
+    ],
+    "projectcard": [
+      "kb-knowledge-00d4164803ec",
+      "kb-knowledge-02a423cc120b",
+      "kb-knowledge-04795330a10d",
+      "kb-knowledge-0752551f0f71",
+      "kb-knowledge-086dbb060b09",
+      "kb-knowledge-09b57b2851ef",
+      "kb-knowledge-0ae54f485403",
+      "kb-knowledge-0d5a4ad0b7f2",
+      "kb-knowledge-0e3b3594e9f2",
+      "kb-knowledge-12ad8268bd7d",
+      "kb-knowledge-1526bbcba2e6",
+      "kb-knowledge-15281dfa20fa",
+      "kb-knowledge-1742dbbbb9aa",
+      "kb-knowledge-18d89b2df319",
+      "kb-knowledge-1b32b15b429f",
+      "kb-knowledge-1d8e1778ca97",
+      "kb-knowledge-1da9f7a10cd9",
+      "kb-knowledge-260bf6607048",
+      "kb-knowledge-263318a6f30a",
+      "kb-knowledge-268e925c68ea",
+      "kb-knowledge-2916d95fae4c",
+      "kb-knowledge-2a741da4275d",
+      "kb-knowledge-2d1efa122543",
+      "kb-knowledge-31caa0374c16",
+      "kb-knowledge-38673b5b2496",
+      "kb-knowledge-387165acc1e1",
+      "kb-knowledge-3db633b31720",
+      "kb-knowledge-4111d89d7050",
+      "kb-knowledge-417b7abe3db2",
+      "kb-knowledge-432c9f14e4d1",
+      "kb-knowledge-44439c2ad1db",
+      "kb-knowledge-45478709270c",
+      "kb-knowledge-4ebe878111fc",
+      "kb-knowledge-4fd5f42ad8ac",
+      "kb-knowledge-54293a841357",
+      "kb-knowledge-5913806ca3f5",
+      "kb-knowledge-59342cda5c78",
+      "kb-knowledge-596b8b3f277b",
+      "kb-knowledge-5a049519bb04",
+      "kb-knowledge-5c0eec0fd978",
+      "kb-knowledge-5f6ac21b82c5",
+      "kb-knowledge-615a77c011d6",
+      "kb-knowledge-641b221d9aa3",
+      "kb-knowledge-67fc2594f781",
+      "kb-knowledge-6bf281a90ba3",
+      "kb-knowledge-70cb66251b2a",
+      "kb-knowledge-70e75a100608",
+      "kb-knowledge-72f8344b45ab",
+      "kb-knowledge-736f257cabd5",
+      "kb-knowledge-76e83bb2a187",
+      "kb-knowledge-7a65fd7d0e57",
+      "kb-knowledge-82d350d32daa",
+      "kb-knowledge-860c9541cf5b",
+      "kb-knowledge-88c26f79e24e",
+      "kb-knowledge-916e07e391e6",
+      "kb-knowledge-925d7610efe3",
+      "kb-knowledge-96724e4c13ec",
+      "kb-knowledge-96e0209b7b13",
+      "kb-knowledge-9c32a51b95e0",
+      "kb-knowledge-9de68ed9e2d4",
+      "kb-knowledge-a04808bf37a7",
+      "kb-knowledge-a21615df5eb0",
+      "kb-knowledge-a2384c000ec4",
+      "kb-knowledge-a3f57e355bd0",
+      "kb-knowledge-a7d1ddac143c",
+      "kb-knowledge-ac4460ce8b31",
+      "kb-knowledge-b21e5b7c74e8",
+      "kb-knowledge-b38a78002656",
+      "kb-knowledge-b62f825710d5",
+      "kb-knowledge-b91dc97a69a9",
+      "kb-knowledge-b9b8093f628c",
+      "kb-knowledge-bce7f5be4e3f",
+      "kb-knowledge-bcf7e219149e",
+      "kb-knowledge-bfcf986b8948",
+      "kb-knowledge-c0b88ff62cc4",
+      "kb-knowledge-c1168b720bf6",
+      "kb-knowledge-c468c0db264d",
+      "kb-knowledge-c991dedf2f63",
+      "kb-knowledge-caca7f7575e0",
+      "kb-knowledge-cae96a3e7d2a",
+      "kb-knowledge-cbe54ea2271a",
+      "kb-knowledge-cd216afc5de5",
+      "kb-knowledge-cd7857c9f72e",
+      "kb-knowledge-ce14f761b628",
+      "kb-knowledge-cebac04d7348",
+      "kb-knowledge-cf88b9a68af8",
+      "kb-knowledge-d133dabbd009",
+      "kb-knowledge-d2cec26fa6cd",
+      "kb-knowledge-d381e2e2abac",
+      "kb-knowledge-d3ab0e9bdc84",
+      "kb-knowledge-d3c2f42b373e",
+      "kb-knowledge-d68aefff8b43",
+      "kb-knowledge-d9fa583169f3",
+      "kb-knowledge-db6a7aa78623",
+      "kb-knowledge-dc4899665de4",
+      "kb-knowledge-dd083f0453ad",
+      "kb-knowledge-e865dd518477",
+      "kb-knowledge-e8f95404834d",
+      "kb-knowledge-ed76f4dfc89a",
+      "kb-knowledge-feb0bf5cd480",
+      "kb-knowledge-ffe1f7824254"
+    ],
+    "projectcontrolplane": [
+      "kb-knowledge-263318a6f30a"
+    ],
+    "projectcskflashtest": [
+      "kb-knowledge-4fd5f42ad8ac",
+      "kb-knowledge-a21615df5eb0"
+    ],
+    "projectcucumberagenttesting": [
+      "kb-knowledge-1526bbcba2e6",
+      "kb-knowledge-15281dfa20fa",
+      "kb-knowledge-38673b5b2496",
+      "kb-knowledge-417b7abe3db2",
+      "kb-knowledge-45478709270c",
+      "kb-knowledge-5a049519bb04",
+      "kb-knowledge-70e75a100608",
+      "kb-knowledge-96e0209b7b13"
+    ],
+    "projectdata": [
+      "kb-knowledge-c1168b720bf6"
+    ],
+    "projectdeployed": [
+      "kb-knowledge-615a77c011d6"
+    ],
+    "projectdocs": [
+      "kb-knowledge-cd7857c9f72e"
+    ],
+    "projectduyaota": [
+      "kb-knowledge-260bf6607048"
+    ],
+    "projectgegeikun2yearshalf": [
+      "kb-knowledge-a7d1ddac143c"
+    ],
+    "projecthome": [
+      "kb-knowledge-387165acc1e1",
+      "kb-knowledge-d9fa583169f3"
+    ],
+    "projectjenkinswork": [
+      "kb-knowledge-67fc2594f781",
+      "kb-knowledge-76e83bb2a187",
+      "kb-knowledge-a04808bf37a7",
+      "kb-knowledge-bfcf986b8948"
+    ],
+    "projectlstest": [
+      "kb-knowledge-5913806ca3f5",
+      "kb-knowledge-ac4460ce8b31",
+      "kb-knowledge-cae96a3e7d2a"
+    ],
+    "projectmarsbelt": [
+      "kb-knowledge-72f8344b45ab"
+    ],
+    "projectmarsbeltbroken1782444950dbb589": [
+      "kb-knowledge-086dbb060b09"
+    ],
+    "projectmarsmoon": [
+      "kb-knowledge-1da9f7a10cd9"
+    ],
+    "projectmarssdk": [
+      "kb-knowledge-0e3b3594e9f2"
+    ],
+    "projectmarstoolchain": [
+      "kb-knowledge-44439c2ad1db"
+    ],
+    "projectmelotts": [
+      "kb-knowledge-1742dbbbb9aa",
+      "kb-knowledge-d3ab0e9bdc84"
+    ],
+    "projectmideacsk6ap": [
+      "kb-knowledge-12ad8268bd7d"
+    ],
+    "projectmideacsk6wb01": [
+      "kb-knowledge-b9b8093f628c"
+    ],
+    "projectmideapost": [
+      "kb-knowledge-82d350d32daa"
+    ],
+    "projectmideasmoketest": [
+      "kb-knowledge-dd083f0453ad"
+    ],
+    "projectmideasmoketestbak": [
+      "kb-knowledge-b62f825710d5"
+    ],
+    "projectnoahsark": [
+      "kb-knowledge-d68aefff8b43"
+    ],
+    "projectocplus": [
+      "kb-knowledge-cebac04d7348"
+    ],
+    "projectonlinetesttmp": [
+      "kb-knowledge-1b32b15b429f"
+    ],
+    "projectorionsynapse": [
+      "kb-knowledge-00d4164803ec"
+    ],
+    "projectpolaris": [
+      "kb-knowledge-31caa0374c16",
+      "kb-knowledge-d381e2e2abac"
+    ],
+    "projectpolarisbroken17824449678fd78b": [
+      "kb-knowledge-db6a7aa78623"
+    ],
+    "projectpolarisbroken1783422572ac6c7c": [
+      "kb-knowledge-0752551f0f71"
+    ],
+    "projectpolarisbroken17841003394166d4": [
+      "kb-knowledge-9de68ed9e2d4"
+    ],
+    "projectpolarisbroken1784201456e6ea61": [
+      "kb-knowledge-596b8b3f277b"
+    ],
+    "projectpolarisdevicevalidation": [
+      "kb-knowledge-1d8e1778ca97"
+    ],
+    "projectpolarislatest20260624": [
+      "kb-knowledge-4111d89d7050"
+    ],
+    "projectresources": [
+      "kb-knowledge-70cb66251b2a"
+    ],
+    "projectresult": [
+      "kb-knowledge-432c9f14e4d1"
+    ],
+    "projectrunner": [
+      "kb-knowledge-cbe54ea2271a"
+    ],
+    "projectscanpenapitestmain": [
+      "kb-knowledge-d133dabbd009"
+    ],
+    "projectsmoketest": [
+      "kb-knowledge-04795330a10d",
+      "kb-knowledge-54293a841357",
+      "kb-knowledge-b38a78002656"
+    ],
+    "projectsubsystems": [
+      "kb-knowledge-59342cda5c78"
+    ],
+    "projecttclbroadcaststress": [
+      "kb-knowledge-5c0eec0fd978"
+    ],
+    "projecttcllstestdebug": [
+      "kb-knowledge-0d5a4ad0b7f2",
+      "kb-knowledge-c0b88ff62cc4"
+    ],
+    "projecttcltestsub": [
+      "kb-knowledge-cd216afc5de5"
+    ],
+    "projecttcltestsublstest": [
+      "kb-knowledge-e865dd518477"
+    ],
+    "projecttestserver": [
+      "kb-knowledge-bce7f5be4e3f"
+    ],
+    "projecttrisolaris": [
+      "kb-knowledge-736f257cabd5"
+    ],
+    "projectvenusaws63": [
+      "kb-knowledge-5f6ac21b82c5"
+    ],
+    "projectworktools": [
+      "kb-knowledge-4ebe878111fc"
+    ],
+    "projectxtsc": [
+      "kb-knowledge-02a423cc120b",
+      "kb-knowledge-b21e5b7c74e8"
+    ],
+    "projectzhsh": [
+      "kb-knowledge-7a65fd7d0e57"
+    ],
+    "project工控机配置": [
+      "kb-knowledge-641b221d9aa3",
+      "kb-knowledge-96724e4c13ec"
+    ],
+    "project盘根散落文件d": [
+      "kb-knowledge-09b57b2851ef",
+      "kb-knowledge-2d1efa122543",
+      "kb-knowledge-c991dedf2f63",
+      "kb-knowledge-ce14f761b628",
+      "kb-knowledge-cf88b9a68af8",
+      "kb-knowledge-d3c2f42b373e",
+      "kb-knowledge-dc4899665de4",
+      "kb-knowledge-ffe1f7824254"
+    ],
+    "resources": [
+      "kb-knowledge-70cb66251b2a"
+    ],
+    "result": [
+      "kb-knowledge-432c9f14e4d1"
+    ],
+    "runner": [
+      "kb-knowledge-cbe54ea2271a"
+    ],
+    "scanpenapitestmain": [
+      "kb-knowledge-d133dabbd009"
+    ],
     "singlesegment": [
       "kb-bug-241022256518",
       "kb-bug-6d8501377c4c",
       "kb-knowledge-0f2bab9750fc",
       "kb-run-96ecdf985bf1"
     ],
+    "smoketest": [
+      "kb-knowledge-04795330a10d",
+      "kb-knowledge-54293a841357",
+      "kb-knowledge-b38a78002656"
+    ],
     "ssh": [
       "kb-knowledge-0e8f85cddf7a"
+    ],
+    "subsystems": [
+      "kb-knowledge-59342cda5c78"
     ],
     "tcl": [
       "kb-bug-241022256518",
@@ -94,6 +732,14 @@
       "kb-run-3228baa6c3f6",
       "kb-run-96ecdf985bf1"
     ],
+    "tclbroadcaststress": [
+      "kb-knowledge-5c0eec0fd978",
+      "kb-run-5b1dce7816a8"
+    ],
+    "tcllstestdebug": [
+      "kb-knowledge-0d5a4ad0b7f2",
+      "kb-knowledge-c0b88ff62cc4"
+    ],
     "tclr5tcllstestdebug": [
       "kb-bug-241022256518",
       "kb-bug-6d8501377c4c",
@@ -105,8 +751,24 @@
       "kb-run-3228baa6c3f6",
       "kb-run-96ecdf985bf1"
     ],
+    "tcltestsub": [
+      "kb-knowledge-cd216afc5de5",
+      "kb-run-e1d8a70237a0"
+    ],
+    "tcltestsublstest": [
+      "kb-knowledge-e865dd518477"
+    ],
+    "testserver": [
+      "kb-knowledge-bce7f5be4e3f"
+    ],
+    "trisolaris": [
+      "kb-knowledge-736f257cabd5"
+    ],
     "uac": [
       "kb-knowledge-1cbdc4c52cf2"
+    ],
+    "venusaws63": [
+      "kb-knowledge-5f6ac21b82c5"
     ],
     "venv": [
       "kb-knowledge-49d383c0b8a1",
@@ -134,6 +796,16 @@
       "kb-run-3228baa6c3f6",
       "kb-run-96ecdf985bf1"
     ],
+    "worktools": [
+      "kb-knowledge-4ebe878111fc"
+    ],
+    "xtsc": [
+      "kb-knowledge-02a423cc120b",
+      "kb-knowledge-b21e5b7c74e8"
+    ],
+    "zhsh": [
+      "kb-knowledge-7a65fd7d0e57"
+    ],
     "体积门禁": [
       "kb-knowledge-49d383c0b8a1"
     ],
@@ -147,6 +819,10 @@
     "台架": [
       "kb-knowledge-0e8f85cddf7a",
       "kb-knowledge-1cbdc4c52cf2"
+    ],
+    "工控机配置": [
+      "kb-knowledge-641b221d9aa3",
+      "kb-knowledge-96724e4c13ec"
     ],
     "归因": [
       "kb-method-677defa1dbca"
@@ -163,6 +839,18 @@
     ],
     "烧录": [
       "kb-knowledge-f23119d4a433"
+    ],
+    "盘根散落文件d": [
+      "kb-knowledge-09b57b2851ef",
+      "kb-knowledge-2d1efa122543",
+      "kb-knowledge-c991dedf2f63",
+      "kb-knowledge-ce14f761b628",
+      "kb-knowledge-cf88b9a68af8",
+      "kb-knowledge-d3c2f42b373e",
+      "kb-knowledge-dc4899665de4",
+      "kb-knowledge-ffe1f7824254",
+      "kb-run-45278e382475",
+      "kb-run-f5bf8e37641e"
     ],
     "离线语音": [
       "kb-method-677defa1dbca"
