@@ -1,20 +1,8 @@
 {
   "schema": "index.v1",
   "index": "by-skill",
-  "generated_at": "2026-11-08T15:21:37Z",
+  "generated_at": "2026-11-08T15:23:14Z",
   "keys": {
-    "0820j22口语机": [
-      "kb-run-6344a8616a9a"
-    ],
-    "arcs": [
-      "kb-run-a2f0b2d74853"
-    ],
-    "autobus": [
-      "kb-run-b8cf4b15ad72"
-    ],
-    "bootship": [
-      "kb-run-de3c85783334"
-    ],
     "cskflashtest": [
       "kb-knowledge-f23119d4a433"
     ],
@@ -43,20 +31,6 @@
       "kb-method-0205df2c95f8",
       "kb-method-9b11d61e6bed",
       "kb-run-42681662dc2c"
-    ],
-    "tclbroadcaststress": [
-      "kb-run-5b1dce7816a8"
-    ],
-    "tcltestsub": [
-      "kb-run-e1d8a70237a0"
-    ],
-    "unknown": [
-      "kb-run-1a48d7f2a981",
-      "kb-run-45278e382475",
-      "kb-run-46391d930853",
-      "kb-run-c89631a45873",
-      "kb-run-f5bf8e37641e",
-      "kb-run-f60371bd6f63"
     ]
   }
 }

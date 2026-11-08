@@ -1,19 +1,16 @@
 {
   "schema": "index.v1",
   "index": "by-capability",
-  "generated_at": "2026-11-08T15:21:37Z",
+  "generated_at": "2026-11-08T15:23:14Z",
   "keys": {
     "070200duya上下电压测": [
-      "kb-knowledge-88c26f79e24e",
-      "kb-run-f60371bd6f63"
+      "kb-knowledge-88c26f79e24e"
     ],
     "072800海信venusa": [
-      "kb-knowledge-3db633b31720",
-      "kb-run-c89631a45873"
+      "kb-knowledge-3db633b31720"
     ],
     "0820j22口语机": [
-      "kb-knowledge-925d7610efe3",
-      "kb-run-6344a8616a9a"
+      "kb-knowledge-925d7610efe3"
     ],
     "102200cskflashst": [
       "kb-knowledge-860c9541cf5b"
@@ -39,9 +36,7 @@
     "administrator": [
       "kb-knowledge-0ae54f485403",
       "kb-knowledge-bcf7e219149e",
-      "kb-knowledge-c468c0db264d",
-      "kb-run-1a48d7f2a981",
-      "kb-run-46391d930853"
+      "kb-knowledge-c468c0db264d"
     ],
     "aitestplatformv2p0": [
       "kb-knowledge-916e07e391e6"
@@ -56,8 +51,7 @@
       "kb-knowledge-a3f57e355bd0"
     ],
     "arcs": [
-      "kb-knowledge-b91dc97a69a9",
-      "kb-run-a2f0b2d74853"
+      "kb-knowledge-b91dc97a69a9"
     ],
     "arkkb": [
       "kb-knowledge-60d65219fd43",
@@ -71,20 +65,10 @@
       "kb-knowledge-a2384c000ec4",
       "kb-knowledge-d2cec26fa6cd",
       "kb-knowledge-ed76f4dfc89a",
-      "kb-knowledge-feb0bf5cd480",
-      "kb-run-b8cf4b15ad72"
+      "kb-knowledge-feb0bf5cd480"
     ],
     "bigvgan": [
       "kb-knowledge-18d89b2df319"
-    ],
-    "bootship": [
-      "kb-run-de3c85783334"
-    ],
-    "capabilityreset": [
-      "kb-run-f60371bd6f63"
-    ],
-    "capabilitystress": [
-      "kb-run-f60371bd6f63"
     ],
     "controlplane": [
       "kb-knowledge-263318a6f30a"
@@ -733,8 +717,7 @@
       "kb-run-96ecdf985bf1"
     ],
     "tclbroadcaststress": [
-      "kb-knowledge-5c0eec0fd978",
-      "kb-run-5b1dce7816a8"
+      "kb-knowledge-5c0eec0fd978"
     ],
     "tcllstestdebug": [
       "kb-knowledge-0d5a4ad0b7f2",
@@ -752,8 +735,7 @@
       "kb-run-96ecdf985bf1"
     ],
     "tcltestsub": [
-      "kb-knowledge-cd216afc5de5",
-      "kb-run-e1d8a70237a0"
+      "kb-knowledge-cd216afc5de5"
     ],
     "tcltestsublstest": [
       "kb-knowledge-e865dd518477"
@@ -848,9 +830,7 @@
       "kb-knowledge-cf88b9a68af8",
       "kb-knowledge-d3c2f42b373e",
       "kb-knowledge-dc4899665de4",
-      "kb-knowledge-ffe1f7824254",
-      "kb-run-45278e382475",
-      "kb-run-f5bf8e37641e"
+      "kb-knowledge-ffe1f7824254"
     ],
     "离线语音": [
       "kb-method-677defa1dbca"
