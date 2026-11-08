@@ -78,6 +78,45 @@ def norm_text(value) -> str:
     return re.sub(r"[\s，。、；：！？,.;:!?/\\|()（）\[\]【】<>《》\"'`~_\-+*=]+", "", text)
 
 
+CAPABILITY_ALIASES: dict[str, tuple[str, ...]] = {
+    "wake-recognition": ("唤醒", "唤醒识别", "wake", "唤醒率", "识别"),
+    "asr": ("识别", "离在线识别", "语音识别"),
+    "tts": ("合成", "播报", "语音合成", "index-tts", "indextts"),
+    "playback": ("播放", "声卡", "播放器"),
+    "recording": ("录音", "采集", "麦克风"),
+    "burn": ("烧录", "刷机", "固件烧录"),
+    "ota": ("ota", "升级", "断电压测", "掉电"),
+    "reset": ("复位", "上下电", "断电", "电源"),
+    "serial": ("串口", "日志", "串口日志"),
+    "watchdog": ("看门狗", "挂死", "止损", "超时判定"),
+    "crash": ("崩溃", "exception", "重启", "死机"),
+    "stress": ("压测", "长稳", "稳定性", "mtbf"),
+}
+
+
+def capability_slugs(*texts) -> list[str]:
+    """从文本里识别能力名，返回受控词表里的英文 slug（用于 tags）。"""
+    blob = " ".join(str(t) for t in texts if t).lower()
+    found: list[str] = []
+    for slug, words in CAPABILITY_ALIASES.items():
+        for word in words:
+            if word in blob:
+                found.append(slug)
+                break
+    return found
+
+
+def expand_capability(needle: str) -> set[str]:
+    """查询词 -> 归一化候选集合（含中英别名双向展开）。"""
+    base = norm_text(needle)
+    out = {base}
+    for slug, words in CAPABILITY_ALIASES.items():
+        pool = {slug, *words}
+        if any(norm_text(item) == base for item in pool):
+            out.update(norm_text(item) for item in pool)
+    return {item for item in out if len(item) >= 2}
+
+
 def similarity(left: str, right: str) -> float:
     if not left or not right:
         return 0.0
@@ -462,6 +501,13 @@ def receipt_to_entries(receipt: dict, receipt_path: Path, root: Path, warnings: 
     # 标签是 query --capability 唯一的命中通道：条目自身没有 capability 字段，
     # 英文能力名（如 wake-recognition）必须由回执带下来，否则入库后仍查不到。
     receipt_tags = receipt.get("tags")
+    if not receipt_tags:
+        derived = capability_slugs(
+            receipt.get("task"),
+            " ".join(str(item.get("claim", "")) for item in receipt.get("bugs_found") or [] if isinstance(item, dict)),
+            " ".join(str(item.get("claim", "")) for item in receipt.get("lessons") or [] if isinstance(item, dict)),
+        )
+        receipt_tags = [f"capability:{slug}" for slug in derived] or None
     claim = (
         f"{receipt['result'].upper()}｜任务：{receipt['task']}｜"
         f"失败 {len(receipt.get('failures') or [])} 项，缺陷 {len(receipt.get('bugs_found') or [])} 项｜{totals_text}"
@@ -640,13 +686,14 @@ def query_score(entry: dict, query: dict, registry: dict[str, dict] | None) -> i
         elif skill and (needle in skill or skill in needle):
             score += 2
     if query.get("capability"):
-        needle = norm_text(query["capability"])
+        needles = expand_capability(query["capability"])
         best = 0
         for key in capability_keys(entry, registry):
-            if key == needle:
-                best = max(best, 5)
-            elif needle in key or key in needle:
-                best = max(best, 4)
+            for needle in needles:
+                if key == needle:
+                    best = max(best, 5)
+                elif needle in key or key in needle:
+                    best = max(best, 4)
         if best == 0:
             return None
         score += best

@@ -1,27 +1,109 @@
 {
   "schema": "index.v1",
   "index": "by-capability",
-  "generated_at": "2026-11-06T10:33:04Z",
+  "generated_at": "2026-11-08T08:06:52Z",
   "keys": {
+    "8hstress": [
+      "kb-bug-241022256518",
+      "kb-bug-6d8501377c4c",
+      "kb-bug-a3551c1a2f80",
+      "kb-knowledge-0f2bab9750fc",
+      "kb-knowledge-4910c80e2fba",
+      "kb-method-5a97db5bfc22",
+      "kb-method-fd3858d4baad",
+      "kb-run-3228baa6c3f6",
+      "kb-run-96ecdf985bf1"
+    ],
     "arkkb": [
       "kb-knowledge-60d65219fd43",
       "kb-method-0205df2c95f8",
       "kb-method-9b11d61e6bed",
       "kb-run-42681662dc2c"
     ],
+    "crashbudgetstop": [
+      "kb-bug-241022256518",
+      "kb-bug-6d8501377c4c",
+      "kb-knowledge-0f2bab9750fc",
+      "kb-knowledge-4910c80e2fba",
+      "kb-method-5a97db5bfc22",
+      "kb-run-3228baa6c3f6"
+    ],
     "csk": [
       "kb-knowledge-f23119d4a433"
     ],
+    "csk7": [
+      "kb-bug-241022256518",
+      "kb-bug-6d8501377c4c",
+      "kb-bug-a3551c1a2f80",
+      "kb-knowledge-0f2bab9750fc",
+      "kb-knowledge-4910c80e2fba",
+      "kb-method-5a97db5bfc22",
+      "kb-method-fd3858d4baad",
+      "kb-run-3228baa6c3f6",
+      "kb-run-96ecdf985bf1"
+    ],
+    "devicehang": [
+      "kb-bug-241022256518",
+      "kb-bug-a3551c1a2f80",
+      "kb-knowledge-0f2bab9750fc",
+      "kb-method-fd3858d4baad",
+      "kb-run-96ecdf985bf1"
+    ],
+    "hi3863": [
+      "kb-bug-241022256518",
+      "kb-bug-6d8501377c4c",
+      "kb-bug-a3551c1a2f80",
+      "kb-knowledge-0f2bab9750fc",
+      "kb-knowledge-4910c80e2fba",
+      "kb-method-5a97db5bfc22",
+      "kb-method-fd3858d4baad",
+      "kb-run-3228baa6c3f6",
+      "kb-run-96ecdf985bf1"
+    ],
     "indextts": [
       "kb-knowledge-d81c3d1877cc"
+    ],
+    "operatorinterrupt": [
+      "kb-bug-241022256518",
+      "kb-bug-6d8501377c4c",
+      "kb-knowledge-0f2bab9750fc",
+      "kb-knowledge-4910c80e2fba",
+      "kb-method-5a97db5bfc22",
+      "kb-run-3228baa6c3f6"
+    ],
+    "singlesegment": [
+      "kb-bug-241022256518",
+      "kb-bug-6d8501377c4c",
+      "kb-knowledge-0f2bab9750fc",
+      "kb-run-96ecdf985bf1"
     ],
     "ssh": [
       "kb-knowledge-0e8f85cddf7a"
     ],
     "tcl": [
+      "kb-bug-241022256518",
+      "kb-bug-6d8501377c4c",
+      "kb-bug-a3551c1a2f80",
       "kb-knowledge-0e8f85cddf7a",
+      "kb-knowledge-0f2bab9750fc",
       "kb-knowledge-1cbdc4c52cf2",
-      "kb-method-677defa1dbca"
+      "kb-knowledge-4910c80e2fba",
+      "kb-method-5a97db5bfc22",
+      "kb-method-677defa1dbca",
+      "kb-method-fd3858d4baad",
+      "kb-run-3228baa6c3f6",
+      "kb-run-96ecdf985bf1"
+    ],
+    "tclr5tcllstestdebug": [
+      "kb-bug-241022256518",
+      "kb-bug-6d8501377c4c",
+      "kb-bug-a3551c1a2f80",
+      "kb-knowledge-0f2bab9750fc",
+      "kb-knowledge-4910c80e2fba",
+      "kb-method-5a97db5bfc22",
+      "kb-method-fd3858d4baad",
+      "kb-run-3228baa6c3f6",
+      "kb-run-96ecdf985bf1"
     ],
     "uac": [
       "kb-knowledge-1cbdc4c52cf2"
@@ -29,6 +111,28 @@
     "venv": [
       "kb-knowledge-49d383c0b8a1",
       "kb-knowledge-72b7856e1559"
+    ],
+    "wakerecognition": [
+      "kb-bug-241022256518",
+      "kb-bug-6d8501377c4c",
+      "kb-bug-a3551c1a2f80",
+      "kb-knowledge-0f2bab9750fc",
+      "kb-knowledge-4910c80e2fba",
+      "kb-method-5a97db5bfc22",
+      "kb-method-fd3858d4baad",
+      "kb-run-3228baa6c3f6",
+      "kb-run-96ecdf985bf1"
+    ],
+    "win009": [
+      "kb-bug-241022256518",
+      "kb-bug-6d8501377c4c",
+      "kb-bug-a3551c1a2f80",
+      "kb-knowledge-0f2bab9750fc",
+      "kb-knowledge-4910c80e2fba",
+      "kb-method-5a97db5bfc22",
+      "kb-method-fd3858d4baad",
+      "kb-run-3228baa6c3f6",
+      "kb-run-96ecdf985bf1"
     ],
     "体积门禁": [
       "kb-knowledge-49d383c0b8a1"
