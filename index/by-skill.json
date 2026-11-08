@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-skill",
-  "generated_at": "2026-11-08T15:23:14Z",
+  "generated_at": "2026-11-08T15:24:03Z",
   "keys": {
     "cskflashtest": [
       "kb-knowledge-f23119d4a433"
