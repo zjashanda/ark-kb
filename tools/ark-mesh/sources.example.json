@@ -1,0 +1,40 @@
+{
+  "schema": "ark-mesh-sources.v1",
+  "note": "模板：把 host 换成真实内网地址后另存为 ~/.config/ark/mesh-sources.json，不要把填好的台账提交进公开仓库。",
+  "relay": {"node": "relay-node", "note": "ark-fetch 必须在一台能免密登录以下所有节点的机器上运行"},
+  "cache": {"dir": "~/.cache/ark-mesh"},
+  "nodes": {
+    "relay-node": {
+      "kind": "linux", "host": "10.0.0.1", "port": 22, "user": "operator",
+      "base_dir": "/home/operator/artifacts"
+    },
+    "win-node-a": {
+      "kind": "windows", "host": "10.0.0.11", "port": 22, "user": "administrator",
+      "base_dir": "D:\\workspace\\artifacts"
+    },
+    "win-node-b": {
+      "kind": "windows", "host": "10.0.0.12", "port": 22, "user": "administrator",
+      "base_dir": "D:\\workspace\\artifacts"
+    },
+    "storage": {
+      "kind": "linux", "host": "10.0.0.20", "port": 22, "user": "administrator",
+      "base_dir": "/srv/storage/ark/artifacts",
+      "auth": "sshpass-env", "pass_env": "ARK_STORAGE_SSH_PASS"
+    }
+  },
+  "artifacts": {
+    "example-firmware": {
+      "name": "example-firmware",
+      "project": "example-project",
+      "version": "V1.0.0",
+      "bytes": 1048576,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "filename": "example-firmware.bin",
+      "note": "示例条目：登记 sha256 后再取件，两端都会校验",
+      "locations": [
+        {"node": "win-node-a", "path": "D:\\workspace\\artifacts\\example-firmware.bin", "priority": 1},
+        {"node": "win-node-b", "path": "D:\\workspace\\artifacts\\example-firmware.bin", "priority": 2}
+      ]
+    }
+  }
+}
