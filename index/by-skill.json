@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-skill",
-  "generated_at": "2026-11-08T15:24:03Z",
+  "generated_at": "2026-11-09T10:52:25Z",
   "keys": {
     "cskflashtest": [
       "kb-knowledge-f23119d4a433"
@@ -31,6 +31,9 @@
       "kb-method-0205df2c95f8",
       "kb-method-9b11d61e6bed",
       "kb-run-42681662dc2c"
+    ],
+    "军器监丞·pvm1005": [
+      "kb-knowledge-4871f3474f8c"
     ]
   }
 }

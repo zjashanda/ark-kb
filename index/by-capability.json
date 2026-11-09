@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-capability",
-  "generated_at": "2026-11-08T15:24:03Z",
+  "generated_at": "2026-11-09T10:52:25Z",
   "keys": {
     "070200duya上下电压测": [
       "kb-knowledge-88c26f79e24e"
@@ -70,6 +70,9 @@
     "bigvgan": [
       "kb-knowledge-18d89b2df319"
     ],
+    "capabilityreset": [
+      "kb-knowledge-4871f3474f8c"
+    ],
     "controlplane": [
       "kb-knowledge-263318a6f30a"
     ],
@@ -121,6 +124,9 @@
       "kb-knowledge-0f2bab9750fc",
       "kb-method-fd3858d4baad",
       "kb-run-96ecdf985bf1"
+    ],
+    "devicereset": [
+      "kb-knowledge-4871f3474f8c"
     ],
     "docs": [
       "kb-knowledge-cd7857c9f72e"
@@ -673,6 +679,9 @@
       "kb-knowledge-dc4899665de4",
       "kb-knowledge-ffe1f7824254"
     ],
+    "pvm1005": [
+      "kb-knowledge-4871f3474f8c"
+    ],
     "resources": [
       "kb-knowledge-70cb66251b2a"
     ],
@@ -709,6 +718,7 @@
       "kb-knowledge-0e8f85cddf7a",
       "kb-knowledge-0f2bab9750fc",
       "kb-knowledge-1cbdc4c52cf2",
+      "kb-knowledge-4871f3474f8c",
       "kb-knowledge-4910c80e2fba",
       "kb-method-5a97db5bfc22",
       "kb-method-677defa1dbca",
@@ -722,6 +732,9 @@
     "tcllstestdebug": [
       "kb-knowledge-0d5a4ad0b7f2",
       "kb-knowledge-c0b88ff62cc4"
+    ],
+    "tclpvm1005": [
+      "kb-knowledge-4871f3474f8c"
     ],
     "tclr5tcllstestdebug": [
       "kb-bug-241022256518",
@@ -748,6 +761,9 @@
     ],
     "uac": [
       "kb-knowledge-1cbdc4c52cf2"
+    ],
+    "uutswitch1": [
+      "kb-knowledge-4871f3474f8c"
     ],
     "venusaws63": [
       "kb-knowledge-5f6ac21b82c5"
