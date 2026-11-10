@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-device",
-  "generated_at": "2026-11-09T10:52:25Z",
+  "generated_at": "2026-11-10T04:34:13Z",
   "keys": {
     "agentlinux": [
       "kb-knowledge-60d65219fd43",
@@ -19,12 +19,31 @@
       "kb-bug-241022256518",
       "kb-bug-6d8501377c4c",
       "kb-bug-a3551c1a2f80",
+      "kb-bug-a6039e398e31",
       "kb-knowledge-0f2bab9750fc",
+      "kb-knowledge-47f5e67ad298",
       "kb-knowledge-4910c80e2fba",
+      "kb-knowledge-597f2e028a57",
+      "kb-knowledge-7c79f1217c93",
+      "kb-method-2866383e2331",
+      "kb-method-419905a1c3d3",
+      "kb-method-4506a0f71d3b",
       "kb-method-5a97db5bfc22",
+      "kb-method-dfdcf389e051",
+      "kb-method-e40eaaca8156",
+      "kb-method-e464b5e9a536",
       "kb-method-fd3858d4baad",
+      "kb-run-1371072607ce",
+      "kb-run-16a9cc2b6ccd",
+      "kb-run-230623b02f26",
       "kb-run-3228baa6c3f6",
-      "kb-run-96ecdf985bf1"
+      "kb-run-7fe400264b40",
+      "kb-run-89fb612bab53",
+      "kb-run-96ecdf985bf1",
+      "kb-run-b1d69652f3be",
+      "kb-run-cc56dd024a22",
+      "kb-run-ee12d5eb9ea7",
+      "kb-run-f5452cbfa17d"
     ],
     "win009": [
       "kb-knowledge-0e8f85cddf7a"

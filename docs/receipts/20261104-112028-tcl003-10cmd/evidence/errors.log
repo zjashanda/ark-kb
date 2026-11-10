@@ -1,0 +1,77 @@
+2026-11-04 11:20:41.153 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:20:41.154 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:20:41.154 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:20:41.266 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 11:20:56.209 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 11:20:56.214 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:20:56.279 [FAIL] 第 1 轮：设备识别超时
+2026-11-04 11:21:04.422 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:21:04.430 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:21:04.430 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:21:04.447 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 11:21:19.446 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:21:19.617 [FAIL] 第 2 轮：设备识别超时
+2026-11-04 11:21:32.420 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:21:32.428 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:21:32.428 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:21:32.446 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 11:21:37.610 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 11:21:37.637 [FAIL] 第 3 轮：识别结果与预期意图不一致
+2026-11-04 11:21:37.673 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:21:39.104 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:21:39.104 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:21:49.229 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:21:49.230 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:21:49.230 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:21:49.250 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 11:21:54.399 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 11:21:54.459 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:21:55.549 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:21:55.549 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:22:10.734 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:22:10.749 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:22:10.749 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:22:10.860 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 11:22:25.779 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:22:25.801 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 11:22:25.883 [FAIL] 第 5 轮：设备识别超时
+2026-11-04 11:22:31.870 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:22:31.897 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:22:31.898 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:22:31.978 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 11:22:46.950 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:22:46.997 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 11:22:46.999 [FAIL] 第 6 轮：设备识别超时
+2026-11-04 11:22:54.908 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:22:54.908 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:22:54.908 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:22:55.013 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 11:23:09.943 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:23:09.958 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 11:23:10.029 [FAIL] 第 7 轮：设备识别超时
+2026-11-04 11:23:22.412 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:23:22.425 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:23:22.425 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:23:22.532 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 11:23:27.592 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 11:23:27.665 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:23:27.715 [FAIL] 第 8 轮：识别结果与预期意图不一致
+2026-11-04 11:23:29.705 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:23:29.705 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:23:40.409 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:23:40.421 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:23:40.421 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:23:40.446 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 11:23:45.832 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 11:23:45.906 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:23:47.459 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:23:47.459 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:24:00.022 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:24:00.023 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:24:00.023 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:24:00.129 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 11:24:05.441 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 11:24:05.496 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:24:06.906 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:24:06.906 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 11:24:20.684 [FAIL] 任务结束，测试期间检测到失败或异常。

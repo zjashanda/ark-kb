@@ -1,0 +1,228 @@
+{
+  "total": 9050,
+  "buckets": [
+    {
+      "bucket": "rejected_system_path",
+      "rows": 83,
+      "meaning": "证据目录位于回收站或系统残留目录，不构成可追溯运行",
+      "examples": [
+        {
+          "machine": "win000",
+          "run_id": "S-1-5-21-1967632232-3683263006-696980213-500"
+        },
+        {
+          "machine": "win002",
+          "run_id": "S-1-5-21-3135366571-2139989067-2986903281-500"
+        },
+        {
+          "machine": "win004",
+          "run_id": "S-1-5-21-3135366571-2139989067-2986903281-500"
+        }
+      ]
+    },
+    {
+      "bucket": "rejected_no_window",
+      "rows": 606,
+      "meaning": "缺少开始时间，无法界定运行窗口",
+      "examples": [
+        {
+          "machine": "bszT14",
+          "run_id": "20261107-221155-nas-login-verify"
+        },
+        {
+          "machine": "bszT14",
+          "run_id": "20261108-140957-nas-t2a-verify"
+        },
+        {
+          "machine": "bszT14",
+          "run_id": "orchestration-contract-run-20261104"
+        }
+      ]
+    },
+    {
+      "bucket": "rejected_no_files",
+      "rows": 0,
+      "meaning": "没有任何证据文件",
+      "examples": []
+    },
+    {
+      "bucket": "rejected_no_result",
+      "rows": 2127,
+      "meaning": "未解析出结论字段且日志无判定行，需人工确认",
+      "examples": [
+        {
+          "machine": "bszT14",
+          "run_id": "orchestration-exercise-20261104T105606Z"
+        },
+        {
+          "machine": "bszT14",
+          "run_id": "orchestration-contract-run-20261104-182740"
+        },
+        {
+          "machine": "bszT14",
+          "run_id": "20261104_105934_4aa54705"
+        }
+      ]
+    },
+    {
+      "bucket": "pending_no_result_verdict",
+      "rows": 8,
+      "meaning": "结论字段为空但日志有判定行，需取回原始产物后按判定行重建",
+      "examples": [
+        {
+          "machine": "win006",
+          "run_id": "20261106_094907_cskflashtest_dev01_burn-wake-asr_1rounds"
+        },
+        {
+          "machine": "win006",
+          "run_id": "20261106_094907_cskflashtest_dev02_burn-wake-asr_1rounds"
+        },
+        {
+          "machine": "win006",
+          "run_id": "20261106_094907_cskflashtest_dev03_burn-wake-asr_1rounds"
+        }
+      ]
+    },
+    {
+      "bucket": "pending_verdict_conflict",
+      "rows": 1,
+      "meaning": "扫描推断结论与日志判定行冲突，需人工核对",
+      "examples": [
+        {
+          "machine": "win009",
+          "run_id": "20261014_163403_wake_interval"
+        }
+      ]
+    },
+    {
+      "bucket": "pending_totals_mismatch",
+      "rows": 16,
+      "meaning": "totals 自相矛盾（总数不等于通过数加失败数）",
+      "examples": [
+        {
+          "machine": "bszT14",
+          "run_id": ".omo"
+        },
+        {
+          "machine": "bszT14",
+          "run_id": "d95487d9-2fef-412a-974a-8c84619734f6"
+        },
+        {
+          "machine": "bszT14",
+          "run_id": "6b76b3d0-a123-4d98-afd3-52d6b713f4f7"
+        }
+      ]
+    },
+    {
+      "bucket": "pending_no_verdict",
+      "rows": 6205,
+      "meaning": "结论字段有值但日志无 [RESULT] 判定行，缺交叉校验",
+      "examples": [
+        {
+          "machine": "bszT14",
+          "run_id": "055d083f-4b98-40f8-b743-b390af981934"
+        },
+        {
+          "machine": "bszT14",
+          "run_id": "1184d36d-3751-4680-8eb9-c4fa4ecbec7f"
+        },
+        {
+          "machine": "bszT14",
+          "run_id": "8c8ea8a3-e684-444b-9546-5bd68ca4ddf5"
+        }
+      ]
+    },
+    {
+      "bucket": "candidate_consistent",
+      "rows": 4,
+      "meaning": "结论、判定行与计数互相一致，可生成候选回执（原始产物仍未取回）",
+      "examples": [
+        {
+          "machine": "win009",
+          "run_id": "v15-u1-command-20261022_103328"
+        },
+        {
+          "machine": "win009",
+          "run_id": "exec-rehearsal-1"
+        },
+        {
+          "machine": "win009",
+          "run_id": "20261014_163647_wake_interval"
+        }
+      ]
+    }
+  ],
+  "machines": {
+    "bszT14": {
+      "rows": 7766,
+      "rejected_no_window": 554,
+      "pending_totals_mismatch": 16,
+      "pending_no_verdict": 6172,
+      "rejected_no_result": 1024
+    },
+    "test-101": {
+      "rows": 497,
+      "rejected_no_result": 496,
+      "rejected_no_window": 1
+    },
+    "win010": {
+      "rows": 430,
+      "rejected_system_path": 70,
+      "rejected_no_window": 10,
+      "rejected_no_result": 338,
+      "pending_no_verdict": 12
+    },
+    "win002": {
+      "rows": 107,
+      "rejected_system_path": 1,
+      "rejected_no_result": 99,
+      "rejected_no_window": 7
+    },
+    "win006": {
+      "rows": 67,
+      "rejected_no_result": 55,
+      "pending_no_result_verdict": 8,
+      "rejected_no_window": 3,
+      "pending_no_verdict": 1
+    },
+    "win005": {
+      "rows": 64,
+      "rejected_system_path": 1,
+      "rejected_no_result": 51,
+      "rejected_no_window": 1,
+      "pending_no_verdict": 11
+    },
+    "win001": {
+      "rows": 40,
+      "rejected_no_result": 20,
+      "rejected_no_window": 17,
+      "pending_no_verdict": 3
+    },
+    "win000": {
+      "rows": 28,
+      "rejected_system_path": 1,
+      "rejected_no_result": 26,
+      "rejected_no_window": 1
+    },
+    "win004": {
+      "rows": 24,
+      "rejected_system_path": 10,
+      "rejected_no_result": 14
+    },
+    "linux002": {
+      "rows": 11,
+      "rejected_no_window": 11
+    },
+    "win009": {
+      "rows": 9,
+      "candidate_consistent": 4,
+      "pending_verdict_conflict": 1,
+      "rejected_no_result": 4
+    },
+    "win008": {
+      "rows": 7,
+      "pending_no_verdict": 6,
+      "rejected_no_window": 1
+    }
+  }
+}

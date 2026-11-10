@@ -45,5 +45,51 @@
   "confidence": "medium",
   "started_at": "2026-11-06T09:41:20Z",
   "ended_at": "2026-11-06T09:41:20Z",
-  "notes": "本轮只验证工具链本身，不代表任何真机能力；条目库 lint 在 record 之后单独执行。"
+  "notes": "本轮只验证工具链本身，不代表任何真机能力；条目库 lint 在 record 之后单独执行。",
+  "node": "agent-linux",
+  "quality": "formal",
+  "toolchain": {
+    "runtime": "python 3.10.12 / linux",
+    "skill_name": "skill-kb",
+    "skill_version": "1.0.0",
+    "tools": [
+      {
+        "name": "python",
+        "version": "3.10.12"
+      },
+      {
+        "name": "unittest",
+        "version": "3.10.12"
+      }
+    ]
+  },
+  "steps": [
+    {
+      "n": 1,
+      "name": "工具链自检单测",
+      "status": "pass",
+      "evidence": [
+        "evidence/unittest.log"
+      ],
+      "note": "21 条用例全部通过"
+    },
+    {
+      "n": 2,
+      "name": "运行环境登记",
+      "status": "pass",
+      "evidence": [
+        "evidence/env.txt"
+      ],
+      "note": "python 3.10.12 / linux"
+    }
+  ],
+  "recovery": {
+    "attempted": false,
+    "result": "not_attempted",
+    "actions": [],
+    "evidence": []
+  },
+  "stop_conditions": [
+    "单测出现失败即停止入库操作，先修工具链再继续。"
+  ]
 }

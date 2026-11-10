@@ -1,0 +1,146 @@
+{
+  "schema": "run.receipt.v1",
+  "run_id": "run-20261014-163403-win009-wake-interval",
+  "task": "win009 tcl-csk7 唤醒间隔测试（扫描行回填）",
+  "skill": "tcl-test-sub",
+  "skill_version": "unregistered",
+  "node": "win009",
+  "scope": {
+    "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+    "project": "tcl-csk7 / aitest",
+    "firmware": null,
+    "platform": "win009 (Windows)"
+  },
+  "quality": "candidate",
+  "result": "blocked",
+  "totals": {
+    "scanned_rows": 1,
+    "evidence_files": 3,
+    "cases_total": 1,
+    "cases_pass": 1
+  },
+  "failures": [
+    {
+      "name": "VERDICT_CONFLICT",
+      "reason": "扫描推断结论为 PASS，日志判定行为 BLOCKED，两者冲突时以判定行为准。",
+      "attribution": "tool",
+      "evidence": [
+        "evidence/scan-row.json"
+      ]
+    }
+  ],
+  "bugs_found": [],
+  "responsibility": [
+    {
+      "failure": "VERDICT_CONFLICT",
+      "layer": "tool",
+      "note": "扫描器按目录名与词频推断结论，缺少与 [RESULT] 判定行的交叉校验。",
+      "evidence": [
+        "evidence/scan-row.json"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "n": 1,
+      "name": "扫描发现运行目录",
+      "status": "pass",
+      "evidence": [
+        "evidence/scan-row.json"
+      ],
+      "note": "运行目录位于 win009，证据文件 3 个"
+    },
+    {
+      "n": 2,
+      "name": "解析结论字段并与判定行交叉校验",
+      "status": "blocked",
+      "evidence": [
+        "evidence/scan-row.json"
+      ],
+      "note": "扫描结论 PASS 与日志判定行 BLOCKED 冲突"
+    },
+    {
+      "n": 3,
+      "name": "取回并复算原始产物哈希",
+      "status": "not_run",
+      "evidence": [],
+      "note": "原始产物仍在目标机，未取回本机，无法复算 SHA-256"
+    }
+  ],
+  "toolchain": {
+    "runtime": "远程扫描器（noah-16）",
+    "skill_name": "NoahsArk",
+    "skill_version": "unregistered",
+    "tools": [
+      {
+        "name": "recscan.py",
+        "note": "远程巡检脚本，版本未记录"
+      }
+    ]
+  },
+  "firmware": {
+    "version": null,
+    "sha256": null,
+    "source": "not_recorded"
+  },
+  "recovery": {
+    "attempted": false,
+    "result": "not_attempted",
+    "actions": [],
+    "evidence": []
+  },
+  "stop_conditions": [
+    "结论字段与日志判定行冲突时停止入库，先人工核对原始产物。"
+  ],
+  "stop_rules": [],
+  "evidence_dir": "evidence",
+  "evidence_sha256": [
+    "09b077e688d20816985710f38fb054c5e4f01d56437edb0f63e432beac31e43a"
+  ],
+  "evidence": [
+    {
+      "path": "evidence/scan-row.json",
+      "sha256": "09b077e688d20816985710f38fb054c5e4f01d56437edb0f63e432beac31e43a",
+      "role": "summary",
+      "verified": true
+    }
+  ],
+  "lessons": [
+    {
+      "type": "method",
+      "title": "扫描推断的结论必须以日志判定行为准",
+      "claim": "该行扫描器按目录名与文件词频推断为 PASS，而 tool.log 的 [RESULT] 判定行写的是 BLOCKED 且完成数为 0；两者冲突时回执只能记为 blocked，并把责任层落在扫描工具上，说明任何自动推断都必须与判定行交叉校验后才能入库。",
+      "confidence": "medium"
+    }
+  ],
+  "confidence": "low",
+  "started_at": "2026-10-14T08:34:03Z",
+  "ended_at": "2026-10-14T08:34:49Z",
+  "notes": "扫描结论 PASS 与日志判定 BLOCKED 冲突，按保守原则记为 blocked，不得提升为 PASS。",
+  "tags": [
+    "wake-recognition",
+    "台架"
+  ],
+  "evidence_gap": {
+    "code": "EVIDENCE_GAP",
+    "missing": [
+      "原始运行产物（cases.csv / results.csv / tool.log 未取回本机）",
+      "运行目录的完整性清单（SHA256SUMS）",
+      "运行时区声明（时间来自目标机本地钟，按 +08:00 换算）"
+    ],
+    "reason": "历史运行只留下远程扫描行，原始证据未归档到本机，哈希无法复算，只能作为候选回执沉淀线索。",
+    "blocking": true
+  },
+  "backfill": {
+    "tool": "tools/backfill.py",
+    "version": "1.0.0",
+    "source_kind": "remote_scan_row",
+    "source_path": "noah-16/rec-win009.json#20261014_163403_wake_interval",
+    "converted_at": "2026-11-10T00:00:00Z",
+    "sanitised": true,
+    "notes": [
+      "扫描行中的目标机绝对路径、账号与目录结构已剔除",
+      "skill 由运行目录形态推断，未取回运行时声明"
+    ]
+  }
+}

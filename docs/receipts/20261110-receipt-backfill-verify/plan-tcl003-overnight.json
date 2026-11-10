@@ -1,0 +1,496 @@
+{
+  "schema": "plan.v1",
+  "plan_id": "p-20261110-f6de",
+  "task": "TCL 智能语音设备(CSK7 + HI3863 双 MCU)唤醒与命令词长稳压测 8 小时通宵,重点复跑 indextts 场景",
+  "confidence": "medium",
+  "needs_confirmation": [
+    "复位通道 uut-switch1（tcl-test-sub）未验证：reset_allowed=true 只表示允许复位，执行前须先在台架实测有效并写 reset_log.jsonl"
+  ],
+  "request": {
+    "device": {
+      "model": "CSK7+HI3863",
+      "project": "tcl",
+      "firmware": null
+    },
+    "bench": {
+      "node": "bszT14",
+      "os": "windows",
+      "ports": [
+        "COM3",
+        "COM4",
+        "COM6"
+      ],
+      "port_roles": {},
+      "playback_key": "<已脱敏,原始值为被测声卡设备键>"
+    },
+    "constraints": {
+      "hours": 8.0,
+      "overnight": true,
+      "reset_allowed": true
+    },
+    "signals": [
+      "playback",
+      "port_map",
+      "synth",
+      "voice_test"
+    ],
+    "long_run": true
+  },
+  "steps": [
+    {
+      "n": 1,
+      "skill": "usb-tree",
+      "phase": "access",
+      "label": "枚举 USB 拓扑与声卡端点",
+      "cmd": "& \"$HOME/.codex/skills/usb-tree/scripts/usbTree-cli.exe\" --all --format detail --out ./result/p-20261110-f6de/preflight/usb-tree.txt",
+      "precheck": [
+        "Windows 台架已登录；不存在需要现场确认的弹窗",
+        "确认本计划是唯一使用串口的会话"
+      ],
+      "gate": "端口 COM3, COM4, COM6 全部出现在板卡树中且未被其他进程占用；若本任务涉及播报，确认该音频端点与串口属于同一块板卡",
+      "on_fail": "stop",
+      "rollback": "只读枚举，无副作用；不修改驱动、设备实例或串口状态",
+      "evidence": "preflight/usb-tree.txt",
+      "cmd_verified": true,
+      "basis": [
+        "registry:usb-tree.capability 命中「拓扑/整理成树」",
+        "routing:steps.usb-tree"
+      ]
+    },
+    {
+      "n": 2,
+      "skill": "listenai-play",
+      "phase": "action",
+      "label": "列出 Render 端点并确认 Key 唯一",
+      "cmd": "python \"$HOME/.codex/skills/listenai-play/scripts/listenai_play.py\" audio-list --direction Render --json",
+      "precheck": [
+        "已确认被测设备上电，避免把断电误判成音频路由失败"
+      ],
+      "gate": "playback_key <已脱敏,原始值为被测声卡设备键> 在 Render 列表唯一命中；存在多个 ListenAI 端点时必须显式指定 Key",
+      "on_fail": "stop",
+      "rollback": "只读查询，无写入；不修改系统默认声卡",
+      "evidence": "preflight/render-endpoints.json",
+      "cmd_verified": true,
+      "basis": [
+        "registry:listenai-play.capability 命中「播报/播放/声卡端点/audio-list」",
+        "routing:steps.listenai-play"
+      ]
+    },
+    {
+      "n": 3,
+      "skill": "listenai-play",
+      "phase": "action",
+      "label": "预检 Key 可播放",
+      "cmd": "python \"$HOME/.codex/skills/listenai-play/scripts/listenai_play.py\" probe --device-key \"<已脱敏,原始值为被测声卡设备键>\"",
+      "precheck": [
+        "Key 来自上一步本次查询结果，不使用历史缓存 Key"
+      ],
+      "gate": "probe 成功且后端确定；找不到设备或匹配歧义即停止",
+      "on_fail": "stop",
+      "rollback": "无写入；修正 Key 后重跑，不回退默认设备",
+      "evidence": "task.log 中的 probe 结果",
+      "cmd_verified": true,
+      "basis": [
+        "registry:listenai-play.capability 命中「播报/播放/声卡端点/audio-list」",
+        "routing:steps.listenai-play"
+      ]
+    },
+    {
+      "n": 4,
+      "skill": "lstts",
+      "phase": "material",
+      "label": "合成预检（preview）",
+      "cmd": "python \"$HOME/.codex/skills/lstts/scripts/synthesize.py\" --job ./result/p-20261110-f6de/tts.job.json --preview",
+      "precheck": [
+        "按 lstts 的 --job 合同准备 tts.job.json，token 只走环境变量",
+        "确认真实音色名与情感参考音频存在"
+      ],
+      "gate": "preview 输出的条目数与待合成文本条数一致，退出码 0",
+      "on_fail": "stop",
+      "rollback": "preview 不落正式产物；不修改 job 之外的任何文件",
+      "evidence": "task.log 中的 preview 事件流",
+      "cmd_verified": true,
+      "basis": [
+        "registry:lstts.capability 命中「语音合成/tts/indextts」",
+        "kb:kb-knowledge-d81c3d1877cc 规定统一走 lstts",
+        "routing:steps.lstts"
+      ]
+    },
+    {
+      "n": 5,
+      "skill": "lstts",
+      "phase": "material",
+      "label": "正式合成并校验产物",
+      "cmd": "python \"$HOME/.codex/skills/lstts/scripts/synthesize.py\" --job ./result/p-20261110-f6de/tts.job.json",
+      "precheck": [
+        "preview 已通过且 job 未再改动"
+      ],
+      "gate": "退出码 0，产物为 16kHz/单声道/16bit，条目与 job 一一对应",
+      "on_fail": "stop",
+      "rollback": "产物写入 result/audio_regen/<日期>/，不覆盖内置语料；失败可按 job 重跑",
+      "evidence": "result/audio_regen/<日期>/ 与 complete 事件",
+      "cmd_verified": true,
+      "basis": [
+        "registry:lstts.capability 命中「语音合成/tts/indextts」",
+        "kb:kb-knowledge-d81c3d1877cc 规定统一走 lstts",
+        "routing:steps.lstts"
+      ]
+    },
+    {
+      "n": 6,
+      "skill": "tcl-test-sub",
+      "phase": "execute",
+      "label": "无硬件 preflight",
+      "cmd": "python -u \"$HOME/.codex/skills/tcl-test-sub/scripts/tcl_test_sub.py\" preflight --mode all",
+      "precheck": [
+        "依赖已安装（pip install -r requirements.txt）"
+      ],
+      "gate": "脚本、依赖、词表、音频 manifest 自检全部通过",
+      "on_fail": "stop",
+      "rollback": "无硬件副作用，无需回滚",
+      "evidence": "preflight 输出",
+      "cmd_verified": true,
+      "basis": [
+        "registry:tcl-test-sub.projects=['TCL-ac']",
+        "registry:tcl-test-sub.reuse=low（设备专用，优先于通用实现）",
+        "registry:tcl-test-sub.capability 命中「唤醒/命令识别/语音验证/交互探测」",
+        "routing:steps.tcl-test-sub"
+      ]
+    },
+    {
+      "n": 7,
+      "skill": "tcl-test-sub",
+      "phase": "execute",
+      "label": "硬件 preflight",
+      "cmd": "python -u \"$HOME/.codex/skills/tcl-test-sub/scripts/tcl_test_sub.py\" preflight --hardware",
+      "precheck": [
+        "设备已上电；串口未被其他程序占用"
+      ],
+      "gate": "COM3/COM4/COM6（来源：bench.ports）全部可打开、指定声卡唯一命中、复位通道状态正常",
+      "on_fail": "stop",
+      "rollback": "只读检查；串口被占用时判 BLOCKED，不关闭用户程序",
+      "evidence": "task.log 中的硬件 preflight 记录",
+      "cmd_verified": true,
+      "basis": [
+        "registry:tcl-test-sub.projects=['TCL-ac']",
+        "registry:tcl-test-sub.reuse=low（设备专用，优先于通用实现）",
+        "registry:tcl-test-sub.capability 命中「唤醒/命令识别/语音验证/交互探测」",
+        "routing:steps.tcl-test-sub"
+      ]
+    },
+    {
+      "n": 8,
+      "skill": "tcl-test-sub",
+      "phase": "execute",
+      "label": "3 轮 smoke",
+      "cmd": "python -u \"$HOME/.codex/skills/tcl-test-sub/scripts/tcl_test_sub.py\" run wake-recognition -- --rounds 3 --interval-mode fixed --fixed-interval-s 2 --wake-command-delay-mode fixed --fixed-wake-command-delay-s 1.6 --boundary-ratio 0",
+      "precheck": [
+        "preflight --mode all 与 --hardware 均通过"
+      ],
+      "gate": "3/3 轮有唤醒与命令识别证据，无 sticky failure；短时 PASS 只代表链路可用",
+      "on_fail": "stop",
+      "rollback": "保留 result/ 目录与串口原文；不得删日志迎合结论",
+      "evidence": "result/YYYYMMDD_HHMMSS_wake-recognition/rounds.csv 与 serial_logs/",
+      "cmd_verified": true,
+      "basis": [
+        "registry:tcl-test-sub.projects=['TCL-ac']",
+        "registry:tcl-test-sub.reuse=low（设备专用，优先于通用实现）",
+        "registry:tcl-test-sub.capability 命中「唤醒/命令识别/语音验证/交互探测」",
+        "routing:steps.tcl-test-sub"
+      ]
+    },
+    {
+      "n": 9,
+      "skill": "tcl-test-sub",
+      "phase": "execute",
+      "label": "正式长跑（含截止时长）",
+      "cmd": "python -u \"$HOME/.codex/skills/tcl-test-sub/scripts/tcl_test_sub.py\" run wake-recognition -- --rounds 100000 --duration-minutes 480 --interval-mode random --min-interval-s 2 --max-interval-s 10 --wake-command-delay-mode random --min-wake-command-delay-s 1 --max-wake-command-delay-s 3 --boundary-ratio 0.2 --boundary-min-s 13 --boundary-max-s 15.5",
+      "precheck": [
+        "smoke 无 sticky failure",
+        "长跑前置条件（磁盘、复位、升级路径）已确认"
+      ],
+      "gate": "轮次与 rounds.csv 持续增长；sticky failure 为 0；到时长后正常收尾并出 summary",
+      "on_fail": "stop",
+      "rollback": "在任务目录创建 STOP 文件即安全边界停止；复位只走 uut-switch1 并写 reset_log.jsonl",
+      "evidence": "rounds.csv、progress.json、serial_logs/、summary_final.md",
+      "cmd_verified": true,
+      "basis": [
+        "registry:tcl-test-sub.projects=['TCL-ac']",
+        "registry:tcl-test-sub.reuse=low（设备专用，优先于通用实现）",
+        "registry:tcl-test-sub.capability 命中「唤醒/命令识别/语音验证/交互探测」",
+        "routing:steps.tcl-test-sub"
+      ]
+    }
+  ],
+  "reset_policy": {
+    "allowed": true,
+    "decision": "允许复位，但不单独排复位步骤",
+    "reason": "constraints.reset_allowed=true：允许在 sticky failure 或明确恢复流程中复位；复位属于被选中 skill 的恢复动作，调度层不执行，也不生成独立复位步骤",
+    "requirement": "复位命令必须先在本台架实测有效并留下证据；未验证的命令不得当作自动恢复手段",
+    "channels": [
+      {
+        "skill": "tcl-test-sub",
+        "command": "uut-switch1",
+        "verified": false,
+        "log": "reset_log.jsonl",
+        "note": "目前只有该复位命令；尚未有真机验证证据，执行前须先在台架实测一次"
+      }
+    ]
+  },
+  "standards": [
+    "trails：纯方法论,与设备无关;不产生执行结果,价值在于让不同项目的产物口径一致。",
+    "skill-creator：与设备无关;只约束 skill 结构,不含任何测试能力。"
+  ],
+  "runtime_notes": [],
+  "excluded": [
+    {
+      "skill": "Trisolaris",
+      "reason": "projects=['CSK5062-xiaodu-fan', 'CSK3022-htt-clothes-airer'] 与任务项目 tcl 不匹配，型号 CSK7+HI3863 也未命中（registry:Trisolaris.projects/.scope_note）"
+    },
+    {
+      "skill": "a4m-Jenkins",
+      "reason": "status=archived（registry:a4m-Jenkins.status）：纯历史外部工程,与 NoahsArk 设备测试无交集,仅作归档;仓库 74MB,不下载不执行。"
+    },
+    {
+      "skill": "arcs-aopu-test",
+      "reason": "projects=['ARCS-aopu'] 与任务项目 tcl 不匹配，型号 CSK7+HI3863 也未命中（registry:arcs-aopu-test.projects/.scope_note）；reuse=low：适用设备:奥普/ARCS 离线语音(日志 COM26@921600 + 协议/门限 COM28@9600)。308 条 MP3 与词表绑定…"
+    },
+    {
+      "skill": "bootship",
+      "reason": "projects=['OBU-bootship'] 与任务项目 tcl 不匹配，型号 CSK7+HI3863 也未命中（registry:bootship.projects/.scope_note）"
+    },
+    {
+      "skill": "duya-ota-powercut",
+      "reason": "projects=['duya-OTA'] 与任务项目 tcl 不匹配，型号 CSK7+HI3863 也未命中（registry:duya-ota-powercut.projects/.scope_note）；reuse=low：写死 COM27/22/21、uut-switch1/2 协议与杜亚 OTA 流程;换设备不可直接用。"
+    },
+    {
+      "skill": "listenai-laid-installer",
+      "reason": "能力已被 listenai-play 覆盖：仓库内已删除安装脚本副本(与 listenai-play 同源)。按旧路径调用 scripts/* 的现场脚本需改指向 listenai-play;新任务一律用 listenai…（registry:listenai-laid-installer.scope_note）"
+    },
+    {
+      "skill": "mars-belt",
+      "reason": "projects=['MarsPlatform'] 与任务项目 tcl 不匹配，型号 CSK7+HI3863 也未命中（registry:mars-belt.projects/.scope_note）"
+    },
+    {
+      "skill": "mars-moon",
+      "reason": "projects=['duya-curtain'] 与任务项目 tcl 不匹配，型号 CSK7+HI3863 也未命中（registry:mars-moon.projects/.scope_note）"
+    },
+    {
+      "skill": "melotts",
+      "reason": "platform=['linux'] 不含 windows（registry:melotts.platform）"
+    },
+    {
+      "skill": "mideaSmoke",
+      "reason": "projects=['CSK6012-midea-smoke'] 与任务项目 tcl 不匹配，型号 CSK7+HI3863 也未命中（registry:mideaSmoke.projects/.scope_note）；reuse=low：写死 CSK6012、uut-burn 控制协议与 COM23/27/29 默认值;换型号必须重做流程,不能直接复用。"
+    },
+    {
+      "skill": "polaris-device-validation",
+      "reason": "status=archived（registry:polaris-device-validation.status）；已被 Polaris 取代：已被 Polaris 取代,不应在新任务中使用;仅用于追溯 6 月前的用例与配置格式。注意:本仓库 frontmatter name 曾是 polaris-device-vali…"
+    },
+    {
+      "skill": "scanpen-api-test",
+      "reason": "projects=['ScanPen'] 与任务项目 tcl 不匹配，型号 CSK7+HI3863 也未命中（registry:scanpen-api-test.projects/.scope_note）；reuse=low：命令与协议写死 ScanPen;换设备不可直接用,只能复用“双口 + 正则断言 + 流式日志”的方法。"
+    },
+    {
+      "skill": "power-on-record-check",
+      "reason": "同一能力「播报通道」优先选 listenai-play：registry:listenai-play.capability 命中「播报/播放/声卡端点/audio-list」。本 skill 限制：换设备可用,前提是有可控电源串口且录音/播报是两张可枚举声卡;录音声卡不枚举时按 BLOCKED 处理,不静默回退默认声卡。（registry:power-on-record-check.scope_note）"
+    }
+  ],
+  "preconditions": [
+    "playback_key <已脱敏,原始值为被测声卡设备键> 在 audio-list --direction Render 输出中唯一命中；不得回退默认声卡",
+    "端口 COM3, COM4, COM6 全部出现在 usb-tree 输出中，且没有被其他进程占用",
+    "lstts/IndexTTS 服务可访问，LSTTS_TTS_TOKEN 只从环境变量读取",
+    "合成产物写入 result/audio_regen/<日期>/，不覆盖 skill 内置语料",
+    "被测设备 profile 的串口与台架实际端口一致：COM3/COM4/COM6（来源：bench.ports）",
+    "先跑无硬件 preflight，再跑硬件 preflight，通过后才允许正式轮次",
+    "设备已上电，且除本计划外没有会话占用被测设备",
+    "执行机可以隐藏窗口、非交互地运行命令；需要交互授权的命令不进入计划",
+    "结果目录所在磁盘剩余空间 ≥ 10GiB，日志按轮次落盘并开启轮转",
+    "复位通道已确认可用（TCL 为 uut-switch1），复位动作写入 reset_log.jsonl",
+    "无人值守期间有人可联系的升级路径已确认；无人可联系时不得开启通宵压测",
+    "indextts 调高温度后固件崩溃且后续轮次全失效：第 3 轮调高温度后立即出现 crash 与 exception 标记并伴随设备复位，此后第 4 至第 10 轮全部 WAKE_FAIL；同台架 edge-tts 与 lstts 场景十轮全通过，差异集中在 TTS 语料，排查应从 indextts 语料与固件崩溃现场入手。（kb:kb-knowledge-47f5e67ad298）"
+  ],
+  "stop_conditions": [
+    "出现 STOP 文件：在安全边界停止并保留结果目录（按 skill 约定退出码 3）",
+    "panic / crash / 非预期 reboot / watchdog reset / assert / 串口断流：按 sticky failure 停止并保留现场",
+    "连续崩溃 ≥3 次/30min：停止，不继续下一轮",
+    "串口 180s 无新增有效行且进度文件不再增长：判 BLOCKED 并停止",
+    "同一断言连续 2 轮失败：停止并归因，不重试到掩盖问题",
+    "证据无法可靠写入（磁盘满、权限错、日志被截断）：立即停止",
+    "连续 2 次巡检（间隔 ≥60min）轮次/CSV 零增长：停止并判 BLOCKED",
+    "磁盘剩余 < 10GiB：停止",
+    "TTS/云端/凭据连续失败 ≥3 次：停止，不静默降级到其他通道",
+    "累计运行达到 constraints.hours 上限：正常收尾停止，不越界"
+  ],
+  "stop_rules": [
+    {
+      "id": "crash-round-cluster",
+      "rule": "连续 3 段都在同一轮次崩溃 → 判设备不稳定并停止",
+      "basis": "kb:kb-knowledge-47f5e67ad298",
+      "source": "kb",
+      "why": "kb:kb-knowledge-47f5e67ad298：第 3 轮调高温度后立即出现 crash 与 exception 标记并伴随设备复位,此后第 4 至第 10 轮全部 WAKE_FAIL;同台架 edge-tts 与 lstts…"
+    },
+    {
+      "id": "crash-signature-budget",
+      "rule": "同一崩溃签名出现 ≥5 次 → 停止并出崩溃分布报告",
+      "basis": "kb:kb-knowledge-0f2bab9750fc",
+      "source": "kb",
+      "why": "kb:kb-knowledge-0f2bab9750fc：崩溃后 CSK 串口最后一行恒为 '[D][boot # app_client] APP client create [E]',设备侧时间戳回退到 2026-08-01 00:0…"
+    },
+    {
+      "id": "recovery-ineffective",
+      "rule": "恢复命令 algo.restart 1 发出后 10 秒内未恢复（串口无新字节或 1 轮冒烟不过）→ 停止并要求人工物理断电",
+      "basis": "kb:kb-bug-a6039e398e31",
+      "source": "kb",
+      "why": "kb:kb-bug-a6039e398e31：第 3 轮调高温度后 errors.log 依次记录系统或硬件复位、固件 exception、固件 crash、CSK AP 检测到设备重启,随后七轮全部 WAKE_FAIL;全…"
+    }
+  ],
+  "recovery": [
+    {
+      "n": "R1",
+      "action": "algo-restart",
+      "skill": "tcl-test-sub",
+      "label": "崩溃恢复：向 COM3 发送 algo.restart 1 复位算法侧",
+      "why": "CSK 重启后卡在 boot app client 创建，algo 不就绪：设备在正常运行 6–7 分钟后 CSK 侧自行重启,重启后停在 boot 的 app client 创建阶段不再前进,所有后续唤醒必然失败;只能靠 algo.restart 1 …（kb:kb-bug-241022256518）",
+      "cmd": "python -c \"import serial;s=serial.Serial('COM3',921600,timeout=1);s.write(b'algo.restart 1\\r\\n');s.close()\"",
+      "port": "COM3",
+      "port_source": "bench",
+      "precheck": [
+        "先写 STOP 并确认 runner 已退出：CSK 口由 runner 独占，不释放就发不出恢复命令",
+        "确认 COM3 是本台架的 CSK AP 口（来源：bench.ports）"
+      ],
+      "gate": "命令发出后 10 秒内 COM3 重新产生字节（串口重开只是第一级证据）",
+      "after_fail": "连续 3 次 300 秒内快速崩溃 → 停止并判「当前固件不具备长稳能力」；恢复命令发出后 10 秒仍无字节 → 停止并要求人工物理断电",
+      "verify": "串口重新开口不等于功能恢复：必须再跑 1 轮 smoke 通过才算恢复，smoke 不过要单列且不得计入恢复成功",
+      "record": "reset_log.jsonl",
+      "basis": "kb:kb-bug-241022256518",
+      "supporting": [
+        "kb:kb-method-5a97db5bfc22"
+      ],
+      "cmd_verified": false
+    }
+  ],
+  "patrol": [
+    "每 ≤60min 检查 progress.json 与 rounds.csv 是否持续增长",
+    "每 ≤60min 检查 task.log / errors.log 中的 sticky failure 与串口断流",
+    "每 ≤60min 检查磁盘剩余空间与 serial_logs 体积增长",
+    "每 8 轮归档一次 serial_logs 与 summary 快照，避免长跑证据被后续覆盖",
+    "巡检结论写入 plan.md（或调用方工作区台账），只写事实与时间点"
+  ],
+  "kb": [
+    {
+      "id": "kb-knowledge-47f5e67ad298",
+      "type": "knowledge",
+      "title": "indextts 调高温度后固件崩溃且后续轮次全失效",
+      "claim": "第 3 轮调高温度后立即出现 crash 与 exception 标记并伴随设备复位，此后第 4 至第 10 轮全部 WAKE_FAIL；同台架 edge-tts 与 lstts 场景十轮全通过，差异集中在 TTS 语料，排查应从 indextts 语料与固件崩溃现场入手。",
+      "use": "precheck",
+      "confidence": "high",
+      "relevance": 11
+    },
+    {
+      "id": "kb-method-e464b5e9a536",
+      "type": "method",
+      "title": "edge-tts 全通过可作为 indextts 故障的对照基线",
+      "claim": "同日同台架同固件下 edge-tts 场景十轮全部 RECOGNIZED，而 indextts 场景第 3 轮触发固件崩溃；两次运行台架、固件、命令集一致，差异集中在 TTS 语料，因此 edge-tts 结果可用作语料侧归因的对照基线。",
+      "use": "oracle",
+      "confidence": "medium",
+      "relevance": 11
+    },
+    {
+      "id": "kb-run-16a9cc2b6ccd",
+      "type": "run",
+      "title": "执行记录：tcl003 indextts 十命令唤醒识别（第 3 轮触发固件崩溃）",
+      "claim": "FAIL｜任务：tcl003 indextts 十命令唤醒识别（第 3 轮触发固件崩溃）｜失败 2 项，缺陷 1 项｜rounds=10，recognized=2，failed=8，recognition_rate=0.2",
+      "use": "reference",
+      "confidence": "high",
+      "relevance": 11
+    },
+    {
+      "id": "kb-run-3228baa6c3f6",
+      "type": "run",
+      "title": "执行记录：TCL 离线语音交互压测：唤醒 + 命令词识别长稳（CSK7 + HI3863 双 MCU，win009 台架）",
+      "claim": "FAIL｜任务：TCL 离线语音交互压测：唤醒 + 命令词识别长稳（CSK7 + HI3863 双 MCU，win009 台架）｜失败 10 项，缺陷 2 项｜rounds=180，crashes=10，mtbf_min=6.68，live_mtbf_min=None，recoveries_attempted=10，recoveries_ok=9，recovery_success_rate_pct=90.0，elapsed_minutes=67.0",
+      "use": "reference",
+      "confidence": "medium",
+      "relevance": 11
+    },
+    {
+      "id": "kb-run-96ecdf985bf1",
+      "type": "run",
+      "title": "执行记录：TCL 离线语音交互压测：唤醒 + 命令词识别长稳（CSK7 + HI3863 双 MCU，win009 台架）",
+      "claim": "FAIL｜任务：TCL 离线语音交互压测：唤醒 + 命令词识别长稳（CSK7 + HI3863 双 MCU，win009 台架）｜失败 1 项，缺陷 2 项｜rounds=184，recognized=7，wake_fail=177，crashes=1，elapsed_minutes=58.3，recoveries_attempted=0，recoveries_ok=0",
+      "use": "reference",
+      "confidence": "medium",
+      "relevance": 11
+    },
+    {
+      "id": "kb-bug-241022256518",
+      "type": "bug",
+      "title": "CSK 重启后卡在 boot app client 创建，algo 不就绪",
+      "claim": "设备在正常运行 6–7 分钟后 CSK 侧自行重启，重启后停在 boot 的 app client 创建阶段不再前进，所有后续唤醒必然失败；只能靠 algo.restart 1 复位算法侧恢复。",
+      "use": "trap",
+      "confidence": "medium",
+      "relevance": 0
+    },
+    {
+      "id": "kb-bug-a6039e398e31",
+      "type": "bug",
+      "title": "indextts 场景调高温度步骤触发 CSK 固件崩溃且未自愈",
+      "claim": "第 3 轮调高温度后 errors.log 依次记录系统或硬件复位、固件 exception、固件 crash、CSK AP 检测到设备重启，随后七轮全部 WAKE_FAIL；全程未出现 algo.restart，设备不具备自恢复能力。",
+      "use": "trap",
+      "confidence": "medium",
+      "relevance": 0
+    },
+    {
+      "id": "kb-knowledge-0f2bab9750fc",
+      "type": "knowledge",
+      "title": "CSK 崩溃后的形态：自行重启并卡死在 boot 的 app client 创建",
+      "claim": "崩溃后 CSK 串口最后一行恒为 '[D][boot # app_client] APP client create [E]'，设备侧时间戳回退到 2026-08-01 00:00:01.10x，此后不再产生字节；上层 MCU（COM4）仍持续输出。",
+      "use": "fact",
+      "confidence": "high",
+      "relevance": 0
+    },
+    {
+      "id": "kb-knowledge-d81c3d1877cc",
+      "type": "knowledge",
+      "title": "运行时语音合成统一走 lstts",
+      "claim": "运行时语音合成统一到 lstts（IndexTTS），静态语料不重建、只补来源与重生成脚本；旧 edge-tts 通道应移除，token 只从环境变量读取，不写进代码与日志。",
+      "use": "fact",
+      "confidence": "medium",
+      "relevance": 0
+    },
+    {
+      "id": "kb-method-5a97db5bfc22",
+      "type": "method",
+      "title": "用 algo.restart 1 + 1 轮冒烟做两级恢复判定",
+      "claim": "watchdog 只盯 CSK 单口 180s；判静默后发 algo.restart 1，等 10s 看是否重新开口，再跑 1 轮 smoke。串口重新开口不等于功能恢复：24 次恢复中 2 次 smoke 返回 ASR_TIMEOUT。",
+      "use": "oracle",
+      "confidence": "high",
+      "relevance": 0
+    }
+  ],
+  "sources": [
+    "registry/skills.json@eb6bb09",
+    "routing:routing.v1",
+    "kb:kb-knowledge-47f5e67ad298",
+    "kb:kb-method-e464b5e9a536",
+    "kb:kb-run-16a9cc2b6ccd",
+    "kb:kb-run-3228baa6c3f6",
+    "kb:kb-run-96ecdf985bf1",
+    "kb:kb-bug-241022256518",
+    "kb:kb-bug-a6039e398e31",
+    "kb:kb-knowledge-0f2bab9750fc",
+    "kb:kb-knowledge-d81c3d1877cc",
+    "kb:kb-method-5a97db5bfc22"
+  ],
+  "warnings": [
+    "恢复步骤 R1 的发送方式未在真机验证过（cmd_verified=false）：执行前按 tcl-test-sub 的串口约定确认"
+  ],
+  "limits": [
+    "本计划只做选型与排序：不执行设备动作、不联网、不写台账与知识库",
+    "cmd 字段按 skill 安装根目录 $HOME/.codex/skills/<skill> 书写（Windows PowerShell 5.1 与 Linux bash 通用）；实际路径不同时用 --skills-home 重新生成",
+    "台账只登记入口，未登记调用模板的 skill 会标记 cmd_verified=false，执行前必须按其 SKILL.md 确认参数",
+    "代码测试通过不等于真机验证通过：执行方必须自己跑 preflight 并留下证据",
+    "recovery 步骤同样由被选中 skill 执行：调度层只给命令、出处与失败退出点，不代发串口"
+  ]
+}

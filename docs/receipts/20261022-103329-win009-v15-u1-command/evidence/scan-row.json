@@ -1,0 +1,26 @@
+{
+  "machine": "win009",
+  "run_id": "v15-u1-command-20261022_103328",
+  "task": "（扫描器取到的账号名，已脱敏）",
+  "result": "PASS",
+  "totals": {
+    "total": 1,
+    "pass": 1
+  },
+  "started": "2026-10-22 10:33:29",
+  "ended": "2026-10-22 10:33:46",
+  "log_last": "2026-10-22 10:33:46.373 [RESULT] 判定: 任务=PASS 完成=1 通过=1 异常=0 原因=all_formal_safe_cases_passed",
+  "evidence_files": [
+    "cases.csv",
+    "results.csv",
+    "tool.log"
+  ],
+  "notes": [
+    "CSV 内 PASS/FAIL 词频 6/0 仅作参考"
+  ],
+  "redacted": [
+    "evidence_dir 与 project_root（含账号与绝对路径）",
+    "evidence_files 的目录部分",
+    "task 账号名"
+  ]
+}

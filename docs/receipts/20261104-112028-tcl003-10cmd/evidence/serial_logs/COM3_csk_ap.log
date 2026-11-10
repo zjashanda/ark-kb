@@ -1,0 +1,1381 @@
+2026-11-04 11:20:29.809 [COM3/csk_ap] flash.setloglev 4
+2026-11-04 11:20:29.831 [COM3/csk_ap] [2026-08-03 02:05:41.000][O][shrx # cmd] flash set log_lev:4 success
+2026-11-04 11:20:29.838 [COM3/csk_ap] [0m
+2026-11-04 11:20:29.838 [COM3/csk_ap] root:/$ [0m
+2026-11-04 11:20:40.770 [COM3/csk_ap] root:/$ [2026-08-03 02:05:52.000][D][algo_task # PA_MGR] Refresh PA to ON, timeout 50000, by "prewakeup"
+2026-11-04 11:20:40.770 [COM3/csk_ap] [2026-08-03 02:05:52.000][D][algo_task # PA_MGR] Refresh PA end by "prewakeup"
+2026-11-04 11:20:40.770 [COM3/csk_ap] [2026-08-03 02:05:52.007][D][evs_event # event] evt msg -> enter, f: 0x30054784, d: 0x387c54e4
+2026-11-04 11:20:40.776 [COM3/csk_ap] [2026-08-03 02:05:52.008][D][evs_event # algo] Pre Wakeup: {"rlt":[{"istart":1429873,"iresid":0,"iduration":16,"nfillerscore":16556,"nkeywordscore":32550,"ncm":993,"ncmThreshold":800,"keyword":"xiao ti xiao ti","intent":"xiao ti xiao ti","bMain":1,"bAbsorb":0,"bMhx":0}]}
+2026-11-04 11:20:40.776 [COM3/csk_ap] [2026-08-03 02:05:52.010][I][evs_event # wake_audio] candidate prewake score:993 valid:1 trigger:2885442560
+2026-11-04 11:20:40.777 [COM3/csk_ap] [2026-08-03 02:05:52.011][D][evs_event # event] evt msg -> exit
+2026-11-04 11:20:41.088 [COM3/csk_ap] [2026-08-03 02:05:53.000][D][algo_task # algo] wake point: 180339640ms -> 180340640ms
+2026-11-04 11:20:41.088 [COM3/csk_ap] [2026-08-03 02:05:53.000][I][algo_task # rec_ringbuf] mark wake frame:180339640ms -> 180340640ms
+2026-11-04 11:20:41.092 [COM3/csk_ap] [33m(T1|180341.672) wake point string: wakept(180339640:180340640)
+2026-11-04 11:20:41.127 [COM3/csk_ap] [0m[2026-08-03 02:05:53.022][I][algo_task # algo] wakeup power: chn=1, frame=18034064, cp_x100=7000
+2026-11-04 11:20:41.127 [COM3/csk_ap] [2026-08-03 02:05:53.022][D][algo_task # app_client] Wakeup: {"rlt":[{"istart":1429871,"iresid":1,"iduration":25,"nfillerscore":0,"nkeywordscore":0,"ncm":-8,"ncmThreshold":-91,"keyword":"xiao ti xiao ti","intent":"xiao ti xiao ti-ch","nRltIdx":0,"nDelayFrame":0,"nThrowFrame":1429896,"decId":0,"branch":3,"wakeUpType":0,"VadGap":0,"nE2eIntervalFrame":8,"nE2eNodeFrame":2,"nStartStateThreshold":500,"bMain":1,"bAbsorb":0,"bMhx":0,"nLanThreshold":0,"nLanNcm":0,"iframe":4508516}],"cp_x100":7000,"cp_db":70,"wk_ifra[2026-08-03 02:05:53.030][D][evs_event # event] evt msg -> enter, f: 0x300564b4, d: 0x387c54e4
+2026-11-04 11:20:41.129 [COM3/csk_ap] [2026-08-03 02:05:53.032][D][evs_event # app_client] keyword: xiao ti xiao ti, intent: xiao ti xiao ti-ch, ncm: -8.00, cp_db: 70
+2026-11-04 11:20:41.129 [COM3/csk_ap] [2026-08-03 02:05:53.034][I][evs_event # app_client] MEM[WAKEUP] SRAM free:9236(9KB) lfb:7936(7KB) | PSRAM free:236804(231KB) lfb:233472(228KB)
+2026-11-04 11:20:41.129 [COM3/csk_ap] [2026-08-03 02:05:53.034][D][evs_event # algo] keyword: xiao ti xiao ti-ch, cmd_id: 0001
+2026-11-04 11:20:41.129 [COM3/csk_ap] [2026-08-03 02:05:53.035][D][evs_event # app_client] wakeup_cmd: cmd 0x1, localism 0, score -8.000000, energy 700000, is_study_cmd 0
+2026-11-04 11:20:41.129 [COM3/csk_ap] [2026-08-03 02:05:53.035][D][evs_event # event] evt msg -> exit
+2026-11-04 11:20:41.129 [COM3/csk_ap] [2026-08-03 02:05:53.035][D][msg_send # msg] >>>>> Send 203 ASR, cmd: 0x1006, ext: 0x0, len: 33
+2026-11-04 11:20:41.129 [COM3/csk_ap] [2026-08-03 02:05:53.030][I][algo_task # algo] MODE 0 -> 1, param: {"reg":[{"key":"mode","val":0},{"key":"model","val":1}],"cae":[{"key":"mode","val":1}],"esr":[{"key":"mode","val":0},{"key":"model","val":1},{"key":"2121","val":-177},{"key":"2122","val":-177}]}
+2026-11-04 11:20:41.137 [COM3/csk_ap] [2026-08-03 02:05:53.055][D][msg_recv # msg] <<<<< Recv 250 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:20:41.137 [COM3/csk_ap] [2026-08-03 02:05:53.056][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:20:41.168 [COM3/csk_ap] [2026-08-03 02:05:53.069][D][msg_recv # msg] <<<<< Recv 251 PLAYER, cmd: 0x4001, ext: 0x0, len: 4
+2026-11-04 11:20:41.168 [COM3/csk_ap] [2026-08-03 02:05:53.070][D][msg_send # msg] >>>>> Send 204 PLAYER, cmd: 0x4001, ext: 0x8002, len: 1
+2026-11-04 11:20:41.168 [COM3/csk_ap] [2026-08-03 02:05:53.072][D][evs_event # event] evt msg -> enter, f: 0x30056034, d: 0x387c54e4
+2026-11-04 11:20:41.168 [COM3/csk_ap] [2026-08-03 02:05:53.072][D][evs_event # app_client] tone player, play 1
+2026-11-04 11:20:41.168 [COM3/csk_ap] [2026-08-03 02:05:53.073][D][evs_event # soundplayer] release alert item
+2026-11-04 11:20:41.168 [COM3/csk_ap] [2026-08-03 02:05:53.073][D][evs_event # soundplayer] sound acquire channel
+2026-11-04 11:20:41.168 [COM3/csk_ap] [2026-08-03 02:05:53.075][D][evs_event # audiomgr] 4 acquire channel
+2026-11-04 11:20:41.168 [COM3/csk_ap] [2026-08-03 02:05:53.075][I][evs_event # soundplayer] focus 0, by_which 4
+2026-11-04 11:20:41.168 [COM3/csk_ap] [2026-08-03 02:05:53.075][D][evs_event # soundplayer] _sound_play_foreground, handle->m_play_state:6
+2026-11-04 11:20:41.168 [COM3/csk_ap] [2026-08-03 02:05:53.075][D][evs_event # soundplayer] _sound_play_next, handle->m_wait_len:1
+2026-11-04 11:20:41.169 [COM3/csk_ap] [2026-08-03 02:05:53.076][D][evs_event # soundplayer] play next tone 1: mem://addr=811073387size=2061
+2026-11-04 11:20:41.169 [COM3/csk_ap] [2026-08-03 02:05:53.076][D][evs_event # soundplayer] soundplayer status: 0XEF
+2026-11-04 11:20:41.169 [COM3/csk_ap] [2026-08-03 02:05:53.077][D][evs_event # app_client] sound player state: 239
+2026-11-04 11:20:41.169 [COM3/csk_ap] [2026-08-03 02:05:53.077][I][evs_event # APP_PLAYER] play audio mem://addr=811073387size=2061
+2026-11-04 11:20:41.169 [COM3/csk_ap] [2026-08-03 02:05:53.077][D][evs_event # event] evt msg -> exit
+2026-11-04 11:20:41.169 [COM3/csk_ap] [2026-08-03 02:05:53.080][D][player_0_td # lisa_que] create queue: demux_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:20:41.169 [COM3/csk_ap] [2026-08-03 02:05:53.081][D][msg_send # msg] >>>>> Send 205 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:20:41.169 [COM3/csk_ap] [2026-08-03 02:05:53.085][D][msg_recv # msg] <<<<< Recv 252 RECORDER, cmd: 0x8001, ext: 0x0, len: 0
+2026-11-04 11:20:41.170 [COM3/csk_ap] [2026-08-03 02:05:53.087][I][msg_recv # rec_ringbuf] oneshot-v4 START requested
+2026-11-04 11:20:41.176 [COM3/csk_ap] [2026-08-03 02:05:53.093][D][player_0_td # lisa_que] create queue: decode_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:20:41.200 [COM3/csk_ap] [2026-08-03 02:05:53.108][I][algo_task # rec_ringbuf] oneshot-v4 START-wake session:22 pos:5770827520 end:5770859520 backlog:32000 ms:1000 sent:0 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:20:41.200 [COM3/csk_ap] [2026-08-03 02:05:53.108][I][algo_task # rec_ringbuf] wake target 180339640ms (wake 180339640ms->180340640ms include_wake:1 wake_span:1000ms) pos:5770827520 end:5770859520 delay:1000ms
+2026-11-04 11:20:41.210 [COM3/csk_ap] [2026-08-03 02:05:53.123][I][player_0_td # APP_PLAYER] tone player evt 1
+2026-11-04 11:20:41.210 [COM3/csk_ap] [2026-08-03 02:05:53.123][D][player_0_td # soundplayer] soundplayer status: 0X1
+2026-11-04 11:20:41.210 [COM3/csk_ap] [2026-08-03 02:05:53.124][D][player_0_td # app_client] sound player state: 1
+2026-11-04 11:20:41.210 [COM3/csk_ap] [2026-08-03 02:05:53.124][D][player_0_td # PA_MGR] Refresh PA to ON, timeout 4294967295, by "tone_player_prepared"
+2026-11-04 11:20:41.210 [COM3/csk_ap] [2026-08-03 02:05:53.125][D][msg_send # msg] >>>>> Send 206 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:20:41.210 [COM3/csk_ap] [2026-08-03 02:05:53.127][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_prepared"
+2026-11-04 11:20:41.220 [COM3/csk_ap] [2026-08-03 02:05:53.138][I][player_0_td # APP_PLAYER] tone player evt 2
+2026-11-04 11:20:41.224 [COM3/csk_ap] [2026-08-03 02:05:53.140][D][player_0_td # soundplayer] soundplayer status: 0X2
+2026-11-04 11:20:41.226 [COM3/csk_ap] [2026-08-03 02:05:53.144][D][player_0_td # app_client] sound player state: 2
+2026-11-04 11:20:41.229 [COM3/csk_ap] [2026-08-03 02:05:53.147][D][msg_send # msg] >>>>> Send 207 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:20:41.266 [COM3/csk_ap] [2026-08-03 02:05:53.180][W][evs_event # event] wdt not feed 1127131
+2026-11-04 11:20:41.266 [COM3/csk_ap] [2026-08-03 02:05:53.180][D][evs_event # event] evt msg -> enter, f: 0x30054316, d: 0x387c56f8
+2026-11-04 11:20:41.266 [COM3/csk_ap] [2026-08-03 02:05:53.181][D][evs_event # algo] ******** CSK DOA 54 ********
+2026-11-04 11:20:41.266 [COM3/csk_ap] [2026-08-03 02:05:53.181][D][evs_event # app_client] send doa: 54
+2026-11-04 11:20:41.266 [COM3/csk_ap] [2026-08-03 02:05:53.182][D][evs_event # event] evt msg -> exit
+2026-11-04 11:20:41.266 [COM3/csk_ap] [2026-08-03 02:05:53.182][D][msg_send # msg] >>>>> Send 208 ASR, cmd: 0x1006, ext: 0x0, len: 33
+2026-11-04 11:20:41.728 [COM3/csk_ap] [2026-08-03 02:05:53.642][I][player_0_td # APP_PLAYER] tone player evt 6
+2026-11-04 11:20:41.730 [COM3/csk_ap] [2026-08-03 02:05:53.643][D][player_0_td # PA_MGR] Refresh PA to OFF, timeout 50000, by "tone_player_end"
+2026-11-04 11:20:41.730 [COM3/csk_ap] [2026-08-03 02:05:53.644][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_end"
+2026-11-04 11:20:41.730 [COM3/csk_ap] [2026-08-03 02:05:53.645][D][player_0_td # soundplayer] soundplayer status: 0X6
+2026-11-04 11:20:41.730 [COM3/csk_ap] [2026-08-03 02:05:53.646][D][player_0_td # app_client] sound player state: 6
+2026-11-04 11:20:41.730 [COM3/csk_ap] [2026-08-03 02:05:53.647][D][msg_send # msg] >>>>> Send 209 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:20:41.731 [COM3/csk_ap] [2026-08-03 02:05:53.648][D][evs_event # event] evt msg -> enter, f: 0x3005d23e, d: 0x0
+2026-11-04 11:20:41.731 [COM3/csk_ap] [2026-08-03 02:05:53.649][D][evs_event # audiomgr] 4 release channel
+2026-11-04 11:20:41.731 [COM3/csk_ap] [2026-08-03 02:05:53.650][I][evs_event # soundplayer] focus 2, by_which 4
+2026-11-04 11:20:41.731 [COM3/csk_ap] [2026-08-03 02:05:53.650][D][evs_event # event] evt msg -> exit
+2026-11-04 11:20:43.113 [COM3/csk_ap] [2026-08-03 02:05:55.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:22 pos:5770891520 end:5770923520 backlog:32000 ms:1000 sent:64000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:20:45.105 [COM3/csk_ap] [2026-08-03 02:05:57.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:22 pos:5770955520 end:5770987520 backlog:32000 ms:1000 sent:128000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:20:47.104 [COM3/csk_ap] [2026-08-03 02:05:59.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:22 pos:5771019520 end:5771051520 backlog:32000 ms:1000 sent:192000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:20:49.105 [COM3/csk_ap] [2026-08-03 02:06:01.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:22 pos:5771083520 end:5771115520 backlog:32000 ms:1000 sent:256000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:20:51.105 [COM3/csk_ap] [2026-08-03 02:06:03.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:22 pos:5771147520 end:5771179520 backlog:32000 ms:1000 sent:320000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:20:53.106 [COM3/csk_ap] [2026-08-03 02:06:05.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:22 pos:5771211520 end:5771243520 backlog:32000 ms:1000 sent:384000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:20:55.107 [COM3/csk_ap] [2026-08-03 02:06:07.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:22 pos:5771275520 end:5771307520 backlog:32000 ms:1000 sent:448000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:20:56.156 [COM3/csk_ap] [2026-08-03 02:06:08.000][I][algo_task # algo] MODE 1 -> 0, param: {"reg":[{"key":"mode","val":1},{"key":"model","val":0}],"cae":[{"key":"mode","val":0}],"esr":[{"key":"mode","val":1},{"key":"model","val":0},{"key":"2121","val":-91},{"key":"2122","val":-91}]}
+2026-11-04 11:20:56.165 [COM3/csk_ap] [2026-08-03 02:06:08.007][D][evs_event # event] evt msg -> enter, f: 0x30054f40, d: 0x0
+2026-11-04 11:20:56.165 [COM3/csk_ap] [2026-08-03 02:06:08.008][D][evs_event # app_client] esr timeout
+2026-11-04 11:20:56.165 [COM3/csk_ap] [2026-08-03 02:06:08.008][D][evs_event # event] evt msg -> exit
+2026-11-04 11:20:56.165 [COM3/csk_ap] [2026-08-03 02:06:08.008][D][msg_send # msg] >>>>> Send 210 ASR, cmd: 0x1004, ext: 0x0, len: 0
+2026-11-04 11:20:56.209 [COM3/csk_ap] [2026-08-03 02:06:08.051][D][msg_recv # msg] <<<<< Recv 253 PLAYER, cmd: 0x4001, ext: 0x0, len: 4
+2026-11-04 11:20:56.209 [COM3/csk_ap] [2026-08-03 02:06:08.051][D][msg_send # msg] >>>>> Send 211 PLAYER, cmd: 0x4001, ext: 0x8007, len: 1
+2026-11-04 11:20:56.209 [COM3/csk_ap] [2026-08-03 02:06:08.052][W][evs_event # event] wdt not feed 1127225
+2026-11-04 11:20:56.209 [COM3/csk_ap] [2026-08-03 02:06:08.053][D][evs_event # event] evt msg -> enter, f: 0x30056034, d: 0x387c54e4
+2026-11-04 11:20:56.209 [COM3/csk_ap] [2026-08-03 02:06:08.053][D][evs_event # app_client] tone player, play 75
+2026-11-04 11:20:56.209 [COM3/csk_ap] [2026-08-03 02:06:08.054][D][evs_event # soundplayer] release alert item
+2026-11-04 11:20:56.209 [COM3/csk_ap] [2026-08-03 02:06:08.054][D][evs_event # soundplayer] sound acquire channel
+2026-11-04 11:20:56.209 [COM3/csk_ap] [2026-08-03 02:06:08.055][D][evs_event # audiomgr] 4 acquire channel
+2026-11-04 11:20:56.209 [COM3/csk_ap] [2026-08-03 02:06:08.055][I][evs_event # soundplayer] focus 0, by_which 4
+2026-11-04 11:20:56.211 [COM3/csk_ap] [2026-08-03 02:06:08.056][D][evs_event # soundplayer] _sound_play_foreground, handle->m_play_state:6
+2026-11-04 11:20:56.211 [COM3/csk_ap] [2026-08-03 02:06:08.057][D][evs_event # soundplayer] _sound_play_next, handle->m_wait_len:1
+2026-11-04 11:20:56.211 [COM3/csk_ap] [2026-08-03 02:06:08.058][D][evs_event # soundplayer] play next tone 75: mem://addr=811436717size=11997
+2026-11-04 11:20:56.211 [COM3/csk_ap] [2026-08-03 02:06:08.060][D][evs_event # soundplayer] soundplayer status: 0XEF
+2026-11-04 11:20:56.211 [COM3/csk_ap] [2026-08-03 02:06:08.060][D][evs_event # app_client] sound player state: 239
+2026-11-04 11:20:56.211 [COM3/csk_ap] [2026-08-03 02:06:08.061][D][msg_send # msg] >>>>> Send 212 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:20:56.211 [COM3/csk_ap] [2026-08-03 02:06:08.061][I][evs_event # APP_PLAYER] play audio mem://addr=811436717size=11997
+2026-11-04 11:20:56.211 [COM3/csk_ap] [2026-08-03 02:06:08.063][D][evs_event # event] evt msg -> exit
+2026-11-04 11:20:56.216 [COM3/csk_ap] [2026-08-03 02:06:08.071][D][player_0_td # lisa_que] create queue: demux_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:20:56.222 [COM3/csk_ap] [2026-08-03 02:06:08.077][D][player_0_td # lisa_que] create queue: decode_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:20:56.237 [COM3/csk_ap] [2026-08-03 02:06:08.091][D][msg_recv # msg] <<<<< Recv 254 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:20:56.237 [COM3/csk_ap] [2026-08-03 02:06:08.092][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:20:56.251 [COM3/csk_ap] [2026-08-03 02:06:08.102][D][msg_recv # msg] <<<<< Recv 255 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:20:56.251 [COM3/csk_ap] [2026-08-03 02:06:08.103][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:20:56.251 [COM3/csk_ap] [2026-08-03 02:06:08.104][I][player_0_td # APP_PLAYER] tone player evt 1
+2026-11-04 11:20:56.251 [COM3/csk_ap] [2026-08-03 02:06:08.104][D][player_0_td # soundplayer] soundplayer status: 0X1
+2026-11-04 11:20:56.251 [COM3/csk_ap] [2026-08-03 02:06:08.104][D][player_0_td # app_client] sound player state: 1
+2026-11-04 11:20:56.251 [COM3/csk_ap] [2026-08-03 02:06:08.105][D][msg_send # msg] >>>>> Send 213 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:20:56.253 [COM3/csk_ap] [2026-08-03 02:06:08.106][D][player_0_td # PA_MGR] Refresh PA to ON, timeout 4294967295, by "tone_player_prepared"
+2026-11-04 11:20:56.258 [COM3/csk_ap] [2026-08-03 02:06:08.111][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_prepared"
+2026-11-04 11:20:56.279 [COM3/csk_ap] [2026-08-03 02:06:08.124][I][player_0_td # APP_PLAYER] tone player evt 2
+2026-11-04 11:20:56.279 [COM3/csk_ap] [2026-08-03 02:06:08.125][D][player_0_td # soundplayer] soundplayer status: 0X2
+2026-11-04 11:20:56.279 [COM3/csk_ap] [2026-08-03 02:06:08.127][D][player_0_td # app_client] sound player state: 2
+2026-11-04 11:20:56.279 [COM3/csk_ap] [2026-08-03 02:06:08.129][D][msg_send # msg] >>>>> Send 214 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:20:56.316 [COM3/csk_ap] [2026-08-03 02:06:08.165][I][algo_task # rec_ringbuf] STOP-TEST ARM session:22 wait:200 request_ms:180323789
+2026-11-04 11:20:56.476 [COM3/csk_ap] [2026-08-03 02:06:08.324][I][algo_task # rec_ringbuf] STOP-TEST EXPIRE session:22 elapsed_ms:237
+2026-11-04 11:20:56.476 [COM3/csk_ap] [2026-08-03 02:06:08.324][I][algo_task # rec_ringbuf] oneshot-v4 STOP-unsubmitted session:22 pos:5771316480 end:5771348480 backlog:32000 ms:1000 sent:488960 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:00.128 [COM3/csk_ap] [2026-08-03 02:06:12.000][I][player_0_td # APP_PLAYER] tone player evt 6
+2026-11-04 11:21:00.139 [COM3/csk_ap] [2026-08-03 02:06:12.000][D][player_0_td # PA_MGR] Refresh PA to OFF, timeout 50000, by "tone_player_end"
+2026-11-04 11:21:00.139 [COM3/csk_ap] [2026-08-03 02:06:12.001][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_end"
+2026-11-04 11:21:00.139 [COM3/csk_ap] [2026-08-03 02:06:12.001][D][player_0_td # soundplayer] soundplayer status: 0X6
+2026-11-04 11:21:00.139 [COM3/csk_ap] [2026-08-03 02:06:12.001][D][player_0_td # app_client] sound player state: 6
+2026-11-04 11:21:00.139 [COM3/csk_ap] [2026-08-03 02:06:12.002][D][msg_send # msg] >>>>> Send 215 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:00.139 [COM3/csk_ap] [2026-08-03 02:06:12.003][D][evs_event # event] evt msg -> enter, f: 0x3005d23e, d: 0x0
+2026-11-04 11:21:00.139 [COM3/csk_ap] [2026-08-03 02:06:12.004][D][evs_event # audiomgr] 4 release channel
+2026-11-04 11:21:00.139 [COM3/csk_ap] [2026-08-03 02:06:12.005][I][evs_event # soundplayer] focus 2, by_which 4
+2026-11-04 11:21:00.139 [COM3/csk_ap] [2026-08-03 02:06:12.005][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:00.160 [COM3/csk_ap] [2026-08-03 02:06:12.038][D][msg_recv # msg] <<<<< Recv 256 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:21:00.160 [COM3/csk_ap] [2026-08-03 02:06:12.039][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:21:00.169 [COM3/csk_ap] [2026-08-03 02:06:12.047][D][msg_recv # msg] <<<<< Recv 257 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:21:00.169 [COM3/csk_ap] [2026-08-03 02:06:12.047][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:21:04.052 [COM3/csk_ap] [2026-08-03 02:06:16.000][D][algo_task # PA_MGR] Refresh PA to ON, timeout 50000, by "prewakeup"
+2026-11-04 11:21:04.052 [COM3/csk_ap] [2026-08-03 02:06:16.000][D][algo_task # PA_MGR] Refresh PA end by "prewakeup"
+2026-11-04 11:21:04.052 [COM3/csk_ap] [2026-08-03 02:06:16.007][D][evs_event # event] evt msg -> enter, f: 0x30054784, d: 0x387c54e4
+2026-11-04 11:21:04.052 [COM3/csk_ap] [2026-08-03 02:06:16.007][D][evs_event # algo] Pre Wakeup: {"rlt":[{"istart":181,"iresid":0,"iduration":18,"nfillerscore":312,"nkeywordscore":17553,"ncm":963,"ncmThreshold":800,"keyword":"xiao ti xiao ti","intent":"xiao ti xiao ti","bMain":1,"bAbsorb":0,"bMhx":0}]}
+2026-11-04 11:21:04.052 [COM3/csk_ap] [2026-08-03 02:06:16.010][I][evs_event # wake_audio] candidate prewake score:963 valid:1 trigger:2885815040
+2026-11-04 11:21:04.052 [COM3/csk_ap] [2026-08-03 02:06:16.011][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:04.366 [COM3/csk_ap] [2026-08-03 02:06:16.319][D][algo_task # algo] wake point: 180362880ms -> 180363920ms
+2026-11-04 11:21:04.366 [COM3/csk_ap] [2026-08-03 02:06:16.320][I][algo_task # rec_ringbuf] mark wake frame:180362880ms -> 180363920ms
+2026-11-04 11:21:04.368 [COM3/csk_ap] [33m(T1|180364.938) wake point string: wakept(180362880:180363920)
+2026-11-04 11:21:04.402 [COM3/csk_ap] [0m[2026-08-03 02:06:16.342][I][algo_task # algo] wakeup power: chn=1, frame=18036392, cp_x100=7000
+2026-11-04 11:21:04.402 [COM3/csk_ap] [2026-08-03 02:06:16.342][D][algo_task # app_client] Wakeup: {"rlt":[{"istart":180,"iresid":1,"iduration":26,"nfillerscore":0,"nkeywordscore":0,"ncm":-1,"ncmThreshold":-91,"keyword":"xiao ti xiao ti","intent":"xiao ti xiao ti-ch","nRltIdx":0,"nDelayFrame":0,"nThrowFrame":206,"decId":0,"branch":3,"wakeUpType":0,"VadGap":0,"nE2eIntervalFrame":8,"nE2eNodeFrame":2,"nStartStateThreshold":500,"bMain":1,"bAbsorb":0,"bMhx":0,"nLanThreshold":0,"nLanNcm":0,"iframe":4509098}],"cp_x100":7000,"cp_db":70,"wk_iframe":1803[2026-08-03 02:06:16.350][D][evs_event # event] evt msg -> enter, f: 0x300564b4, d: 0x387c54e4
+2026-11-04 11:21:04.404 [COM3/csk_ap] [2026-08-03 02:06:16.352][D][evs_event # app_client] keyword: xiao ti xiao ti, intent: xiao ti xiao ti-ch, ncm: -1.00, cp_db: 70
+2026-11-04 11:21:04.404 [COM3/csk_ap] [2026-08-03 02:06:16.353][I][evs_event # app_client] MEM[WAKEUP] SRAM free:9236(9KB) lfb:7936(7KB) | PSRAM free:238300(232KB) lfb:233472(228KB)
+2026-11-04 11:21:04.404 [COM3/csk_ap] [2026-08-03 02:06:16.354][D][evs_event # algo] keyword: xiao ti xiao ti-ch, cmd_id: 0001
+2026-11-04 11:21:04.404 [COM3/csk_ap] [2026-08-03 02:06:16.354][D][evs_event # app_client] wakeup_cmd: cmd 0x1, localism 0, score -1.000000, energy 700000, is_study_cmd 0
+2026-11-04 11:21:04.404 [COM3/csk_ap] [2026-08-03 02:06:16.355][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:04.404 [COM3/csk_ap] [2026-08-03 02:06:16.355][D][msg_send # msg] >>>>> Send 216 ASR, cmd: 0x1006, ext: 0x0, len: 33
+2026-11-04 11:21:04.414 [COM3/csk_ap] [2026-08-03 02:06:16.374][D][msg_recv # msg] <<<<< Recv 258 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:21:04.414 [COM3/csk_ap] [2026-08-03 02:06:16.374][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:21:04.447 [COM3/csk_ap] [2026-08-03 02:06:16.388][D][msg_recv # msg] <<<<< Recv 259 PLAYER, cmd: 0x4001, ext: 0x0, len: 4
+2026-11-04 11:21:04.447 [COM3/csk_ap] [2026-08-03 02:06:16.389][D][msg_send # msg] >>>>> Send 217 PLAYER, cmd: 0x4001, ext: 0x8002, len: 1
+2026-11-04 11:21:04.447 [COM3/csk_ap] [2026-08-03 02:06:16.390][W][evs_event # event] wdt not feed 1127276
+2026-11-04 11:21:04.447 [COM3/csk_ap] [2026-08-03 02:06:16.390][D][evs_event # event] evt msg -> enter, f: 0x30056034, d: 0x387c54e4
+2026-11-04 11:21:04.447 [COM3/csk_ap] [2026-08-03 02:06:16.391][D][evs_event # app_client] tone player, play 1
+2026-11-04 11:21:04.447 [COM3/csk_ap] [2026-08-03 02:06:16.391][D][evs_event # soundplayer] release alert item
+2026-11-04 11:21:04.447 [COM3/csk_ap] [2026-08-03 02:06:16.392][D][evs_event # soundplayer] sound acquire channel
+2026-11-04 11:21:04.447 [COM3/csk_ap] [2026-08-03 02:06:16.392][D][evs_event # audiomgr] 4 acquire channel
+2026-11-04 11:21:04.447 [COM3/csk_ap] [2026-08-03 02:06:16.392][I][evs_event # soundplayer] focus 0, by_which 4
+2026-11-04 11:21:04.447 [COM3/csk_ap] [2026-08-03 02:06:16.393][D][evs_event # soundplayer] _sound_play_foreground, handle->m_play_state:6
+2026-11-04 11:21:04.447 [COM3/csk_ap] [2026-08-03 02:06:16.393][D][evs_event # soundplayer] _sound_play_next, handle->m_wait_len:1
+2026-11-04 11:21:04.448 [COM3/csk_ap] [2026-08-03 02:06:16.393][D][evs_event # soundplayer] play next tone 1: mem://addr=811073387size=2061
+2026-11-04 11:21:04.448 [COM3/csk_ap] [2026-08-03 02:06:16.395][D][msg_recv # msg] <<<<< Recv 260 RECORDER, cmd: 0x8001, ext: 0x0, len: 0
+2026-11-04 11:21:04.448 [COM3/csk_ap] [2026-08-03 02:06:16.395][I][msg_recv # rec_ringbuf] oneshot-v4 START requested
+2026-11-04 11:21:04.448 [COM3/csk_ap] [2026-08-03 02:06:16.396][D][evs_event # soundplayer] soundplayer status: 0XEF
+2026-11-04 11:21:04.448 [COM3/csk_ap] [2026-08-03 02:06:16.396][D][evs_event # app_client] sound player state: 239
+2026-11-04 11:21:04.448 [COM3/csk_ap] [2026-08-03 02:06:16.397][I][evs_event # APP_PLAYER] play audio mem://addr=811073387size=2061
+2026-11-04 11:21:04.448 [COM3/csk_ap] [2026-08-03 02:06:16.398][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:04.448 [COM3/csk_ap] [2026-08-03 02:06:16.399][D][msg_send # msg] >>>>> Send 218 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:04.448 [COM3/csk_ap] [2026-08-03 02:06:16.402][D][player_0_td # lisa_que] create queue: demux_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:21:04.448 [COM3/csk_ap] [2026-08-03 02:06:16.405][D][player_0_td # lisa_que] create queue: decode_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:21:04.488 [COM3/csk_ap] [2026-08-03 02:06:16.435][I][player_0_td # APP_PLAYER] tone player evt 1
+2026-11-04 11:21:04.488 [COM3/csk_ap] [2026-08-03 02:06:16.436][D][player_0_td # soundplayer] soundplayer status: 0X1
+2026-11-04 11:21:04.488 [COM3/csk_ap] [2026-08-03 02:06:16.436][D][player_0_td # app_client] sound player state: 1
+2026-11-04 11:21:04.488 [COM3/csk_ap] [2026-08-03 02:06:16.437][D][msg_send # msg] >>>>> Send 219 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:04.488 [COM3/csk_ap] [2026-08-03 02:06:16.437][D][player_0_td # PA_MGR] Refresh PA to ON, timeout 4294967295, by "tone_player_prepared"
+2026-11-04 11:21:04.488 [COM3/csk_ap] [2026-08-03 02:06:16.439][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_prepared"
+2026-11-04 11:21:04.488 [COM3/csk_ap] [2026-08-03 02:06:16.434][W][algo_task # rec_ringbuf] oneshot-v4 wake clipped target:180362880ms missing:512 frame:2254549
+2026-11-04 11:21:04.488 [COM3/csk_ap] [2026-08-03 02:06:16.434][I][algo_task # rec_ringbuf] oneshot-v4 START-wake session:23 pos:5771571712 end:5771604480 backlog:32768 ms:1024 sent:0 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:04.488 [COM3/csk_ap] [2026-08-03 02:06:16.434][I][algo_task # rec_ringbuf] wake target 180362880ms (wake 180362880ms->180363920ms include_wake:1 wake_span:1040ms) pos:5771571712 end:5771604480 delay:1024ms
+2026-11-04 11:21:04.489 [COM3/csk_ap] [2026-08-03 02:06:16.440][I][algo_task # algo] MODE 0 -> 1, param: {"reg":[{"key":"mode","val":0},{"key":"model","val":1}],"cae":[{"key":"mode","val":1}],"esr":[{"key":"mode","val":0},{"key":"model","val":1},{"key":"2121","val":-177},{"key":"2122","val":-177}]}
+2026-11-04 11:21:04.493 [COM3/csk_ap] [2026-08-03 02:06:16.451][I][player_0_td # APP_PLAYER] tone player evt 2
+2026-11-04 11:21:04.493 [COM3/csk_ap] [2026-08-03 02:06:16.452][D][player_0_td # soundplayer] soundplayer status: 0X2
+2026-11-04 11:21:04.493 [COM3/csk_ap] [2026-08-03 02:06:16.453][D][player_0_td # app_client] sound player state: 2
+2026-11-04 11:21:04.497 [COM3/csk_ap] [2026-08-03 02:06:16.456][D][msg_send # msg] >>>>> Send 220 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:04.542 [COM3/csk_ap] [2026-08-03 02:06:16.499][D][evs_event # event] evt msg -> enter, f: 0x30054316, d: 0x387c5850
+2026-11-04 11:21:04.542 [COM3/csk_ap] [2026-08-03 02:06:16.500][D][evs_event # algo] ******** CSK DOA 90 ********
+2026-11-04 11:21:04.542 [COM3/csk_ap] [2026-08-03 02:06:16.500][D][evs_event # app_client] send doa: 90
+2026-11-04 11:21:04.542 [COM3/csk_ap] [2026-08-03 02:06:16.500][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:04.542 [COM3/csk_ap] [2026-08-03 02:06:16.501][D][msg_send # msg] >>>>> Send 221 ASR, cmd: 0x1006, ext: 0x0, len: 33
+2026-11-04 11:21:05.007 [COM3/csk_ap] [2026-08-03 02:06:17.000][I][player_0_td # APP_PLAYER] tone player evt 6
+2026-11-04 11:21:05.020 [COM3/csk_ap] [2026-08-03 02:06:17.000][D][player_0_td # PA_MGR] Refresh PA to OFF, timeout 50000, by "tone_player_end"
+2026-11-04 11:21:05.020 [COM3/csk_ap] [2026-08-03 02:06:17.001][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_end"
+2026-11-04 11:21:05.020 [COM3/csk_ap] [2026-08-03 02:06:17.002][D][player_0_td # soundplayer] soundplayer status: 0X6
+2026-11-04 11:21:05.020 [COM3/csk_ap] [2026-08-03 02:06:17.003][D][player_0_td # app_client] sound player state: 6
+2026-11-04 11:21:05.020 [COM3/csk_ap] [2026-08-03 02:06:17.004][D][msg_send # msg] >>>>> Send 222 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:05.020 [COM3/csk_ap] [2026-08-03 02:06:17.006][D][evs_event # event] evt msg -> enter, f: 0x3005d23e, d: 0x0
+2026-11-04 11:21:05.020 [COM3/csk_ap] [2026-08-03 02:06:17.006][D][evs_event # audiomgr] 4 release channel
+2026-11-04 11:21:05.020 [COM3/csk_ap] [2026-08-03 02:06:17.007][I][evs_event # soundplayer] focus 2, by_which 4
+2026-11-04 11:21:05.020 [COM3/csk_ap] [2026-08-03 02:06:17.007][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:06.391 [COM3/csk_ap] [2026-08-03 02:06:18.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:23 pos:5771635712 end:5771668480 backlog:32768 ms:1024 sent:64000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:08.385 [COM3/csk_ap] [2026-08-03 02:06:20.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:23 pos:5771699712 end:5771732480 backlog:32768 ms:1024 sent:128000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:10.384 [COM3/csk_ap] [2026-08-03 02:06:22.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:23 pos:5771763712 end:5771796480 backlog:32768 ms:1024 sent:192000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:12.382 [COM3/csk_ap] [2026-08-03 02:06:24.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:23 pos:5771827712 end:5771860480 backlog:32768 ms:1024 sent:256000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:14.385 [COM3/csk_ap] [2026-08-03 02:06:26.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:23 pos:5771891712 end:5771924480 backlog:32768 ms:1024 sent:320000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:16.382 [COM3/csk_ap] [2026-08-03 02:06:28.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:23 pos:5771955712 end:5771988480 backlog:32768 ms:1024 sent:384000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:18.385 [COM3/csk_ap] [2026-08-03 02:06:30.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:23 pos:5772019712 end:5772052480 backlog:32768 ms:1024 sent:448000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:19.488 [COM3/csk_ap] [2026-08-03 02:06:31.000][D][msg_recv # msg] <<<<< Recv 261 PLAYER, cmd: 0x4001, ext: 0x0, len: 4
+2026-11-04 11:21:19.488 [COM3/csk_ap] [2026-08-03 02:06:31.001][D][msg_send # msg] >>>>> Send 223 PLAYER, cmd: 0x4001, ext: 0x8007, len: 1
+2026-11-04 11:21:19.488 [COM3/csk_ap] [2026-08-03 02:06:31.001][D][evs_event # event] evt msg -> enter, f: 0x30056034, d: 0x387c54e4
+2026-11-04 11:21:19.488 [COM3/csk_ap] [2026-08-03 02:06:31.002][D][evs_event # app_client] tone player, play 75
+2026-11-04 11:21:19.488 [COM3/csk_ap] [2026-08-03 02:06:31.003][D][evs_event # soundplayer] release alert item
+2026-11-04 11:21:19.488 [COM3/csk_ap] [2026-08-03 02:06:31.003][D][evs_event # soundplayer] sound acquire channel
+2026-11-04 11:21:19.488 [COM3/csk_ap] [2026-08-03 02:06:31.004][D][evs_event # audiomgr] 4 acquire channel
+2026-11-04 11:21:19.488 [COM3/csk_ap] [2026-08-03 02:06:31.004][I][evs_event # soundplayer] focus 0, by_which 4
+2026-11-04 11:21:19.490 [COM3/csk_ap] [2026-08-03 02:06:31.004][D][evs_event # soundplayer] _sound_play_foreground, handle->m_play_state:6
+2026-11-04 11:21:19.490 [COM3/csk_ap] [2026-08-03 02:06:31.005][D][evs_event # soundplayer] _sound_play_next, handle->m_wait_len:1
+2026-11-04 11:21:19.490 [COM3/csk_ap] [2026-08-03 02:06:31.005][D][evs_event # soundplayer] play next tone 75: mem://addr=811436717size=11997
+2026-11-04 11:21:19.490 [COM3/csk_ap] [2026-08-03 02:06:31.006][D][evs_event # soundplayer] soundplayer status: 0XEF
+2026-11-04 11:21:19.490 [COM3/csk_ap] [2026-08-03 02:06:31.006][D][evs_event # app_client] sound player state: 239
+2026-11-04 11:21:19.490 [COM3/csk_ap] [2026-08-03 02:06:31.007][I][evs_event # APP_PLAYER] play audio mem://addr=811436717size=11997
+2026-11-04 11:21:19.490 [COM3/csk_ap] [2026-08-03 02:06:31.008][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:19.490 [COM3/csk_ap] [2026-08-03 02:06:31.011][D][msg_recv # msg] <<<<< Recv 262 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:21:19.490 [COM3/csk_ap] [2026-08-03 02:06:31.013][D][msg_send # msg] >>>>> Send 224 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:19.490 [COM3/csk_ap] [2026-08-03 02:06:31.013][D][player_0_td # lisa_que] create queue: demux_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:21:19.490 [COM3/csk_ap] [2026-08-03 02:06:31.014][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:21:19.500 [COM3/csk_ap] [2026-08-03 02:06:31.028][D][player_0_td # lisa_que] create queue: decode_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:21:19.514 [COM3/csk_ap] [2026-08-03 02:06:31.040][D][msg_recv # msg] <<<<< Recv 263 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:21:19.514 [COM3/csk_ap] [2026-08-03 02:06:31.037][I][algo_task # rec_ringbuf] STOP-TEST ARM session:23 wait:200 request_ms:180347033
+2026-11-04 11:21:19.516 [COM3/csk_ap] [2026-08-03 02:06:31.046][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:21:19.527 [COM3/csk_ap] [2026-08-03 02:06:31.043][I][algo_task # algo] MODE 1 -> 0, param: {"reg":[{"key":"mode","val":1},{"key":"model","val":0}],"cae":[{"key":"mode","val":0}],"esr":[{"key":"mode","val":1},{"key":"model","val":0},{"key":"2121","val":-91},{"key":"2122","val":-91}]}
+2026-11-04 11:21:19.527 [COM3/csk_ap] [2026-08-03 02:06:31.052][D][evs_event # event] evt msg -> enter, f: 0x30054f40, d: 0x0
+2026-11-04 11:21:19.527 [COM3/csk_ap] [2026-08-03 02:06:31.052][D][evs_event # app_client] esr timeout
+2026-11-04 11:21:19.527 [COM3/csk_ap] [2026-08-03 02:06:31.053][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:19.527 [COM3/csk_ap] [2026-08-03 02:06:31.053][D][msg_send # msg] >>>>> Send 225 ASR, cmd: 0x1004, ext: 0x0, len: 0
+2026-11-04 11:21:19.530 [COM3/csk_ap] [2026-08-03 02:06:31.056][I][player_0_td # APP_PLAYER] tone player evt 1
+2026-11-04 11:21:19.530 [COM3/csk_ap] [2026-08-03 02:06:31.060][D][player_0_td # soundplayer] soundplayer status: 0X1
+2026-11-04 11:21:19.534 [COM3/csk_ap] [2026-08-03 02:06:31.060][D][player_0_td # app_client] sound player state: 1
+2026-11-04 11:21:19.536 [COM3/csk_ap] [2026-08-03 02:06:31.065][D][player_0_td # PA_MGR] Refresh PA to ON, timeout 4294967295, by "tone_player_prepared"
+2026-11-04 11:21:19.538 [COM3/csk_ap] [2026-08-03 02:06:31.064][D][msg_send # msg] >>>>> Send 226 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:19.541 [COM3/csk_ap] [2026-08-03 02:06:31.068][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_prepared"
+2026-11-04 11:21:19.557 [COM3/csk_ap] [2026-08-03 02:06:31.083][I][player_0_td # APP_PLAYER] tone player evt 2
+2026-11-04 11:21:19.557 [COM3/csk_ap] [2026-08-03 02:06:31.085][D][player_0_td # soundplayer] soundplayer status: 0X2
+2026-11-04 11:21:19.557 [COM3/csk_ap] [2026-08-03 02:06:31.085][D][player_0_td # app_client] sound player state: 2
+2026-11-04 11:21:19.560 [COM3/csk_ap] [2026-08-03 02:06:31.088][D][msg_send # msg] >>>>> Send 227 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:19.759 [COM3/csk_ap] [2026-08-03 02:06:31.278][I][algo_task # rec_ringbuf] STOP-TEST EXPIRE session:23 elapsed_ms:269
+2026-11-04 11:21:19.759 [COM3/csk_ap] [2026-08-03 02:06:31.278][I][algo_task # rec_ringbuf] oneshot-v4 STOP-unsubmitted session:23 pos:5772060672 end:5772093440 backlog:32768 ms:1024 sent:488960 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:23.403 [COM3/csk_ap] [2026-08-03 02:06:35.000][I][player_0_td # APP_PLAYER] tone player evt 6
+2026-11-04 11:21:23.406 [COM3/csk_ap] [2026-08-03 02:06:35.000][D][player_0_td # PA_MGR] Refresh PA to OFF, timeout 50000, by "tone_player_end"
+2026-11-04 11:21:23.406 [COM3/csk_ap] [2026-08-03 02:06:35.001][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_end"
+2026-11-04 11:21:23.406 [COM3/csk_ap] [2026-08-03 02:06:35.001][D][player_0_td # soundplayer] soundplayer status: 0X6
+2026-11-04 11:21:23.406 [COM3/csk_ap] [2026-08-03 02:06:35.002][D][player_0_td # app_client] sound player state: 6
+2026-11-04 11:21:23.408 [COM3/csk_ap] [2026-08-03 02:06:35.003][D][msg_send # msg] >>>>> Send 228 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:23.408 [COM3/csk_ap] [2026-08-03 02:06:35.005][D][evs_event # event] evt msg -> enter, f: 0x3005d23e, d: 0x0
+2026-11-04 11:21:23.408 [COM3/csk_ap] [2026-08-03 02:06:35.006][D][evs_event # audiomgr] 4 release channel
+2026-11-04 11:21:23.408 [COM3/csk_ap] [2026-08-03 02:06:35.007][I][evs_event # soundplayer] focus 2, by_which 4
+2026-11-04 11:21:23.408 [COM3/csk_ap] [2026-08-03 02:06:35.007][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:23.440 [COM3/csk_ap] [2026-08-03 02:06:35.039][D][msg_recv # msg] <<<<< Recv 264 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:21:23.440 [COM3/csk_ap] [2026-08-03 02:06:35.040][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:21:23.449 [COM3/csk_ap] [2026-08-03 02:06:35.047][D][msg_recv # msg] <<<<< Recv 265 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:21:23.449 [COM3/csk_ap] [2026-08-03 02:06:35.048][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:21:32.126 [COM3/csk_ap] [2026-08-03 02:06:44.000][D][algo_task # PA_MGR] Refresh PA to ON, timeout 50000, by "prewakeup"
+2026-11-04 11:21:32.127 [COM3/csk_ap] [2026-08-03 02:06:44.000][D][algo_task # PA_MGR] Refresh PA end by "prewakeup"
+2026-11-04 11:21:32.127 [COM3/csk_ap] [2026-08-03 02:06:44.007][D][evs_event # event] evt msg -> enter, f: 0x30054784, d: 0x387c54e4
+2026-11-04 11:21:32.127 [COM3/csk_ap] [2026-08-03 02:06:44.007][D][evs_event # algo] Pre Wakeup: {"rlt":[{"istart":299,"iresid":0,"iduration":17,"nfillerscore":127,"nkeywordscore":16744,"ncm":994,"ncmThreshold":800,"keyword":"xiao ti xiao ti","intent":"xiao ti xiao ti","bMain":1,"bAbsorb":0,"bMhx":0}]}
+2026-11-04 11:21:32.127 [COM3/csk_ap] [2026-08-03 02:06:44.010][I][evs_event # wake_audio] candidate prewake score:994 valid:1 trigger:2886264320
+2026-11-04 11:21:32.127 [COM3/csk_ap] [2026-08-03 02:06:44.010][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:32.364 [COM3/csk_ap] [2026-08-03 02:06:44.242][D][algo_task # algo] wake point: 180390960ms -> 180391920ms
+2026-11-04 11:21:32.364 [COM3/csk_ap] [2026-08-03 02:06:44.243][I][algo_task # rec_ringbuf] mark wake frame:180390960ms -> 180391920ms
+2026-11-04 11:21:32.366 [COM3/csk_ap] [33m(T1|180392.938) wake point string: wakept(180390960:180391920)
+2026-11-04 11:21:32.400 [COM3/csk_ap] [0m[2026-08-03 02:06:44.265][I][algo_task # algo] wakeup power: chn=1, frame=18039192, cp_x100=7000
+2026-11-04 11:21:32.400 [COM3/csk_ap] [2026-08-03 02:06:44.266][D][algo_task # app_client] Wakeup: {"rlt":[{"istart":298,"iresid":1,"iduration":24,"nfillerscore":0,"nkeywordscore":0,"ncm":-24,"ncmThreshold":-91,"keyword":"xiao ti xiao ti","intent":"xiao ti xiao ti-ch","nRltIdx":0,"nDelayFrame":0,"nThrowFrame":322,"decId":0,"branch":3,"wakeUpType":0,"VadGap":0,"nE2eIntervalFrame":8,"nE2eNodeFrame":2,"nStartStateThreshold":500,"bMain":1,"bAbsorb":0,"bMhx":0,"nLanThreshold":0,"nLanNcm":0,"iframe":4509798}],"cp_x100":7000,"cp_db":70,"wk_iframe":180[2026-08-03 02:06:44.273][D][evs_event # event] evt msg -> enter, f: 0x300564b4, d: 0x387c54e4
+2026-11-04 11:21:32.407 [COM3/csk_ap] [2026-08-03 02:06:44.275][D][evs_event # app_client] keyword: xiao ti xiao ti, intent: xiao ti xiao ti-ch, ncm: -24.00, cp_db: 70
+2026-11-04 11:21:32.407 [COM3/csk_ap] [2026-08-03 02:06:44.276][I][evs_event # app_client] MEM[WAKEUP] SRAM free:9236(9KB) lfb:7936(7KB) | PSRAM free:238300(232KB) lfb:233472(228KB)
+2026-11-04 11:21:32.407 [COM3/csk_ap] [2026-08-03 02:06:44.277][D][evs_event # algo] keyword: xiao ti xiao ti-ch, cmd_id: 0001
+2026-11-04 11:21:32.407 [COM3/csk_ap] [2026-08-03 02:06:44.277][D][evs_event # app_client] wakeup_cmd: cmd 0x1, localism 0, score -24.000000, energy 700000, is_study_cmd 0
+2026-11-04 11:21:32.407 [COM3/csk_ap] [2026-08-03 02:06:44.278][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:32.407 [COM3/csk_ap] [2026-08-03 02:06:44.278][D][msg_send # msg] >>>>> Send 229 ASR, cmd: 0x1006, ext: 0x0, len: 33
+2026-11-04 11:21:32.413 [COM3/csk_ap] [2026-08-03 02:06:44.297][D][msg_recv # msg] <<<<< Recv 266 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:21:32.413 [COM3/csk_ap] [2026-08-03 02:06:44.298][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:21:32.446 [COM3/csk_ap] [2026-08-03 02:06:44.312][D][msg_recv # msg] <<<<< Recv 267 PLAYER, cmd: 0x4001, ext: 0x0, len: 4
+2026-11-04 11:21:32.446 [COM3/csk_ap] [2026-08-03 02:06:44.313][D][msg_send # msg] >>>>> Send 230 PLAYER, cmd: 0x4001, ext: 0x8004, len: 1
+2026-11-04 11:21:32.446 [COM3/csk_ap] [2026-08-03 02:06:44.314][W][evs_event # event] wdt not feed 1127451
+2026-11-04 11:21:32.446 [COM3/csk_ap] [2026-08-03 02:06:44.314][D][evs_event # event] evt msg -> enter, f: 0x30056034, d: 0x387c54e4
+2026-11-04 11:21:32.446 [COM3/csk_ap] [2026-08-03 02:06:44.314][D][evs_event # app_client] tone player, play 3
+2026-11-04 11:21:32.447 [COM3/csk_ap] [2026-08-03 02:06:44.315][D][evs_event # soundplayer] release alert item
+2026-11-04 11:21:32.447 [COM3/csk_ap] [2026-08-03 02:06:44.315][D][evs_event # soundplayer] sound acquire channel
+2026-11-04 11:21:32.447 [COM3/csk_ap] [2026-08-03 02:06:44.316][D][evs_event # audiomgr] 4 acquire channel
+2026-11-04 11:21:32.447 [COM3/csk_ap] [2026-08-03 02:06:44.316][I][evs_event # soundplayer] focus 0, by_which 4
+2026-11-04 11:21:32.447 [COM3/csk_ap] [2026-08-03 02:06:44.316][D][evs_event # soundplayer] _sound_play_foreground, handle->m_play_state:6
+2026-11-04 11:21:32.447 [COM3/csk_ap] [2026-08-03 02:06:44.317][D][evs_event # soundplayer] _sound_play_next, handle->m_wait_len:1
+2026-11-04 11:21:32.447 [COM3/csk_ap] [2026-08-03 02:06:44.318][D][evs_event # soundplayer] play next tone 3: mem://addr=811077401size=2061
+2026-11-04 11:21:32.447 [COM3/csk_ap] [2026-08-03 02:06:44.319][D][evs_event # soundplayer] soundplayer status: 0XEF
+2026-11-04 11:21:32.447 [COM3/csk_ap] [2026-08-03 02:06:44.319][D][evs_event # app_client] sound player state: 239
+2026-11-04 11:21:32.447 [COM3/csk_ap] [2026-08-03 02:06:44.320][I][evs_event # APP_PLAYER] play audio mem://addr=811077401size=2061
+2026-11-04 11:21:32.447 [COM3/csk_ap] [2026-08-03 02:06:44.320][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:32.447 [COM3/csk_ap] [2026-08-03 02:06:44.323][D][msg_recv # msg] <<<<< Recv 268 RECORDER, cmd: 0x8001, ext: 0x0, len: 0
+2026-11-04 11:21:32.447 [COM3/csk_ap] [2026-08-03 02:06:44.324][I][msg_recv # rec_ringbuf] oneshot-v4 START requested
+2026-11-04 11:21:32.447 [COM3/csk_ap] [2026-08-03 02:06:44.324][D][msg_send # msg] >>>>> Send 231 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:32.447 [COM3/csk_ap] [2026-08-03 02:06:44.326][D][player_0_td # lisa_que] create queue: demux_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:21:32.448 [COM3/csk_ap] [2026-08-03 02:06:44.331][D][player_0_td # lisa_que] create queue: decode_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:21:32.488 [COM3/csk_ap] [2026-08-03 02:06:44.361][I][player_0_td # APP_PLAYER] tone player evt 1
+2026-11-04 11:21:32.488 [COM3/csk_ap] [2026-08-03 02:06:44.355][I][algo_task # rec_ringbuf] oneshot-v4 START-wake session:24 pos:5772469760 end:5772500480 backlog:30720 ms:960 sent:0 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:32.488 [COM3/csk_ap] [2026-08-03 02:06:44.362][D][player_0_td # soundplayer] soundplayer status: 0X1
+2026-11-04 11:21:32.488 [COM3/csk_ap] [2026-08-03 02:06:44.356][I][algo_task # rec_ringbuf] wake target 180390960ms (wake 180390960ms->180391920ms include_wake:1 wake_span:960ms) pos:5772469760 end:5772500480 delay:960ms
+2026-11-04 11:21:32.488 [COM3/csk_ap] [2026-08-03 02:06:44.362][D][player_0_td # app_client] sound player state: 1
+2026-11-04 11:21:32.488 [COM3/csk_ap] [2026-08-03 02:06:44.364][D][player_0_td # PA_MGR] Refresh PA to ON, timeout 4294967295, by "tone_player_prepared"
+2026-11-04 11:21:32.488 [COM3/csk_ap] [2026-08-03 02:06:44.364][D][msg_send # msg] >>>>> Send 232 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:32.488 [COM3/csk_ap] [2026-08-03 02:06:44.365][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_prepared"
+2026-11-04 11:21:32.489 [COM3/csk_ap] [2026-08-03 02:06:44.362][I][algo_task # algo] MODE 0 -> 1, param: {"reg":[{"key":"mode","val":0},{"key":"model","val":1}],"cae":[{"key":"mode","val":1}],"esr":[{"key":"mode","val":0},{"key":"model","val":1},{"key":"2121","val":-177},{"key":"2122","val":-177}]}
+2026-11-04 11:21:32.494 [COM3/csk_ap] [2026-08-03 02:06:44.377][I][player_0_td # APP_PLAYER] tone player evt 2
+2026-11-04 11:21:32.494 [COM3/csk_ap] [2026-08-03 02:06:44.380][D][player_0_td # soundplayer] soundplayer status: 0X2
+2026-11-04 11:21:32.495 [COM3/csk_ap] [2026-08-03 02:06:44.380][D][player_0_td # app_client] sound player state: 2
+2026-11-04 11:21:32.497 [COM3/csk_ap] [2026-08-03 02:06:44.383][D][msg_send # msg] >>>>> Send 233 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:32.539 [COM3/csk_ap] [2026-08-03 02:06:44.421][D][evs_event # event] evt msg -> enter, f: 0x30054316, d: 0x387c5850
+2026-11-04 11:21:32.539 [COM3/csk_ap] [2026-08-03 02:06:44.422][D][evs_event # algo] ******** CSK DOA 90 ********
+2026-11-04 11:21:32.539 [COM3/csk_ap] [2026-08-03 02:06:44.422][D][evs_event # app_client] send doa: 90
+2026-11-04 11:21:32.539 [COM3/csk_ap] [2026-08-03 02:06:44.423][D][msg_send # msg] >>>>> Send 234 ASR, cmd: 0x1006, ext: 0x0, len: 33
+2026-11-04 11:21:32.539 [COM3/csk_ap] [2026-08-03 02:06:44.423][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:33.005 [COM3/csk_ap] [2026-08-03 02:06:45.000][I][player_0_td # APP_PLAYER] tone player evt 6
+2026-11-04 11:21:33.013 [COM3/csk_ap] [2026-08-03 02:06:45.000][D][player_0_td # PA_MGR] Refresh PA to OFF, timeout 50000, by "tone_player_end"
+2026-11-04 11:21:33.013 [COM3/csk_ap] [2026-08-03 02:06:45.001][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_end"
+2026-11-04 11:21:33.013 [COM3/csk_ap] [2026-08-03 02:06:45.002][D][player_0_td # soundplayer] soundplayer status: 0X6
+2026-11-04 11:21:33.013 [COM3/csk_ap] [2026-08-03 02:06:45.002][D][player_0_td # app_client] sound player state: 6
+2026-11-04 11:21:33.013 [COM3/csk_ap] [2026-08-03 02:06:45.003][D][msg_send # msg] >>>>> Send 235 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:33.013 [COM3/csk_ap] [2026-08-03 02:06:45.004][D][evs_event # event] evt msg -> enter, f: 0x3005d23e, d: 0x0
+2026-11-04 11:21:33.013 [COM3/csk_ap] [2026-08-03 02:06:45.006][D][evs_event # audiomgr] 4 release channel
+2026-11-04 11:21:33.013 [COM3/csk_ap] [2026-08-03 02:06:45.007][I][evs_event # soundplayer] focus 2, by_which 4
+2026-11-04 11:21:33.013 [COM3/csk_ap] [2026-08-03 02:06:45.007][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:34.390 [COM3/csk_ap] [2026-08-03 02:06:46.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:24 pos:5772533760 end:5772564480 backlog:30720 ms:960 sent:64000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:36.381 [COM3/csk_ap] [2026-08-03 02:06:48.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:24 pos:5772597760 end:5772628480 backlog:30720 ms:960 sent:128000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:37.576 [COM3/csk_ap] [2026-08-03 02:06:49.000][D][evs_event # event] evt msg -> enter, f: 0x30054316, d: 0x387c6150
+2026-11-04 11:21:37.576 [COM3/csk_ap] [2026-08-03 02:06:49.000][D][evs_event # algo] ******** CSK DOA 54 ********
+2026-11-04 11:21:37.576 [COM3/csk_ap] [2026-08-03 02:06:49.001][D][evs_event # app_client] send doa: 54
+2026-11-04 11:21:37.576 [COM3/csk_ap] [2026-08-03 02:06:49.001][D][msg_send # msg] >>>>> Send 236 ASR, cmd: 0x1001, ext: 0x0, len: 33
+2026-11-04 11:21:37.576 [COM3/csk_ap] [2026-08-03 02:06:49.001][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:37.578 [COM3/csk_ap] [33m(T1|180398.141) wake point string: wakept(180395440:180397040)
+2026-11-04 11:21:37.600 [COM3/csk_ap] [0m[2026-08-03 02:06:49.007][I][algo_task # algo] wakeup power: chn=1, frame=18039712, cp_x100=6100
+2026-11-04 11:21:37.600 [COM3/csk_ap] [2026-08-03 02:06:49.007][D][algo_task # app_client] Wakeup: {"rlt":[{"istart":86,"iresid":184,"iduration":40,"nfillerscore":0,"nkeywordscore":0,"ncm":-1,"ncmThreshold":-138,"keyword":"zui gao wen du","intent":"zui gao wen du","nRltIdx":14,"nDelayFrame":0,"nThrowFrame":126,"decId":0,"branch":2,"wakeUpType":0,"VadGap":0,"nE2eIntervalFrame":5,"nE2eNodeFrame":2,"nStartStateThreshold":0,"bMain":0,"bAbsorb":0,"bMhx":0,"iframe":4509928}],"cp_x100":6100,"cp_db":61,"wk_iframe":18039712}
+2026-11-04 11:21:37.610 [COM3/csk_ap] [2026-08-03 02:06:49.014][W][evs_event # event] wdt not feed 1127483
+2026-11-04 11:21:37.610 [COM3/csk_ap] [2026-08-03 02:06:49.015][D][evs_event # event] evt msg -> enter, f: 0x300564b4, d: 0x387c5d38
+2026-11-04 11:21:37.610 [COM3/csk_ap] [2026-08-03 02:06:49.017][D][evs_event # app_client] keyword: zui gao wen du, intent: zui gao wen du, ncm: -1.00, cp_db: 61
+2026-11-04 11:21:37.610 [COM3/csk_ap] [2026-08-03 02:06:49.019][I][evs_event # app_client] MEM[WAKEUP] SRAM free:9236(9KB) lfb:7936(7KB) | PSRAM free:238300(232KB) lfb:233472(228KB)
+2026-11-04 11:21:37.610 [COM3/csk_ap] [2026-08-03 02:06:49.020][D][evs_event # algo] keyword: zui gao wen du, cmd_id: 0087
+2026-11-04 11:21:37.610 [COM3/csk_ap] [2026-08-03 02:06:49.020][D][evs_event # app_client] offline_cmd: cmd 0x87, score -1.000000, energy 610000, is_study_cmd 0
+2026-11-04 11:21:37.610 [COM3/csk_ap] [2026-08-03 02:06:49.021][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:37.610 [COM3/csk_ap] [2026-08-03 02:06:49.021][D][msg_send # msg] >>>>> Send 237 ASR, cmd: 0x1001, ext: 0x0, len: 33
+2026-11-04 11:21:37.725 [COM3/csk_ap] [2026-08-03 02:06:49.152][D][msg_recv # msg] <<<<< Recv 269 PLAYER, cmd: 0x4001, ext: 0x0, len: 4
+2026-11-04 11:21:37.727 [COM3/csk_ap] [2026-08-03 02:06:49.154][D][msg_send # msg] >>>>> Send 238 PLAYER, cmd: 0x4001, ext: 0x2F, len: 1
+2026-11-04 11:21:37.749 [COM3/csk_ap] [2026-08-03 02:06:49.156][D][evs_event # event] evt msg -> enter, f: 0x30056034, d: 0x387c54e4
+2026-11-04 11:21:37.749 [COM3/csk_ap] [2026-08-03 02:06:49.159][D][msg_recv # msg] <<<<< Recv 270 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:21:37.749 [COM3/csk_ap] [2026-08-03 02:06:49.159][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:21:37.749 [COM3/csk_ap] [2026-08-03 02:06:49.159][D][evs_event # app_client] tone player, play 22
+2026-11-04 11:21:37.749 [COM3/csk_ap] [2026-08-03 02:06:49.160][D][evs_event # soundplayer] release alert item
+2026-11-04 11:21:37.749 [COM3/csk_ap] [2026-08-03 02:06:49.160][D][evs_event # soundplayer] sound acquire channel
+2026-11-04 11:21:37.749 [COM3/csk_ap] [2026-08-03 02:06:49.161][D][evs_event # audiomgr] 4 acquire channel
+2026-11-04 11:21:37.749 [COM3/csk_ap] [2026-08-03 02:06:49.161][I][evs_event # soundplayer] focus 0, by_which 4
+2026-11-04 11:21:37.749 [COM3/csk_ap] [2026-08-03 02:06:49.161][D][evs_event # soundplayer] _sound_play_foreground, handle->m_play_state:6
+2026-11-04 11:21:37.749 [COM3/csk_ap] [2026-08-03 02:06:49.162][D][evs_event # soundplayer] _sound_play_next, handle->m_wait_len:1
+2026-11-04 11:21:37.749 [COM3/csk_ap] [2026-08-03 02:06:49.162][D][evs_event # soundplayer] play next tone 22: mem://addr=811156520size=4329
+2026-11-04 11:21:37.750 [COM3/csk_ap] [2026-08-03 02:06:49.163][D][evs_event # soundplayer] soundplayer status: 0XEF
+2026-11-04 11:21:37.750 [COM3/csk_ap] [2026-08-03 02:06:49.163][D][evs_event # app_client] sound player state: 239
+2026-11-04 11:21:37.750 [COM3/csk_ap] [2026-08-03 02:06:49.163][I][evs_event # APP_PLAYER] play audio mem://addr=811156520size=4329
+2026-11-04 11:21:37.750 [COM3/csk_ap] [2026-08-03 02:06:49.164][D][msg_send # msg] >>>>> Send 239 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:37.750 [COM3/csk_ap] [2026-08-03 02:06:49.165][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:37.750 [COM3/csk_ap] [2026-08-03 02:06:49.169][D][msg_recv # msg] <<<<< Recv 271 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:21:37.750 [COM3/csk_ap] [2026-08-03 02:06:49.170][D][player_0_td # lisa_que] create queue: demux_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:21:37.750 [COM3/csk_ap] [2026-08-03 02:06:49.172][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:21:37.750 [COM3/csk_ap] [2026-08-03 02:06:49.168][I][algo_task # rec_ringbuf] STOP-TEST ARM session:24 wait:200 request_ms:180365275
+2026-11-04 11:21:37.750 [COM3/csk_ap] [2026-08-03 02:06:49.177][D][player_0_td # lisa_que] create queue: decode_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:21:37.776 [COM3/csk_ap] [2026-08-03 02:06:49.202][I][player_0_td # APP_PLAYER] tone player evt 1
+2026-11-04 11:21:37.777 [COM3/csk_ap] [2026-08-03 02:06:49.202][D][player_0_td # soundplayer] soundplayer status: 0X1
+2026-11-04 11:21:37.777 [COM3/csk_ap] [2026-08-03 02:06:49.203][D][player_0_td # app_client] sound player state: 1
+2026-11-04 11:21:37.781 [COM3/csk_ap] [2026-08-03 02:06:49.204][D][player_0_td # PA_MGR] Refresh PA to ON, timeout 4294967295, by "tone_player_prepared"
+2026-11-04 11:21:37.781 [COM3/csk_ap] [2026-08-03 02:06:49.205][D][msg_send # msg] >>>>> Send 240 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:37.781 [COM3/csk_ap] [2026-08-03 02:06:49.207][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_prepared"
+2026-11-04 11:21:37.794 [COM3/csk_ap] [2026-08-03 02:06:49.219][I][player_0_td # APP_PLAYER] tone player evt 2
+2026-11-04 11:21:37.795 [COM3/csk_ap] [2026-08-03 02:06:49.221][D][player_0_td # soundplayer] soundplayer status: 0X2
+2026-11-04 11:21:37.795 [COM3/csk_ap] [2026-08-03 02:06:49.222][D][player_0_td # app_client] sound player state: 2
+2026-11-04 11:21:37.797 [COM3/csk_ap] [2026-08-03 02:06:49.224][D][msg_send # msg] >>>>> Send 241 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:37.988 [COM3/csk_ap] [2026-08-03 02:06:50.000][I][algo_task # rec_ringbuf] STOP-TEST EXPIRE session:24 elapsed_ms:254
+2026-11-04 11:21:37.988 [COM3/csk_ap] [2026-08-03 02:06:50.000][I][algo_task # rec_ringbuf] oneshot-v4 STOP-unsubmitted session:24 pos:5772646400 end:5772677120 backlog:30720 ms:960 sent:176640 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:39.070 [COM3/csk_ap] [2026-08-03 02:06:51.000][I][player_0_td # APP_PLAYER] tone player evt 6
+2026-11-04 11:21:39.079 [COM3/csk_ap] [2026-08-03 02:06:51.000][D][player_0_td # PA_MGR] Refresh PA to OFF, timeout 50000, by "tone_player_end"
+2026-11-04 11:21:39.079 [COM3/csk_ap] [2026-08-03 02:06:51.001][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_end"
+2026-11-04 11:21:39.079 [COM3/csk_ap] [2026-08-03 02:06:51.002][D][player_0_td # soundplayer] soundplayer status: 0X6
+2026-11-04 11:21:39.079 [COM3/csk_ap] [2026-08-03 02:06:51.002][D][player_0_td # app_client] sound player state: 6
+2026-11-04 11:21:39.079 [COM3/csk_ap] [2026-08-03 02:06:51.003][D][msg_send # msg] >>>>> Send 242 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:39.079 [COM3/csk_ap] [2026-08-03 02:06:51.004][D][evs_event # event] evt msg -> enter, f: 0x3005d23e, d: 0x0
+2026-11-04 11:21:39.081 [COM3/csk_ap] [2026-08-03 02:06:51.005][D][evs_event # audiomgr] 4 release channel
+2026-11-04 11:21:39.081 [COM3/csk_ap] [2026-08-03 02:06:51.006][I][evs_event # soundplayer] focus 2, by_which 4
+2026-11-04 11:21:39.081 [COM3/csk_ap] [2026-08-03 02:06:51.006][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:39.111 [COM3/csk_ap] [2026-08-03 02:06:51.046][D][msg_recv # msg] <<<<< Recv 272 RECORDER, cmd: 0x8001, ext: 0x0, len: 0
+2026-11-04 11:21:39.111 [COM3/csk_ap] [2026-08-03 02:06:51.047][I][msg_recv # rec_ringbuf] oneshot-v4 START requested
+2026-11-04 11:21:39.187 [COM3/csk_ap] [2026-08-03 02:06:51.118][I][algo_task # rec_ringbuf] oneshot-v4 START-live session:25 pos:5772715520 end:5772715520 backlog:0 ms:0 sent:0 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:41.102 [COM3/csk_ap] [2026-08-03 02:06:53.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:25 pos:5772779520 end:5772779520 backlog:0 ms:0 sent:64000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:43.104 [COM3/csk_ap] [2026-08-03 02:06:55.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:25 pos:5772843520 end:5772843520 backlog:0 ms:0 sent:128000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:45.104 [COM3/csk_ap] [2026-08-03 02:06:57.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:25 pos:5772907520 end:5772907520 backlog:0 ms:0 sent:192000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:47.102 [COM3/csk_ap] [2026-08-03 02:06:59.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:25 pos:5772971520 end:5772971520 backlog:0 ms:0 sent:256000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:48.926 [COM3/csk_ap] [2026-08-03 02:07:00.000][D][algo_task # PA_MGR] Refresh PA to ON, timeout 50000, by "prewakeup"
+2026-11-04 11:21:48.926 [COM3/csk_ap] [2026-08-03 02:07:00.000][D][algo_task # PA_MGR] Refresh PA end by "prewakeup"
+2026-11-04 11:21:48.926 [COM3/csk_ap] [2026-08-03 02:07:00.007][D][evs_event # event] evt msg -> enter, f: 0x30054784, d: 0x387c54e4
+2026-11-04 11:21:48.926 [COM3/csk_ap] [2026-08-03 02:07:00.008][D][evs_event # algo] Pre Wakeup: {"rlt":[{"istart":395,"iresid":0,"iduration":18,"nfillerscore":158,"nkeywordscore":18131,"ncm":1002,"ncmThreshold":800,"keyword":"xiao ti xiao ti","intent":"xiao ti xiao ti","bMain":1,"bAbsorb":0,"bMhx":0}]}
+2026-11-04 11:21:48.926 [COM3/csk_ap] [2026-08-03 02:07:00.010][I][evs_event # wake_audio] candidate prewake score:1002 valid:1 trigger:2886533120
+2026-11-04 11:21:48.926 [COM3/csk_ap] [2026-08-03 02:07:00.011][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:49.104 [COM3/csk_ap] [2026-08-03 02:07:01.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:25 pos:5773035520 end:5773035520 backlog:0 ms:0 sent:320000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:49.162 [COM3/csk_ap] [2026-08-03 02:07:01.059][D][algo_task # algo] wake point: 180407800ms -> 180408720ms
+2026-11-04 11:21:49.162 [COM3/csk_ap] [2026-08-03 02:07:01.059][I][algo_task # rec_ringbuf] mark wake frame:180407800ms -> 180408720ms
+2026-11-04 11:21:49.165 [COM3/csk_ap] [33m(T1|180409.750) wake point string: wakept(180407800:180408720)
+2026-11-04 11:21:49.198 [COM3/csk_ap] [0m[2026-08-03 02:07:01.081][I][algo_task # algo] wakeup power: chn=1, frame=18040872, cp_x100=7000
+2026-11-04 11:21:49.198 [COM3/csk_ap] [2026-08-03 02:07:01.082][D][algo_task # app_client] Wakeup: {"rlt":[{"istart":395,"iresid":1,"iduration":23,"nfillerscore":0,"nkeywordscore":0,"ncm":-18,"ncmThreshold":-177,"keyword":"xiao ti xiao ti","intent":"xiao ti xiao ti-ch","nRltIdx":0,"nDelayFrame":0,"nThrowFrame":418,"decId":0,"branch":3,"wakeUpType":0,"VadGap":0,"nE2eIntervalFrame":8,"nE2eNodeFrame":2,"nStartStateThreshold":0,"bMain":1,"bAbsorb":0,"bMhx":0,"nLanThreshold":0,"nLanNcm":0,"iframe":4510218}],"cp_x100":7000,"cp_db":70,"wk_iframe":1804[2026-08-03 02:07:01.089][D][evs_event # event] evt msg -> enter, f: 0x300564b4, d: 0x387c54e4
+2026-11-04 11:21:49.207 [COM3/csk_ap] [2026-08-03 02:07:01.091][D][evs_event # app_client] keyword: xiao ti xiao ti, intent: xiao ti xiao ti-ch, ncm: -18.00, cp_db: 70
+2026-11-04 11:21:49.207 [COM3/csk_ap] [2026-08-03 02:07:01.093][I][evs_event # app_client] MEM[WAKEUP] SRAM free:9236(9KB) lfb:7936(7KB) | PSRAM free:238300(232KB) lfb:233472(228KB)
+2026-11-04 11:21:49.207 [COM3/csk_ap] [2026-08-03 02:07:01.094][D][evs_event # algo] keyword: xiao ti xiao ti-ch, cmd_id: 0001
+2026-11-04 11:21:49.207 [COM3/csk_ap] [2026-08-03 02:07:01.095][D][evs_event # app_client] wakeup_cmd: cmd 0x1, localism 0, score -18.000000, energy 700000, is_study_cmd 0
+2026-11-04 11:21:49.207 [COM3/csk_ap] [2026-08-03 02:07:01.095][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:49.207 [COM3/csk_ap] [2026-08-03 02:07:01.096][D][msg_send # msg] >>>>> Send 243 ASR, cmd: 0x1006, ext: 0x0, len: 33
+2026-11-04 11:21:49.213 [COM3/csk_ap] [2026-08-03 02:07:01.115][D][msg_recv # msg] <<<<< Recv 273 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:21:49.213 [COM3/csk_ap] [2026-08-03 02:07:01.116][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:21:49.250 [COM3/csk_ap] [2026-08-03 02:07:01.131][D][msg_recv # msg] <<<<< Recv 274 PLAYER, cmd: 0x4001, ext: 0x0, len: 4
+2026-11-04 11:21:49.250 [COM3/csk_ap] [2026-08-03 02:07:01.132][D][msg_send # msg] >>>>> Send 244 PLAYER, cmd: 0x4001, ext: 0x8003, len: 1
+2026-11-04 11:21:49.250 [COM3/csk_ap] [2026-08-03 02:07:01.132][W][evs_event # event] wdt not feed 1127556
+2026-11-04 11:21:49.250 [COM3/csk_ap] [2026-08-03 02:07:01.133][D][evs_event # event] evt msg -> enter, f: 0x30056034, d: 0x387c54e4
+2026-11-04 11:21:49.250 [COM3/csk_ap] [2026-08-03 02:07:01.134][D][evs_event # app_client] tone player, play 2
+2026-11-04 11:21:49.250 [COM3/csk_ap] [2026-08-03 02:07:01.135][D][evs_event # soundplayer] release alert item
+2026-11-04 11:21:49.250 [COM3/csk_ap] [2026-08-03 02:07:01.135][D][evs_event # soundplayer] sound acquire channel
+2026-11-04 11:21:49.250 [COM3/csk_ap] [2026-08-03 02:07:01.135][D][evs_event # audiomgr] 4 acquire channel
+2026-11-04 11:21:49.251 [COM3/csk_ap] [2026-08-03 02:07:01.136][I][evs_event # soundplayer] focus 0, by_which 4
+2026-11-04 11:21:49.251 [COM3/csk_ap] [2026-08-03 02:07:01.136][D][evs_event # soundplayer] _sound_play_foreground, handle->m_play_state:6
+2026-11-04 11:21:49.251 [COM3/csk_ap] [2026-08-03 02:07:01.137][D][evs_event # soundplayer] _sound_play_next, handle->m_wait_len:1
+2026-11-04 11:21:49.251 [COM3/csk_ap] [2026-08-03 02:07:01.137][D][evs_event # soundplayer] play next tone 2: mem://addr=811075448size=1953
+2026-11-04 11:21:49.251 [COM3/csk_ap] [2026-08-03 02:07:01.138][D][evs_event # soundplayer] soundplayer status: 0XEF
+2026-11-04 11:21:49.251 [COM3/csk_ap] [2026-08-03 02:07:01.138][D][evs_event # app_client] sound player state: 239
+2026-11-04 11:21:49.251 [COM3/csk_ap] [2026-08-03 02:07:01.139][I][evs_event # APP_PLAYER] play audio mem://addr=811075448size=1953
+2026-11-04 11:21:49.251 [COM3/csk_ap] [2026-08-03 02:07:01.139][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:49.251 [COM3/csk_ap] [2026-08-03 02:07:01.141][D][msg_send # msg] >>>>> Send 245 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:49.251 [COM3/csk_ap] [2026-08-03 02:07:01.143][D][player_0_td # lisa_que] create queue: demux_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:21:49.251 [COM3/csk_ap] [2026-08-03 02:07:01.144][D][msg_recv # msg] <<<<< Recv 275 RECORDER, cmd: 0x8001, ext: 0x0, len: 0
+2026-11-04 11:21:49.251 [COM3/csk_ap] [2026-08-03 02:07:01.147][I][msg_recv # rec_ringbuf] oneshot-v4 START requested
+2026-11-04 11:21:49.251 [COM3/csk_ap] [2026-08-03 02:07:01.152][D][player_0_td # lisa_que] create queue: decode_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:21:49.284 [COM3/csk_ap] [2026-08-03 02:07:01.174][I][algo_task # rec_ringbuf] STOP-TEST ARM session:25 wait:200 request_ms:180376752
+2026-11-04 11:21:49.284 [COM3/csk_ap] [2026-08-03 02:07:01.174][I][algo_task # rec_ringbuf] STOP-TEST CANCEL session:25 gap_ms:30 keep_pos:5773038080
+2026-11-04 11:21:49.284 [COM3/csk_ap] [2026-08-03 02:07:01.183][I][player_0_td # APP_PLAYER] tone player evt 1
+2026-11-04 11:21:49.284 [COM3/csk_ap] [2026-08-03 02:07:01.183][D][player_0_td # soundplayer] soundplayer status: 0X1
+2026-11-04 11:21:49.284 [COM3/csk_ap] [2026-08-03 02:07:01.183][D][player_0_td # app_client] sound player state: 1
+2026-11-04 11:21:49.284 [COM3/csk_ap] [2026-08-03 02:07:01.184][D][player_0_td # PA_MGR] Refresh PA to ON, timeout 4294967295, by "tone_player_prepared"
+2026-11-04 11:21:49.284 [COM3/csk_ap] [2026-08-03 02:07:01.184][D][msg_send # msg] >>>>> Send 246 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:49.284 [COM3/csk_ap] [2026-08-03 02:07:01.185][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_prepared"
+2026-11-04 11:21:49.295 [COM3/csk_ap] [2026-08-03 02:07:01.197][I][player_0_td # APP_PLAYER] tone player evt 2
+2026-11-04 11:21:49.297 [COM3/csk_ap] [2026-08-03 02:07:01.200][D][player_0_td # soundplayer] soundplayer status: 0X2
+2026-11-04 11:21:49.299 [COM3/csk_ap] [2026-08-03 02:07:01.201][D][player_0_td # app_client] sound player state: 2
+2026-11-04 11:21:49.301 [COM3/csk_ap] [2026-08-03 02:07:01.205][D][msg_send # msg] >>>>> Send 247 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:49.340 [COM3/csk_ap] [2026-08-03 02:07:01.239][D][evs_event # event] evt msg -> enter, f: 0x30054316, d: 0x387c5860
+2026-11-04 11:21:49.340 [COM3/csk_ap] [2026-08-03 02:07:01.240][D][evs_event # algo] ******** CSK DOA 54 ********
+2026-11-04 11:21:49.340 [COM3/csk_ap] [2026-08-03 02:07:01.240][D][evs_event # app_client] send doa: 54
+2026-11-04 11:21:49.340 [COM3/csk_ap] [2026-08-03 02:07:01.241][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:49.340 [COM3/csk_ap] [2026-08-03 02:07:01.241][D][msg_send # msg] >>>>> Send 248 ASR, cmd: 0x1006, ext: 0x0, len: 33
+2026-11-04 11:21:49.805 [COM3/csk_ap] [2026-08-03 02:07:01.701][I][player_0_td # APP_PLAYER] tone player evt 6
+2026-11-04 11:21:49.810 [COM3/csk_ap] [2026-08-03 02:07:01.701][D][player_0_td # PA_MGR] Refresh PA to OFF, timeout 50000, by "tone_player_end"
+2026-11-04 11:21:49.810 [COM3/csk_ap] [2026-08-03 02:07:01.702][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_end"
+2026-11-04 11:21:49.810 [COM3/csk_ap] [2026-08-03 02:07:01.702][D][player_0_td # soundplayer] soundplayer status: 0X6
+2026-11-04 11:21:49.812 [COM3/csk_ap] [2026-08-03 02:07:01.703][D][player_0_td # app_client] sound player state: 6
+2026-11-04 11:21:49.812 [COM3/csk_ap] [2026-08-03 02:07:01.704][D][msg_send # msg] >>>>> Send 249 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:49.812 [COM3/csk_ap] [2026-08-03 02:07:01.705][D][evs_event # event] evt msg -> enter, f: 0x3005d23e, d: 0x0
+2026-11-04 11:21:49.812 [COM3/csk_ap] [2026-08-03 02:07:01.707][D][evs_event # audiomgr] 4 release channel
+2026-11-04 11:21:49.812 [COM3/csk_ap] [2026-08-03 02:07:01.708][I][evs_event # soundplayer] focus 2, by_which 4
+2026-11-04 11:21:49.812 [COM3/csk_ap] [2026-08-03 02:07:01.708][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:51.106 [COM3/csk_ap] [2026-08-03 02:07:03.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:25 pos:5773099520 end:5773099520 backlog:0 ms:0 sent:384000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:53.102 [COM3/csk_ap] [2026-08-03 02:07:05.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:25 pos:5773163520 end:5773163520 backlog:0 ms:0 sent:448000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:54.376 [COM3/csk_ap] [2026-08-03 02:07:06.000][D][evs_event # event] evt msg -> enter, f: 0x30054316, d: 0x387c6150
+2026-11-04 11:21:54.376 [COM3/csk_ap] [2026-08-03 02:07:06.000][D][evs_event # algo] ******** CSK DOA 90 ********
+2026-11-04 11:21:54.376 [COM3/csk_ap] [2026-08-03 02:07:06.000][D][evs_event # app_client] send doa: 90
+2026-11-04 11:21:54.376 [COM3/csk_ap] [2026-08-03 02:07:06.001][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:54.376 [COM3/csk_ap] [2026-08-03 02:07:06.001][D][msg_send # msg] >>>>> Send 250 ASR, cmd: 0x1001, ext: 0x0, len: 33
+2026-11-04 11:21:54.380 [COM3/csk_ap] [33m(T1|180414.953) wake point string: wakept(180412320:180413920)
+2026-11-04 11:21:54.399 [COM3/csk_ap] [0m[2026-08-03 02:07:06.006][I][algo_task # algo] wakeup power: chn=1, frame=18041392, cp_x100=6000
+2026-11-04 11:21:54.399 [COM3/csk_ap] [2026-08-03 02:07:06.007][D][algo_task # app_client] Wakeup: {"rlt":[{"istart":508,"iresid":187,"iduration":40,"nfillerscore":0,"nkeywordscore":0,"ncm":-14,"ncmThreshold":-138,"keyword":"tiao di wen du","intent":"tiao di wen du","nRltIdx":15,"nDelayFrame":0,"nThrowFrame":548,"decId":0,"branch":2,"wakeUpType":0,"VadGap":0,"nE2eIntervalFrame":5,"nE2eNodeFrame":2,"nStartStateThreshold":0,"bMain":0,"bAbsorb":0,"bMhx":0,"iframe":4510348}],"cp_x100":6000,"cp_db":60,"wk_iframe":18041392}
+2026-11-04 11:21:54.399 [COM3/csk_ap] [2026-08-03 02:07:06.014][W][evs_event # event] wdt not feed 1127588
+2026-11-04 11:21:54.399 [COM3/csk_ap] [2026-08-03 02:07:06.015][D][evs_event # event] evt msg -> enter, f: 0x300564b4, d: 0x387c5d3c
+2026-11-04 11:21:54.401 [COM3/csk_ap] [2026-08-03 02:07:06.016][D][evs_event # app_client] keyword: tiao di wen du, intent: tiao di wen du, ncm: -14.00, cp_db: 60
+2026-11-04 11:21:54.401 [COM3/csk_ap] [2026-08-03 02:07:06.019][I][evs_event # app_client] MEM[WAKEUP] SRAM free:9236(9KB) lfb:7936(7KB) | PSRAM free:238300(232KB) lfb:233472(228KB)
+2026-11-04 11:21:54.401 [COM3/csk_ap] [2026-08-03 02:07:06.020][D][evs_event # algo] keyword: tiao di wen du, cmd_id: 0031
+2026-11-04 11:21:54.401 [COM3/csk_ap] [2026-08-03 02:07:06.020][D][evs_event # app_client] offline_cmd: cmd 0x31, score -14.000000, energy 600000, is_study_cmd 0
+2026-11-04 11:21:54.401 [COM3/csk_ap] [2026-08-03 02:07:06.021][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:54.401 [COM3/csk_ap] [2026-08-03 02:07:06.021][D][msg_send # msg] >>>>> Send 251 ASR, cmd: 0x1001, ext: 0x0, len: 33
+2026-11-04 11:21:54.496 [COM3/csk_ap] [2026-08-03 02:07:06.109][D][msg_recv # msg] <<<<< Recv 276 PLAYER, cmd: 0x4001, ext: 0x0, len: 4
+2026-11-04 11:21:54.496 [COM3/csk_ap] [2026-08-03 02:07:06.111][D][msg_send # msg] >>>>> Send 252 PLAYER, cmd: 0x4001, ext: 0x31, len: 1
+2026-11-04 11:21:54.496 [COM3/csk_ap] [2026-08-03 02:07:06.112][D][evs_event # event] evt msg -> enter, f: 0x30056034, d: 0x387c54e4
+2026-11-04 11:21:54.496 [COM3/csk_ap] [2026-08-03 02:07:06.112][D][evs_event # app_client] tone player, play 25
+2026-11-04 11:21:54.496 [COM3/csk_ap] [2026-08-03 02:07:06.113][D][evs_event # soundplayer] release alert item
+2026-11-04 11:21:54.496 [COM3/csk_ap] [2026-08-03 02:07:06.113][D][evs_event # soundplayer] sound acquire channel
+2026-11-04 11:21:54.496 [COM3/csk_ap] [2026-08-03 02:07:06.113][D][evs_event # audiomgr] 4 acquire channel
+2026-11-04 11:21:54.496 [COM3/csk_ap] [2026-08-03 02:07:06.114][I][evs_event # soundplayer] focus 0, by_which 4
+2026-11-04 11:21:54.496 [COM3/csk_ap] [2026-08-03 02:07:06.115][D][evs_event # soundplayer] _sound_play_foreground, handle->m_play_state:6
+2026-11-04 11:21:54.496 [COM3/csk_ap] [2026-08-03 02:07:06.115][D][evs_event # soundplayer] _sound_play_next, handle->m_wait_len:1
+2026-11-04 11:21:54.496 [COM3/csk_ap] [2026-08-03 02:07:06.116][D][evs_event # soundplayer] play next tone 25: mem://addr=811169723size=3357
+2026-11-04 11:21:54.496 [COM3/csk_ap] [2026-08-03 02:07:06.117][D][evs_event # soundplayer] soundplayer status: 0XEF
+2026-11-04 11:21:54.496 [COM3/csk_ap] [2026-08-03 02:07:06.118][D][evs_event # app_client] sound player state: 239
+2026-11-04 11:21:54.496 [COM3/csk_ap] [2026-08-03 02:07:06.119][I][evs_event # APP_PLAYER] play audio mem://addr=811169723size=3357
+2026-11-04 11:21:54.496 [COM3/csk_ap] [2026-08-03 02:07:06.119][D][msg_send # msg] >>>>> Send 253 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:54.496 [COM3/csk_ap] [2026-08-03 02:07:06.122][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:54.500 [COM3/csk_ap] [2026-08-03 02:07:06.128][D][player_0_td # lisa_que] create queue: demux_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:21:54.506 [COM3/csk_ap] [2026-08-03 02:07:06.133][D][player_0_td # lisa_que] create queue: decode_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:21:54.534 [COM3/csk_ap] [2026-08-03 02:07:06.159][I][player_0_td # APP_PLAYER] tone player evt 1
+2026-11-04 11:21:54.534 [COM3/csk_ap] [2026-08-03 02:07:06.160][D][player_0_td # soundplayer] soundplayer status: 0X1
+2026-11-04 11:21:54.534 [COM3/csk_ap] [2026-08-03 02:07:06.160][D][player_0_td # app_client] sound player state: 1
+2026-11-04 11:21:54.540 [COM3/csk_ap] [2026-08-03 02:07:06.163][D][msg_recv # msg] <<<<< Recv 277 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:21:54.540 [COM3/csk_ap] [2026-08-03 02:07:06.164][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:21:54.540 [COM3/csk_ap] [2026-08-03 02:07:06.163][D][player_0_td # PA_MGR] Refresh PA to ON, timeout 4294967295, by "tone_player_prepared"
+2026-11-04 11:21:54.541 [COM3/csk_ap] [2026-08-03 02:07:06.164][D][msg_send # msg] >>>>> Send 254 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:54.541 [COM3/csk_ap] [2026-08-03 02:07:06.166][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_prepared"
+2026-11-04 11:21:54.549 [COM3/csk_ap] [2026-08-03 02:07:06.178][I][player_0_td # APP_PLAYER] tone player evt 2
+2026-11-04 11:21:54.553 [COM3/csk_ap] [2026-08-03 02:07:06.179][D][player_0_td # soundplayer] soundplayer status: 0X2
+2026-11-04 11:21:54.553 [COM3/csk_ap] [2026-08-03 02:07:06.174][I][algo_task # rec_ringbuf] STOP-TEST ARM session:25 wait:200 request_ms:180382075
+2026-11-04 11:21:54.555 [COM3/csk_ap] [2026-08-03 02:07:06.181][D][player_0_td # app_client] sound player state: 2
+2026-11-04 11:21:54.555 [COM3/csk_ap] [2026-08-03 02:07:06.183][D][msg_send # msg] >>>>> Send 255 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:54.559 [COM3/csk_ap] [2026-08-03 02:07:06.184][D][msg_recv # msg] <<<<< Recv 278 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:21:54.559 [COM3/csk_ap] [2026-08-03 02:07:06.187][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:21:54.787 [COM3/csk_ap] [2026-08-03 02:07:06.406][I][algo_task # rec_ringbuf] STOP-TEST EXPIRE session:25 elapsed_ms:248
+2026-11-04 11:21:54.787 [COM3/csk_ap] [2026-08-03 02:07:06.407][I][algo_task # rec_ringbuf] oneshot-v4 STOP-unsubmitted session:25 pos:5773214720 end:5773214720 backlog:0 ms:0 sent:499200 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:55.518 [COM3/csk_ap] [2026-08-03 02:07:07.000][I][player_0_td # APP_PLAYER] tone player evt 6
+2026-11-04 11:21:55.526 [COM3/csk_ap] [2026-08-03 02:07:07.000][D][player_0_td # PA_MGR] Refresh PA to OFF, timeout 50000, by "tone_player_end"
+2026-11-04 11:21:55.526 [COM3/csk_ap] [2026-08-03 02:07:07.001][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_end"
+2026-11-04 11:21:55.526 [COM3/csk_ap] [2026-08-03 02:07:07.002][D][player_0_td # soundplayer] soundplayer status: 0X6
+2026-11-04 11:21:55.526 [COM3/csk_ap] [2026-08-03 02:07:07.002][D][player_0_td # app_client] sound player state: 6
+2026-11-04 11:21:55.526 [COM3/csk_ap] [2026-08-03 02:07:07.003][D][msg_send # msg] >>>>> Send 256 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:21:55.526 [COM3/csk_ap] [2026-08-03 02:07:07.004][D][evs_event # event] evt msg -> enter, f: 0x3005d23e, d: 0x0
+2026-11-04 11:21:55.526 [COM3/csk_ap] [2026-08-03 02:07:07.004][D][evs_event # audiomgr] 4 release channel
+2026-11-04 11:21:55.526 [COM3/csk_ap] [2026-08-03 02:07:07.005][I][evs_event # soundplayer] focus 2, by_which 4
+2026-11-04 11:21:55.528 [COM3/csk_ap] [2026-08-03 02:07:07.005][D][evs_event # event] evt msg -> exit
+2026-11-04 11:21:55.561 [COM3/csk_ap] [2026-08-03 02:07:07.044][D][msg_recv # msg] <<<<< Recv 279 RECORDER, cmd: 0x8001, ext: 0x0, len: 0
+2026-11-04 11:21:55.561 [COM3/csk_ap] [2026-08-03 02:07:07.045][I][msg_recv # rec_ringbuf] oneshot-v4 START requested
+2026-11-04 11:21:55.586 [COM3/csk_ap] [2026-08-03 02:07:07.068][I][algo_task # rec_ringbuf] oneshot-v4 START-live session:26 pos:5773240320 end:5773240320 backlog:0 ms:0 sent:0 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:57.500 [COM3/csk_ap] [2026-08-03 02:07:09.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:26 pos:5773304320 end:5773304320 backlog:0 ms:0 sent:64000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:21:59.504 [COM3/csk_ap] [2026-08-03 02:07:11.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:26 pos:5773368320 end:5773368320 backlog:0 ms:0 sent:128000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:01.501 [COM3/csk_ap] [2026-08-03 02:07:13.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:26 pos:5773432320 end:5773432320 backlog:0 ms:0 sent:192000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:03.501 [COM3/csk_ap] [2026-08-03 02:07:15.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:26 pos:5773496320 end:5773496320 backlog:0 ms:0 sent:256000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:05.499 [COM3/csk_ap] [2026-08-03 02:07:17.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:26 pos:5773560320 end:5773560320 backlog:0 ms:0 sent:320000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:07.503 [COM3/csk_ap] [2026-08-03 02:07:19.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:26 pos:5773624320 end:5773624320 backlog:0 ms:0 sent:384000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:09.430 [COM3/csk_ap] [2026-08-03 02:07:21.000][I][algo_task # algo] MODE 1 -> 0, param: {"reg":[{"key":"mode","val":1},{"key":"model","val":0}],"cae":[{"key":"mode","val":0}],"esr":[{"key":"mode","val":1},{"key":"model","val":0},{"key":"2121","val":-91},{"key":"2122","val":-91}]}
+2026-11-04 11:22:09.440 [COM3/csk_ap] [2026-08-03 02:07:21.007][D][evs_event # event] evt msg -> enter, f: 0x30054f40, d: 0x0
+2026-11-04 11:22:09.440 [COM3/csk_ap] [2026-08-03 02:07:21.007][D][evs_event # app_client] esr timeout
+2026-11-04 11:22:09.440 [COM3/csk_ap] [2026-08-03 02:07:21.008][D][evs_event # event] evt msg -> exit
+2026-11-04 11:22:09.440 [COM3/csk_ap] [2026-08-03 02:07:21.008][D][msg_send # msg] >>>>> Send 257 ASR, cmd: 0x1004, ext: 0x0, len: 0
+2026-11-04 11:22:09.500 [COM3/csk_ap] [2026-08-03 02:07:21.073][I][algo_task # rec_ringbuf] oneshot-v4 progress session:26 pos:5773688320 end:5773688320 backlog:0 ms:0 sent:448000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:10.364 [COM3/csk_ap] [2026-08-03 02:07:22.000][D][algo_task # PA_MGR] Refresh PA to ON, timeout 50000, by "prewakeup"
+2026-11-04 11:22:10.364 [COM3/csk_ap] [2026-08-03 02:07:22.000][D][algo_task # PA_MGR] Refresh PA end by "prewakeup"
+2026-11-04 11:22:10.364 [COM3/csk_ap] [2026-08-03 02:07:22.007][D][evs_event # event] evt msg -> enter, f: 0x30054784, d: 0x387c54e4
+2026-11-04 11:22:10.364 [COM3/csk_ap] [2026-08-03 02:07:22.008][D][evs_event # algo] Pre Wakeup: {"rlt":[{"istart":8,"iresid":0,"iduration":17,"nfillerscore":130,"nkeywordscore":16508,"ncm":961,"ncmThreshold":800,"keyword":"xiao ti xiao ti","intent":"xiao ti xiao ti","bMain":1,"bAbsorb":0,"bMhx":0}]}
+2026-11-04 11:22:10.364 [COM3/csk_ap] [2026-08-03 02:07:22.010][I][evs_event # wake_audio] candidate prewake score:961 valid:1 trigger:2886876160
+2026-11-04 11:22:10.364 [COM3/csk_ap] [2026-08-03 02:07:22.011][D][evs_event # event] evt msg -> exit
+2026-11-04 11:22:10.573 [COM3/csk_ap] [2026-08-03 02:07:22.219][D][msg_recv # msg] <<<<< Recv 280 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:22:10.573 [COM3/csk_ap] [2026-08-03 02:07:22.221][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:22:10.578 [COM3/csk_ap] [2026-08-03 02:07:22.225][D][msg_recv # msg] <<<<< Recv 281 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:22:10.578 [COM3/csk_ap] [2026-08-03 02:07:22.226][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:22:10.583 [COM3/csk_ap] [2026-08-03 02:07:22.231][D][msg_recv # msg] <<<<< Recv 282 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:22:10.584 [COM3/csk_ap] [2026-08-03 02:07:22.232][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:22:10.592 [COM3/csk_ap] [2026-08-03 02:07:22.239][D][msg_recv # msg] <<<<< Recv 283 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:22:10.592 [COM3/csk_ap] [2026-08-03 02:07:22.240][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:22:10.601 [COM3/csk_ap] [2026-08-03 02:07:22.248][D][msg_recv # msg] <<<<< Recv 284 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:22:10.601 [COM3/csk_ap] [2026-08-03 02:07:22.249][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:22:10.621 [COM3/csk_ap] [2026-08-03 02:07:22.263][I][algo_task # rec_ringbuf] STOP-TEST ARM session:26 wait:200 request_ms:180398107
+2026-11-04 11:22:10.683 [COM3/csk_ap] [2026-08-03 02:07:22.324][D][algo_task # algo] wake point: 180429200ms -> 180430240ms
+2026-11-04 11:22:10.683 [COM3/csk_ap] [2026-08-03 02:07:22.324][I][algo_task # rec_ringbuf] mark wake frame:180429200ms -> 180430240ms
+2026-11-04 11:22:10.689 [COM3/csk_ap] [33m(T1|180431.250) wake point string: wakept(180429200:180430240)
+2026-11-04 11:22:10.720 [COM3/csk_ap] [0m[2026-08-03 02:07:22.346][I][algo_task # algo] wakeup power: chn=1, frame=18043024, cp_x100=7000
+2026-11-04 11:22:10.720 [COM3/csk_ap] [2026-08-03 02:07:22.347][D][algo_task # app_client] Wakeup: {"rlt":[{"istart":6,"iresid":1,"iduration":26,"nfillerscore":0,"nkeywordscore":0,"ncm":-3,"ncmThreshold":-91,"keyword":"xiao ti xiao ti","intent":"xiao ti xiao ti-ch","nRltIdx":0,"nDelayFrame":0,"nThrowFrame":32,"decId":0,"branch":3,"wakeUpType":0,"VadGap":0,"nE2eIntervalFrame":8,"nE2eNodeFrame":2,"nStartStateThreshold":500,"bMain":1,"bAbsorb":0,"bMhx":0,"nLanThreshold":0,"nLanNcm":0,"iframe":4510756}],"cp_x100":7000,"cp_db":70,"wk_iframe":1804302[2026-08-03 02:07:22.354][D][evs_event # event] evt msg -> enter, f: 0x300564b4, d: 0x387c54e4
+2026-11-04 11:22:10.730 [COM3/csk_ap] [2026-08-03 02:07:22.356][D][evs_event # app_client] keyword: xiao ti xiao ti, intent: xiao ti xiao ti-ch, ncm: -3.00, cp_db: 70
+2026-11-04 11:22:10.730 [COM3/csk_ap] [2026-08-03 02:07:22.358][I][evs_event # app_client] MEM[WAKEUP] SRAM free:9236(9KB) lfb:7936(7KB) | PSRAM free:236800(231KB) lfb:233472(228KB)
+2026-11-04 11:22:10.730 [COM3/csk_ap] [2026-08-03 02:07:22.359][D][evs_event # algo] keyword: xiao ti xiao ti-ch, cmd_id: 0001
+2026-11-04 11:22:10.730 [COM3/csk_ap] [2026-08-03 02:07:22.360][D][evs_event # app_client] wakeup_cmd: cmd 0x1, localism 0, score -3.000000, energy 700000, is_study_cmd 0
+2026-11-04 11:22:10.730 [COM3/csk_ap] [2026-08-03 02:07:22.361][D][evs_event # event] evt msg -> exit
+2026-11-04 11:22:10.730 [COM3/csk_ap] [2026-08-03 02:07:22.355][I][algo_task # algo] MODE 0 -> 1, param: {"reg":[{"key":"mode","val":0},{"key":"model","val":1}],"cae":[{"key":"mode","val":1}],"esr":[{"key":"mode","val":0},{"key":"model","val":1},{"key":"2121","val":-177},{"key":"2122","val":-177}]}
+2026-11-04 11:22:10.730 [COM3/csk_ap] [2026-08-03 02:07:22.362][D][msg_send # msg] >>>>> Send 258 ASR, cmd: 0x1006, ext: 0x0, len: 33
+2026-11-04 11:22:10.734 [COM3/csk_ap] [2026-08-03 02:07:22.381][D][msg_recv # msg] <<<<< Recv 285 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:22:10.734 [COM3/csk_ap] [2026-08-03 02:07:22.382][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:22:10.763 [COM3/csk_ap] [2026-08-03 02:07:22.395][D][msg_recv # msg] <<<<< Recv 286 PLAYER, cmd: 0x4001, ext: 0x0, len: 4
+2026-11-04 11:22:10.763 [COM3/csk_ap] [2026-08-03 02:07:22.396][D][msg_send # msg] >>>>> Send 259 PLAYER, cmd: 0x4001, ext: 0x8004, len: 1
+2026-11-04 11:22:10.763 [COM3/csk_ap] [2026-08-03 02:07:22.397][D][evs_event # event] evt msg -> enter, f: 0x30056034, d: 0x387c54e4
+2026-11-04 11:22:10.763 [COM3/csk_ap] [2026-08-03 02:07:22.398][D][evs_event # app_client] tone player, play 3
+2026-11-04 11:22:10.763 [COM3/csk_ap] [2026-08-03 02:07:22.398][D][evs_event # soundplayer] release alert item
+2026-11-04 11:22:10.763 [COM3/csk_ap] [2026-08-03 02:07:22.399][D][evs_event # soundplayer] sound acquire channel
+2026-11-04 11:22:10.763 [COM3/csk_ap] [2026-08-03 02:07:22.399][D][evs_event # audiomgr] 4 acquire channel
+2026-11-04 11:22:10.764 [COM3/csk_ap] [2026-08-03 02:07:22.400][I][evs_event # soundplayer] focus 0, by_which 4
+2026-11-04 11:22:10.764 [COM3/csk_ap] [2026-08-03 02:07:22.400][D][evs_event # soundplayer] _sound_play_foreground, handle->m_play_state:6
+2026-11-04 11:22:10.764 [COM3/csk_ap] [2026-08-03 02:07:22.401][D][evs_event # soundplayer] _sound_play_next, handle->m_wait_len:1
+2026-11-04 11:22:10.764 [COM3/csk_ap] [2026-08-03 02:07:22.401][D][evs_event # soundplayer] play next tone 3: mem://addr=811077401size=2061
+2026-11-04 11:22:10.764 [COM3/csk_ap] [2026-08-03 02:07:22.402][D][evs_event # soundplayer] soundplayer status: 0XEF
+2026-11-04 11:22:10.764 [COM3/csk_ap] [2026-08-03 02:07:22.402][D][evs_event # app_client] sound player state: 239
+2026-11-04 11:22:10.764 [COM3/csk_ap] [2026-08-03 02:07:22.402][I][evs_event # APP_PLAYER] play audio mem://addr=811077401size=2061
+2026-11-04 11:22:10.764 [COM3/csk_ap] [2026-08-03 02:07:22.403][D][evs_event # event] evt msg -> exit
+2026-11-04 11:22:10.764 [COM3/csk_ap] [2026-08-03 02:07:22.405][D][msg_send # msg] >>>>> Send 260 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:22:10.764 [COM3/csk_ap] [2026-08-03 02:07:22.408][D][msg_recv # msg] <<<<< Recv 287 RECORDER, cmd: 0x8001, ext: 0x0, len: 0
+2026-11-04 11:22:10.764 [COM3/csk_ap] [2026-08-03 02:07:22.410][I][msg_recv # rec_ringbuf] oneshot-v4 START requested
+2026-11-04 11:22:10.764 [COM3/csk_ap] [2026-08-03 02:07:22.411][D][player_0_td # lisa_que] create queue: demux_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:22:10.774 [COM3/csk_ap] [2026-08-03 02:07:22.421][D][player_0_td # lisa_que] create queue: decode_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:22:10.790 [COM3/csk_ap] [2026-08-03 02:07:22.432][I][algo_task # rec_ringbuf] STOP-TEST CANCEL session:26 gap_ms:189 keep_pos:5773726720
+2026-11-04 11:22:10.803 [COM3/csk_ap] [2026-08-03 02:07:22.448][I][player_0_td # APP_PLAYER] tone player evt 1
+2026-11-04 11:22:10.803 [COM3/csk_ap] [2026-08-03 02:07:22.448][D][player_0_td # soundplayer] soundplayer status: 0X1
+2026-11-04 11:22:10.804 [COM3/csk_ap] [2026-08-03 02:07:22.449][D][player_0_td # app_client] sound player state: 1
+2026-11-04 11:22:10.804 [COM3/csk_ap] [2026-08-03 02:07:22.449][D][player_0_td # PA_MGR] Refresh PA to ON, timeout 4294967295, by "tone_player_prepared"
+2026-11-04 11:22:10.804 [COM3/csk_ap] [2026-08-03 02:07:22.450][D][msg_send # msg] >>>>> Send 261 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:22:10.804 [COM3/csk_ap] [2026-08-03 02:07:22.451][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_prepared"
+2026-11-04 11:22:10.815 [COM3/csk_ap] [2026-08-03 02:07:22.463][I][player_0_td # APP_PLAYER] tone player evt 2
+2026-11-04 11:22:10.819 [COM3/csk_ap] [2026-08-03 02:07:22.466][D][player_0_td # soundplayer] soundplayer status: 0X2
+2026-11-04 11:22:10.819 [COM3/csk_ap] [2026-08-03 02:07:22.468][D][player_0_td # app_client] sound player state: 2
+2026-11-04 11:22:10.822 [COM3/csk_ap] [2026-08-03 02:07:22.470][D][msg_send # msg] >>>>> Send 262 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:22:10.860 [COM3/csk_ap] [2026-08-03 02:07:22.504][W][evs_event # event] wdt not feed 1127691
+2026-11-04 11:22:10.860 [COM3/csk_ap] [2026-08-03 02:07:22.505][D][evs_event # event] evt msg -> enter, f: 0x30054316, d: 0x387c5850
+2026-11-04 11:22:10.860 [COM3/csk_ap] [2026-08-03 02:07:22.505][D][evs_event # algo] ******** CSK DOA 54 ********
+2026-11-04 11:22:10.860 [COM3/csk_ap] [2026-08-03 02:07:22.506][D][evs_event # app_client] send doa: 54
+2026-11-04 11:22:10.860 [COM3/csk_ap] [2026-08-03 02:07:22.506][D][evs_event # event] evt msg -> exit
+2026-11-04 11:22:10.860 [COM3/csk_ap] [2026-08-03 02:07:22.507][D][msg_send # msg] >>>>> Send 263 ASR, cmd: 0x1006, ext: 0x0, len: 33
+2026-11-04 11:22:11.321 [COM3/csk_ap] [2026-08-03 02:07:23.000][I][player_0_td # APP_PLAYER] tone player evt 6
+2026-11-04 11:22:11.323 [COM3/csk_ap] [2026-08-03 02:07:23.000][D][player_0_td # PA_MGR] Refresh PA to OFF, timeout 50000, by "tone_player_end"
+2026-11-04 11:22:11.323 [COM3/csk_ap] [2026-08-03 02:07:23.001][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_end"
+2026-11-04 11:22:11.323 [COM3/csk_ap] [2026-08-03 02:07:23.002][D][player_0_td # soundplayer] soundplayer status: 0X6
+2026-11-04 11:22:11.323 [COM3/csk_ap] [2026-08-03 02:07:23.003][D][player_0_td # app_client] sound player state: 6
+2026-11-04 11:22:11.326 [COM3/csk_ap] [2026-08-03 02:07:23.004][D][evs_event # event] evt msg -> enter, f: 0x3005d23e, d: 0x0
+2026-11-04 11:22:11.326 [COM3/csk_ap] [2026-08-03 02:07:23.005][D][msg_send # msg] >>>>> Send 264 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:22:11.326 [COM3/csk_ap] [2026-08-03 02:07:23.005][D][evs_event # audiomgr] 4 release channel
+2026-11-04 11:22:11.326 [COM3/csk_ap] [2026-08-03 02:07:23.007][I][evs_event # soundplayer] focus 2, by_which 4
+2026-11-04 11:22:11.326 [COM3/csk_ap] [2026-08-03 02:07:23.007][D][evs_event # event] evt msg -> exit
+2026-11-04 11:22:11.506 [COM3/csk_ap] [2026-08-03 02:07:23.180][I][algo_task # rec_ringbuf] oneshot-v4 progress session:26 pos:5773752320 end:5773752320 backlog:0 ms:0 sent:512000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:13.499 [COM3/csk_ap] [2026-08-03 02:07:25.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:26 pos:5773816320 end:5773816320 backlog:0 ms:0 sent:576000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:15.500 [COM3/csk_ap] [2026-08-03 02:07:27.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:26 pos:5773880320 end:5773880320 backlog:0 ms:0 sent:640000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:17.499 [COM3/csk_ap] [2026-08-03 02:07:29.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:26 pos:5773944320 end:5773944320 backlog:0 ms:0 sent:704000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:19.500 [COM3/csk_ap] [2026-08-03 02:07:31.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:26 pos:5774008320 end:5774008320 backlog:0 ms:0 sent:768000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:21.499 [COM3/csk_ap] [2026-08-03 02:07:33.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:26 pos:5774072320 end:5774072320 backlog:0 ms:0 sent:832000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:23.499 [COM3/csk_ap] [2026-08-03 02:07:35.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:26 pos:5774136320 end:5774136320 backlog:0 ms:0 sent:896000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:25.500 [COM3/csk_ap] [2026-08-03 02:07:37.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:26 pos:5774200320 end:5774200320 backlog:0 ms:0 sent:960000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:25.749 [COM3/csk_ap] [2026-08-03 02:07:37.246][I][algo_task # algo] MODE 1 -> 0, param: {"reg":[{"key":"mode","val":1},{"key":"model","val":0}],"cae":[{"key":"mode","val":0}],"esr":[{"key":"mode","val":1},{"key":"model","val":0},{"key":"2121","val":-91},{"key":"2122","val":-91}]}
+2026-11-04 11:22:25.760 [COM3/csk_ap] [2026-08-03 02:07:37.253][D][evs_event # event] evt msg -> enter, f: 0x30054f40, d: 0x0
+2026-11-04 11:22:25.760 [COM3/csk_ap] [2026-08-03 02:07:37.253][D][evs_event # app_client] esr timeout
+2026-11-04 11:22:25.760 [COM3/csk_ap] [2026-08-03 02:07:37.254][D][evs_event # event] evt msg -> exit
+2026-11-04 11:22:25.760 [COM3/csk_ap] [2026-08-03 02:07:37.254][D][msg_send # msg] >>>>> Send 265 ASR, cmd: 0x1004, ext: 0x0, len: 0
+2026-11-04 11:22:25.801 [COM3/csk_ap] [2026-08-03 02:07:37.293][D][msg_recv # msg] <<<<< Recv 288 PLAYER, cmd: 0x4001, ext: 0x0, len: 4
+2026-11-04 11:22:25.801 [COM3/csk_ap] [2026-08-03 02:07:37.295][D][msg_send # msg] >>>>> Send 266 PLAYER, cmd: 0x4001, ext: 0x8007, len: 1
+2026-11-04 11:22:25.801 [COM3/csk_ap] [2026-08-03 02:07:37.295][W][evs_event # event] wdt not feed 1127785
+2026-11-04 11:22:25.801 [COM3/csk_ap] [2026-08-03 02:07:37.296][D][evs_event # event] evt msg -> enter, f: 0x30056034, d: 0x387c54e4
+2026-11-04 11:22:25.801 [COM3/csk_ap] [2026-08-03 02:07:37.296][D][evs_event # app_client] tone player, play 75
+2026-11-04 11:22:25.801 [COM3/csk_ap] [2026-08-03 02:07:37.297][D][evs_event # soundplayer] release alert item
+2026-11-04 11:22:25.801 [COM3/csk_ap] [2026-08-03 02:07:37.297][D][evs_event # soundplayer] sound acquire channel
+2026-11-04 11:22:25.801 [COM3/csk_ap] [2026-08-03 02:07:37.298][D][evs_event # audiomgr] 4 acquire channel
+2026-11-04 11:22:25.801 [COM3/csk_ap] [2026-08-03 02:07:37.298][I][evs_event # soundplayer] focus 0, by_which 4
+2026-11-04 11:22:25.801 [COM3/csk_ap] [2026-08-03 02:07:37.298][D][evs_event # soundplayer] _sound_play_foreground, handle->m_play_state:6
+2026-11-04 11:22:25.801 [COM3/csk_ap] [2026-08-03 02:07:37.299][D][evs_event # soundplayer] _sound_play_next, handle->m_wait_len:1
+2026-11-04 11:22:25.801 [COM3/csk_ap] [2026-08-03 02:07:37.300][D][evs_event # soundplayer] play next tone 75: mem://addr=811436717size=11997
+2026-11-04 11:22:25.801 [COM3/csk_ap] [2026-08-03 02:07:37.300][D][evs_event # soundplayer] soundplayer status: 0XEF
+2026-11-04 11:22:25.801 [COM3/csk_ap] [2026-08-03 02:07:37.301][D][evs_event # app_client] sound player state: 239
+2026-11-04 11:22:25.801 [COM3/csk_ap] [2026-08-03 02:07:37.302][I][evs_event # APP_PLAYER] play audio mem://addr=811436717size=11997
+2026-11-04 11:22:25.801 [COM3/csk_ap] [2026-08-03 02:07:37.302][D][msg_send # msg] >>>>> Send 267 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:22:25.801 [COM3/csk_ap] [2026-08-03 02:07:37.305][D][evs_event # event] evt msg -> exit
+2026-11-04 11:22:25.801 [COM3/csk_ap] [2026-08-03 02:07:37.308][D][msg_recv # msg] <<<<< Recv 289 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:22:25.803 [COM3/csk_ap] [2026-08-03 02:07:37.310][D][player_0_td # lisa_que] create queue: demux_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:22:25.805 [COM3/csk_ap] [2026-08-03 02:07:37.312][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:22:25.815 [COM3/csk_ap] [2026-08-03 02:07:37.322][D][player_0_td # lisa_que] create queue: decode_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:22:25.828 [COM3/csk_ap] [2026-08-03 02:07:37.330][I][algo_task # rec_ringbuf] STOP-TEST ARM session:26 wait:200 request_ms:180413335
+2026-11-04 11:22:25.831 [COM3/csk_ap] [2026-08-03 02:07:37.339][D][msg_recv # msg] <<<<< Recv 290 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:22:25.833 [COM3/csk_ap] [2026-08-03 02:07:37.341][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:22:25.844 [COM3/csk_ap] [2026-08-03 02:07:37.350][I][player_0_td # APP_PLAYER] tone player evt 1
+2026-11-04 11:22:25.844 [COM3/csk_ap] [2026-08-03 02:07:37.351][D][player_0_td # soundplayer] soundplayer status: 0X1
+2026-11-04 11:22:25.844 [COM3/csk_ap] [2026-08-03 02:07:37.352][D][player_0_td # app_client] sound player state: 1
+2026-11-04 11:22:25.847 [COM3/csk_ap] [2026-08-03 02:07:37.354][D][msg_send # msg] >>>>> Send 268 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:22:25.849 [COM3/csk_ap] [2026-08-03 02:07:37.355][D][player_0_td # PA_MGR] Refresh PA to ON, timeout 4294967295, by "tone_player_prepared"
+2026-11-04 11:22:25.851 [COM3/csk_ap] [2026-08-03 02:07:37.358][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_prepared"
+2026-11-04 11:22:25.881 [COM3/csk_ap] [2026-08-03 02:07:37.373][I][player_0_td # APP_PLAYER] tone player evt 2
+2026-11-04 11:22:25.883 [COM3/csk_ap] [2026-08-03 02:07:37.377][D][player_0_td # soundplayer] soundplayer status: 0X2
+2026-11-04 11:22:25.883 [COM3/csk_ap] [2026-08-03 02:07:37.377][D][player_0_td # app_client] sound player state: 2
+2026-11-04 11:22:25.883 [COM3/csk_ap] [2026-08-03 02:07:37.380][D][msg_send # msg] >>>>> Send 269 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:22:26.069 [COM3/csk_ap] [2026-08-03 02:07:38.000][I][algo_task # rec_ringbuf] STOP-TEST EXPIRE session:26 elapsed_ms:264
+2026-11-04 11:22:26.069 [COM3/csk_ap] [2026-08-03 02:07:38.000][I][algo_task # rec_ringbuf] oneshot-v4 STOP-unsubmitted session:26 pos:5774215680 end:5774215680 backlog:0 ms:0 sent:975360 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:29.707 [COM3/csk_ap] [2026-08-03 02:07:41.000][I][player_0_td # APP_PLAYER] tone player evt 6
+2026-11-04 11:22:29.709 [COM3/csk_ap] [2026-08-03 02:07:41.000][D][player_0_td # PA_MGR] Refresh PA to OFF, timeout 50000, by "tone_player_end"
+2026-11-04 11:22:29.709 [COM3/csk_ap] [2026-08-03 02:07:41.001][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_end"
+2026-11-04 11:22:29.709 [COM3/csk_ap] [2026-08-03 02:07:41.002][D][player_0_td # soundplayer] soundplayer status: 0X6
+2026-11-04 11:22:29.709 [COM3/csk_ap] [2026-08-03 02:07:41.002][D][player_0_td # app_client] sound player state: 6
+2026-11-04 11:22:29.709 [COM3/csk_ap] [2026-08-03 02:07:41.003][D][msg_send # msg] >>>>> Send 270 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:22:29.709 [COM3/csk_ap] [2026-08-03 02:07:41.005][D][evs_event # event] evt msg -> enter, f: 0x3005d23e, d: 0x0
+2026-11-04 11:22:29.709 [COM3/csk_ap] [2026-08-03 02:07:41.005][D][evs_event # audiomgr] 4 release channel
+2026-11-04 11:22:29.709 [COM3/csk_ap] [2026-08-03 02:07:41.006][I][evs_event # soundplayer] focus 2, by_which 4
+2026-11-04 11:22:29.709 [COM3/csk_ap] [2026-08-03 02:07:41.006][D][evs_event # event] evt msg -> exit
+2026-11-04 11:22:29.739 [COM3/csk_ap] [2026-08-03 02:07:41.038][D][msg_recv # msg] <<<<< Recv 291 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:22:29.739 [COM3/csk_ap] [2026-08-03 02:07:41.039][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:22:29.744 [COM3/csk_ap] [2026-08-03 02:07:41.043][D][msg_recv # msg] <<<<< Recv 292 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:22:29.744 [COM3/csk_ap] [2026-08-03 02:07:41.044][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:22:31.561 [COM3/csk_ap] [2026-08-03 02:07:43.000][D][algo_task # PA_MGR] Refresh PA to ON, timeout 50000, by "prewakeup"
+2026-11-04 11:22:31.561 [COM3/csk_ap] [2026-08-03 02:07:43.000][D][algo_task # PA_MGR] Refresh PA end by "prewakeup"
+2026-11-04 11:22:31.561 [COM3/csk_ap] [2026-08-03 02:07:43.007][D][evs_event # event] evt msg -> enter, f: 0x30054784, d: 0x387c54e4
+2026-11-04 11:22:31.561 [COM3/csk_ap] [2026-08-03 02:07:43.008][D][evs_event # algo] Pre Wakeup: {"rlt":[{"istart":129,"iresid":0,"iduration":17,"nfillerscore":110,"nkeywordscore":15887,"ncm":936,"ncmThreshold":800,"keyword":"xiao ti xiao ti","intent":"xiao ti xiao ti","bMain":1,"bAbsorb":0,"bMhx":0}]}
+2026-11-04 11:22:31.561 [COM3/csk_ap] [2026-08-03 02:07:43.010][I][evs_event # wake_audio] candidate prewake score:936 valid:1 trigger:2887215360
+2026-11-04 11:22:31.561 [COM3/csk_ap] [2026-08-03 02:07:43.011][D][evs_event # event] evt msg -> exit
+2026-11-04 11:22:31.842 [COM3/csk_ap] [33m(T1|180452.391) wake point string: wakept(180450440:180451360)
+2026-11-04 11:22:31.842 [COM3/csk_ap] [0m[2026-08-03 02:07:43.248][D][algo_task # algo] wake point: 180450440ms -> 180451360ms
+2026-11-04 11:22:31.842 [COM3/csk_ap] [2026-08-03 02:07:43.248][I][algo_task # rec_ringbuf] mark wake frame:180450440ms -> 180451360ms
+2026-11-04 11:22:31.842 [COM3/csk_ap] [2026-08-03 02:07:43.270][I][algo_task # algo] wakeup power: chn=1, frame=18045136, cp_x100=7500
+2026-11-04 11:22:31.842 [COM3/csk_ap] [2026-08-03 02:07:43.271][D][algo_task # app_client] Wakeup: {"rlt":[{"istart":129,"iresid":1,"iduration":23,"nfillerscore":0,"nkeywordscore":0,"ncm":-58,"ncmThreshold":-91,"keyword":"xiao ti xiao ti","intent":"xiao ti xiao ti-ch","nRltIdx":0,"nDelayFrame":0,"nThrowFrame":152,"decId":0,"branch":3,"wakeUpType":0,"VadGap":0,"nE2eIntervalFrame":8,"nE2eNodeFrame":2,"nStartStateThreshold":500,"bMain":1,"bAbsorb":0,"bMhx":0,"nLanThreshold":0,"nLanNcm":0,"iframe":4511284}],"cp_x100":7500,"cp_db":75,"wk_iframe":180[2026-08-03 02:07:43.278][D][evs_event # event] evt msg -> enter, f: 0x300564b4, d: 0x387c54e4
+2026-11-04 11:22:31.851 [COM3/csk_ap] [2026-08-03 02:07:43.280][D][evs_event # app_client] keyword: xiao ti xiao ti, intent: xiao ti xiao ti-ch, ncm: -58.00, cp_db: 75
+2026-11-04 11:22:31.851 [COM3/csk_ap] [2026-08-03 02:07:43.282][I][evs_event # app_client] MEM[WAKEUP] SRAM free:9236(9KB) lfb:7936(7KB) | PSRAM free:236808(231KB) lfb:233472(228KB)
+2026-11-04 11:22:31.851 [COM3/csk_ap] [2026-08-03 02:07:43.282][D][evs_event # algo] keyword: xiao ti xiao ti-ch, cmd_id: 0001
+2026-11-04 11:22:31.851 [COM3/csk_ap] [2026-08-03 02:07:43.282][D][evs_event # app_client] wakeup_cmd: cmd 0x1, localism 0, score -58.000000, energy 750000, is_study_cmd 0
+2026-11-04 11:22:31.851 [COM3/csk_ap] [2026-08-03 02:07:43.283][D][evs_event # event] evt msg -> exit
+2026-11-04 11:22:31.851 [COM3/csk_ap] [2026-08-03 02:07:43.283][D][msg_send # msg] >>>>> Send 271 ASR, cmd: 0x1006, ext: 0x0, len: 33
+2026-11-04 11:22:31.851 [COM3/csk_ap] [2026-08-03 02:07:43.279][I][algo_task # algo] MODE 0 -> 1, param: {"reg":[{"key":"mode","val":0},{"key":"model","val":1}],"cae":[{"key":"mode","val":1}],"esr":[{"key":"mode","val":0},{"key":"model","val":1},{"key":"2121","val":-177},{"key":"2122","val":-177}]}
+2026-11-04 11:22:31.871 [COM3/csk_ap] [2026-08-03 02:07:43.321][D][msg_recv # msg] <<<<< Recv 293 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:22:31.871 [COM3/csk_ap] [2026-08-03 02:07:43.322][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:22:31.912 [COM3/csk_ap] [2026-08-03 02:07:43.347][D][msg_recv # msg] <<<<< Recv 294 PLAYER, cmd: 0x4001, ext: 0x0, len: 4
+2026-11-04 11:22:31.912 [COM3/csk_ap] [2026-08-03 02:07:43.348][D][msg_send # msg] >>>>> Send 272 PLAYER, cmd: 0x4001, ext: 0x8003, len: 1
+2026-11-04 11:22:31.912 [COM3/csk_ap] [2026-08-03 02:07:43.349][D][evs_event # event] evt msg -> enter, f: 0x30056034, d: 0x387c54e4
+2026-11-04 11:22:31.912 [COM3/csk_ap] [2026-08-03 02:07:43.350][D][evs_event # app_client] tone player, play 2
+2026-11-04 11:22:31.912 [COM3/csk_ap] [2026-08-03 02:07:43.350][D][evs_event # soundplayer] release alert item
+2026-11-04 11:22:31.912 [COM3/csk_ap] [2026-08-03 02:07:43.351][D][evs_event # soundplayer] sound acquire channel
+2026-11-04 11:22:31.912 [COM3/csk_ap] [2026-08-03 02:07:43.351][D][evs_event # audiomgr] 4 acquire channel
+2026-11-04 11:22:31.912 [COM3/csk_ap] [2026-08-03 02:07:43.352][I][evs_event # soundplayer] focus 0, by_which 4
+2026-11-04 11:22:31.912 [COM3/csk_ap] [2026-08-03 02:07:43.352][D][evs_event # soundplayer] _sound_play_foreground, handle->m_play_state:6
+2026-11-04 11:22:31.912 [COM3/csk_ap] [2026-08-03 02:07:43.353][D][evs_event # soundplayer] _sound_play_next, handle->m_wait_len:1
+2026-11-04 11:22:31.912 [COM3/csk_ap] [2026-08-03 02:07:43.353][D][evs_event # soundplayer] play next tone 2: mem://addr=811075448size=1953
+2026-11-04 11:22:31.912 [COM3/csk_ap] [2026-08-03 02:07:43.355][D][evs_event # soundplayer] soundplayer status: 0XEF
+2026-11-04 11:22:31.912 [COM3/csk_ap] [2026-08-03 02:07:43.355][D][evs_event # app_client] sound player state: 239
+2026-11-04 11:22:31.912 [COM3/csk_ap] [2026-08-03 02:07:43.356][I][evs_event # APP_PLAYER] play audio mem://addr=811075448size=1953
+2026-11-04 11:22:31.912 [COM3/csk_ap] [2026-08-03 02:07:43.356][D][evs_event # event] evt msg -> exit
+2026-11-04 11:22:31.912 [COM3/csk_ap] [2026-08-03 02:07:43.358][D][msg_send # msg] >>>>> Send 273 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:22:31.912 [COM3/csk_ap] [2026-08-03 02:07:43.360][D][player_0_td # lisa_que] create queue: demux_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:22:31.914 [COM3/csk_ap] [2026-08-03 02:07:43.365][D][player_0_td # lisa_que] create queue: decode_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:22:31.919 [COM3/csk_ap] [2026-08-03 02:07:43.368][D][msg_recv # msg] <<<<< Recv 295 RECORDER, cmd: 0x8001, ext: 0x0, len: 0
+2026-11-04 11:22:31.920 [COM3/csk_ap] [2026-08-03 02:07:43.371][I][msg_recv # rec_ringbuf] oneshot-v4 START requested
+2026-11-04 11:22:31.946 [COM3/csk_ap] [2026-08-03 02:07:44.000][I][player_0_td # APP_PLAYER] tone player evt 1
+2026-11-04 11:22:31.947 [COM3/csk_ap] [2026-08-03 02:07:44.000][D][player_0_td # soundplayer] soundplayer status: 0X1
+2026-11-04 11:22:31.947 [COM3/csk_ap] [2026-08-03 02:07:44.000][D][player_0_td # app_client] sound player state: 1
+2026-11-04 11:22:31.947 [COM3/csk_ap] [2026-08-03 02:07:44.001][D][player_0_td # PA_MGR] Refresh PA to ON, timeout 4294967295, by "tone_player_prepared"
+2026-11-04 11:22:31.947 [COM3/csk_ap] [2026-08-03 02:07:44.001][D][msg_send # msg] >>>>> Send 274 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:22:31.947 [COM3/csk_ap] [2026-08-03 02:07:44.002][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_prepared"
+2026-11-04 11:22:31.957 [COM3/csk_ap] [2026-08-03 02:07:44.015][I][player_0_td # APP_PLAYER] tone player evt 2
+2026-11-04 11:22:31.961 [COM3/csk_ap] [2026-08-03 02:07:44.017][D][player_0_td # soundplayer] soundplayer status: 0X2
+2026-11-04 11:22:31.961 [COM3/csk_ap] [2026-08-03 02:07:44.019][D][player_0_td # app_client] sound player state: 2
+2026-11-04 11:22:31.965 [COM3/csk_ap] [2026-08-03 02:07:44.022][D][msg_send # msg] >>>>> Send 275 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:22:31.978 [COM3/csk_ap] [2026-08-03 02:07:44.032][W][evs_event # event] wdt not feed 1127823
+2026-11-04 11:22:31.978 [COM3/csk_ap] [2026-08-03 02:07:44.033][D][evs_event # event] evt msg -> enter, f: 0x30054316, d: 0x387c5840
+2026-11-04 11:22:31.978 [COM3/csk_ap] [2026-08-03 02:07:44.033][D][evs_event # algo] ******** CSK DOA 54 ********
+2026-11-04 11:22:31.978 [COM3/csk_ap] [2026-08-03 02:07:44.033][D][evs_event # app_client] send doa: 54
+2026-11-04 11:22:31.978 [COM3/csk_ap] [2026-08-03 02:07:44.034][D][evs_event # event] evt msg -> exit
+2026-11-04 11:22:31.978 [COM3/csk_ap] [2026-08-03 02:07:44.035][D][msg_send # msg] >>>>> Send 276 ASR, cmd: 0x1006, ext: 0x0, len: 33
+2026-11-04 11:22:31.990 [COM3/csk_ap] [2026-08-03 02:07:44.039][I][algo_task # rec_ringbuf] oneshot-v4 START-wake session:27 pos:5774373120 end:5774405120 backlog:32000 ms:1000 sent:0 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:31.990 [COM3/csk_ap] [2026-08-03 02:07:44.039][I][algo_task # rec_ringbuf] wake target 180450440ms (wake 180450440ms->180451360ms include_wake:1 wake_span:920ms) pos:5774373120 end:5774405120 delay:1000ms
+2026-11-04 11:22:32.466 [COM3/csk_ap] [2026-08-03 02:07:44.516][I][player_0_td # APP_PLAYER] tone player evt 6
+2026-11-04 11:22:32.468 [COM3/csk_ap] [2026-08-03 02:07:44.517][D][player_0_td # PA_MGR] Refresh PA to OFF, timeout 50000, by "tone_player_end"
+2026-11-04 11:22:32.470 [COM3/csk_ap] [2026-08-03 02:07:44.518][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_end"
+2026-11-04 11:22:32.470 [COM3/csk_ap] [2026-08-03 02:07:44.518][D][player_0_td # soundplayer] soundplayer status: 0X6
+2026-11-04 11:22:32.470 [COM3/csk_ap] [2026-08-03 02:07:44.519][D][player_0_td # app_client] sound player state: 6
+2026-11-04 11:22:32.470 [COM3/csk_ap] [2026-08-03 02:07:44.520][D][msg_send # msg] >>>>> Send 277 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:22:32.470 [COM3/csk_ap] [2026-08-03 02:07:44.521][D][evs_event # event] evt msg -> enter, f: 0x3005d23e, d: 0x0
+2026-11-04 11:22:32.470 [COM3/csk_ap] [2026-08-03 02:07:44.522][D][evs_event # audiomgr] 4 release channel
+2026-11-04 11:22:32.470 [COM3/csk_ap] [2026-08-03 02:07:44.522][I][evs_event # soundplayer] focus 2, by_which 4
+2026-11-04 11:22:32.470 [COM3/csk_ap] [2026-08-03 02:07:44.523][D][evs_event # event] evt msg -> exit
+2026-11-04 11:22:33.904 [COM3/csk_ap] [2026-08-03 02:07:45.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:27 pos:5774437120 end:5774469120 backlog:32000 ms:1000 sent:64000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:35.899 [COM3/csk_ap] [2026-08-03 02:07:47.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:27 pos:5774501120 end:5774533120 backlog:32000 ms:1000 sent:128000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:37.898 [COM3/csk_ap] [2026-08-03 02:07:49.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:27 pos:5774565120 end:5774597120 backlog:32000 ms:1000 sent:192000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:39.898 [COM3/csk_ap] [2026-08-03 02:07:51.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:27 pos:5774629120 end:5774661120 backlog:32000 ms:1000 sent:256000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:41.899 [COM3/csk_ap] [2026-08-03 02:07:53.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:27 pos:5774693120 end:5774725120 backlog:32000 ms:1000 sent:320000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:43.898 [COM3/csk_ap] [2026-08-03 02:07:55.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:27 pos:5774757120 end:5774789120 backlog:32000 ms:1000 sent:384000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:45.898 [COM3/csk_ap] [2026-08-03 02:07:57.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:27 pos:5774821120 end:5774853120 backlog:32000 ms:1000 sent:448000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:46.870 [COM3/csk_ap] [2026-08-03 02:07:58.000][I][algo_task # algo] MODE 1 -> 0, param: {"reg":[{"key":"mode","val":1},{"key":"model","val":0}],"cae":[{"key":"mode","val":0}],"esr":[{"key":"mode","val":1},{"key":"model","val":0},{"key":"2121","val":-91},{"key":"2122","val":-91}]}
+2026-11-04 11:22:46.879 [COM3/csk_ap] [2026-08-03 02:07:58.007][D][evs_event # event] evt msg -> enter, f: 0x30054f40, d: 0x0
+2026-11-04 11:22:46.879 [COM3/csk_ap] [2026-08-03 02:07:58.007][D][evs_event # app_client] esr timeout
+2026-11-04 11:22:46.879 [COM3/csk_ap] [2026-08-03 02:07:58.008][D][evs_event # event] evt msg -> exit
+2026-11-04 11:22:46.879 [COM3/csk_ap] [2026-08-03 02:07:58.008][D][msg_send # msg] >>>>> Send 278 ASR, cmd: 0x1004, ext: 0x0, len: 0
+2026-11-04 11:22:46.997 [COM3/csk_ap] [2026-08-03 02:07:59.000][D][msg_recv # msg] <<<<< Recv 296 PLAYER, cmd: 0x4001, ext: 0x0, len: 4
+2026-11-04 11:22:46.997 [COM3/csk_ap] [2026-08-03 02:07:59.001][D][msg_send # msg] >>>>> Send 279 PLAYER, cmd: 0x4001, ext: 0x8007, len: 1
+2026-11-04 11:22:46.997 [COM3/csk_ap] [2026-08-03 02:07:59.001][W][evs_event # event] wdt not feed 1127917
+2026-11-04 11:22:46.998 [COM3/csk_ap] [2026-08-03 02:07:59.002][D][evs_event # event] evt msg -> enter, f: 0x30056034, d: 0x387c54e4
+2026-11-04 11:22:46.998 [COM3/csk_ap] [2026-08-03 02:07:59.002][D][evs_event # app_client] tone player, play 75
+2026-11-04 11:22:46.998 [COM3/csk_ap] [2026-08-03 02:07:59.003][D][evs_event # soundplayer] release alert item
+2026-11-04 11:22:46.998 [COM3/csk_ap] [2026-08-03 02:07:59.004][D][evs_event # soundplayer] sound acquire channel
+2026-11-04 11:22:46.998 [COM3/csk_ap] [2026-08-03 02:07:59.005][D][evs_event # audiomgr] 4 acquire channel
+2026-11-04 11:22:46.998 [COM3/csk_ap] [2026-08-03 02:07:59.005][I][evs_event # soundplayer] focus 0, by_which 4
+2026-11-04 11:22:46.998 [COM3/csk_ap] [2026-08-03 02:07:59.006][D][evs_event # soundplayer] _sound_play_foreground, handle->m_play_state:6
+2026-11-04 11:22:46.998 [COM3/csk_ap] [2026-08-03 02:07:59.006][D][evs_event # soundplayer] _sound_play_next, handle->m_wait_len:1
+2026-11-04 11:22:46.998 [COM3/csk_ap] [2026-08-03 02:07:59.006][D][evs_event # soundplayer] play next tone 75: mem://addr=811436717size=11997
+2026-11-04 11:22:46.998 [COM3/csk_ap] [2026-08-03 02:07:59.007][D][evs_event # soundplayer] soundplayer status: 0XEF
+2026-11-04 11:22:46.998 [COM3/csk_ap] [2026-08-03 02:07:59.007][D][evs_event # app_client] sound player state: 239
+2026-11-04 11:22:46.998 [COM3/csk_ap] [2026-08-03 02:07:59.008][I][evs_event # APP_PLAYER] play audio mem://addr=811436717size=11997
+2026-11-04 11:22:46.998 [COM3/csk_ap] [2026-08-03 02:07:59.008][D][evs_event # event] evt msg -> exit
+2026-11-04 11:22:46.998 [COM3/csk_ap] [2026-08-03 02:07:59.009][D][msg_send # msg] >>>>> Send 280 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:22:46.998 [COM3/csk_ap] [2026-08-03 02:07:59.014][D][msg_recv # msg] <<<<< Recv 297 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:22:46.998 [COM3/csk_ap] [2026-08-03 02:07:59.014][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:22:46.998 [COM3/csk_ap] [2026-08-03 02:07:59.013][D][player_0_td # lisa_que] create queue: demux_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:22:46.999 [COM3/csk_ap] [2026-08-03 02:07:59.019][D][player_0_td # lisa_que] create queue: decode_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:22:46.999 [COM3/csk_ap] [2026-08-03 02:07:59.024][D][msg_recv # msg] <<<<< Recv 298 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:22:47.001 [COM3/csk_ap] [2026-08-03 02:07:59.027][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:22:47.024 [COM3/csk_ap] [2026-08-03 02:07:59.048][I][player_0_td # APP_PLAYER] tone player evt 1
+2026-11-04 11:22:47.024 [COM3/csk_ap] [2026-08-03 02:07:59.049][D][player_0_td # soundplayer] soundplayer status: 0X1
+2026-11-04 11:22:47.024 [COM3/csk_ap] [2026-08-03 02:07:59.049][D][player_0_td # app_client] sound player state: 1
+2026-11-04 11:22:47.026 [COM3/csk_ap] [2026-08-03 02:07:59.051][D][msg_send # msg] >>>>> Send 281 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:22:47.030 [COM3/csk_ap] [2026-08-03 02:07:59.051][D][player_0_td # PA_MGR] Refresh PA to ON, timeout 4294967295, by "tone_player_prepared"
+2026-11-04 11:22:47.030 [COM3/csk_ap] [2026-08-03 02:07:59.054][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_prepared"
+2026-11-04 11:22:47.030 [COM3/csk_ap] [2026-08-03 02:07:59.049][I][algo_task # rec_ringbuf] STOP-TEST ARM session:27 wait:200 request_ms:180434515
+2026-11-04 11:22:47.045 [COM3/csk_ap] [2026-08-03 02:07:59.067][I][player_0_td # APP_PLAYER] tone player evt 2
+2026-11-04 11:22:47.046 [COM3/csk_ap] [2026-08-03 02:07:59.071][D][player_0_td # soundplayer] soundplayer status: 0X2
+2026-11-04 11:22:47.046 [COM3/csk_ap] [2026-08-03 02:07:59.072][D][player_0_td # app_client] sound player state: 2
+2026-11-04 11:22:47.050 [COM3/csk_ap] [2026-08-03 02:07:59.074][D][msg_send # msg] >>>>> Send 282 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:22:47.191 [COM3/csk_ap] [2026-08-03 02:07:59.208][I][algo_task # rec_ringbuf] STOP-TEST EXPIRE session:27 elapsed_ms:200
+2026-11-04 11:22:47.191 [COM3/csk_ap] [2026-08-03 02:07:59.208][I][algo_task # rec_ringbuf] oneshot-v4 STOP-unsubmitted session:27 pos:5774859520 end:5774891520 backlog:32000 ms:1000 sent:486400 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:50.881 [COM3/csk_ap] [2026-08-03 02:08:02.000][I][player_0_td # APP_PLAYER] tone player evt 6
+2026-11-04 11:22:50.890 [COM3/csk_ap] [2026-08-03 02:08:02.000][D][player_0_td # PA_MGR] Refresh PA to OFF, timeout 50000, by "tone_player_end"
+2026-11-04 11:22:50.890 [COM3/csk_ap] [2026-08-03 02:08:02.001][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_end"
+2026-11-04 11:22:50.890 [COM3/csk_ap] [2026-08-03 02:08:02.001][D][player_0_td # soundplayer] soundplayer status: 0X6
+2026-11-04 11:22:50.890 [COM3/csk_ap] [2026-08-03 02:08:02.001][D][player_0_td # app_client] sound player state: 6
+2026-11-04 11:22:50.890 [COM3/csk_ap] [2026-08-03 02:08:02.002][D][msg_send # msg] >>>>> Send 283 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:22:50.890 [COM3/csk_ap] [2026-08-03 02:08:02.003][D][evs_event # event] evt msg -> enter, f: 0x3005d23e, d: 0x0
+2026-11-04 11:22:50.890 [COM3/csk_ap] [2026-08-03 02:08:02.004][D][evs_event # audiomgr] 4 release channel
+2026-11-04 11:22:50.890 [COM3/csk_ap] [2026-08-03 02:08:02.005][I][evs_event # soundplayer] focus 2, by_which 4
+2026-11-04 11:22:50.890 [COM3/csk_ap] [2026-08-03 02:08:02.005][D][evs_event # event] evt msg -> exit
+2026-11-04 11:22:50.911 [COM3/csk_ap] [2026-08-03 02:08:02.037][D][msg_recv # msg] <<<<< Recv 299 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:22:50.911 [COM3/csk_ap] [2026-08-03 02:08:02.037][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:22:50.920 [COM3/csk_ap] [2026-08-03 02:08:02.046][D][msg_recv # msg] <<<<< Recv 300 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:22:50.920 [COM3/csk_ap] [2026-08-03 02:08:02.047][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:22:54.522 [COM3/csk_ap] [2026-08-03 02:08:06.000][D][algo_task # PA_MGR] Refresh PA to ON, timeout 50000, by "prewakeup"
+2026-11-04 11:22:54.522 [COM3/csk_ap] [2026-08-03 02:08:06.000][D][algo_task # PA_MGR] Refresh PA end by "prewakeup"
+2026-11-04 11:22:54.522 [COM3/csk_ap] [2026-08-03 02:08:06.007][D][evs_event # event] evt msg -> enter, f: 0x30054784, d: 0x387c54e4
+2026-11-04 11:22:54.522 [COM3/csk_ap] [2026-08-03 02:08:06.007][D][evs_event # algo] Pre Wakeup: {"rlt":[{"istart":176,"iresid":0,"iduration":17,"nfillerscore":183,"nkeywordscore":16293,"ncm":958,"ncmThreshold":800,"keyword":"xiao ti xiao ti","intent":"xiao ti xiao ti","bMain":1,"bAbsorb":0,"bMhx":0}]}
+2026-11-04 11:22:54.522 [COM3/csk_ap] [2026-08-03 02:08:06.010][I][evs_event # wake_audio] candidate prewake score:958 valid:1 trigger:2887582720
+2026-11-04 11:22:54.522 [COM3/csk_ap] [2026-08-03 02:08:06.011][D][evs_event # event] evt msg -> exit
+2026-11-04 11:22:54.843 [COM3/csk_ap] [2026-08-03 02:08:06.327][D][algo_task # algo] wake point: 180473400ms -> 180474400ms
+2026-11-04 11:22:54.843 [COM3/csk_ap] [2026-08-03 02:08:06.327][I][algo_task # rec_ringbuf] mark wake frame:180473400ms -> 180474400ms
+2026-11-04 11:22:54.849 [COM3/csk_ap] [33m(T1|180475.422) wake point string: wakept(180473400:180474400)
+2026-11-04 11:22:54.881 [COM3/csk_ap] [0m[2026-08-03 02:08:06.349][I][algo_task # algo] wakeup power: chn=1, frame=18047440, cp_x100=7000
+2026-11-04 11:22:54.881 [COM3/csk_ap] [2026-08-03 02:08:06.350][D][algo_task # app_client] Wakeup: {"rlt":[{"istart":175,"iresid":1,"iduration":25,"nfillerscore":0,"nkeywordscore":0,"ncm":-5,"ncmThreshold":-91,"keyword":"xiao ti xiao ti","intent":"xiao ti xiao ti-ch","nRltIdx":0,"nDelayFrame":0,"nThrowFrame":200,"decId":0,"branch":3,"wakeUpType":0,"VadGap":0,"nE2eIntervalFrame":8,"nE2eNodeFrame":2,"nStartStateThreshold":500,"bMain":1,"bAbsorb":0,"bMhx":0,"nLanThreshold":0,"nLanNcm":0,"iframe":4511860}],"cp_x100":7000,"cp_db":70,"wk_iframe":1804[2026-08-03 02:08:06.357][D][evs_event # event] evt msg -> enter, f: 0x300564b4, d: 0x387c54e4
+2026-11-04 11:22:54.888 [COM3/csk_ap] [2026-08-03 02:08:06.359][D][evs_event # app_client] keyword: xiao ti xiao ti, intent: xiao ti xiao ti-ch, ncm: -5.00, cp_db: 70
+2026-11-04 11:22:54.888 [COM3/csk_ap] [2026-08-03 02:08:06.361][I][evs_event # app_client] MEM[WAKEUP] SRAM free:9236(9KB) lfb:7936(7KB) | PSRAM free:236804(231KB) lfb:233472(228KB)
+2026-11-04 11:22:54.888 [COM3/csk_ap] [2026-08-03 02:08:06.362][D][evs_event # algo] keyword: xiao ti xiao ti-ch, cmd_id: 0001
+2026-11-04 11:22:54.888 [COM3/csk_ap] [2026-08-03 02:08:06.362][D][evs_event # app_client] wakeup_cmd: cmd 0x1, localism 0, score -5.000000, energy 700000, is_study_cmd 0
+2026-11-04 11:22:54.888 [COM3/csk_ap] [2026-08-03 02:08:06.363][D][evs_event # event] evt msg -> exit
+2026-11-04 11:22:54.888 [COM3/csk_ap] [2026-08-03 02:08:06.363][D][msg_send # msg] >>>>> Send 284 ASR, cmd: 0x1006, ext: 0x0, len: 33
+2026-11-04 11:22:54.888 [COM3/csk_ap] [2026-08-03 02:08:06.358][I][algo_task # algo] MODE 0 -> 1, param: {"reg":[{"key":"mode","val":0},{"key":"model","val":1}],"cae":[{"key":"mode","val":1}],"esr":[{"key":"mode","val":0},{"key":"model","val":1},{"key":"2121","val":-177},{"key":"2122","val":-177}]}
+2026-11-04 11:22:54.893 [COM3/csk_ap] [2026-08-03 02:08:06.383][D][msg_recv # msg] <<<<< Recv 301 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:22:54.893 [COM3/csk_ap] [2026-08-03 02:08:06.384][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:22:54.924 [COM3/csk_ap] [2026-08-03 02:08:06.397][D][msg_recv # msg] <<<<< Recv 302 PLAYER, cmd: 0x4001, ext: 0x0, len: 4
+2026-11-04 11:22:54.924 [COM3/csk_ap] [2026-08-03 02:08:06.399][D][msg_send # msg] >>>>> Send 285 PLAYER, cmd: 0x4001, ext: 0x8004, len: 1
+2026-11-04 11:22:54.924 [COM3/csk_ap] [2026-08-03 02:08:06.399][D][evs_event # event] evt msg -> enter, f: 0x30056034, d: 0x387c54e4
+2026-11-04 11:22:54.924 [COM3/csk_ap] [2026-08-03 02:08:06.400][D][evs_event # app_client] tone player, play 3
+2026-11-04 11:22:54.924 [COM3/csk_ap] [2026-08-03 02:08:06.400][D][evs_event # soundplayer] release alert item
+2026-11-04 11:22:54.924 [COM3/csk_ap] [2026-08-03 02:08:06.401][D][evs_event # soundplayer] sound acquire channel
+2026-11-04 11:22:54.924 [COM3/csk_ap] [2026-08-03 02:08:06.401][D][evs_event # audiomgr] 4 acquire channel
+2026-11-04 11:22:54.924 [COM3/csk_ap] [2026-08-03 02:08:06.402][I][evs_event # soundplayer] focus 0, by_which 4
+2026-11-04 11:22:54.924 [COM3/csk_ap] [2026-08-03 02:08:06.402][D][evs_event # soundplayer] _sound_play_foreground, handle->m_play_state:6
+2026-11-04 11:22:54.924 [COM3/csk_ap] [2026-08-03 02:08:06.403][D][evs_event # soundplayer] _sound_play_next, handle->m_wait_len:1
+2026-11-04 11:22:54.924 [COM3/csk_ap] [2026-08-03 02:08:06.403][D][evs_event # soundplayer] play next tone 3: mem://addr=811077401size=2061
+2026-11-04 11:22:54.924 [COM3/csk_ap] [2026-08-03 02:08:06.404][D][evs_event # soundplayer] soundplayer status: 0XEF
+2026-11-04 11:22:54.924 [COM3/csk_ap] [2026-08-03 02:08:06.404][D][evs_event # app_client] sound player state: 239
+2026-11-04 11:22:54.924 [COM3/csk_ap] [2026-08-03 02:08:06.404][I][evs_event # APP_PLAYER] play audio mem://addr=811077401size=2061
+2026-11-04 11:22:54.924 [COM3/csk_ap] [2026-08-03 02:08:06.405][D][evs_event # event] evt msg -> exit
+2026-11-04 11:22:54.924 [COM3/csk_ap] [2026-08-03 02:08:06.407][D][msg_send # msg] >>>>> Send 286 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:22:54.924 [COM3/csk_ap] [2026-08-03 02:08:06.412][D][msg_recv # msg] <<<<< Recv 303 RECORDER, cmd: 0x8001, ext: 0x0, len: 0
+2026-11-04 11:22:54.924 [COM3/csk_ap] [2026-08-03 02:08:06.413][I][msg_recv # rec_ringbuf] oneshot-v4 START requested
+2026-11-04 11:22:54.924 [COM3/csk_ap] [2026-08-03 02:08:06.413][D][player_0_td # lisa_que] create queue: demux_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:22:54.934 [COM3/csk_ap] [2026-08-03 02:08:06.426][D][player_0_td # lisa_que] create queue: decode_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:22:54.952 [COM3/csk_ap] [2026-08-03 02:08:07.000][I][algo_task # rec_ringbuf] oneshot-v4 START-wake session:28 pos:5775107840 end:5775139840 backlog:32000 ms:1000 sent:0 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:54.952 [COM3/csk_ap] [2026-08-03 02:08:07.000][I][algo_task # rec_ringbuf] wake target 180473400ms (wake 180473400ms->180474400ms include_wake:1 wake_span:1000ms) pos:5775107840 end:5775139840 delay:1000ms
+2026-11-04 11:22:54.961 [COM3/csk_ap] [2026-08-03 02:08:07.017][I][player_0_td # APP_PLAYER] tone player evt 1
+2026-11-04 11:22:54.961 [COM3/csk_ap] [2026-08-03 02:08:07.017][D][player_0_td # soundplayer] soundplayer status: 0X1
+2026-11-04 11:22:54.961 [COM3/csk_ap] [2026-08-03 02:08:07.018][D][player_0_td # app_client] sound player state: 1
+2026-11-04 11:22:54.964 [COM3/csk_ap] [2026-08-03 02:08:07.019][D][player_0_td # PA_MGR] Refresh PA to ON, timeout 4294967295, by "tone_player_prepared"
+2026-11-04 11:22:54.964 [COM3/csk_ap] [2026-08-03 02:08:07.021][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_prepared"
+2026-11-04 11:22:54.965 [COM3/csk_ap] [2026-08-03 02:08:07.020][D][msg_send # msg] >>>>> Send 287 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:22:54.978 [COM3/csk_ap] [2026-08-03 02:08:07.033][I][player_0_td # APP_PLAYER] tone player evt 2
+2026-11-04 11:22:54.978 [COM3/csk_ap] [2026-08-03 02:08:07.033][D][player_0_td # soundplayer] soundplayer status: 0X2
+2026-11-04 11:22:54.978 [COM3/csk_ap] [2026-08-03 02:08:07.035][D][player_0_td # app_client] sound player state: 2
+2026-11-04 11:22:54.979 [COM3/csk_ap] [2026-08-03 02:08:07.037][D][msg_send # msg] >>>>> Send 288 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:22:55.013 [COM3/csk_ap] [2026-08-03 02:08:07.066][W][evs_event # event] wdt not feed 1127967
+2026-11-04 11:22:55.013 [COM3/csk_ap] [2026-08-03 02:08:07.067][D][evs_event # event] evt msg -> enter, f: 0x30054316, d: 0x387c5850
+2026-11-04 11:22:55.013 [COM3/csk_ap] [2026-08-03 02:08:07.067][D][evs_event # algo] ******** CSK DOA 54 ********
+2026-11-04 11:22:55.013 [COM3/csk_ap] [2026-08-03 02:08:07.068][D][evs_event # app_client] send doa: 54
+2026-11-04 11:22:55.013 [COM3/csk_ap] [2026-08-03 02:08:07.068][D][evs_event # event] evt msg -> exit
+2026-11-04 11:22:55.013 [COM3/csk_ap] [2026-08-03 02:08:07.069][D][msg_send # msg] >>>>> Send 289 ASR, cmd: 0x1006, ext: 0x0, len: 33
+2026-11-04 11:22:55.498 [COM3/csk_ap] [2026-08-03 02:08:07.549][I][player_0_td # APP_PLAYER] tone player evt 6
+2026-11-04 11:22:55.508 [COM3/csk_ap] [2026-08-03 02:08:07.549][D][player_0_td # PA_MGR] Refresh PA to OFF, timeout 50000, by "tone_player_end"
+2026-11-04 11:22:55.508 [COM3/csk_ap] [2026-08-03 02:08:07.550][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_end"
+2026-11-04 11:22:55.508 [COM3/csk_ap] [2026-08-03 02:08:07.550][D][player_0_td # soundplayer] soundplayer status: 0X6
+2026-11-04 11:22:55.508 [COM3/csk_ap] [2026-08-03 02:08:07.550][D][player_0_td # app_client] sound player state: 6
+2026-11-04 11:22:55.508 [COM3/csk_ap] [2026-08-03 02:08:07.551][D][msg_send # msg] >>>>> Send 290 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:22:55.508 [COM3/csk_ap] [2026-08-03 02:08:07.552][D][evs_event # event] evt msg -> enter, f: 0x3005d23e, d: 0x0
+2026-11-04 11:22:55.508 [COM3/csk_ap] [2026-08-03 02:08:07.552][D][evs_event # audiomgr] 4 release channel
+2026-11-04 11:22:55.508 [COM3/csk_ap] [2026-08-03 02:08:07.553][I][evs_event # soundplayer] focus 2, by_which 4
+2026-11-04 11:22:55.508 [COM3/csk_ap] [2026-08-03 02:08:07.553][D][evs_event # event] evt msg -> exit
+2026-11-04 11:22:56.864 [COM3/csk_ap] [2026-08-03 02:08:08.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:28 pos:5775171840 end:5775203840 backlog:32000 ms:1000 sent:64000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:22:58.863 [COM3/csk_ap] [2026-08-03 02:08:10.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:28 pos:5775235840 end:5775267840 backlog:32000 ms:1000 sent:128000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:00.858 [COM3/csk_ap] [2026-08-03 02:08:12.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:28 pos:5775299840 end:5775331840 backlog:32000 ms:1000 sent:192000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:02.860 [COM3/csk_ap] [2026-08-03 02:08:14.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:28 pos:5775363840 end:5775395840 backlog:32000 ms:1000 sent:256000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:04.858 [COM3/csk_ap] [2026-08-03 02:08:16.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:28 pos:5775427840 end:5775459840 backlog:32000 ms:1000 sent:320000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:06.860 [COM3/csk_ap] [2026-08-03 02:08:18.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:28 pos:5775491840 end:5775523840 backlog:32000 ms:1000 sent:384000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:08.858 [COM3/csk_ap] [2026-08-03 02:08:20.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:28 pos:5775555840 end:5775587840 backlog:32000 ms:1000 sent:448000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:09.907 [COM3/csk_ap] [2026-08-03 02:08:21.000][I][algo_task # algo] MODE 1 -> 0, param: {"reg":[{"key":"mode","val":1},{"key":"model","val":0}],"cae":[{"key":"mode","val":0}],"esr":[{"key":"mode","val":1},{"key":"model","val":0},{"key":"2121","val":-91},{"key":"2122","val":-91}]}
+2026-11-04 11:23:09.914 [COM3/csk_ap] [2026-08-03 02:08:21.007][D][evs_event # event] evt msg -> enter, f: 0x30054f40, d: 0x0
+2026-11-04 11:23:09.914 [COM3/csk_ap] [2026-08-03 02:08:21.007][D][evs_event # app_client] esr timeout
+2026-11-04 11:23:09.916 [COM3/csk_ap] [2026-08-03 02:08:21.008][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:09.916 [COM3/csk_ap] [2026-08-03 02:08:21.008][D][msg_send # msg] >>>>> Send 291 ASR, cmd: 0x1004, ext: 0x0, len: 0
+2026-11-04 11:23:09.950 [COM3/csk_ap] [2026-08-03 02:08:22.000][D][msg_recv # msg] <<<<< Recv 304 PLAYER, cmd: 0x4001, ext: 0x0, len: 4
+2026-11-04 11:23:09.958 [COM3/csk_ap] [2026-08-03 02:08:22.001][D][msg_send # msg] >>>>> Send 292 PLAYER, cmd: 0x4001, ext: 0x8007, len: 1
+2026-11-04 11:23:09.958 [COM3/csk_ap] [2026-08-03 02:08:22.002][W][evs_event # event] wdt not feed 1128061
+2026-11-04 11:23:09.958 [COM3/csk_ap] [2026-08-03 02:08:22.003][D][evs_event # event] evt msg -> enter, f: 0x30056034, d: 0x387c54e4
+2026-11-04 11:23:09.958 [COM3/csk_ap] [2026-08-03 02:08:22.004][D][evs_event # app_client] tone player, play 75
+2026-11-04 11:23:09.958 [COM3/csk_ap] [2026-08-03 02:08:22.005][D][evs_event # soundplayer] release alert item
+2026-11-04 11:23:09.958 [COM3/csk_ap] [2026-08-03 02:08:22.006][D][evs_event # soundplayer] sound acquire channel
+2026-11-04 11:23:09.958 [COM3/csk_ap] [2026-08-03 02:08:22.006][D][evs_event # audiomgr] 4 acquire channel
+2026-11-04 11:23:09.958 [COM3/csk_ap] [2026-08-03 02:08:22.007][I][evs_event # soundplayer] focus 0, by_which 4
+2026-11-04 11:23:09.960 [COM3/csk_ap] [2026-08-03 02:08:22.008][D][evs_event # soundplayer] _sound_play_foreground, handle->m_play_state:6
+2026-11-04 11:23:09.964 [COM3/csk_ap] [2026-08-03 02:08:22.010][D][evs_event # soundplayer] _sound_play_next, handle->m_wait_len:1
+2026-11-04 11:23:09.973 [COM3/csk_ap] [2026-08-03 02:08:22.013][D][msg_recv # msg] <<<<< Recv 305 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:23:09.973 [COM3/csk_ap] [2026-08-03 02:08:22.014][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:23:09.973 [COM3/csk_ap] [2026-08-03 02:08:22.012][D][evs_event # soundplayer] play next tone 75: mem://addr=811436717size=11997
+2026-11-04 11:23:09.973 [COM3/csk_ap] [2026-08-03 02:08:22.017][D][evs_event # soundplayer] soundplayer status: 0XEF
+2026-11-04 11:23:09.973 [COM3/csk_ap] [2026-08-03 02:08:22.018][D][evs_event # app_client] sound player state: 239
+2026-11-04 11:23:09.973 [COM3/csk_ap] [2026-08-03 02:08:22.018][I][evs_event # APP_PLAYER] play audio mem://addr=811436717size=11997
+2026-11-04 11:23:09.973 [COM3/csk_ap] [2026-08-03 02:08:22.019][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:09.973 [COM3/csk_ap] [2026-08-03 02:08:22.019][D][msg_send # msg] >>>>> Send 293 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:23:09.973 [COM3/csk_ap] [2026-08-03 02:08:22.021][D][player_0_td # lisa_que] create queue: demux_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:23:09.984 [COM3/csk_ap] [2026-08-03 02:08:22.031][D][player_0_td # lisa_que] create queue: decode_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:23:09.985 [COM3/csk_ap] [2026-08-03 02:08:22.028][I][algo_task # rec_ringbuf] STOP-TEST ARM session:28 wait:200 request_ms:180457486
+2026-11-04 11:23:09.994 [COM3/csk_ap] [2026-08-03 02:08:22.040][D][msg_recv # msg] <<<<< Recv 306 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:23:09.994 [COM3/csk_ap] [2026-08-03 02:08:22.042][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:23:10.009 [COM3/csk_ap] [2026-08-03 02:08:22.058][I][player_0_td # APP_PLAYER] tone player evt 1
+2026-11-04 11:23:10.011 [COM3/csk_ap] [2026-08-03 02:08:22.058][D][player_0_td # soundplayer] soundplayer status: 0X1
+2026-11-04 11:23:10.012 [COM3/csk_ap] [2026-08-03 02:08:22.060][D][player_0_td # app_client] sound player state: 1
+2026-11-04 11:23:10.029 [COM3/csk_ap] [2026-08-03 02:08:22.063][D][player_0_td # PA_MGR] Refresh PA to ON, timeout 4294967295, by "tone_player_prepared"
+2026-11-04 11:23:10.029 [COM3/csk_ap] [2026-08-03 02:08:22.063][D][msg_send # msg] >>>>> Send 294 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:23:10.029 [COM3/csk_ap] [2026-08-03 02:08:22.065][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_prepared"
+2026-11-04 11:23:10.029 [COM3/csk_ap] [2026-08-03 02:08:22.078][I][player_0_td # APP_PLAYER] tone player evt 2
+2026-11-04 11:23:10.035 [COM3/csk_ap] [2026-08-03 02:08:22.080][D][player_0_td # soundplayer] soundplayer status: 0X2
+2026-11-04 11:23:10.035 [COM3/csk_ap] [2026-08-03 02:08:22.081][D][player_0_td # app_client] sound player state: 2
+2026-11-04 11:23:10.037 [COM3/csk_ap] [2026-08-03 02:08:22.084][D][msg_send # msg] >>>>> Send 295 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:23:10.225 [COM3/csk_ap] [2026-08-03 02:08:22.266][I][algo_task # rec_ringbuf] STOP-TEST EXPIRE session:28 elapsed_ms:258
+2026-11-04 11:23:10.225 [COM3/csk_ap] [2026-08-03 02:08:22.266][I][algo_task # rec_ringbuf] oneshot-v4 STOP-unsubmitted session:28 pos:5775596800 end:5775628800 backlog:32000 ms:1000 sent:488960 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:13.871 [COM3/csk_ap] [2026-08-03 02:08:25.000][I][player_0_td # APP_PLAYER] tone player evt 6
+2026-11-04 11:23:13.873 [COM3/csk_ap] [2026-08-03 02:08:25.000][D][player_0_td # PA_MGR] Refresh PA to OFF, timeout 50000, by "tone_player_end"
+2026-11-04 11:23:13.873 [COM3/csk_ap] [2026-08-03 02:08:25.000][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_end"
+2026-11-04 11:23:13.873 [COM3/csk_ap] [2026-08-03 02:08:25.001][D][player_0_td # soundplayer] soundplayer status: 0X6
+2026-11-04 11:23:13.873 [COM3/csk_ap] [2026-08-03 02:08:25.002][D][player_0_td # app_client] sound player state: 6
+2026-11-04 11:23:13.873 [COM3/csk_ap] [2026-08-03 02:08:25.003][D][evs_event # event] evt msg -> enter, f: 0x3005d23e, d: 0x0
+2026-11-04 11:23:13.873 [COM3/csk_ap] [2026-08-03 02:08:25.004][D][evs_event # audiomgr] 4 release channel
+2026-11-04 11:23:13.873 [COM3/csk_ap] [2026-08-03 02:08:25.004][I][evs_event # soundplayer] focus 2, by_which 4
+2026-11-04 11:23:13.873 [COM3/csk_ap] [2026-08-03 02:08:25.003][D][msg_send # msg] >>>>> Send 296 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:23:13.873 [COM3/csk_ap] [2026-08-03 02:08:25.005][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:13.923 [COM3/csk_ap] [2026-08-03 02:08:25.057][D][msg_recv # msg] <<<<< Recv 307 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:23:13.923 [COM3/csk_ap] [2026-08-03 02:08:25.058][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:23:13.934 [COM3/csk_ap] [2026-08-03 02:08:26.000][D][msg_recv # msg] <<<<< Recv 308 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:23:13.934 [COM3/csk_ap] [2026-08-03 02:08:26.000][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:23:22.119 [COM3/csk_ap] [2026-08-03 02:08:34.000][D][algo_task # PA_MGR] Refresh PA to ON, timeout 50000, by "prewakeup"
+2026-11-04 11:23:22.119 [COM3/csk_ap] [2026-08-03 02:08:34.000][D][algo_task # PA_MGR] Refresh PA end by "prewakeup"
+2026-11-04 11:23:22.119 [COM3/csk_ap] [2026-08-03 02:08:34.007][D][evs_event # event] evt msg -> enter, f: 0x30054784, d: 0x387c54e4
+2026-11-04 11:23:22.119 [COM3/csk_ap] [2026-08-03 02:08:34.008][D][evs_event # algo] Pre Wakeup: {"rlt":[{"istart":289,"iresid":0,"iduration":17,"nfillerscore":127,"nkeywordscore":16969,"ncm":1002,"ncmThreshold":800,"keyword":"xiao ti xiao ti","intent":"xiao ti xiao ti","bMain":1,"bAbsorb":0,"bMhx":0}]}
+2026-11-04 11:23:22.119 [COM3/csk_ap] [2026-08-03 02:08:34.010][I][evs_event # wake_audio] candidate prewake score:1002 valid:1 trigger:2888024320
+2026-11-04 11:23:22.119 [COM3/csk_ap] [2026-08-03 02:08:34.011][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:22.396 [COM3/csk_ap] [2026-08-03 02:08:34.245][D][algo_task # algo] wake point: 180500960ms -> 180501920ms
+2026-11-04 11:23:22.396 [COM3/csk_ap] [2026-08-03 02:08:34.245][I][algo_task # rec_ringbuf] mark wake frame:180500960ms -> 180501920ms
+2026-11-04 11:23:22.396 [COM3/csk_ap] [33m(T1|180502.938) wake point string: wakept(180500960:180501920)
+2026-11-04 11:23:22.396 [COM3/csk_ap] [0m[2026-08-03 02:08:34.267][I][algo_task # algo] wakeup power: chn=1, frame=18050192, cp_x100=7000
+2026-11-04 11:23:22.396 [COM3/csk_ap] [2026-08-03 02:08:34.268][D][algo_task # app_client] Wakeup: {"rlt":[{"istart":288,"iresid":1,"iduration":24,"nfillerscore":0,"nkeywordscore":0,"ncm":-13,"ncmThreshold":-91,"keyword":"xiao ti xiao ti","intent":"xiao ti xiao ti-ch","nRltIdx":0,"nDelayFrame":0,"nThrowFrame":312,"decId":1,"branch":3,"wakeUpType":0,"VadGap":0,"nE2eIntervalFrame":8,"nE2eNodeFrame":2,"nStartStateThreshold":500,"bMain":1,"bAbsorb":0,"bMhx":0,"nLanThreshold":0,"nLanNcm":0,"iframe":4512548}],"cp_x100":7000,"cp_db":70,"wk_iframe":180[2026-08-03 02:08:34.275][D][evs_event # event] evt msg -> enter, f: 0x300564b4, d: 0x387c54e4
+2026-11-04 11:23:22.398 [COM3/csk_ap] [2026-08-03 02:08:34.277][D][evs_event # app_client] keyword: xiao ti xiao ti, intent: xiao ti xiao ti-ch, ncm: -13.00, cp_db: 70
+2026-11-04 11:23:22.399 [COM3/csk_ap] [2026-08-03 02:08:34.279][I][evs_event # app_client] MEM[WAKEUP] SRAM free:9236(9KB) lfb:7936(7KB) | PSRAM free:236800(231KB) lfb:233472(228KB)
+2026-11-04 11:23:22.399 [COM3/csk_ap] [2026-08-03 02:08:34.279][D][evs_event # algo] keyword: xiao ti xiao ti-ch, cmd_id: 0001
+2026-11-04 11:23:22.399 [COM3/csk_ap] [2026-08-03 02:08:34.280][D][evs_event # app_client] wakeup_cmd: cmd 0x1, localism 0, score -13.000000, energy 700000, is_study_cmd 0
+2026-11-04 11:23:22.399 [COM3/csk_ap] [2026-08-03 02:08:34.280][D][msg_send # msg] >>>>> Send 297 ASR, cmd: 0x1006, ext: 0x0, len: 33
+2026-11-04 11:23:22.399 [COM3/csk_ap] [2026-08-03 02:08:34.281][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:22.399 [COM3/csk_ap] [2026-08-03 02:08:34.276][I][algo_task # algo] MODE 0 -> 1, param: {"reg":[{"key":"mode","val":0},{"key":"model","val":1}],"cae":[{"key":"mode","val":1}],"esr":[{"key":"mode","val":0},{"key":"model","val":1},{"key":"2121","val":-177},{"key":"2122","val":-177}]}
+2026-11-04 11:23:22.411 [COM3/csk_ap] [2026-08-03 02:08:34.304][D][msg_recv # msg] <<<<< Recv 309 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:23:22.411 [COM3/csk_ap] [2026-08-03 02:08:34.305][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:23:22.426 [COM3/csk_ap] [2026-08-03 02:08:34.319][D][msg_recv # msg] <<<<< Recv 310 PLAYER, cmd: 0x4001, ext: 0x0, len: 4
+2026-11-04 11:23:22.426 [COM3/csk_ap] [2026-08-03 02:08:34.320][D][msg_send # msg] >>>>> Send 298 PLAYER, cmd: 0x4001, ext: 0x8002, len: 1
+2026-11-04 11:23:22.442 [COM3/csk_ap] [2026-08-03 02:08:34.321][D][evs_event # event] evt msg -> enter, f: 0x30056034, d: 0x387c54e4
+2026-11-04 11:23:22.442 [COM3/csk_ap] [2026-08-03 02:08:34.322][D][evs_event # app_client] tone player, play 1
+2026-11-04 11:23:22.442 [COM3/csk_ap] [2026-08-03 02:08:34.322][D][evs_event # soundplayer] release alert item
+2026-11-04 11:23:22.442 [COM3/csk_ap] [2026-08-03 02:08:34.323][D][evs_event # soundplayer] sound acquire channel
+2026-11-04 11:23:22.442 [COM3/csk_ap] [2026-08-03 02:08:34.323][D][evs_event # audiomgr] 4 acquire channel
+2026-11-04 11:23:22.442 [COM3/csk_ap] [2026-08-03 02:08:34.323][I][evs_event # soundplayer] focus 0, by_which 4
+2026-11-04 11:23:22.442 [COM3/csk_ap] [2026-08-03 02:08:34.324][D][evs_event # soundplayer] _sound_play_foreground, handle->m_play_state:6
+2026-11-04 11:23:22.442 [COM3/csk_ap] [2026-08-03 02:08:34.324][D][evs_event # soundplayer] _sound_play_next, handle->m_wait_len:1
+2026-11-04 11:23:22.442 [COM3/csk_ap] [2026-08-03 02:08:34.325][D][evs_event # soundplayer] play next tone 1: mem://addr=811073387size=2061
+2026-11-04 11:23:22.442 [COM3/csk_ap] [2026-08-03 02:08:34.325][D][evs_event # soundplayer] soundplayer status: 0XEF
+2026-11-04 11:23:22.442 [COM3/csk_ap] [2026-08-03 02:08:34.325][D][evs_event # app_client] sound player state: 239
+2026-11-04 11:23:22.442 [COM3/csk_ap] [2026-08-03 02:08:34.326][I][evs_event # APP_PLAYER] play audio mem://addr=811073387size=2061
+2026-11-04 11:23:22.442 [COM3/csk_ap] [2026-08-03 02:08:34.326][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:22.443 [COM3/csk_ap] [2026-08-03 02:08:34.329][D][msg_send # msg] >>>>> Send 299 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:23:22.443 [COM3/csk_ap] [2026-08-03 02:08:34.332][D][player_0_td # lisa_que] create queue: demux_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:23:22.443 [COM3/csk_ap] [2026-08-03 02:08:34.333][D][msg_recv # msg] <<<<< Recv 311 RECORDER, cmd: 0x8001, ext: 0x0, len: 0
+2026-11-04 11:23:22.443 [COM3/csk_ap] [2026-08-03 02:08:34.335][I][msg_recv # rec_ringbuf] oneshot-v4 START requested
+2026-11-04 11:23:22.452 [COM3/csk_ap] [2026-08-03 02:08:34.345][D][player_0_td # lisa_que] create queue: decode_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:23:22.471 [COM3/csk_ap] [2026-08-03 02:08:34.356][I][algo_task # rec_ringbuf] oneshot-v4 START-wake session:29 pos:5775989760 end:5776020480 backlog:30720 ms:960 sent:0 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:22.471 [COM3/csk_ap] [2026-08-03 02:08:34.356][I][algo_task # rec_ringbuf] wake target 180500960ms (wake 180500960ms->180501920ms include_wake:1 wake_span:960ms) pos:5775989760 end:5776020480 delay:960ms
+2026-11-04 11:23:22.482 [COM3/csk_ap] [2026-08-03 02:08:34.371][I][player_0_td # APP_PLAYER] tone player evt 1
+2026-11-04 11:23:22.482 [COM3/csk_ap] [2026-08-03 02:08:34.371][D][player_0_td # soundplayer] soundplayer status: 0X1
+2026-11-04 11:23:22.482 [COM3/csk_ap] [2026-08-03 02:08:34.372][D][player_0_td # app_client] sound player state: 1
+2026-11-04 11:23:22.482 [COM3/csk_ap] [2026-08-03 02:08:34.373][D][player_0_td # PA_MGR] Refresh PA to ON, timeout 4294967295, by "tone_player_prepared"
+2026-11-04 11:23:22.482 [COM3/csk_ap] [2026-08-03 02:08:34.373][D][msg_send # msg] >>>>> Send 300 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:23:22.482 [COM3/csk_ap] [2026-08-03 02:08:34.374][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_prepared"
+2026-11-04 11:23:22.498 [COM3/csk_ap] [2026-08-03 02:08:34.388][I][player_0_td # APP_PLAYER] tone player evt 2
+2026-11-04 11:23:22.498 [COM3/csk_ap] [2026-08-03 02:08:34.392][D][player_0_td # soundplayer] soundplayer status: 0X2
+2026-11-04 11:23:22.498 [COM3/csk_ap] [2026-08-03 02:08:34.392][D][player_0_td # app_client] sound player state: 2
+2026-11-04 11:23:22.502 [COM3/csk_ap] [2026-08-03 02:08:34.395][D][msg_send # msg] >>>>> Send 301 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:23:22.532 [COM3/csk_ap] [2026-08-03 02:08:34.421][W][evs_event # event] wdt not feed 1128139
+2026-11-04 11:23:22.532 [COM3/csk_ap] [2026-08-03 02:08:34.422][D][evs_event # event] evt msg -> enter, f: 0x30054316, d: 0x387c55f8
+2026-11-04 11:23:22.532 [COM3/csk_ap] [2026-08-03 02:08:34.423][D][evs_event # algo] ******** CSK DOA 90 ********
+2026-11-04 11:23:22.532 [COM3/csk_ap] [2026-08-03 02:08:34.423][D][evs_event # app_client] send doa: 90
+2026-11-04 11:23:22.532 [COM3/csk_ap] [2026-08-03 02:08:34.423][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:22.532 [COM3/csk_ap] [2026-08-03 02:08:34.424][D][msg_send # msg] >>>>> Send 302 ASR, cmd: 0x1006, ext: 0x0, len: 33
+2026-11-04 11:23:23.018 [COM3/csk_ap] [2026-08-03 02:08:35.000][I][player_0_td # APP_PLAYER] tone player evt 6
+2026-11-04 11:23:23.030 [COM3/csk_ap] [2026-08-03 02:08:35.000][D][player_0_td # PA_MGR] Refresh PA to OFF, timeout 50000, by "tone_player_end"
+2026-11-04 11:23:23.030 [COM3/csk_ap] [2026-08-03 02:08:35.001][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_end"
+2026-11-04 11:23:23.030 [COM3/csk_ap] [2026-08-03 02:08:35.001][D][player_0_td # soundplayer] soundplayer status: 0X6
+2026-11-04 11:23:23.030 [COM3/csk_ap] [2026-08-03 02:08:35.001][D][player_0_td # app_client] sound player state: 6
+2026-11-04 11:23:23.032 [COM3/csk_ap] [2026-08-03 02:08:35.002][D][msg_send # msg] >>>>> Send 303 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:23:23.032 [COM3/csk_ap] [2026-08-03 02:08:35.003][D][evs_event # event] evt msg -> enter, f: 0x3005d23e, d: 0x0
+2026-11-04 11:23:23.032 [COM3/csk_ap] [2026-08-03 02:08:35.003][D][evs_event # audiomgr] 4 release channel
+2026-11-04 11:23:23.032 [COM3/csk_ap] [2026-08-03 02:08:35.004][I][evs_event # soundplayer] focus 2, by_which 4
+2026-11-04 11:23:23.032 [COM3/csk_ap] [2026-08-03 02:08:35.004][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:24.380 [COM3/csk_ap] [2026-08-03 02:08:36.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:29 pos:5776053760 end:5776084480 backlog:30720 ms:960 sent:64000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:26.377 [COM3/csk_ap] [2026-08-03 02:08:38.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:29 pos:5776117760 end:5776148480 backlog:30720 ms:960 sent:128000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:27.569 [COM3/csk_ap] [2026-08-03 02:08:39.000][D][evs_event # event] evt msg -> enter, f: 0x30054316, d: 0x387c6150
+2026-11-04 11:23:27.569 [COM3/csk_ap] [2026-08-03 02:08:39.000][D][evs_event # algo] ******** CSK DOA 90 ********
+2026-11-04 11:23:27.569 [COM3/csk_ap] [2026-08-03 02:08:39.000][D][evs_event # app_client] send doa: 90
+2026-11-04 11:23:27.569 [COM3/csk_ap] [2026-08-03 02:08:39.001][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:27.569 [COM3/csk_ap] [2026-08-03 02:08:39.001][D][msg_send # msg] >>>>> Send 304 ASR, cmd: 0x1001, ext: 0x0, len: 33
+2026-11-04 11:23:27.571 [COM3/csk_ap] [33m(T1|180508.141) wake point string: wakept(180505360:180506960)
+2026-11-04 11:23:27.592 [COM3/csk_ap] [0m[2026-08-03 02:08:39.007][I][algo_task # algo] wakeup power: chn=1, frame=18050712, cp_x100=5800
+2026-11-04 11:23:27.592 [COM3/csk_ap] [2026-08-03 02:08:39.007][D][algo_task # app_client] Wakeup: {"rlt":[{"istart":86,"iresid":206,"iduration":40,"nfillerscore":0,"nkeywordscore":0,"ncm":-2,"ncmThreshold":-138,"keyword":"zi dong mo shi","intent":"zi dong mo shi","nRltIdx":16,"nDelayFrame":0,"nThrowFrame":126,"decId":0,"branch":2,"wakeUpType":0,"VadGap":0,"nE2eIntervalFrame":5,"nE2eNodeFrame":2,"nStartStateThreshold":0,"bMain":0,"bAbsorb":0,"bMhx":0,"iframe":4512678}],"cp_x100":5800,"cp_db":58,"wk_iframe":18050712}
+2026-11-04 11:23:27.592 [COM3/csk_ap] [2026-08-03 02:08:39.014][W][evs_event # event] wdt not feed 1128171
+2026-11-04 11:23:27.592 [COM3/csk_ap] [2026-08-03 02:08:39.015][D][evs_event # event] evt msg -> enter, f: 0x300564b4, d: 0x387c5d38
+2026-11-04 11:23:27.594 [COM3/csk_ap] [2026-08-03 02:08:39.017][D][evs_event # app_client] keyword: zi dong mo shi, intent: zi dong mo shi, ncm: -2.00, cp_db: 58
+2026-11-04 11:23:27.594 [COM3/csk_ap] [2026-08-03 02:08:39.019][I][evs_event # app_client] MEM[WAKEUP] SRAM free:9236(9KB) lfb:7936(7KB) | PSRAM free:238300(232KB) lfb:233472(228KB)
+2026-11-04 11:23:27.594 [COM3/csk_ap] [2026-08-03 02:08:39.020][D][evs_event # algo] keyword: zi dong mo shi, cmd_id: 0054
+2026-11-04 11:23:27.594 [COM3/csk_ap] [2026-08-03 02:08:39.020][D][evs_event # app_client] offline_cmd: cmd 0x54, score -2.000000, energy 580000, is_study_cmd 0
+2026-11-04 11:23:27.594 [COM3/csk_ap] [2026-08-03 02:08:39.021][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:27.594 [COM3/csk_ap] [2026-08-03 02:08:39.022][D][msg_send # msg] >>>>> Send 305 ASR, cmd: 0x1001, ext: 0x0, len: 33
+2026-11-04 11:23:27.686 [COM3/csk_ap] [2026-08-03 02:08:39.107][D][msg_recv # msg] <<<<< Recv 312 PLAYER, cmd: 0x4001, ext: 0x0, len: 4
+2026-11-04 11:23:27.686 [COM3/csk_ap] [2026-08-03 02:08:39.108][D][msg_send # msg] >>>>> Send 306 PLAYER, cmd: 0x4001, ext: 0x54, len: 1
+2026-11-04 11:23:27.686 [COM3/csk_ap] [2026-08-03 02:08:39.109][D][evs_event # event] evt msg -> enter, f: 0x30056034, d: 0x387c54e4
+2026-11-04 11:23:27.686 [COM3/csk_ap] [2026-08-03 02:08:39.109][D][evs_event # app_client] tone player, play 41
+2026-11-04 11:23:27.686 [COM3/csk_ap] [2026-08-03 02:08:39.110][D][evs_event # soundplayer] release alert item
+2026-11-04 11:23:27.688 [COM3/csk_ap] [2026-08-03 02:08:39.110][D][evs_event # soundplayer] sound acquire channel
+2026-11-04 11:23:27.688 [COM3/csk_ap] [2026-08-03 02:08:39.110][D][evs_event # audiomgr] 4 acquire channel
+2026-11-04 11:23:27.688 [COM3/csk_ap] [2026-08-03 02:08:39.111][I][evs_event # soundplayer] focus 0, by_which 4
+2026-11-04 11:23:27.688 [COM3/csk_ap] [2026-08-03 02:08:39.111][D][evs_event # soundplayer] _sound_play_foreground, handle->m_play_state:6
+2026-11-04 11:23:27.688 [COM3/csk_ap] [2026-08-03 02:08:39.112][D][evs_event # soundplayer] _sound_play_next, handle->m_wait_len:1
+2026-11-04 11:23:27.688 [COM3/csk_ap] [2026-08-03 02:08:39.112][D][evs_event # soundplayer] play next tone 41: mem://addr=811252487size=6273
+2026-11-04 11:23:27.688 [COM3/csk_ap] [2026-08-03 02:08:39.113][D][evs_event # soundplayer] soundplayer status: 0XEF
+2026-11-04 11:23:27.688 [COM3/csk_ap] [2026-08-03 02:08:39.113][D][evs_event # app_client] sound player state: 239
+2026-11-04 11:23:27.688 [COM3/csk_ap] [2026-08-03 02:08:39.114][I][evs_event # APP_PLAYER] play audio mem://addr=811252487size=6273
+2026-11-04 11:23:27.688 [COM3/csk_ap] [2026-08-03 02:08:39.114][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:27.688 [COM3/csk_ap] [2026-08-03 02:08:39.117][D][msg_send # msg] >>>>> Send 307 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:23:27.688 [COM3/csk_ap] [2026-08-03 02:08:39.120][D][player_0_td # lisa_que] create queue: demux_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:23:27.696 [COM3/csk_ap] [2026-08-03 02:08:39.130][D][player_0_td # lisa_que] create queue: decode_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:23:27.713 [COM3/csk_ap] [2026-08-03 02:08:39.142][D][msg_recv # msg] <<<<< Recv 313 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:23:27.713 [COM3/csk_ap] [2026-08-03 02:08:39.143][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:23:27.719 [COM3/csk_ap] [2026-08-03 02:08:39.152][D][msg_recv # msg] <<<<< Recv 314 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:23:27.719 [COM3/csk_ap] [2026-08-03 02:08:39.154][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:23:27.725 [COM3/csk_ap] [2026-08-03 02:08:39.158][I][player_0_td # APP_PLAYER] tone player evt 1
+2026-11-04 11:23:27.727 [COM3/csk_ap] [2026-08-03 02:08:39.161][D][player_0_td # soundplayer] soundplayer status: 0X1
+2026-11-04 11:23:27.729 [COM3/csk_ap] [2026-08-03 02:08:39.162][D][player_0_td # app_client] sound player state: 1
+2026-11-04 11:23:27.733 [COM3/csk_ap] [2026-08-03 02:08:39.165][D][msg_send # msg] >>>>> Send 308 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:23:27.733 [COM3/csk_ap] [2026-08-03 02:08:39.164][D][player_0_td # PA_MGR] Refresh PA to ON, timeout 4294967295, by "tone_player_prepared"
+2026-11-04 11:23:27.733 [COM3/csk_ap] [2026-08-03 02:08:39.168][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_prepared"
+2026-11-04 11:23:27.746 [COM3/csk_ap] [2026-08-03 02:08:39.180][I][player_0_td # APP_PLAYER] tone player evt 2
+2026-11-04 11:23:27.746 [COM3/csk_ap] [2026-08-03 02:08:39.174][I][algo_task # rec_ringbuf] STOP-TEST ARM session:29 wait:200 request_ms:180475224
+2026-11-04 11:23:27.750 [COM3/csk_ap] [2026-08-03 02:08:39.181][D][player_0_td # soundplayer] soundplayer status: 0X2
+2026-11-04 11:23:27.750 [COM3/csk_ap] [2026-08-03 02:08:39.184][D][player_0_td # app_client] sound player state: 2
+2026-11-04 11:23:27.750 [COM3/csk_ap] [2026-08-03 02:08:39.186][D][msg_send # msg] >>>>> Send 309 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:23:27.984 [COM3/csk_ap] [2026-08-03 02:08:40.000][I][algo_task # rec_ringbuf] STOP-TEST EXPIRE session:29 elapsed_ms:273
+2026-11-04 11:23:27.984 [COM3/csk_ap] [2026-08-03 02:08:40.000][I][algo_task # rec_ringbuf] oneshot-v4 STOP-unsubmitted session:29 pos:5776166400 end:5776197120 backlog:30720 ms:960 sent:176640 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:29.126 [COM3/csk_ap] [2026-08-03 02:08:41.000][D][msg_recv # msg] <<<<< Recv 315 SYSTEM, cmd: 0x7005, ext: 0x1, len: 2
+2026-11-04 11:23:29.126 [COM3/csk_ap] [2026-08-03 02:08:41.002][D][msg_recv # APP_PLAYER] cloud vol 88 -> 88 with [0, 100]
+2026-11-04 11:23:29.126 [COM3/csk_ap] [2026-08-03 02:08:41.002][D][msg_recv # APP_PLAYER] tone vol 88 -> 88 with [0, 100]
+2026-11-04 11:23:29.126 [COM3/csk_ap] [31m(T0|180509.750) vol range set max=90 min=20
+2026-11-04 11:23:29.130 [COM3/csk_ap] [0m[2026-08-03 02:08:41.007][D][msg_recv # msg] <<<<< Recv 316 SYSTEM, cmd: 0x7005, ext: 0x1, len: 2
+2026-11-04 11:23:29.132 [COM3/csk_ap] [2026-08-03 02:08:41.009][D][msg_recv # APP_PLAYER] cloud vol 88 -> 88 with [0, 100]
+2026-11-04 11:23:29.132 [COM3/csk_ap] [2026-08-03 02:08:41.010][D][msg_recv # APP_PLAYER] tone vol 88 -> 88 with [0, 100]
+2026-11-04 11:23:29.135 [COM3/csk_ap] [31m(T0|180509.750) vol range set max=90 min=20
+2026-11-04 11:23:29.672 [COM3/csk_ap] [0m[2026-08-03 02:08:41.542][I][player_0_td # APP_PLAYER] tone player evt 6
+2026-11-04 11:23:29.681 [COM3/csk_ap] [2026-08-03 02:08:41.543][D][player_0_td # PA_MGR] Refresh PA to OFF, timeout 50000, by "tone_player_end"
+2026-11-04 11:23:29.681 [COM3/csk_ap] [2026-08-03 02:08:41.544][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_end"
+2026-11-04 11:23:29.681 [COM3/csk_ap] [2026-08-03 02:08:41.544][D][player_0_td # soundplayer] soundplayer status: 0X6
+2026-11-04 11:23:29.681 [COM3/csk_ap] [2026-08-03 02:08:41.545][D][player_0_td # app_client] sound player state: 6
+2026-11-04 11:23:29.681 [COM3/csk_ap] [2026-08-03 02:08:41.546][D][msg_send # msg] >>>>> Send 310 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:23:29.681 [COM3/csk_ap] [2026-08-03 02:08:41.547][D][evs_event # event] evt msg -> enter, f: 0x3005d23e, d: 0x0
+2026-11-04 11:23:29.681 [COM3/csk_ap] [2026-08-03 02:08:41.547][D][evs_event # audiomgr] 4 release channel
+2026-11-04 11:23:29.681 [COM3/csk_ap] [2026-08-03 02:08:41.548][I][evs_event # soundplayer] focus 2, by_which 4
+2026-11-04 11:23:29.681 [COM3/csk_ap] [2026-08-03 02:08:41.548][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:29.711 [COM3/csk_ap] [2026-08-03 02:08:41.588][D][msg_recv # msg] <<<<< Recv 317 RECORDER, cmd: 0x8001, ext: 0x0, len: 0
+2026-11-04 11:23:29.711 [COM3/csk_ap] [2026-08-03 02:08:41.588][I][msg_recv # rec_ringbuf] oneshot-v4 START requested
+2026-11-04 11:23:29.740 [COM3/csk_ap] [2026-08-03 02:08:41.612][I][algo_task # rec_ringbuf] oneshot-v4 START-live session:30 pos:5776253440 end:5776253440 backlog:0 ms:0 sent:0 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:31.658 [COM3/csk_ap] [2026-08-03 02:08:43.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:30 pos:5776317440 end:5776317440 backlog:0 ms:0 sent:64000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:33.656 [COM3/csk_ap] [2026-08-03 02:08:45.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:30 pos:5776381440 end:5776381440 backlog:0 ms:0 sent:128000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:35.658 [COM3/csk_ap] [2026-08-03 02:08:47.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:30 pos:5776445440 end:5776445440 backlog:0 ms:0 sent:192000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:37.656 [COM3/csk_ap] [2026-08-03 02:08:49.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:30 pos:5776509440 end:5776509440 backlog:0 ms:0 sent:256000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:39.659 [COM3/csk_ap] [2026-08-03 02:08:51.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:30 pos:5776573440 end:5776573440 backlog:0 ms:0 sent:320000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:40.119 [COM3/csk_ap] [2026-08-03 02:08:52.000][D][algo_task # PA_MGR] Refresh PA to ON, timeout 50000, by "prewakeup"
+2026-11-04 11:23:40.119 [COM3/csk_ap] [2026-08-03 02:08:52.000][D][algo_task # PA_MGR] Refresh PA end by "prewakeup"
+2026-11-04 11:23:40.119 [COM3/csk_ap] [2026-08-03 02:08:52.007][D][evs_event # event] evt msg -> enter, f: 0x30054784, d: 0x387c54e4
+2026-11-04 11:23:40.119 [COM3/csk_ap] [2026-08-03 02:08:52.007][D][evs_event # algo] Pre Wakeup: {"rlt":[{"istart":427,"iresid":0,"iduration":18,"nfillerscore":144,"nkeywordscore":17602,"ncm":979,"ncmThreshold":800,"keyword":"xiao ti xiao ti","intent":"xiao ti xiao ti","bMain":1,"bAbsorb":0,"bMhx":0}]}
+2026-11-04 11:23:40.119 [COM3/csk_ap] [2026-08-03 02:08:52.010][I][evs_event # wake_audio] candidate prewake score:979 valid:1 trigger:2888312320
+2026-11-04 11:23:40.119 [COM3/csk_ap] [2026-08-03 02:08:52.010][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:40.356 [COM3/csk_ap] [2026-08-03 02:08:52.242][D][algo_task # algo] wake point: 180518960ms -> 180519920ms
+2026-11-04 11:23:40.356 [COM3/csk_ap] [2026-08-03 02:08:52.242][I][algo_task # rec_ringbuf] mark wake frame:180518960ms -> 180519920ms
+2026-11-04 11:23:40.358 [COM3/csk_ap] [33m(T1|180520.938) wake point string: wakept(180518960:180519920)
+2026-11-04 11:23:40.392 [COM3/csk_ap] [0m[2026-08-03 02:08:52.265][I][algo_task # algo] wakeup power: chn=1, frame=18051992, cp_x100=7000
+2026-11-04 11:23:40.392 [COM3/csk_ap] [2026-08-03 02:08:52.265][D][algo_task # app_client] Wakeup: {"rlt":[{"istart":426,"iresid":1,"iduration":24,"nfillerscore":0,"nkeywordscore":0,"ncm":-104,"ncmThreshold":-177,"keyword":"xiao ti xiao ti","intent":"xiao ti xiao ti-ch","nRltIdx":0,"nDelayFrame":0,"nThrowFrame":450,"decId":1,"branch":3,"wakeUpType":0,"VadGap":0,"nE2eIntervalFrame":8,"nE2eNodeFrame":2,"nStartStateThreshold":0,"bMain":1,"bAbsorb":0,"bMhx":0,"nLanThreshold":0,"nLanNcm":0,"iframe":4512998}],"cp_x100":7000,"cp_db":70,"wk_iframe":180[2026-08-03 02:08:52.273][D][evs_event # event] evt msg -> enter, f: 0x300564b4, d: 0x387c54e4
+2026-11-04 11:23:40.394 [COM3/csk_ap] [2026-08-03 02:08:52.274][D][evs_event # app_client] keyword: xiao ti xiao ti, intent: xiao ti xiao ti-ch, ncm: -104.00, cp_db: 70
+2026-11-04 11:23:40.394 [COM3/csk_ap] [2026-08-03 02:08:52.277][I][evs_event # app_client] MEM[WAKEUP] SRAM free:9236(9KB) lfb:7936(7KB) | PSRAM free:238300(232KB) lfb:233472(228KB)
+2026-11-04 11:23:40.394 [COM3/csk_ap] [2026-08-03 02:08:52.278][D][evs_event # algo] keyword: xiao ti xiao ti-ch, cmd_id: 0001
+2026-11-04 11:23:40.394 [COM3/csk_ap] [2026-08-03 02:08:52.278][D][evs_event # app_client] wakeup_cmd: cmd 0x1, localism 0, score -104.000000, energy 700000, is_study_cmd 0
+2026-11-04 11:23:40.394 [COM3/csk_ap] [2026-08-03 02:08:52.278][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:40.394 [COM3/csk_ap] [2026-08-03 02:08:52.279][D][msg_send # msg] >>>>> Send 311 ASR, cmd: 0x1006, ext: 0x0, len: 33
+2026-11-04 11:23:40.407 [COM3/csk_ap] [2026-08-03 02:08:52.299][D][msg_recv # msg] <<<<< Recv 318 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:23:40.407 [COM3/csk_ap] [2026-08-03 02:08:52.300][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:23:40.446 [COM3/csk_ap] [2026-08-03 02:08:52.316][D][msg_recv # msg] <<<<< Recv 319 PLAYER, cmd: 0x4001, ext: 0x0, len: 4
+2026-11-04 11:23:40.446 [COM3/csk_ap] [2026-08-03 02:08:52.317][D][msg_send # msg] >>>>> Send 312 PLAYER, cmd: 0x4001, ext: 0x8004, len: 1
+2026-11-04 11:23:40.446 [COM3/csk_ap] [2026-08-03 02:08:52.318][W][evs_event # event] wdt not feed 1128251
+2026-11-04 11:23:40.446 [COM3/csk_ap] [2026-08-03 02:08:52.318][D][evs_event # event] evt msg -> enter, f: 0x30056034, d: 0x387c54e4
+2026-11-04 11:23:40.446 [COM3/csk_ap] [2026-08-03 02:08:52.319][D][evs_event # app_client] tone player, play 3
+2026-11-04 11:23:40.446 [COM3/csk_ap] [2026-08-03 02:08:52.319][D][evs_event # soundplayer] release alert item
+2026-11-04 11:23:40.446 [COM3/csk_ap] [2026-08-03 02:08:52.320][D][evs_event # soundplayer] sound acquire channel
+2026-11-04 11:23:40.446 [COM3/csk_ap] [2026-08-03 02:08:52.321][D][evs_event # audiomgr] 4 acquire channel
+2026-11-04 11:23:40.446 [COM3/csk_ap] [2026-08-03 02:08:52.321][I][evs_event # soundplayer] focus 0, by_which 4
+2026-11-04 11:23:40.447 [COM3/csk_ap] [2026-08-03 02:08:52.323][D][msg_recv # msg] <<<<< Recv 320 RECORDER, cmd: 0x8001, ext: 0x0, len: 0
+2026-11-04 11:23:40.447 [COM3/csk_ap] [2026-08-03 02:08:52.323][I][msg_recv # rec_ringbuf] oneshot-v4 START requested
+2026-11-04 11:23:40.447 [COM3/csk_ap] [2026-08-03 02:08:52.324][D][evs_event # soundplayer] _sound_play_foreground, handle->m_play_state:6
+2026-11-04 11:23:40.447 [COM3/csk_ap] [2026-08-03 02:08:52.324][D][evs_event # soundplayer] _sound_play_next, handle->m_wait_len:1
+2026-11-04 11:23:40.447 [COM3/csk_ap] [2026-08-03 02:08:52.324][D][evs_event # soundplayer] play next tone 3: mem://addr=811077401size=2061
+2026-11-04 11:23:40.447 [COM3/csk_ap] [2026-08-03 02:08:52.325][D][evs_event # soundplayer] soundplayer status: 0XEF
+2026-11-04 11:23:40.447 [COM3/csk_ap] [2026-08-03 02:08:52.325][D][evs_event # app_client] sound player state: 239
+2026-11-04 11:23:40.447 [COM3/csk_ap] [2026-08-03 02:08:52.326][I][evs_event # APP_PLAYER] play audio mem://addr=811077401size=2061
+2026-11-04 11:23:40.447 [COM3/csk_ap] [2026-08-03 02:08:52.327][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:40.447 [COM3/csk_ap] [2026-08-03 02:08:52.328][D][msg_send # msg] >>>>> Send 313 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:23:40.447 [COM3/csk_ap] [2026-08-03 02:08:52.330][D][player_0_td # lisa_que] create queue: demux_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:23:40.447 [COM3/csk_ap] [2026-08-03 02:08:52.338][D][player_0_td # lisa_que] create queue: decode_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:23:40.470 [COM3/csk_ap] [2026-08-03 02:08:52.356][I][algo_task # rec_ringbuf] STOP-TEST ARM session:30 wait:200 request_ms:180487920
+2026-11-04 11:23:40.470 [COM3/csk_ap] [2026-08-03 02:08:52.356][I][algo_task # rec_ringbuf] STOP-TEST CANCEL session:30 gap_ms:23 keep_pos:5776596480
+2026-11-04 11:23:40.477 [COM3/csk_ap] [2026-08-03 02:08:52.371][I][player_0_td # APP_PLAYER] tone player evt 1
+2026-11-04 11:23:40.484 [COM3/csk_ap] [2026-08-03 02:08:52.372][D][player_0_td # soundplayer] soundplayer status: 0X1
+2026-11-04 11:23:40.485 [COM3/csk_ap] [2026-08-03 02:08:52.374][D][player_0_td # app_client] sound player state: 1
+2026-11-04 11:23:40.485 [COM3/csk_ap] [2026-08-03 02:08:52.375][D][player_0_td # PA_MGR] Refresh PA to ON, timeout 4294967295, by "tone_player_prepared"
+2026-11-04 11:23:40.485 [COM3/csk_ap] [2026-08-03 02:08:52.375][D][msg_send # msg] >>>>> Send 314 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:23:40.485 [COM3/csk_ap] [2026-08-03 02:08:52.376][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_prepared"
+2026-11-04 11:23:40.499 [COM3/csk_ap] [2026-08-03 02:08:52.391][I][player_0_td # APP_PLAYER] tone player evt 2
+2026-11-04 11:23:40.499 [COM3/csk_ap] [2026-08-03 02:08:52.391][D][player_0_td # soundplayer] soundplayer status: 0X2
+2026-11-04 11:23:40.500 [COM3/csk_ap] [2026-08-03 02:08:52.391][D][player_0_td # app_client] sound player state: 2
+2026-11-04 11:23:40.500 [COM3/csk_ap] [2026-08-03 02:08:52.393][D][msg_send # msg] >>>>> Send 315 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:23:40.530 [COM3/csk_ap] [2026-08-03 02:08:52.420][D][evs_event # event] evt msg -> enter, f: 0x30054316, d: 0x387c5850
+2026-11-04 11:23:40.530 [COM3/csk_ap] [2026-08-03 02:08:52.420][D][evs_event # algo] ******** CSK DOA 126 ********
+2026-11-04 11:23:40.530 [COM3/csk_ap] [2026-08-03 02:08:52.421][D][evs_event # app_client] send doa: 126
+2026-11-04 11:23:40.530 [COM3/csk_ap] [2026-08-03 02:08:52.421][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:40.530 [COM3/csk_ap] [2026-08-03 02:08:52.421][D][msg_send # msg] >>>>> Send 316 ASR, cmd: 0x1006, ext: 0x0, len: 33
+2026-11-04 11:23:41.016 [COM3/csk_ap] [2026-08-03 02:08:53.000][I][player_0_td # APP_PLAYER] tone player evt 6
+2026-11-04 11:23:41.023 [COM3/csk_ap] [2026-08-03 02:08:53.000][D][player_0_td # PA_MGR] Refresh PA to OFF, timeout 50000, by "tone_player_end"
+2026-11-04 11:23:41.023 [COM3/csk_ap] [2026-08-03 02:08:53.001][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_end"
+2026-11-04 11:23:41.023 [COM3/csk_ap] [2026-08-03 02:08:53.001][D][player_0_td # soundplayer] soundplayer status: 0X6
+2026-11-04 11:23:41.023 [COM3/csk_ap] [2026-08-03 02:08:53.001][D][player_0_td # app_client] sound player state: 6
+2026-11-04 11:23:41.023 [COM3/csk_ap] [2026-08-03 02:08:53.002][D][msg_send # msg] >>>>> Send 317 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:23:41.023 [COM3/csk_ap] [2026-08-03 02:08:53.003][D][evs_event # event] evt msg -> enter, f: 0x3005d23e, d: 0x0
+2026-11-04 11:23:41.023 [COM3/csk_ap] [2026-08-03 02:08:53.003][D][evs_event # audiomgr] 4 release channel
+2026-11-04 11:23:41.023 [COM3/csk_ap] [2026-08-03 02:08:53.004][I][evs_event # soundplayer] focus 2, by_which 4
+2026-11-04 11:23:41.023 [COM3/csk_ap] [2026-08-03 02:08:53.004][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:41.659 [COM3/csk_ap] [2026-08-03 02:08:53.644][I][algo_task # rec_ringbuf] oneshot-v4 progress session:30 pos:5776637440 end:5776637440 backlog:0 ms:0 sent:384000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:43.658 [COM3/csk_ap] [2026-08-03 02:08:55.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:30 pos:5776701440 end:5776701440 backlog:0 ms:0 sent:448000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:45.657 [COM3/csk_ap] [2026-08-03 02:08:57.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:30 pos:5776765440 end:5776765440 backlog:0 ms:0 sent:512000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:45.807 [COM3/csk_ap] [2026-08-03 02:08:57.154][D][evs_event # event] evt msg -> enter, f: 0x30054316, d: 0x387c6150
+2026-11-04 11:23:45.807 [COM3/csk_ap] [2026-08-03 02:08:57.154][D][evs_event # algo] ******** CSK DOA 54 ********
+2026-11-04 11:23:45.807 [COM3/csk_ap] [2026-08-03 02:08:57.155][D][evs_event # app_client] send doa: 54
+2026-11-04 11:23:45.807 [COM3/csk_ap] [2026-08-03 02:08:57.155][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:45.807 [COM3/csk_ap] [2026-08-03 02:08:57.155][D][msg_send # msg] >>>>> Send 318 ASR, cmd: 0x1001, ext: 0x0, len: 33
+2026-11-04 11:23:45.809 [COM3/csk_ap] [33m(T1|180526.375) wake point string: wakept(180523680:180525280)
+2026-11-04 11:23:45.832 [COM3/csk_ap] [0m[2026-08-03 02:08:57.161][I][algo_task # algo] wakeup power: chn=1, frame=18052536, cp_x100=5800
+2026-11-04 11:23:45.832 [COM3/csk_ap] [2026-08-03 02:08:57.162][D][algo_task # app_client] Wakeup: {"rlt":[{"istart":544,"iresid":209,"iduration":40,"nfillerscore":0,"nkeywordscore":0,"ncm":0,"ncmThreshold":-138,"keyword":"da kai shang xia bai feng","intent":"da kai shang xia bai feng","nRltIdx":17,"nDelayFrame":0,"nThrowFrame":584,"decId":0,"branch":2,"wakeUpType":0,"VadGap":0,"nE2eIntervalFrame":5,"nE2eNodeFrame":2,"nStartStateThreshold":0,"bMain":0,"bAbsorb":0,"bMhx":0,"iframe":4513134}],"cp_x100":5800,"cp_db":58,"wk_iframe":18052536}
+2026-11-04 11:23:45.832 [COM3/csk_ap] [2026-08-03 02:08:57.169][W][evs_event # event] wdt not feed 1128285
+2026-11-04 11:23:45.832 [COM3/csk_ap] [2026-08-03 02:08:57.169][D][evs_event # event] evt msg -> enter, f: 0x300564b4, d: 0x387c54e4
+2026-11-04 11:23:45.832 [COM3/csk_ap] [2026-08-03 02:08:57.171][D][evs_event # app_client] keyword: da kai shang xia bai feng, intent: da kai shang xia bai feng, ncm: 0.00, cp_db: 58
+2026-11-04 11:23:45.832 [COM3/csk_ap] [2026-08-03 02:08:57.173][I][evs_event # app_client] MEM[WAKEUP] SRAM free:9236(9KB) lfb:7936(7KB) | PSRAM free:238300(232KB) lfb:233472(228KB)
+2026-11-04 11:23:45.832 [COM3/csk_ap] [2026-08-03 02:08:57.174][D][evs_event # algo] keyword: da kai shang xia bai feng, cmd_id: 0062
+2026-11-04 11:23:45.832 [COM3/csk_ap] [2026-08-03 02:08:57.175][D][evs_event # app_client] offline_cmd: cmd 0x62, score 0.000000, energy 580000, is_study_cmd 0
+2026-11-04 11:23:45.832 [COM3/csk_ap] [2026-08-03 02:08:57.175][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:45.832 [COM3/csk_ap] [2026-08-03 02:08:57.176][D][msg_send # msg] >>>>> Send 319 ASR, cmd: 0x1001, ext: 0x0, len: 33
+2026-11-04 11:23:45.946 [COM3/csk_ap] [2026-08-03 02:08:58.000][D][msg_recv # msg] <<<<< Recv 321 PLAYER, cmd: 0x4001, ext: 0x0, len: 4
+2026-11-04 11:23:45.959 [COM3/csk_ap] [2026-08-03 02:08:58.001][D][msg_send # msg] >>>>> Send 320 PLAYER, cmd: 0x4001, ext: 0x62, len: 1
+2026-11-04 11:23:45.959 [COM3/csk_ap] [2026-08-03 02:08:58.002][D][evs_event # event] evt msg -> enter, f: 0x30056034, d: 0x387c54e4
+2026-11-04 11:23:45.959 [COM3/csk_ap] [2026-08-03 02:08:58.004][D][evs_event # app_client] tone player, play 44
+2026-11-04 11:23:45.959 [COM3/csk_ap] [2026-08-03 02:08:58.004][D][evs_event # soundplayer] release alert item
+2026-11-04 11:23:45.959 [COM3/csk_ap] [2026-08-03 02:08:58.005][D][evs_event # soundplayer] sound acquire channel
+2026-11-04 11:23:45.959 [COM3/csk_ap] [2026-08-03 02:08:58.006][D][evs_event # audiomgr] 4 acquire channel
+2026-11-04 11:23:45.959 [COM3/csk_ap] [2026-08-03 02:08:58.006][I][evs_event # soundplayer] focus 0, by_which 4
+2026-11-04 11:23:45.959 [COM3/csk_ap] [2026-08-03 02:08:58.006][D][evs_event # soundplayer] _sound_play_foreground, handle->m_play_state:6
+2026-11-04 11:23:45.959 [COM3/csk_ap] [2026-08-03 02:08:58.007][D][evs_event # soundplayer] _sound_play_next, handle->m_wait_len:1
+2026-11-04 11:23:45.959 [COM3/csk_ap] [2026-08-03 02:08:58.007][D][evs_event # soundplayer] play next tone 44: mem://addr=811265474size=4653
+2026-11-04 11:23:45.959 [COM3/csk_ap] [2026-08-03 02:08:58.010][D][evs_event # soundplayer] soundplayer status: 0XEF
+2026-11-04 11:23:45.959 [COM3/csk_ap] [2026-08-03 02:08:58.012][D][evs_event # app_client] sound player state: 239
+2026-11-04 11:23:45.966 [COM3/csk_ap] [2026-08-03 02:08:58.014][D][msg_send # msg] >>>>> Send 321 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:23:45.966 [COM3/csk_ap] [2026-08-03 02:08:58.013][I][evs_event # APP_PLAYER] play audio mem://addr=811265474size=4653
+2026-11-04 11:23:45.966 [COM3/csk_ap] [2026-08-03 02:08:58.016][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:45.966 [COM3/csk_ap] [2026-08-03 02:08:58.020][D][player_0_td # lisa_que] create queue: demux_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:23:45.969 [COM3/csk_ap] [2026-08-03 02:08:58.023][D][player_0_td # lisa_que] create queue: decode_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:23:45.975 [COM3/csk_ap] [2026-08-03 02:08:58.029][D][msg_recv # msg] <<<<< Recv 322 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:23:45.977 [COM3/csk_ap] [2026-08-03 02:08:58.031][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:23:45.983 [COM3/csk_ap] [2026-08-03 02:08:58.029][I][algo_task # rec_ringbuf] STOP-TEST ARM session:30 wait:200 request_ms:180493489
+2026-11-04 11:23:45.983 [COM3/csk_ap] [2026-08-03 02:08:58.036][D][msg_recv # msg] <<<<< Recv 323 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:23:45.983 [COM3/csk_ap] [2026-08-03 02:08:58.037][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:23:46.003 [COM3/csk_ap] [2026-08-03 02:08:58.053][I][player_0_td # APP_PLAYER] tone player evt 1
+2026-11-04 11:23:46.003 [COM3/csk_ap] [2026-08-03 02:08:58.054][D][player_0_td # soundplayer] soundplayer status: 0X1
+2026-11-04 11:23:46.003 [COM3/csk_ap] [2026-08-03 02:08:58.054][D][player_0_td # app_client] sound player state: 1
+2026-11-04 11:23:46.003 [COM3/csk_ap] [2026-08-03 02:08:58.056][D][player_0_td # PA_MGR] Refresh PA to ON, timeout 4294967295, by "tone_player_prepared"
+2026-11-04 11:23:46.003 [COM3/csk_ap] [2026-08-03 02:08:58.057][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_prepared"
+2026-11-04 11:23:46.006 [COM3/csk_ap] [2026-08-03 02:08:58.057][D][msg_send # msg] >>>>> Send 322 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:23:46.019 [COM3/csk_ap] [2026-08-03 02:08:58.069][I][player_0_td # APP_PLAYER] tone player evt 2
+2026-11-04 11:23:46.019 [COM3/csk_ap] [2026-08-03 02:08:58.069][D][player_0_td # soundplayer] soundplayer status: 0X2
+2026-11-04 11:23:46.019 [COM3/csk_ap] [2026-08-03 02:08:58.070][D][player_0_td # app_client] sound player state: 2
+2026-11-04 11:23:46.019 [COM3/csk_ap] [2026-08-03 02:08:58.072][D][msg_send # msg] >>>>> Send 323 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:23:46.220 [COM3/csk_ap] [2026-08-03 02:08:58.267][I][algo_task # rec_ringbuf] STOP-TEST EXPIRE session:30 elapsed_ms:242
+2026-11-04 11:23:46.220 [COM3/csk_ap] [2026-08-03 02:08:58.267][I][algo_task # rec_ringbuf] oneshot-v4 STOP-unsubmitted session:30 pos:5776780800 end:5776780800 backlog:0 ms:0 sent:527360 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:47.424 [COM3/csk_ap] [2026-08-03 02:08:59.000][I][player_0_td # APP_PLAYER] tone player evt 6
+2026-11-04 11:23:47.432 [COM3/csk_ap] [2026-08-03 02:08:59.000][D][player_0_td # PA_MGR] Refresh PA to OFF, timeout 50000, by "tone_player_end"
+2026-11-04 11:23:47.432 [COM3/csk_ap] [2026-08-03 02:08:59.001][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_end"
+2026-11-04 11:23:47.432 [COM3/csk_ap] [2026-08-03 02:08:59.002][D][player_0_td # soundplayer] soundplayer status: 0X6
+2026-11-04 11:23:47.432 [COM3/csk_ap] [2026-08-03 02:08:59.002][D][player_0_td # app_client] sound player state: 6
+2026-11-04 11:23:47.432 [COM3/csk_ap] [2026-08-03 02:08:59.003][D][msg_send # msg] >>>>> Send 324 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:23:47.432 [COM3/csk_ap] [2026-08-03 02:08:59.005][D][evs_event # event] evt msg -> enter, f: 0x3005d23e, d: 0x0
+2026-11-04 11:23:47.432 [COM3/csk_ap] [2026-08-03 02:08:59.006][D][evs_event # audiomgr] 4 release channel
+2026-11-04 11:23:47.432 [COM3/csk_ap] [2026-08-03 02:08:59.006][I][evs_event # soundplayer] focus 2, by_which 4
+2026-11-04 11:23:47.432 [COM3/csk_ap] [2026-08-03 02:08:59.007][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:47.461 [COM3/csk_ap] [2026-08-03 02:08:59.045][D][msg_recv # msg] <<<<< Recv 324 RECORDER, cmd: 0x8001, ext: 0x0, len: 0
+2026-11-04 11:23:47.461 [COM3/csk_ap] [2026-08-03 02:08:59.046][I][msg_recv # rec_ringbuf] oneshot-v4 START requested
+2026-11-04 11:23:47.501 [COM3/csk_ap] [2026-08-03 02:08:59.077][I][algo_task # rec_ringbuf] oneshot-v4 START-live session:31 pos:5776821760 end:5776821760 backlog:0 ms:0 sent:0 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:49.413 [COM3/csk_ap] [2026-08-03 02:09:01.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:31 pos:5776885760 end:5776885760 backlog:0 ms:0 sent:64000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:51.414 [COM3/csk_ap] [2026-08-03 02:09:03.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:31 pos:5776949760 end:5776949760 backlog:0 ms:0 sent:128000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:53.414 [COM3/csk_ap] [2026-08-03 02:09:05.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:31 pos:5777013760 end:5777013760 backlog:0 ms:0 sent:192000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:55.414 [COM3/csk_ap] [2026-08-03 02:09:07.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:31 pos:5777077760 end:5777077760 backlog:0 ms:0 sent:256000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:57.414 [COM3/csk_ap] [2026-08-03 02:09:09.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:31 pos:5777141760 end:5777141760 backlog:0 ms:0 sent:320000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:59.413 [COM3/csk_ap] [2026-08-03 02:09:11.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:31 pos:5777205760 end:5777205760 backlog:0 ms:0 sent:384000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:23:59.643 [COM3/csk_ap] [2026-08-03 02:09:11.224][D][algo_task # PA_MGR] Refresh PA to ON, timeout 50000, by "prewakeup"
+2026-11-04 11:23:59.643 [COM3/csk_ap] [2026-08-03 02:09:11.225][D][algo_task # PA_MGR] Refresh PA end by "prewakeup"
+2026-11-04 11:23:59.643 [COM3/csk_ap] [2026-08-03 02:09:11.232][D][evs_event # event] evt msg -> enter, f: 0x30054784, d: 0x387c54e4
+2026-11-04 11:23:59.643 [COM3/csk_ap] [2026-08-03 02:09:11.232][D][evs_event # algo] Pre Wakeup: {"rlt":[{"istart":916,"iresid":0,"iduration":17,"nfillerscore":122,"nkeywordscore":17165,"ncm":993,"ncmThreshold":800,"keyword":"xiao ti xiao ti","intent":"xiao ti xiao ti","bMain":1,"bAbsorb":0,"bMhx":0}]}
+2026-11-04 11:23:59.643 [COM3/csk_ap] [2026-08-03 02:09:11.235][I][evs_event # wake_audio] candidate prewake score:993 valid:1 trigger:2888624640
+2026-11-04 11:23:59.643 [COM3/csk_ap] [2026-08-03 02:09:11.236][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:59.991 [COM3/csk_ap] [2026-08-03 02:09:12.000][D][algo_task # algo] wake point: 180538480ms -> 180539520ms
+2026-11-04 11:23:59.991 [COM3/csk_ap] [33m(T1|180540.531) wake point string: wakept(180538480:180539520)
+2026-11-04 11:23:59.991 [COM3/csk_ap] [0m[2026-08-03 02:09:12.000][I][algo_task # rec_ringbuf] mark wake frame:180538480ms -> 180539520ms
+2026-11-04 11:23:59.991 [COM3/csk_ap] [2026-08-03 02:09:12.022][I][algo_task # algo] wakeup power: chn=1, frame=18053952, cp_x100=7000
+2026-11-04 11:23:59.991 [COM3/csk_ap] [2026-08-03 02:09:12.023][D][algo_task # app_client] Wakeup: {"rlt":[{"istart":914,"iresid":1,"iduration":26,"nfillerscore":0,"nkeywordscore":0,"ncm":-4,"ncmThreshold":-177,"keyword":"xiao ti xiao ti","intent":"xiao ti xiao ti-ch","nRltIdx":0,"nDelayFrame":0,"nThrowFrame":940,"decId":0,"branch":3,"wakeUpType":0,"VadGap":0,"nE2eIntervalFrame":8,"nE2eNodeFrame":2,"nStartStateThreshold":0,"bMain":1,"bAbsorb":0,"bMhx":0,"nLanThreshold":0,"nLanNcm":0,"iframe":4513488}],"cp_x100":7000,"cp_db":70,"wk_iframe":18053[2026-08-03 02:09:12.030][D][evs_event # event] evt msg -> enter, f: 0x300564b4, d: 0x387c54e4
+2026-11-04 11:23:59.994 [COM3/csk_ap] [2026-08-03 02:09:12.032][D][evs_event # app_client] keyword: xiao ti xiao ti, intent: xiao ti xiao ti-ch, ncm: -4.00, cp_db: 70
+2026-11-04 11:23:59.994 [COM3/csk_ap] [2026-08-03 02:09:12.034][I][evs_event # app_client] MEM[WAKEUP] SRAM free:9236(9KB) lfb:7936(7KB) | PSRAM free:238300(232KB) lfb:233472(228KB)
+2026-11-04 11:23:59.994 [COM3/csk_ap] [2026-08-03 02:09:12.035][D][evs_event # algo] keyword: xiao ti xiao ti-ch, cmd_id: 0001
+2026-11-04 11:23:59.994 [COM3/csk_ap] [2026-08-03 02:09:12.035][D][evs_event # app_client] wakeup_cmd: cmd 0x1, localism 0, score -4.000000, energy 700000, is_study_cmd 0
+2026-11-04 11:23:59.994 [COM3/csk_ap] [2026-08-03 02:09:12.036][D][evs_event # event] evt msg -> exit
+2026-11-04 11:23:59.994 [COM3/csk_ap] [2026-08-03 02:09:12.036][D][msg_send # msg] >>>>> Send 325 ASR, cmd: 0x1006, ext: 0x0, len: 33
+2026-11-04 11:24:00.007 [COM3/csk_ap] [2026-08-03 02:09:12.057][D][msg_recv # msg] <<<<< Recv 325 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:24:00.007 [COM3/csk_ap] [2026-08-03 02:09:12.058][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:24:00.036 [COM3/csk_ap] [2026-08-03 02:09:12.072][D][msg_recv # msg] <<<<< Recv 326 PLAYER, cmd: 0x4001, ext: 0x0, len: 4
+2026-11-04 11:24:00.037 [COM3/csk_ap] [2026-08-03 02:09:12.073][D][msg_send # msg] >>>>> Send 326 PLAYER, cmd: 0x4001, ext: 0x8003, len: 1
+2026-11-04 11:24:00.037 [COM3/csk_ap] [2026-08-03 02:09:12.074][D][evs_event # event] evt msg -> enter, f: 0x30056034, d: 0x387c54e4
+2026-11-04 11:24:00.037 [COM3/csk_ap] [2026-08-03 02:09:12.075][D][evs_event # app_client] tone player, play 2
+2026-11-04 11:24:00.037 [COM3/csk_ap] [2026-08-03 02:09:12.075][D][evs_event # soundplayer] release alert item
+2026-11-04 11:24:00.037 [COM3/csk_ap] [2026-08-03 02:09:12.075][D][evs_event # soundplayer] sound acquire channel
+2026-11-04 11:24:00.037 [COM3/csk_ap] [2026-08-03 02:09:12.076][D][evs_event # audiomgr] 4 acquire channel
+2026-11-04 11:24:00.037 [COM3/csk_ap] [2026-08-03 02:09:12.077][I][evs_event # soundplayer] focus 0, by_which 4
+2026-11-04 11:24:00.037 [COM3/csk_ap] [2026-08-03 02:09:12.077][D][evs_event # soundplayer] _sound_play_foreground, handle->m_play_state:6
+2026-11-04 11:24:00.037 [COM3/csk_ap] [2026-08-03 02:09:12.078][D][evs_event # soundplayer] _sound_play_next, handle->m_wait_len:1
+2026-11-04 11:24:00.037 [COM3/csk_ap] [2026-08-03 02:09:12.078][D][evs_event # soundplayer] play next tone 2: mem://addr=811075448size=1953
+2026-11-04 11:24:00.037 [COM3/csk_ap] [2026-08-03 02:09:12.079][D][evs_event # soundplayer] soundplayer status: 0XEF
+2026-11-04 11:24:00.037 [COM3/csk_ap] [2026-08-03 02:09:12.079][D][evs_event # app_client] sound player state: 239
+2026-11-04 11:24:00.037 [COM3/csk_ap] [2026-08-03 02:09:12.080][I][evs_event # APP_PLAYER] play audio mem://addr=811075448size=1953
+2026-11-04 11:24:00.037 [COM3/csk_ap] [2026-08-03 02:09:12.080][D][evs_event # event] evt msg -> exit
+2026-11-04 11:24:00.037 [COM3/csk_ap] [2026-08-03 02:09:12.083][D][player_0_td # lisa_que] create queue: demux_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:24:00.037 [COM3/csk_ap] [2026-08-03 02:09:12.083][D][msg_send # msg] >>>>> Send 327 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:24:00.037 [COM3/csk_ap] [2026-08-03 02:09:12.087][D][msg_recv # msg] <<<<< Recv 327 RECORDER, cmd: 0x8001, ext: 0x0, len: 0
+2026-11-04 11:24:00.038 [COM3/csk_ap] [2026-08-03 02:09:12.090][I][msg_recv # rec_ringbuf] oneshot-v4 START requested
+2026-11-04 11:24:00.041 [COM3/csk_ap] [2026-08-03 02:09:12.093][D][player_0_td # lisa_que] create queue: decode_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:24:00.068 [COM3/csk_ap] [2026-08-03 02:09:12.112][I][algo_task # rec_ringbuf] STOP-TEST ARM session:31 wait:200 request_ms:180507514
+2026-11-04 11:24:00.068 [COM3/csk_ap] [2026-08-03 02:09:12.112][I][algo_task # rec_ringbuf] STOP-TEST CANCEL session:31 gap_ms:31 keep_pos:5777223680
+2026-11-04 11:24:00.075 [COM3/csk_ap] [2026-08-03 02:09:12.121][I][player_0_td # APP_PLAYER] tone player evt 1
+2026-11-04 11:24:00.075 [COM3/csk_ap] [2026-08-03 02:09:12.122][D][player_0_td # soundplayer] soundplayer status: 0X1
+2026-11-04 11:24:00.075 [COM3/csk_ap] [2026-08-03 02:09:12.122][D][player_0_td # app_client] sound player state: 1
+2026-11-04 11:24:00.075 [COM3/csk_ap] [2026-08-03 02:09:12.123][D][player_0_td # PA_MGR] Refresh PA to ON, timeout 4294967295, by "tone_player_prepared"
+2026-11-04 11:24:00.075 [COM3/csk_ap] [2026-08-03 02:09:12.123][D][msg_send # msg] >>>>> Send 328 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:24:00.075 [COM3/csk_ap] [2026-08-03 02:09:12.123][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_prepared"
+2026-11-04 11:24:00.082 [COM3/csk_ap] [2026-08-03 02:09:12.134][I][player_0_td # APP_PLAYER] tone player evt 2
+2026-11-04 11:24:00.084 [COM3/csk_ap] [2026-08-03 02:09:12.134][D][player_0_td # soundplayer] soundplayer status: 0X2
+2026-11-04 11:24:00.085 [COM3/csk_ap] [2026-08-03 02:09:12.136][D][player_0_td # app_client] sound player state: 2
+2026-11-04 11:24:00.091 [COM3/csk_ap] [2026-08-03 02:09:12.141][D][msg_send # msg] >>>>> Send 329 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:24:00.129 [COM3/csk_ap] [2026-08-03 02:09:12.177][W][evs_event # event] wdt not feed 1128374
+2026-11-04 11:24:00.129 [COM3/csk_ap] [2026-08-03 02:09:12.177][D][evs_event # event] evt msg -> enter, f: 0x30054316, d: 0x387c5848
+2026-11-04 11:24:00.129 [COM3/csk_ap] [2026-08-03 02:09:12.178][D][evs_event # algo] ******** CSK DOA 54 ********
+2026-11-04 11:24:00.129 [COM3/csk_ap] [2026-08-03 02:09:12.178][D][evs_event # app_client] send doa: 54
+2026-11-04 11:24:00.129 [COM3/csk_ap] [2026-08-03 02:09:12.179][D][evs_event # event] evt msg -> exit
+2026-11-04 11:24:00.129 [COM3/csk_ap] [2026-08-03 02:09:12.179][D][msg_send # msg] >>>>> Send 330 ASR, cmd: 0x1006, ext: 0x0, len: 33
+2026-11-04 11:24:00.594 [COM3/csk_ap] [2026-08-03 02:09:12.643][I][player_0_td # APP_PLAYER] tone player evt 6
+2026-11-04 11:24:00.603 [COM3/csk_ap] [2026-08-03 02:09:12.643][D][player_0_td # PA_MGR] Refresh PA to OFF, timeout 50000, by "tone_player_end"
+2026-11-04 11:24:00.603 [COM3/csk_ap] [2026-08-03 02:09:12.645][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_end"
+2026-11-04 11:24:00.603 [COM3/csk_ap] [2026-08-03 02:09:12.645][D][player_0_td # soundplayer] soundplayer status: 0X6
+2026-11-04 11:24:00.603 [COM3/csk_ap] [2026-08-03 02:09:12.646][D][player_0_td # app_client] sound player state: 6
+2026-11-04 11:24:00.605 [COM3/csk_ap] [2026-08-03 02:09:12.647][D][msg_send # msg] >>>>> Send 331 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:24:00.605 [COM3/csk_ap] [2026-08-03 02:09:12.648][D][evs_event # event] evt msg -> enter, f: 0x3005d23e, d: 0x0
+2026-11-04 11:24:00.605 [COM3/csk_ap] [2026-08-03 02:09:12.649][D][evs_event # audiomgr] 4 release channel
+2026-11-04 11:24:00.605 [COM3/csk_ap] [2026-08-03 02:09:12.650][I][evs_event # soundplayer] focus 2, by_which 4
+2026-11-04 11:24:00.605 [COM3/csk_ap] [2026-08-03 02:09:12.651][D][evs_event # event] evt msg -> exit
+2026-11-04 11:24:01.420 [COM3/csk_ap] [2026-08-03 02:09:13.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:31 pos:5777269760 end:5777269760 backlog:0 ms:0 sent:448000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:24:03.414 [COM3/csk_ap] [2026-08-03 02:09:15.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:31 pos:5777333760 end:5777333760 backlog:0 ms:0 sent:512000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:24:05.406 [COM3/csk_ap] [2026-08-03 02:09:17.000][D][evs_event # event] evt msg -> enter, f: 0x30054316, d: 0x387c6150
+2026-11-04 11:24:05.406 [COM3/csk_ap] [2026-08-03 02:09:17.000][D][evs_event # algo] ******** CSK DOA 90 ********
+2026-11-04 11:24:05.406 [COM3/csk_ap] [2026-08-03 02:09:17.000][D][evs_event # app_client] send doa: 90
+2026-11-04 11:24:05.406 [COM3/csk_ap] [2026-08-03 02:09:17.001][D][evs_event # event] evt msg -> exit
+2026-11-04 11:24:05.406 [COM3/csk_ap] [2026-08-03 02:09:17.001][D][msg_send # msg] >>>>> Send 332 ASR, cmd: 0x1001, ext: 0x0, len: 33
+2026-11-04 11:24:05.408 [COM3/csk_ap] [33m(T1|180546.000) wake point string: wakept(180543200:180544800)
+2026-11-04 11:24:05.432 [COM3/csk_ap] [0m[2026-08-03 02:09:17.006][I][algo_task # algo] wakeup power: chn=1, frame=18054496, cp_x100=5900
+2026-11-04 11:24:05.432 [COM3/csk_ap] [2026-08-03 02:09:17.007][D][algo_task # app_client] Wakeup: {"rlt":[{"istart":1032,"iresid":210,"iduration":40,"nfillerscore":0,"nkeywordscore":0,"ncm":0,"ncmThreshold":-138,"keyword":"guan bi shang xia bai feng","intent":"guan bi shang xia bai feng","nRltIdx":18,"nDelayFrame":0,"nThrowFrame":1072,"decId":0,"branch":2,"wakeUpType":0,"VadGap":0,"nE2eIntervalFrame":5,"nE2eNodeFrame":2,"nStartStateThreshold":0,"bMain":0,"bAbsorb":0,"bMhx":0,"iframe":4513624}],"cp_x100":5900,"cp_db":59,"wk_iframe":18054496}
+2026-11-04 11:24:05.441 [COM3/csk_ap] [2026-08-03 02:09:17.014][W][evs_event # event] wdt not feed 1128407
+2026-11-04 11:24:05.441 [COM3/csk_ap] [2026-08-03 02:09:17.015][D][evs_event # event] evt msg -> enter, f: 0x300564b4, d: 0x387c54e4
+2026-11-04 11:24:05.441 [COM3/csk_ap] [2026-08-03 02:09:17.009][I][algo_task # rec_ringbuf] oneshot-v4 progress session:31 pos:5777397760 end:5777397760 backlog:0 ms:0 sent:576000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:24:05.441 [COM3/csk_ap] [2026-08-03 02:09:17.017][D][evs_event # app_client] keyword: guan bi shang xia bai feng, intent: guan bi shang xia bai feng, ncm: 0.00, cp_db: 59
+2026-11-04 11:24:05.441 [COM3/csk_ap] [2026-08-03 02:09:17.019][I][evs_event # app_client] MEM[WAKEUP] SRAM free:9236(9KB) lfb:7936(7KB) | PSRAM free:238300(232KB) lfb:233472(228KB)
+2026-11-04 11:24:05.441 [COM3/csk_ap] [2026-08-03 02:09:17.020][D][evs_event # algo] keyword: guan bi shang xia bai feng, cmd_id: 0063
+2026-11-04 11:24:05.441 [COM3/csk_ap] [2026-08-03 02:09:17.020][D][evs_event # app_client] offline_cmd: cmd 0x63, score 0.000000, energy 590000, is_study_cmd 0
+2026-11-04 11:24:05.441 [COM3/csk_ap] [2026-08-03 02:09:17.021][D][evs_event # event] evt msg -> exit
+2026-11-04 11:24:05.441 [COM3/csk_ap] [2026-08-03 02:09:17.021][D][msg_send # msg] >>>>> Send 333 ASR, cmd: 0x1001, ext: 0x0, len: 33
+2026-11-04 11:24:05.512 [COM3/csk_ap] [2026-08-03 02:09:17.109][D][msg_recv # msg] <<<<< Recv 328 PLAYER, cmd: 0x4001, ext: 0x0, len: 4
+2026-11-04 11:24:05.526 [COM3/csk_ap] [2026-08-03 02:09:17.111][D][msg_send # msg] >>>>> Send 334 PLAYER, cmd: 0x4001, ext: 0x63, len: 1
+2026-11-04 11:24:05.526 [COM3/csk_ap] [2026-08-03 02:09:17.112][D][evs_event # event] evt msg -> enter, f: 0x30056034, d: 0x387c54e4
+2026-11-04 11:24:05.526 [COM3/csk_ap] [2026-08-03 02:09:17.112][D][evs_event # app_client] tone player, play 45
+2026-11-04 11:24:05.526 [COM3/csk_ap] [2026-08-03 02:09:17.113][D][evs_event # soundplayer] release alert item
+2026-11-04 11:24:05.526 [COM3/csk_ap] [2026-08-03 02:09:17.113][D][evs_event # soundplayer] sound acquire channel
+2026-11-04 11:24:05.526 [COM3/csk_ap] [2026-08-03 02:09:17.113][D][evs_event # audiomgr] 4 acquire channel
+2026-11-04 11:24:05.526 [COM3/csk_ap] [2026-08-03 02:09:17.113][I][evs_event # soundplayer] focus 0, by_which 4
+2026-11-04 11:24:05.526 [COM3/csk_ap] [2026-08-03 02:09:17.114][D][evs_event # soundplayer] _sound_play_foreground, handle->m_play_state:6
+2026-11-04 11:24:05.526 [COM3/csk_ap] [2026-08-03 02:09:17.115][D][evs_event # soundplayer] _sound_play_next, handle->m_wait_len:1
+2026-11-04 11:24:05.526 [COM3/csk_ap] [2026-08-03 02:09:17.116][D][evs_event # soundplayer] play next tone 45: mem://addr=811270127size=4329
+2026-11-04 11:24:05.526 [COM3/csk_ap] [2026-08-03 02:09:17.118][D][evs_event # soundplayer] soundplayer status: 0XEF
+2026-11-04 11:24:05.526 [COM3/csk_ap] [2026-08-03 02:09:17.118][D][evs_event # app_client] sound player state: 239
+2026-11-04 11:24:05.526 [COM3/csk_ap] [2026-08-03 02:09:17.119][I][evs_event # APP_PLAYER] play audio mem://addr=811270127size=4329
+2026-11-04 11:24:05.526 [COM3/csk_ap] [2026-08-03 02:09:17.120][D][msg_send # msg] >>>>> Send 335 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:24:05.531 [COM3/csk_ap] [2026-08-03 02:09:17.122][D][evs_event # event] evt msg -> exit
+2026-11-04 11:24:05.531 [COM3/csk_ap] [2026-08-03 02:09:17.125][D][player_0_td # lisa_que] create queue: demux_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:24:05.538 [COM3/csk_ap] [2026-08-03 02:09:17.132][D][player_0_td # lisa_que] create queue: decode_0_que_que_buf, item size: 2, count: 60
+2026-11-04 11:24:05.563 [COM3/csk_ap] [2026-08-03 02:09:17.158][D][msg_recv # msg] <<<<< Recv 329 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:24:05.564 [COM3/csk_ap] [2026-08-03 02:09:17.160][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:24:05.564 [COM3/csk_ap] [2026-08-03 02:09:17.161][I][player_0_td # APP_PLAYER] tone player evt 1
+2026-11-04 11:24:05.573 [COM3/csk_ap] [2026-08-03 02:09:17.163][D][player_0_td # soundplayer] soundplayer status: 0X1
+2026-11-04 11:24:05.573 [COM3/csk_ap] [2026-08-03 02:09:17.164][D][player_0_td # app_client] sound player state: 1
+2026-11-04 11:24:05.573 [COM3/csk_ap] [2026-08-03 02:09:17.165][D][msg_send # msg] >>>>> Send 336 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:24:05.573 [COM3/csk_ap] [2026-08-03 02:09:17.165][D][player_0_td # PA_MGR] Refresh PA to ON, timeout 4294967295, by "tone_player_prepared"
+2026-11-04 11:24:05.573 [COM3/csk_ap] [2026-08-03 02:09:17.167][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_prepared"
+2026-11-04 11:24:05.573 [COM3/csk_ap] [2026-08-03 02:09:17.167][D][msg_recv # msg] <<<<< Recv 330 RECORDER, cmd: 0x8002, ext: 0x0, len: 0
+2026-11-04 11:24:05.573 [COM3/csk_ap] [2026-08-03 02:09:17.169][I][msg_recv # rec_ringbuf] oneshot-v4 STOP requested
+2026-11-04 11:24:05.584 [COM3/csk_ap] [2026-08-03 02:09:17.178][I][player_0_td # APP_PLAYER] tone player evt 2
+2026-11-04 11:24:05.584 [COM3/csk_ap] [2026-08-03 02:09:17.174][I][algo_task # rec_ringbuf] STOP-TEST ARM session:31 wait:200 request_ms:180513070
+2026-11-04 11:24:05.584 [COM3/csk_ap] [2026-08-03 02:09:17.182][D][player_0_td # soundplayer] soundplayer status: 0X2
+2026-11-04 11:24:05.588 [COM3/csk_ap] [2026-08-03 02:09:17.183][D][player_0_td # app_client] sound player state: 2
+2026-11-04 11:24:05.588 [COM3/csk_ap] [2026-08-03 02:09:17.185][D][msg_send # msg] >>>>> Send 337 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:24:05.819 [COM3/csk_ap] [2026-08-03 02:09:17.408][I][algo_task # rec_ringbuf] STOP-TEST EXPIRE session:31 elapsed_ms:254
+2026-11-04 11:24:05.819 [COM3/csk_ap] [2026-08-03 02:09:17.408][I][algo_task # rec_ringbuf] oneshot-v4 STOP-unsubmitted session:31 pos:5777408000 end:5777408000 backlog:0 ms:0 sent:586240 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:24:06.870 [COM3/csk_ap] [2026-08-03 02:09:18.000][I][player_0_td # APP_PLAYER] tone player evt 6
+2026-11-04 11:24:06.878 [COM3/csk_ap] [2026-08-03 02:09:18.000][D][player_0_td # PA_MGR] Refresh PA to OFF, timeout 50000, by "tone_player_end"
+2026-11-04 11:24:06.878 [COM3/csk_ap] [2026-08-03 02:09:18.001][D][player_0_td # PA_MGR] Refresh PA end by "tone_player_end"
+2026-11-04 11:24:06.878 [COM3/csk_ap] [2026-08-03 02:09:18.002][D][player_0_td # soundplayer] soundplayer status: 0X6
+2026-11-04 11:24:06.878 [COM3/csk_ap] [2026-08-03 02:09:18.002][D][player_0_td # app_client] sound player state: 6
+2026-11-04 11:24:06.878 [COM3/csk_ap] [2026-08-03 02:09:18.003][D][msg_send # msg] >>>>> Send 338 PLAYER, cmd: 0x4004, ext: 0x0, len: 2
+2026-11-04 11:24:06.878 [COM3/csk_ap] [2026-08-03 02:09:18.006][D][evs_event # event] evt msg -> enter, f: 0x3005d23e, d: 0x0
+2026-11-04 11:24:06.878 [COM3/csk_ap] [2026-08-03 02:09:18.006][D][evs_event # audiomgr] 4 release channel
+2026-11-04 11:24:06.878 [COM3/csk_ap] [2026-08-03 02:09:18.007][I][evs_event # soundplayer] focus 2, by_which 4
+2026-11-04 11:24:06.878 [COM3/csk_ap] [2026-08-03 02:09:18.007][D][evs_event # event] evt msg -> exit
+2026-11-04 11:24:06.910 [COM3/csk_ap] [2026-08-03 02:09:18.046][D][msg_recv # msg] <<<<< Recv 331 RECORDER, cmd: 0x8001, ext: 0x0, len: 0
+2026-11-04 11:24:06.910 [COM3/csk_ap] [2026-08-03 02:09:18.047][I][msg_recv # rec_ringbuf] oneshot-v4 START requested
+2026-11-04 11:24:06.937 [COM3/csk_ap] [2026-08-03 02:09:19.000][I][algo_task # rec_ringbuf] oneshot-v4 START-live session:32 pos:5777443840 end:5777443840 backlog:0 ms:0 sent:0 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:24:08.854 [COM3/csk_ap] [2026-08-03 02:09:20.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:32 pos:5777507840 end:5777507840 backlog:0 ms:0 sent:64000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:24:10.858 [COM3/csk_ap] [2026-08-03 02:09:22.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:32 pos:5777571840 end:5777571840 backlog:0 ms:0 sent:128000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:24:12.854 [COM3/csk_ap] [2026-08-03 02:09:24.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:32 pos:5777635840 end:5777635840 backlog:0 ms:0 sent:192000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:24:14.854 [COM3/csk_ap] [2026-08-03 02:09:26.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:32 pos:5777699840 end:5777699840 backlog:0 ms:0 sent:256000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:24:16.854 [COM3/csk_ap] [2026-08-03 02:09:28.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:32 pos:5777763840 end:5777763840 backlog:0 ms:0 sent:320000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:24:18.855 [COM3/csk_ap] [2026-08-03 02:09:30.000][I][algo_task # rec_ringbuf] oneshot-v4 progress session:32 pos:5777827840 end:5777827840 backlog:0 ms:0 sent:384000 lost:0 spi_fail:0 pending:0 cap:32768(1024ms)
+2026-11-04 11:24:20.464 [COM3/csk_ap] [2026-08-03 02:09:32.000][I][algo_task # algo] MODE 1 -> 0, param: {"reg":[{"key":"mode","val":1},{"key":"model","val":0}],"cae":[{"key":"mode","val":0}],"esr":[{"key":"mode","val":1},{"key":"model","val":0},{"key":"2121","val":-91},{"key":"2122","val":-91}]}
+2026-11-04 11:24:20.468 [COM3/csk_ap] [2026-08-03 02:09:32.007][D][evs_event # event] evt msg -> enter, f: 0x30054f40, d: 0x0
+2026-11-04 11:24:20.468 [COM3/csk_ap] [2026-08-03 02:09:32.007][D][evs_event # app_client] esr timeout
+2026-11-04 11:24:20.468 [COM3/csk_ap] [2026-08-03 02:09:32.008][D][evs_event # event] evt msg -> exit
+2026-11-04 11:24:20.468 [COM3/csk_ap] [2026-08-03 02:09:32.008][D][msg_send # msg] >>>>> Send 339 ASR, cmd: 0x1004, ext: 0x0, len: 0

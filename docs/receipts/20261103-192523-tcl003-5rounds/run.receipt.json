@@ -1,0 +1,240 @@
+{
+  "schema": "run.receipt.v1",
+  "run_id": "run-20261103-192523-tcl003-5rounds-5r",
+  "task": "tcl003 五轮唤醒冒烟（19:25 场，含完整性清单）",
+  "skill": "tcl-test-sub",
+  "skill_version": "unregistered",
+  "node": "bszT14",
+  "scope": {
+    "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+    "project": "tcl-r5 / tcl-lstest-debug",
+    "firmware": null,
+    "platform": "bszT14 (Windows)"
+  },
+  "quality": "formal",
+  "result": "pass",
+  "totals": {
+    "rounds": 5,
+    "recognized": 5,
+    "failed": 0,
+    "recognition_rate": 1.0
+  },
+  "failures": [],
+  "bugs_found": [],
+  "responsibility": [],
+  "steps": [
+    {
+      "n": 1,
+      "name": "台架与串口就绪",
+      "status": "pass",
+      "evidence": [
+        "evidence/rounds.csv"
+      ]
+    },
+    {
+      "n": 2,
+      "name": "固件与工具链版本采集",
+      "status": "blocked",
+      "evidence": [
+        "evidence/serial_logs/COM3_csk_ap.log"
+      ],
+      "note": "从 CSK AP 串口启动段解析 boot / SDK / 算法版本"
+    },
+    {
+      "n": 3,
+      "name": "唤醒词播放",
+      "status": "pass",
+      "evidence": [
+        "evidence/rounds.csv"
+      ],
+      "note": "wake_playback_rc 全为 0"
+    },
+    {
+      "n": 4,
+      "name": "命令播放",
+      "status": "pass",
+      "evidence": [
+        "evidence/rounds.csv"
+      ],
+      "note": "有机会话因未唤醒而未执行命令播放"
+    },
+    {
+      "n": 5,
+      "name": "在线识别",
+      "status": "pass",
+      "evidence": [
+        "evidence/summary_final.json",
+        "evidence/rounds.csv"
+      ],
+      "note": "RECOGNIZED 5 轮，未识别 0 轮"
+    },
+    {
+      "n": 6,
+      "name": "结论与证据归档",
+      "status": "pass",
+      "evidence": [
+        "evidence/summary_final.json",
+        "evidence/summary_final.md"
+      ],
+      "note": "结论文件与证据副本已归档到回执目录"
+    },
+    {
+      "n": 7,
+      "name": "完整性清单校验",
+      "status": "pass",
+      "evidence": [
+        "evidence/SHA256SUMS"
+      ],
+      "note": "完整性清单校验通过（9 个文件）"
+    }
+  ],
+  "toolchain": {
+    "runtime": "compat (core_voice)",
+    "skill_name": "tcl-test-sub",
+    "skill_version": "unregistered",
+    "tools": [
+      {
+        "name": "device_shell",
+        "version": "2026.09.10"
+      },
+      {
+        "name": "profile",
+        "version": "tcl-csk7",
+        "sha256": "2da9f11b50be25ee91c6e2e149ce96d33fedb5dcc4a82e3f5933569a0735b536"
+      },
+      {
+        "name": "bench",
+        "version": "tcl003",
+        "sha256": "32e1d8183caa2af99862addf3ef93194948b23439daa1aa3aca66eba7b6f0bb0"
+      }
+    ]
+  },
+  "firmware": {
+    "version": null,
+    "sha256": null,
+    "source": "not_recorded",
+    "note": "固件二进制未归档，版本取自 CSK AP 串口启动段"
+  },
+  "recovery": {
+    "attempted": false,
+    "result": "not_attempted",
+    "actions": [],
+    "evidence": []
+  },
+  "stop_conditions": [
+    "出现固件 crash、exception 或 system_reset 标记时立即停止并保留现场。"
+  ],
+  "stop_rules": [],
+  "evidence_dir": "evidence",
+  "evidence_sha256": [
+    "5e8763dbdb58cb31e34f405c65556ddc62d400f71c40560dbe1c1c4bc596318d",
+    "d04f5bb85acd6c292a974867fe64b8c930fa5df0ea2d2343f13d658720203561",
+    "1345e24ecc614ade3dcfde0f69596acfd8449e730c668ff2a66360338523f541",
+    "73b209107dbde4ef6ec5b8eaedbd5c0dd4c23ad9e2bad76e54c8dc1b2e13cf1e",
+    "1cf036d1a6573dbfb9db01d7276c0fed522cea8c091d7e57d27b3558d40f85a1",
+    "5d254c84d96056b375681512733e6209cbb610c1344400e22e607e9d48bf8fef",
+    "fa7de143518610a23c3f58da0e1550c51a7b58e2b48978e07c9adae4c0cab139",
+    "8b78e5fbcfd7126934333d98cccc65726ad3b0cb377a38e70bc588a283f5e8c0",
+    "899a2e046c11d05e5369437703bda2fbd9a877e42e8bb6f596c85af5be371174",
+    "fb696c005f02892534c2e97090ce79dc369a401a64040c86ca7c097d01d939c5",
+    "19186d88a26ac9d5bd4bbc84f36263b34ca1efb699b4f7ac837f569492a6517c"
+  ],
+  "evidence": [
+    {
+      "path": "evidence/SHA256SUMS",
+      "sha256": "5e8763dbdb58cb31e34f405c65556ddc62d400f71c40560dbe1c1c4bc596318d",
+      "role": "manifest",
+      "verified": true
+    },
+    {
+      "path": "evidence/summary_final.json",
+      "sha256": "d04f5bb85acd6c292a974867fe64b8c930fa5df0ea2d2343f13d658720203561",
+      "role": "summary",
+      "verified": true
+    },
+    {
+      "path": "evidence/summary_final.md",
+      "sha256": "1345e24ecc614ade3dcfde0f69596acfd8449e730c668ff2a66360338523f541",
+      "role": "report",
+      "verified": true
+    },
+    {
+      "path": "evidence/rounds.csv",
+      "sha256": "73b209107dbde4ef6ec5b8eaedbd5c0dd4c23ad9e2bad76e54c8dc1b2e13cf1e",
+      "role": "rounds",
+      "verified": true
+    },
+    {
+      "path": "evidence/errors.log",
+      "sha256": "1cf036d1a6573dbfb9db01d7276c0fed522cea8c091d7e57d27b3558d40f85a1",
+      "role": "tool_log",
+      "verified": true
+    },
+    {
+      "path": "evidence/progress.json",
+      "sha256": "5d254c84d96056b375681512733e6209cbb610c1344400e22e607e9d48bf8fef",
+      "role": "other",
+      "verified": true
+    },
+    {
+      "path": "evidence/tool.log",
+      "sha256": "fa7de143518610a23c3f58da0e1550c51a7b58e2b48978e07c9adae4c0cab139",
+      "role": "tool_log",
+      "verified": true
+    },
+    {
+      "path": "evidence/serial_logs/COM3_csk_ap.log",
+      "sha256": "8b78e5fbcfd7126934333d98cccc65726ad3b0cb377a38e70bc588a283f5e8c0",
+      "role": "serial",
+      "verified": true
+    },
+    {
+      "path": "evidence/tool_logs/compat_launch.json",
+      "sha256": "899a2e046c11d05e5369437703bda2fbd9a877e42e8bb6f596c85af5be371174",
+      "role": "config",
+      "verified": true
+    },
+    {
+      "path": "evidence/tool_logs/device_shell.json",
+      "sha256": "fb696c005f02892534c2e97090ce79dc369a401a64040c86ca7c097d01d939c5",
+      "role": "config",
+      "verified": true
+    },
+    {
+      "path": "evidence/tool_logs/runtime_profile.json",
+      "sha256": "19186d88a26ac9d5bd4bbc84f36263b34ca1efb699b4f7ac837f569492a6517c",
+      "role": "config",
+      "verified": true
+    }
+  ],
+  "lessons": [
+    {
+      "type": "method",
+      "title": "五轮冒烟不能替代长稳结论",
+      "claim": "五轮全部 RECOGNIZED 且完整性清单校验通过，但总时长约两分钟、boundary_window.rounds 为 0，既没有覆盖边界工况也没有覆盖长时间运行；该结果只能作为冒烟门槛，不能用于判定长稳能力。",
+      "confidence": "medium"
+    }
+  ],
+  "confidence": "medium",
+  "started_at": "2026-11-03T11:25:27Z",
+  "ended_at": "2026-11-03T11:27:29Z",
+  "notes": "本轮为冒烟级验证，结论范围限于五轮唤醒识别。",
+  "tags": [
+    "wake-recognition",
+    "台架",
+    "串口"
+  ],
+  "backfill": {
+    "tool": "tools/backfill.py",
+    "version": "1.0.0",
+    "source_kind": "noahsark_wake_recognition_result",
+    "source_path": "debugdata/tcl003-5rounds/20261103_192523_wake_recognition",
+    "converted_at": "2026-11-10T00:00:00Z",
+    "sanitised": true,
+    "notes": [
+      "task_config.json 未归档：含设备编号与绝对路径",
+      "serial_logs/COM4_upper.log 未归档（约 1MB），其哈希由完整性清单覆盖",
+      "tool_logs/*.json 副本已脱敏：*_device_key 替换为占位符，与完整性清单记录的原始哈希不再一致"
+    ]
+  }
+}

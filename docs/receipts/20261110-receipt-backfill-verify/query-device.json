@@ -1,0 +1,1437 @@
+{
+  "query": {
+    "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）"
+  },
+  "total": 134,
+  "returned": 40,
+  "entries": [
+    {
+      "id": "kb-knowledge-0f2bab9750fc",
+      "type": "knowledge",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "win009 (Windows)"
+      },
+      "title": "CSK 崩溃后的形态：自行重启并卡死在 boot 的 app client 创建",
+      "claim": "崩溃后 CSK 串口最后一行恒为 '[D][boot # app_client] APP client create [E]'，设备侧时间戳回退到 2026-08-01 00:00:01.10x，此后不再产生字节；上层 MCU（COM4）仍持续输出。",
+      "confidence": "high",
+      "status": "active",
+      "source_skill": "lstest",
+      "hits": 6,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "../evidence/hang-20261106-2302-device-stuck.log",
+          "sha256": "7625276ad350bd0bf75c1ea942d67ca5b6cafbf416702bf1a9c7482e2784a1fb",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_log_2302.jsonl",
+          "sha256": "b65391c3949ff598b79cacdf1b5239523a3a2030ee0a5344e5f8bf7302b7f6b7",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash-20261107-0119-only-0113.log",
+          "sha256": "c6fa34f700d258916e7c3e35fcc7ecadd2ead83fec2ee78bcb21098d115f297a",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_log_0113.jsonl",
+          "sha256": "ad076fdb48ce8c8b5cc62e308a02a62a7a1aa357d72f8175cdae00342e5536c1",
+          "verified": true
+        }
+      ],
+      "evidence_total": 12
+    },
+    {
+      "id": "kb-knowledge-4910c80e2fba",
+      "type": "knowledge",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "win009 (Windows)"
+      },
+      "title": "崩溃现场未落盘，固件侧取证链断裂",
+      "claim": "全部崩溃记录 crash_signature=null、crash_no_space_to_save=false，驱动日志中 'No Space to Save the whole Crash Info' 命中 0 次 —— 设备没有生成崩溃转储，因此无法做栈级定位。",
+      "confidence": "high",
+      "status": "active",
+      "source_skill": "lstest",
+      "hits": 6,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_log_1311.jsonl",
+          "sha256": "e99fa58ae4d39854e26ae49cd13d30c12acd6ea8b08f18d5cd375e32ff794ebf",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_table_1311.md",
+          "sha256": "19a0390d99f5432c0f512bbaeb57690a8b9975085348979837843ad18abd26ad",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_log_2113.jsonl",
+          "sha256": "93afaaaf6b6c84f0d364a878d813e42db6eb1160dbc913217bd7d68471486a49",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_table_2113.md",
+          "sha256": "e2e2c56ab56eee29e35e7a68eeba7f0e670005d5ec29e11fafcde6ccdaf27cc3",
+          "verified": true
+        }
+      ],
+      "evidence_total": 8
+    },
+    {
+      "id": "kb-method-5a97db5bfc22",
+      "type": "method",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "win009 (Windows)"
+      },
+      "title": "用 algo.restart 1 + 1 轮冒烟做两级恢复判定",
+      "claim": "watchdog 只盯 CSK 单口 180s；判静默后发 algo.restart 1，等 10s 看是否重新开口，再跑 1 轮 smoke。串口重新开口不等于功能恢复：24 次恢复中 2 次 smoke 返回 ASR_TIMEOUT。",
+      "confidence": "high",
+      "status": "active",
+      "source_skill": "lstest",
+      "hits": 5,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_log_1311.jsonl",
+          "sha256": "e99fa58ae4d39854e26ae49cd13d30c12acd6ea8b08f18d5cd375e32ff794ebf",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_table_1311.md",
+          "sha256": "19a0390d99f5432c0f512bbaeb57690a8b9975085348979837843ad18abd26ad",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_log_2113.jsonl",
+          "sha256": "93afaaaf6b6c84f0d364a878d813e42db6eb1160dbc913217bd7d68471486a49",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_table_2113.md",
+          "sha256": "e2e2c56ab56eee29e35e7a68eeba7f0e670005d5ec29e11fafcde6ccdaf27cc3",
+          "verified": true
+        }
+      ],
+      "evidence_total": 8
+    },
+    {
+      "id": "kb-run-3228baa6c3f6",
+      "type": "run",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "win009 (Windows)"
+      },
+      "title": "执行记录：TCL 离线语音交互压测：唤醒 + 命令词识别长稳（CSK7 + HI3863 双 MCU，win009 台架）",
+      "claim": "FAIL｜任务：TCL 离线语音交互压测：唤醒 + 命令词识别长稳（CSK7 + HI3863 双 MCU，win009 台架）｜失败 10 项，缺陷 2 项｜rounds=180，crashes=10，mtbf_min=6.68，live_mtbf_min=None，recoveries_attempted=10，recoveries_ok=9，recovery_success_rate_…",
+      "confidence": "medium",
+      "status": "active",
+      "source_skill": "lstest",
+      "hits": 3,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_log_1311.jsonl",
+          "sha256": "e99fa58ae4d39854e26ae49cd13d30c12acd6ea8b08f18d5cd375e32ff794ebf",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_table_1311.md",
+          "sha256": "19a0390d99f5432c0f512bbaeb57690a8b9975085348979837843ad18abd26ad",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_log_2113.jsonl",
+          "sha256": "93afaaaf6b6c84f0d364a878d813e42db6eb1160dbc913217bd7d68471486a49",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_table_2113.md",
+          "sha256": "e2e2c56ab56eee29e35e7a68eeba7f0e670005d5ec29e11fafcde6ccdaf27cc3",
+          "verified": true
+        }
+      ],
+      "evidence_total": 8
+    },
+    {
+      "id": "kb-run-96ecdf985bf1",
+      "type": "run",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "win009 (Windows)"
+      },
+      "title": "执行记录：TCL 离线语音交互压测：唤醒 + 命令词识别长稳（CSK7 + HI3863 双 MCU，win009 台架）",
+      "claim": "FAIL｜任务：TCL 离线语音交互压测：唤醒 + 命令词识别长稳（CSK7 + HI3863 双 MCU，win009 台架）｜失败 1 项，缺陷 2 项｜rounds=184，recognized=7，wake_fail=177，crashes=1，elapsed_minutes=58.3，recoveries_attempted=0，recoveries_ok=0",
+      "confidence": "medium",
+      "status": "active",
+      "source_skill": "lstest",
+      "hits": 3,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "../evidence/hang-20261106-2302-device-stuck.log",
+          "sha256": "7625276ad350bd0bf75c1ea942d67ca5b6cafbf416702bf1a9c7482e2784a1fb",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_log_2302.jsonl",
+          "sha256": "b65391c3949ff598b79cacdf1b5239523a3a2030ee0a5344e5f8bf7302b7f6b7",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash-20261107-0119-only-0113.log",
+          "sha256": "c6fa34f700d258916e7c3e35fcc7ecadd2ead83fec2ee78bcb21098d115f297a",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_log_0113.jsonl",
+          "sha256": "ad076fdb48ce8c8b5cc62e308a02a62a7a1aa357d72f8175cdae00342e5536c1",
+          "verified": true
+        }
+      ],
+      "evidence_total": 4
+    },
+    {
+      "id": "kb-bug-241022256518",
+      "type": "bug",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "win009 (Windows)"
+      },
+      "title": "CSK 重启后卡在 boot app client 创建，algo 不就绪",
+      "claim": "设备在正常运行 6–7 分钟后 CSK 侧自行重启，重启后停在 boot 的 app client 创建阶段不再前进，所有后续唤醒必然失败；只能靠 algo.restart 1 复位算法侧恢复。",
+      "confidence": "medium",
+      "status": "active",
+      "source_skill": "lstest",
+      "hits": 0,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "../evidence/hang-20261106-2302-device-stuck.log",
+          "sha256": "7625276ad350bd0bf75c1ea942d67ca5b6cafbf416702bf1a9c7482e2784a1fb",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_log_2302.jsonl",
+          "sha256": "b65391c3949ff598b79cacdf1b5239523a3a2030ee0a5344e5f8bf7302b7f6b7",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash-20261107-0119-only-0113.log",
+          "sha256": "c6fa34f700d258916e7c3e35fcc7ecadd2ead83fec2ee78bcb21098d115f297a",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_log_0113.jsonl",
+          "sha256": "ad076fdb48ce8c8b5cc62e308a02a62a7a1aa357d72f8175cdae00342e5536c1",
+          "verified": true
+        }
+      ],
+      "evidence_total": 12
+    },
+    {
+      "id": "kb-bug-6d8501377c4c",
+      "type": "bug",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "win009 (Windows)"
+      },
+      "title": "崩溃现场未生成转储",
+      "claim": "所有崩溃 crash_signature 为 null、未出现 'No Space to Save the whole Crash Info'，设备侧没有留下任何崩溃现场。",
+      "confidence": "medium",
+      "status": "active",
+      "source_skill": "lstest",
+      "hits": 0,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "../evidence/crash-20261107-0119-only-0113.log",
+          "sha256": "c6fa34f700d258916e7c3e35fcc7ecadd2ead83fec2ee78bcb21098d115f297a",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_log_0113.jsonl",
+          "sha256": "ad076fdb48ce8c8b5cc62e308a02a62a7a1aa357d72f8175cdae00342e5536c1",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_log_1311.jsonl",
+          "sha256": "e99fa58ae4d39854e26ae49cd13d30c12acd6ea8b08f18d5cd375e32ff794ebf",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_table_1311.md",
+          "sha256": "19a0390d99f5432c0f512bbaeb57690a8b9975085348979837843ad18abd26ad",
+          "verified": true
+        }
+      ],
+      "evidence_total": 10
+    },
+    {
+      "id": "kb-knowledge-47f5e67ad298",
+      "type": "knowledge",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "bszT14 (Windows)"
+      },
+      "title": "indextts 调高温度后固件崩溃且后续轮次全失效",
+      "claim": "第 3 轮调高温度后立即出现 crash 与 exception 标记并伴随设备复位，此后第 4 至第 10 轮全部 WAKE_FAIL；同台架 edge-tts 与 lstts 场景十轮全通过，差异集中在 TTS 语料，排查应从 indextts 语料与固件崩溃现场入手。",
+      "confidence": "high",
+      "status": "pending",
+      "source_skill": "tcl-test-sub",
+      "hits": 1,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/summary_final.json",
+          "sha256": "b29f4ae45fa35d6dcb06660ea38f44b152c311bbb7b5f9a4f7425e602b9716b8",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/summary_final.md",
+          "sha256": "836cabea9fbea52cd39f33dceed17c9944f1bd726e5c19245a9cb4ea8f9994b8",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/rounds.csv",
+          "sha256": "3b58c27e00b0cb5d215857d4f30f9fee7ac094a590a76551cdd964a17da593a0",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/errors.log",
+          "sha256": "3204d2eec1c4499d71079d4234bcbd6222b5391a1bc00f3498517d3411677c55",
+          "verified": true
+        }
+      ],
+      "evidence_total": 10
+    },
+    {
+      "id": "kb-knowledge-597f2e028a57",
+      "type": "knowledge",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "bszT14 (Windows)"
+      },
+      "title": "ASR 超时占多数时不能据 network_down 标记归因网络",
+      "claim": "本场十命令运行 ASR_TIMEOUT 5 次、INTENT_MISMATCH 2 次、RECOGNIZED 3 次，串口 network_down 标记 50 次；同日全部通过的 edge-tts 场景同样出现 network_down 60 次，说明该标记在正常链路下也高频出现，不能作为网络故障归因依据，判定网络需另取连通性证据。",
+      "confidence": "medium",
+      "status": "pending",
+      "source_skill": "tcl-test-sub",
+      "hits": 1,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-112028-tcl003-10cmd/evidence/SHA256SUMS",
+          "sha256": "b99211c8a20dd0524f3453ffca367502fe7ffb1de4b4493cae012cc3c3d9ffe0",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-112028-tcl003-10cmd/evidence/summary_final.json",
+          "sha256": "9c815ecccb637cb1120be695e44eb46c32a310ba147f5474fba9db6836b8a4ff",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-112028-tcl003-10cmd/evidence/summary_final.md",
+          "sha256": "9ff4452fc7d45f62343eaac0abbbc01d7f65b288220ffbf9e27d3fe31c52e9e7",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-112028-tcl003-10cmd/evidence/rounds.csv",
+          "sha256": "bcc26f2f2c933b3753f1ca455fa89f44b7834989da54763a7d49d0915f5f8566",
+          "verified": true
+        }
+      ],
+      "evidence_total": 11
+    },
+    {
+      "id": "kb-knowledge-7c79f1217c93",
+      "type": "knowledge",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "bszT14 (Windows)"
+      },
+      "title": "同台架连续两场识别率波动不足以判定固件退化",
+      "claim": "同台架同固件相邻两场十命令运行识别率分别为 0.3 与 0.5，失败集合在 ASR_TIMEOUT 与 INTENT_MISMATCH 之间漂移，未出现固件崩溃标记；单场低识别率只能说明当次未过线，判定固件退化还需要跨版本对照或稳定复现。",
+      "confidence": "medium",
+      "status": "pending",
+      "source_skill": "tcl-test-sub",
+      "hits": 1,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-113223-tcl003-10cmd/evidence/SHA256SUMS",
+          "sha256": "5c5d6ff819685138bc45f27d154234345c815251c412e840afa48dea0aaa92e9",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-113223-tcl003-10cmd/evidence/summary_final.json",
+          "sha256": "5d659fc4e01b6a80acd0f6fba230e94d6344a607257e9506e8dd68c1253e0785",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-113223-tcl003-10cmd/evidence/summary_final.md",
+          "sha256": "ca7fbc5962d2507a556a1c52de75a5ee2208f746ef08dcb3ec0d440a4c299914",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-113223-tcl003-10cmd/evidence/rounds.csv",
+          "sha256": "e9150e33670769c30d8e02fc81a36841bf01ffe6cc5f8e8a095c4f09a3fef6ec",
+          "verified": true
+        }
+      ],
+      "evidence_total": 11
+    },
+    {
+      "id": "kb-method-2866383e2331",
+      "type": "method",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-csk7 / aitest",
+        "firmware": null,
+        "platform": "win009 (Windows)"
+      },
+      "title": "远程扫描行只能生成候选回执，需先取回原始产物",
+      "claim": "该行的结论字段与日志判定行一致，但 cases.csv、results.csv、tool.log 均留在目标机未取回本机，哈希无法本机复算；扫描行摘要只能支撑候选回执，要转正式回执必须先取回产物并按证据目录重算 SHA-256。",
+      "confidence": "low",
+      "status": "pending",
+      "source_skill": "tcl-test-sub",
+      "hits": 1,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261022-103329-win009-v15-u1-command/evidence/scan-row.json",
+          "sha256": "65a1d17b485d0e0170f832e3ed914aeb25b95598b4fed903f61a6574d4956840",
+          "verified": true
+        }
+      ],
+      "evidence_total": 1
+    },
+    {
+      "id": "kb-method-419905a1c3d3",
+      "type": "method",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-csk7 / aitest",
+        "firmware": null,
+        "platform": "win009 (Windows)"
+      },
+      "title": "扫描推断的结论必须以日志判定行为准",
+      "claim": "该行扫描器按目录名与文件词频推断为 PASS，而 tool.log 的 [RESULT] 判定行写的是 BLOCKED 且完成数为 0；两者冲突时回执只能记为 blocked，并把责任层落在扫描工具上，说明任何自动推断都必须与判定行交叉校验后才能入库。",
+      "confidence": "medium",
+      "status": "pending",
+      "source_skill": "tcl-test-sub",
+      "hits": 1,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261014-163403-win009-wake-interval/evidence/scan-row.json",
+          "sha256": "09b077e688d20816985710f38fb054c5e4f01d56437edb0f63e432beac31e43a",
+          "verified": true
+        }
+      ],
+      "evidence_total": 1
+    },
+    {
+      "id": "kb-method-4506a0f71d3b",
+      "type": "method",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "bszT14 (Windows)"
+      },
+      "title": "lstts 与 edge-tts 均全通过说明 TTS 场景不是崩溃诱因",
+      "claim": "lstts 与 edge-tts 两个 TTS 场景各十轮全部 RECOGNIZED，仅 indextts 场景崩溃；三个场景共用同一台架、固件与命令集，可排除 TTS 场景整体不稳定，把排查面收窄到 indextts 专属语料或其在调温步骤上的时序。",
+      "confidence": "medium",
+      "status": "pending",
+      "source_skill": "tcl-test-sub",
+      "hits": 0,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-150954-tcl003-lstts-10cmd/evidence/SHA256SUMS",
+          "sha256": "ae2bb5a05731ea609aa8d5de3388b3051be2187c4b5dc8b0dd54a865a71397bb",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-150954-tcl003-lstts-10cmd/evidence/summary_final.json",
+          "sha256": "727ecd2b517f8b404b2a3f3ea90c3767b49dbfdf652906f6f60578583aa85105",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-150954-tcl003-lstts-10cmd/evidence/summary_final.md",
+          "sha256": "30c84687479170831bae01f98eb12ada53e1603ff8161337d24fc833a762f386",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-150954-tcl003-lstts-10cmd/evidence/rounds.csv",
+          "sha256": "4836f0ca6075c17a97f665078df5e90087fe64602c836065260278ea485bb808",
+          "verified": true
+        }
+      ],
+      "evidence_total": 11
+    },
+    {
+      "id": "kb-method-dfdcf389e051",
+      "type": "method",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "bszT14 (Windows)"
+      },
+      "title": "归档阶段必须产出完整性清单",
+      "claim": "该目录证据文件齐全但缺少 SHA256SUMS，回执只能靠转换时复算的哈希自证；运行结束时立刻产出完整性清单，才能证明证据自结束起未被改动，事后补算做不到这一点。",
+      "confidence": "medium",
+      "status": "pending",
+      "source_skill": "tcl-test-sub",
+      "hits": 0,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261102-181057-tcl003-5rounds/evidence/summary_final.json",
+          "sha256": "eed9df192255dbd0a421aa57262df2696d86d2db80165e2b845b5e75001d6042",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261102-181057-tcl003-5rounds/evidence/summary_final.md",
+          "sha256": "53c92d8b1ed0d3244d8a5305a429243910838e7ec4f8128f0ff98c0098f105c9",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261102-181057-tcl003-5rounds/evidence/rounds.csv",
+          "sha256": "025ac397f07815fe7ccce725f077711b5a45c911674ed5fa61a7eac2afd9298b",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261102-181057-tcl003-5rounds/evidence/errors.log",
+          "sha256": "620b4c13bbbf970007ec4a6bb427c81b5dd0824f26d123cf69efebe5f939a7fe",
+          "verified": true
+        }
+      ],
+      "evidence_total": 10
+    },
+    {
+      "id": "kb-method-e40eaaca8156",
+      "type": "method",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "bszT14 (Windows)"
+      },
+      "title": "五轮冒烟不能替代长稳结论",
+      "claim": "五轮全部 RECOGNIZED 且完整性清单校验通过，但总时长约两分钟、boundary_window.rounds 为 0，既没有覆盖边界工况也没有覆盖长时间运行；该结果只能作为冒烟门槛，不能用于判定长稳能力。",
+      "confidence": "medium",
+      "status": "pending",
+      "source_skill": "tcl-test-sub",
+      "hits": 0,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261103-192523-tcl003-5rounds/evidence/SHA256SUMS",
+          "sha256": "5e8763dbdb58cb31e34f405c65556ddc62d400f71c40560dbe1c1c4bc596318d",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261103-192523-tcl003-5rounds/evidence/summary_final.json",
+          "sha256": "d04f5bb85acd6c292a974867fe64b8c930fa5df0ea2d2343f13d658720203561",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261103-192523-tcl003-5rounds/evidence/summary_final.md",
+          "sha256": "1345e24ecc614ade3dcfde0f69596acfd8449e730c668ff2a66360338523f541",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261103-192523-tcl003-5rounds/evidence/rounds.csv",
+          "sha256": "73b209107dbde4ef6ec5b8eaedbd5c0dd4c23ad9e2bad76e54c8dc1b2e13cf1e",
+          "verified": true
+        }
+      ],
+      "evidence_total": 11
+    },
+    {
+      "id": "kb-method-e464b5e9a536",
+      "type": "method",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "bszT14 (Windows)"
+      },
+      "title": "edge-tts 全通过可作为 indextts 故障的对照基线",
+      "claim": "同日同台架同固件下 edge-tts 场景十轮全部 RECOGNIZED，而 indextts 场景第 3 轮触发固件崩溃；两次运行台架、固件、命令集一致，差异集中在 TTS 语料，因此 edge-tts 结果可用作语料侧归因的对照基线。",
+      "confidence": "medium",
+      "status": "pending",
+      "source_skill": "tcl-test-sub",
+      "hits": 0,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-142316-tcl003-edge-tts-10cmd/evidence/SHA256SUMS",
+          "sha256": "78e11553a27bfc76736b4274449855ab4c5c89365436f77844b79f97aff8d997",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-142316-tcl003-edge-tts-10cmd/evidence/summary_final.json",
+          "sha256": "77162cf5f367bf4394d8daa96a8b49a7413b454a0c9626a121d2e120f4ab2409",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-142316-tcl003-edge-tts-10cmd/evidence/summary_final.md",
+          "sha256": "dc3ab0423b2785ea3a8c068493de3ccb4d5586eeafcad9d77d29c6f19f51ab0c",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-142316-tcl003-edge-tts-10cmd/evidence/rounds.csv",
+          "sha256": "19c8b79b78fb8a2ff40d533c5af3945f7a2473ccfbb7c47e8347134dddb3fce3",
+          "verified": true
+        }
+      ],
+      "evidence_total": 11
+    },
+    {
+      "id": "kb-run-1371072607ce",
+      "type": "run",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "bszT14 (Windows)"
+      },
+      "title": "执行记录：tcl003 十命令唤醒识别回归（11:20 场）",
+      "claim": "FAIL｜任务：tcl003 十命令唤醒识别回归（11:20 场）｜失败 2 项，缺陷 0 项｜rounds=10，recognized=3，failed=7，recognition_rate=0.3",
+      "confidence": "medium",
+      "status": "pending",
+      "source_skill": "tcl-test-sub",
+      "hits": 0,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-112028-tcl003-10cmd/evidence/SHA256SUMS",
+          "sha256": "b99211c8a20dd0524f3453ffca367502fe7ffb1de4b4493cae012cc3c3d9ffe0",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-112028-tcl003-10cmd/evidence/summary_final.json",
+          "sha256": "9c815ecccb637cb1120be695e44eb46c32a310ba147f5474fba9db6836b8a4ff",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-112028-tcl003-10cmd/evidence/summary_final.md",
+          "sha256": "9ff4452fc7d45f62343eaac0abbbc01d7f65b288220ffbf9e27d3fe31c52e9e7",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-112028-tcl003-10cmd/evidence/rounds.csv",
+          "sha256": "bcc26f2f2c933b3753f1ca455fa89f44b7834989da54763a7d49d0915f5f8566",
+          "verified": true
+        }
+      ],
+      "evidence_total": 11
+    },
+    {
+      "id": "kb-run-16a9cc2b6ccd",
+      "type": "run",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "bszT14 (Windows)"
+      },
+      "title": "执行记录：tcl003 indextts 十命令唤醒识别（第 3 轮触发固件崩溃）",
+      "claim": "FAIL｜任务：tcl003 indextts 十命令唤醒识别（第 3 轮触发固件崩溃）｜失败 2 项，缺陷 1 项｜rounds=10，recognized=2，failed=8，recognition_rate=0.2",
+      "confidence": "high",
+      "status": "pending",
+      "source_skill": "tcl-test-sub",
+      "hits": 0,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/summary_final.json",
+          "sha256": "b29f4ae45fa35d6dcb06660ea38f44b152c311bbb7b5f9a4f7425e602b9716b8",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/summary_final.md",
+          "sha256": "836cabea9fbea52cd39f33dceed17c9944f1bd726e5c19245a9cb4ea8f9994b8",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/rounds.csv",
+          "sha256": "3b58c27e00b0cb5d215857d4f30f9fee7ac094a590a76551cdd964a17da593a0",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/errors.log",
+          "sha256": "3204d2eec1c4499d71079d4234bcbd6222b5391a1bc00f3498517d3411677c55",
+          "verified": true
+        }
+      ],
+      "evidence_total": 10
+    },
+    {
+      "id": "kb-run-230623b02f26",
+      "type": "run",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "bszT14 (Windows)"
+      },
+      "title": "执行记录：tcl003 edge-tts 十命令唤醒识别",
+      "claim": "PASS｜任务：tcl003 edge-tts 十命令唤醒识别｜失败 0 项，缺陷 0 项｜rounds=10，recognized=10，failed=0，recognition_rate=1.0",
+      "confidence": "medium",
+      "status": "pending",
+      "source_skill": "tcl-test-sub",
+      "hits": 0,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-142316-tcl003-edge-tts-10cmd/evidence/SHA256SUMS",
+          "sha256": "78e11553a27bfc76736b4274449855ab4c5c89365436f77844b79f97aff8d997",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-142316-tcl003-edge-tts-10cmd/evidence/summary_final.json",
+          "sha256": "77162cf5f367bf4394d8daa96a8b49a7413b454a0c9626a121d2e120f4ab2409",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-142316-tcl003-edge-tts-10cmd/evidence/summary_final.md",
+          "sha256": "dc3ab0423b2785ea3a8c068493de3ccb4d5586eeafcad9d77d29c6f19f51ab0c",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-142316-tcl003-edge-tts-10cmd/evidence/rounds.csv",
+          "sha256": "19c8b79b78fb8a2ff40d533c5af3945f7a2473ccfbb7c47e8347134dddb3fce3",
+          "verified": true
+        }
+      ],
+      "evidence_total": 11
+    },
+    {
+      "id": "kb-run-7fe400264b40",
+      "type": "run",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-csk7 / aitest",
+        "firmware": null,
+        "platform": "win009 (Windows)"
+      },
+      "title": "执行记录：win009 tcl-csk7 v15 单命令冒烟（远程扫描行回填）",
+      "claim": "NEEDS_REVIEW｜任务：win009 tcl-csk7 v15 单命令冒烟（远程扫描行回填）｜失败 0 项，缺陷 0 项｜scanned_rows=1，evidence_files=3，cases_total=1，cases_pass=1",
+      "confidence": "low",
+      "status": "pending",
+      "source_skill": "tcl-test-sub",
+      "hits": 0,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261022-103329-win009-v15-u1-command/evidence/scan-row.json",
+          "sha256": "65a1d17b485d0e0170f832e3ed914aeb25b95598b4fed903f61a6574d4956840",
+          "verified": true
+        }
+      ],
+      "evidence_total": 1
+    },
+    {
+      "id": "kb-run-89fb612bab53",
+      "type": "run",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "bszT14 (Windows)"
+      },
+      "title": "执行记录：tcl003 五轮唤醒冒烟（19:25 场，含完整性清单）",
+      "claim": "PASS｜任务：tcl003 五轮唤醒冒烟（19:25 场，含完整性清单）｜失败 0 项，缺陷 0 项｜rounds=5，recognized=5，failed=0，recognition_rate=1.0",
+      "confidence": "medium",
+      "status": "pending",
+      "source_skill": "tcl-test-sub",
+      "hits": 0,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261103-192523-tcl003-5rounds/evidence/SHA256SUMS",
+          "sha256": "5e8763dbdb58cb31e34f405c65556ddc62d400f71c40560dbe1c1c4bc596318d",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261103-192523-tcl003-5rounds/evidence/summary_final.json",
+          "sha256": "d04f5bb85acd6c292a974867fe64b8c930fa5df0ea2d2343f13d658720203561",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261103-192523-tcl003-5rounds/evidence/summary_final.md",
+          "sha256": "1345e24ecc614ade3dcfde0f69596acfd8449e730c668ff2a66360338523f541",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261103-192523-tcl003-5rounds/evidence/rounds.csv",
+          "sha256": "73b209107dbde4ef6ec5b8eaedbd5c0dd4c23ad9e2bad76e54c8dc1b2e13cf1e",
+          "verified": true
+        }
+      ],
+      "evidence_total": 11
+    },
+    {
+      "id": "kb-run-b1d69652f3be",
+      "type": "run",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "bszT14 (Windows)"
+      },
+      "title": "执行记录：tcl003 五轮唤醒冒烟（18:11 场）",
+      "claim": "PASS｜任务：tcl003 五轮唤醒冒烟（18:11 场）｜失败 0 项，缺陷 0 项｜rounds=5，recognized=5，failed=0，recognition_rate=1.0",
+      "confidence": "medium",
+      "status": "pending",
+      "source_skill": "tcl-test-sub",
+      "hits": 0,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261102-181057-tcl003-5rounds/evidence/summary_final.json",
+          "sha256": "eed9df192255dbd0a421aa57262df2696d86d2db80165e2b845b5e75001d6042",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261102-181057-tcl003-5rounds/evidence/summary_final.md",
+          "sha256": "53c92d8b1ed0d3244d8a5305a429243910838e7ec4f8128f0ff98c0098f105c9",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261102-181057-tcl003-5rounds/evidence/rounds.csv",
+          "sha256": "025ac397f07815fe7ccce725f077711b5a45c911674ed5fa61a7eac2afd9298b",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261102-181057-tcl003-5rounds/evidence/errors.log",
+          "sha256": "620b4c13bbbf970007ec4a6bb427c81b5dd0824f26d123cf69efebe5f939a7fe",
+          "verified": true
+        }
+      ],
+      "evidence_total": 10
+    },
+    {
+      "id": "kb-run-cc56dd024a22",
+      "type": "run",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "bszT14 (Windows)"
+      },
+      "title": "执行记录：tcl003 lstts 十命令唤醒识别",
+      "claim": "PASS｜任务：tcl003 lstts 十命令唤醒识别｜失败 0 项，缺陷 0 项｜rounds=10，recognized=10，failed=0，recognition_rate=1.0",
+      "confidence": "medium",
+      "status": "pending",
+      "source_skill": "tcl-test-sub",
+      "hits": 0,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-150954-tcl003-lstts-10cmd/evidence/SHA256SUMS",
+          "sha256": "ae2bb5a05731ea609aa8d5de3388b3051be2187c4b5dc8b0dd54a865a71397bb",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-150954-tcl003-lstts-10cmd/evidence/summary_final.json",
+          "sha256": "727ecd2b517f8b404b2a3f3ea90c3767b49dbfdf652906f6f60578583aa85105",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-150954-tcl003-lstts-10cmd/evidence/summary_final.md",
+          "sha256": "30c84687479170831bae01f98eb12ada53e1603ff8161337d24fc833a762f386",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-150954-tcl003-lstts-10cmd/evidence/rounds.csv",
+          "sha256": "4836f0ca6075c17a97f665078df5e90087fe64602c836065260278ea485bb808",
+          "verified": true
+        }
+      ],
+      "evidence_total": 11
+    },
+    {
+      "id": "kb-run-ee12d5eb9ea7",
+      "type": "run",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "bszT14 (Windows)"
+      },
+      "title": "执行记录：tcl003 十命令唤醒识别回归（11:32 场）",
+      "claim": "FAIL｜任务：tcl003 十命令唤醒识别回归（11:32 场）｜失败 2 项，缺陷 0 项｜rounds=10，recognized=5，failed=5，recognition_rate=0.5",
+      "confidence": "medium",
+      "status": "pending",
+      "source_skill": "tcl-test-sub",
+      "hits": 0,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-113223-tcl003-10cmd/evidence/SHA256SUMS",
+          "sha256": "5c5d6ff819685138bc45f27d154234345c815251c412e840afa48dea0aaa92e9",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-113223-tcl003-10cmd/evidence/summary_final.json",
+          "sha256": "5d659fc4e01b6a80acd0f6fba230e94d6344a607257e9506e8dd68c1253e0785",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-113223-tcl003-10cmd/evidence/summary_final.md",
+          "sha256": "ca7fbc5962d2507a556a1c52de75a5ee2208f746ef08dcb3ec0d440a4c299914",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-113223-tcl003-10cmd/evidence/rounds.csv",
+          "sha256": "e9150e33670769c30d8e02fc81a36841bf01ffe6cc5f8e8a095c4f09a3fef6ec",
+          "verified": true
+        }
+      ],
+      "evidence_total": 11
+    },
+    {
+      "id": "kb-run-f5452cbfa17d",
+      "type": "run",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-csk7 / aitest",
+        "firmware": null,
+        "platform": "win009 (Windows)"
+      },
+      "title": "执行记录：win009 tcl-csk7 唤醒间隔测试（扫描行回填）",
+      "claim": "BLOCKED｜任务：win009 tcl-csk7 唤醒间隔测试（扫描行回填）｜失败 1 项，缺陷 0 项｜scanned_rows=1，evidence_files=3，cases_total=1，cases_pass=1",
+      "confidence": "low",
+      "status": "pending",
+      "source_skill": "tcl-test-sub",
+      "hits": 0,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261014-163403-win009-wake-interval/evidence/scan-row.json",
+          "sha256": "09b077e688d20816985710f38fb054c5e4f01d56437edb0f63e432beac31e43a",
+          "verified": true
+        }
+      ],
+      "evidence_total": 1
+    },
+    {
+      "id": "kb-bug-a6039e398e31",
+      "type": "bug",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "bszT14 (Windows)"
+      },
+      "title": "indextts 场景调高温度步骤触发 CSK 固件崩溃且未自愈",
+      "claim": "第 3 轮调高温度后 errors.log 依次记录系统或硬件复位、固件 exception、固件 crash、CSK AP 检测到设备重启，随后七轮全部 WAKE_FAIL；全程未出现 algo.restart，设备不具备自恢复能力。",
+      "confidence": "medium",
+      "status": "pending",
+      "source_skill": "tcl-test-sub",
+      "hits": 0,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/summary_final.json",
+          "sha256": "b29f4ae45fa35d6dcb06660ea38f44b152c311bbb7b5f9a4f7425e602b9716b8",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/summary_final.md",
+          "sha256": "836cabea9fbea52cd39f33dceed17c9944f1bd726e5c19245a9cb4ea8f9994b8",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/rounds.csv",
+          "sha256": "3b58c27e00b0cb5d215857d4f30f9fee7ac094a590a76551cdd964a17da593a0",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/errors.log",
+          "sha256": "3204d2eec1c4499d71079d4234bcbd6222b5391a1bc00f3498517d3411677c55",
+          "verified": true
+        }
+      ],
+      "evidence_total": 10
+    },
+    {
+      "id": "kb-method-fd3858d4baad",
+      "type": "method",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "win009 (Windows)"
+      },
+      "title": "静默看门狗必须只统计被观测的那个串口",
+      "claim": "用全端口聚合字节数判定静默，会被 COM4 上层 MCU 的持续输出掩盖，CSK 已冻结时 serial_silent_s 仍为 0（2302 跑 54 分钟未触发检测）。",
+      "confidence": "high",
+      "status": "pending",
+      "source_skill": "lstest",
+      "hits": 0,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "../evidence/hang-20261106-2302-device-stuck.log",
+          "sha256": "7625276ad350bd0bf75c1ea942d67ca5b6cafbf416702bf1a9c7482e2784a1fb",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_log_2302.jsonl",
+          "sha256": "b65391c3949ff598b79cacdf1b5239523a3a2030ee0a5344e5f8bf7302b7f6b7",
+          "verified": true
+        }
+      ],
+      "evidence_total": 2
+    },
+    {
+      "id": "kb-bug-a3551c1a2f80",
+      "type": "bug",
+      "scope": {
+        "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+        "project": "tcl-r5 / tcl-lstest-debug",
+        "firmware": null,
+        "platform": "win009 (Windows)"
+      },
+      "title": "看门狗按全端口聚合字节判定静默，会漏判 CSK 冻结",
+      "claim": "stall detector 统计所有串口字节总量，COM4 上层日志持续增长使 serial_silent_s 恒为 0。",
+      "confidence": "medium",
+      "status": "pending",
+      "source_skill": "lstest",
+      "hits": 0,
+      "score": 6,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "../evidence/hang-20261106-2302-device-stuck.log",
+          "sha256": "7625276ad350bd0bf75c1ea942d67ca5b6cafbf416702bf1a9c7482e2784a1fb",
+          "verified": true
+        },
+        {
+          "kind": "file",
+          "ref": "../evidence/crash_log_2302.jsonl",
+          "sha256": "b65391c3949ff598b79cacdf1b5239523a3a2030ee0a5344e5f8bf7302b7f6b7",
+          "verified": true
+        }
+      ],
+      "evidence_total": 2
+    },
+    {
+      "id": "kb-knowledge-f23119d4a433",
+      "type": "knowledge",
+      "scope": {
+        "device": null,
+        "project": "通用",
+        "firmware": null,
+        "platform": "windows"
+      },
+      "title": "cskflashtest 内嵌 lstest/scripts 副本",
+      "claim": "cskflashtest 仓库的 lstest/ 下只有 scripts/ 目录（没有 SKILL.md），是上游 lstest 的部分副本；发布前应剥离内嵌副本，避免两份代码各自漂移。",
+      "confidence": "medium",
+      "status": "pending",
+      "source_skill": "cskflashtest",
+      "hits": 2,
+      "score": 1,
+      "evidence": [
+        {
+          "kind": "commit",
+          "ref": "zjashanda/cskflashtest@aeab2f1d9d1cfc9f206204a27f03d9d2d060ebb8"
+        },
+        {
+          "kind": "url",
+          "ref": "https://github.com/zjashanda/cskflashtest/tree/aeab2f1d9d1cfc9f206204a27f03d9d2d060ebb8/lstest"
+        }
+      ],
+      "evidence_total": 2
+    },
+    {
+      "id": "kb-knowledge-d81c3d1877cc",
+      "type": "knowledge",
+      "scope": {
+        "device": null,
+        "project": "通用",
+        "firmware": null,
+        "platform": "linux"
+      },
+      "title": "运行时语音合成统一走 lstts",
+      "claim": "运行时语音合成统一到 lstts（IndexTTS），静态语料不重建、只补来源与重生成脚本；旧 edge-tts 通道应移除，token 只从环境变量读取，不写进代码与日志。",
+      "confidence": "medium",
+      "status": "pending",
+      "source_skill": "lstts",
+      "hits": 1,
+      "score": 1,
+      "evidence": [
+        {
+          "kind": "issue",
+          "ref": "NOAH-10"
+        }
+      ],
+      "evidence_total": 1
+    },
+    {
+      "id": "kb-knowledge-00d4164803ec",
+      "type": "knowledge",
+      "scope": {
+        "device": null,
+        "project": "OrionSynapse",
+        "firmware": null,
+        "platform": "bszT14"
+      },
+      "title": "现场项目：OrionSynapse",
+      "claim": "1. 交付目标 把 AITest 从“若干局部场景可运行”推进为可交付的平台：用户只提供任务目标和项目资料，平台能够完成准入、澄清、计划、批准、调度、真机执行、独立验证、交付归档和知识回流，并保留完整证据链。｜现场项目位于 bszT14:/home/bszheng/OrionSynapse｜仓库对应：OrionSynapse（平台内核）｜已知坑：#TS#+#:# COM# upper ； #…",
+      "confidence": "low",
+      "status": "pending",
+      "source_skill": null,
+      "hits": 0,
+      "score": 1,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "bszT14:/home/bszheng/OrionSynapse"
+        }
+      ],
+      "evidence_total": 1
+    },
+    {
+      "id": "kb-knowledge-02a423cc120b",
+      "type": "knowledge",
+      "scope": {
+        "device": null,
+        "project": "XTSC",
+        "firmware": null,
+        "platform": "linux002"
+      },
+      "title": "现场项目：XTSC",
+      "claim": "XTSC and the OSCAR SystemC Library from ASTC The main README file in this directory provides instructions for building and running the XTSC examples using the S｜现场项目位于 linux002:/home/administrator/…",
+      "confidence": "low",
+      "status": "pending",
+      "source_skill": null,
+      "hits": 0,
+      "score": 1,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "linux002:/home/administrator/Xtensa/tools/RI-2021.7-linux/venus_hifi4/examples/XTSC"
+        }
+      ],
+      "evidence_total": 1
+    },
+    {
+      "id": "kb-knowledge-04795330a10d",
+      "type": "knowledge",
+      "scope": {
+        "device": null,
+        "project": "smokeTest",
+        "firmware": null,
+        "platform": "win000"
+      },
+      "title": "现场项目：smokeTest",
+      "claim": "现场项目位于 win000:D:\\JenkinsWork\\autoBus\\smokeTest｜仓库对应：autobus（总线自动化）｜已知坑：#TS# E msg_send # spi_usrdata # Send usr data fail -#, len #；#TS# E msg_send # spi_packet # spi send sema timeout ret #；；TS# -…",
+      "confidence": "low",
+      "status": "pending",
+      "source_skill": null,
+      "hits": 0,
+      "score": 1,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "win000:D:\\JenkinsWork\\autoBus\\smokeTest"
+        }
+      ],
+      "evidence_total": 1
+    },
+    {
+      "id": "kb-knowledge-0752551f0f71",
+      "type": "knowledge",
+      "scope": {
+        "device": null,
+        "project": "Polaris.broken-1783422572-ac6c7c",
+        "firmware": null,
+        "platform": "bszT14"
+      },
+      "title": "现场项目：Polaris.broken-1783422572-ac6c7c",
+      "claim": "当前仓库已经切换到新的 Cucumber/BDD + Event Runtime 方案：用 Cucumber 描述测试意图，用固定 runner 执行动作，用 Event Runtime 把串口、声卡、云控和执行产物统一转换成事件，再由确定性的断言逻辑判断 PASS/FAIL/BLOCKED。｜现场项目位于 bszT14:/home/bszheng/zhsh/workspace/skillh…",
+      "confidence": "low",
+      "status": "pending",
+      "source_skill": null,
+      "hits": 0,
+      "score": 1,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "bszT14:/home/bszheng/zhsh/workspace/skillhub/Polaris.broken-1783422572-ac6c7c"
+        }
+      ],
+      "evidence_total": 1
+    },
+    {
+      "id": "kb-knowledge-086dbb060b09",
+      "type": "knowledge",
+      "scope": {
+        "device": null,
+        "project": "mars-belt.broken-1782444950-dbb589",
+        "firmware": null,
+        "platform": "bszT14"
+      },
+      "title": "现场项目：mars-belt.broken-1782444950-dbb589",
+      "claim": "1. 产品识别依据 - 产品： 小家电 / 取暖器 - 模组： CSK3021-CHIP - 语言： 中文 - 版本： 取暖器垂类-V2.0.1_F2.0.3_A1.4.1.0 当前判断依据： - 参数目录： scripts/_runtime/3021-取暖器-取暖器垂类-0330/3021中文取暖器垂类，｜现场项目位于 bszT14:/home/bszheng/OrionSynapse/s…",
+      "confidence": "low",
+      "status": "pending",
+      "source_skill": null,
+      "hits": 0,
+      "score": 1,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "bszT14:/home/bszheng/OrionSynapse/skillhub/mars-belt.broken-1782444950-dbb589"
+        }
+      ],
+      "evidence_total": 1
+    },
+    {
+      "id": "kb-knowledge-09b57b2851ef",
+      "type": "knowledge",
+      "scope": {
+        "device": null,
+        "project": "盘根散落文件（D:）",
+        "firmware": null,
+        "platform": "win005"
+      },
+      "title": "现场项目：盘根散落文件（D:）",
+      "claim": "1.下载OpenSSH-Win64.zip 2. 将解压之后的OpenSSH-Win64.zip放入至C:\\Program Files (x86)\\OpenSSH-Win64 3.以管理员权限打开cmd 4.输入以下命令,安装sshd cd \"C:\\Program Files (x86)\\OpenSSH-Win64\"｜现场项目位于 win005:D:\\｜仓库对应：无对应（疑似现场私有）｜已知…",
+      "confidence": "low",
+      "status": "pending",
+      "source_skill": null,
+      "hits": 0,
+      "score": 1,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "win005:D:\\"
+        }
+      ],
+      "evidence_total": 1
+    },
+    {
+      "id": "kb-knowledge-0ae54f485403",
+      "type": "knowledge",
+      "scope": {
+        "device": null,
+        "project": "Administrator",
+        "firmware": null,
+        "platform": "win010"
+      },
+      "title": "现场项目：Administrator",
+      "claim": "现场项目位于 win010:C:\\Users\\Administrator｜仓库对应：无对应（疑似现场私有）｜已知坑：#TS# ~ #TS# #MIN #.#.#.# sent=# recv=# lost=# loss=#.#% rtt_min=# avg=#.# max=# last=# t；#TS# 上传失败(agent): This task token was rejected and…",
+      "confidence": "low",
+      "status": "pending",
+      "source_skill": null,
+      "hits": 0,
+      "score": 1,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "win010:C:\\Users\\Administrator"
+        }
+      ],
+      "evidence_total": 1
+    },
+    {
+      "id": "kb-knowledge-0d5a4ad0b7f2",
+      "type": "knowledge",
+      "scope": {
+        "device": null,
+        "project": "tcl-lstest-debug",
+        "firmware": null,
+        "platform": "bszT14"
+      },
+      "title": "现场项目：tcl-lstest-debug",
+      "claim": "TCL lstest 适配 本目录是 TCL 项目的隔离适配层，公共连接、停止、日志、播放器和结果契约来自同级 ../lstest 。｜现场项目位于 bszT14:/home/bszheng/OrionSynapse/var/tmp/tcl-csk7-r6/tcl-lstest-debug｜仓库对应：OrionSynapse（平台内核）",
+      "confidence": "low",
+      "status": "pending",
+      "source_skill": null,
+      "hits": 0,
+      "score": 1,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "bszT14:/home/bszheng/OrionSynapse/var/tmp/tcl-csk7-r6/tcl-lstest-debug"
+        }
+      ],
+      "evidence_total": 1
+    },
+    {
+      "id": "kb-knowledge-0e3b3594e9f2",
+      "type": "knowledge",
+      "scope": {
+        "device": null,
+        "project": "mars-sdk",
+        "firmware": null,
+        "platform": "win001"
+      },
+      "title": "现场项目：mars-sdk",
+      "claim": "工具链配置 工具链默认安装位置： 平台 默认路径 配置方式 ------ ---------- ---------- Windows D:\\mars-toolchain 修改 中的 TOOLCHAIN_ROOT 变量 Linux｜现场项目位于 win001:D:\\fw\\mars-sdk｜仓库对应：mars-toolchain（固件工具链）",
+      "confidence": "low",
+      "status": "pending",
+      "source_skill": null,
+      "hits": 0,
+      "score": 1,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "win001:D:\\fw\\mars-sdk"
+        }
+      ],
+      "evidence_total": 1
+    },
+    {
+      "id": "kb-knowledge-12ad8268bd7d",
+      "type": "knowledge",
+      "scope": {
+        "device": null,
+        "project": "midea_csk6_ap",
+        "firmware": null,
+        "platform": "linux002"
+      },
+      "title": "现场项目：midea_csk6_ap",
+      "claim": "工具链 - 解压工具链 解压工具链到指定目录, 如: ~/code/csk6/gcc-arm-none-eabi-10.3-2021.10 - 添加环境变量 将工具链bin路径添加到环境变量里, 如: export PATH=~/code/csk6/gcc-arm-none-eabi-10.3-2021.10/bin:｜现场项目位于 linux002:/home/administrator/…",
+      "confidence": "low",
+      "status": "pending",
+      "source_skill": null,
+      "hits": 0,
+      "score": 1,
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "linux002:/home/administrator/JenkinsWork/Firmware/midea_csk6_ap"
+        }
+      ],
+      "evidence_total": 1
+    }
+  ]
+}

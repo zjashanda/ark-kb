@@ -1,0 +1,10 @@
+{
+  "updated_at": "2026-11-04 14:27:15.646",
+  "finished": true,
+  "completed_rounds": 10,
+  "target_rounds": 10,
+  "round_status_counts": {
+    "RECOGNIZED": 10
+  },
+  "serial_errors": {}
+}

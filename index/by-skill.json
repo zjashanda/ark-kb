@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-skill",
-  "generated_at": "2026-11-09T10:52:25Z",
+  "generated_at": "2026-11-10T04:34:13Z",
   "keys": {
     "cskflashtest": [
       "kb-knowledge-f23119d4a433"
@@ -31,6 +31,27 @@
       "kb-method-0205df2c95f8",
       "kb-method-9b11d61e6bed",
       "kb-run-42681662dc2c"
+    ],
+    "tcltestsub": [
+      "kb-bug-a6039e398e31",
+      "kb-knowledge-47f5e67ad298",
+      "kb-knowledge-597f2e028a57",
+      "kb-knowledge-7c79f1217c93",
+      "kb-method-2866383e2331",
+      "kb-method-419905a1c3d3",
+      "kb-method-4506a0f71d3b",
+      "kb-method-dfdcf389e051",
+      "kb-method-e40eaaca8156",
+      "kb-method-e464b5e9a536",
+      "kb-run-1371072607ce",
+      "kb-run-16a9cc2b6ccd",
+      "kb-run-230623b02f26",
+      "kb-run-7fe400264b40",
+      "kb-run-89fb612bab53",
+      "kb-run-b1d69652f3be",
+      "kb-run-cc56dd024a22",
+      "kb-run-ee12d5eb9ea7",
+      "kb-run-f5452cbfa17d"
     ],
     "军器监丞·pvm1005": [
       "kb-knowledge-4871f3474f8c"

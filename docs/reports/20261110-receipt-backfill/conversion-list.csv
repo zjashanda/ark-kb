@@ -1,0 +1,10 @@
+source,run_id,quality,result,rounds,recognized,failed,manifest,evidence_files,decision,reason
+tcl003-10cmd/20261104_112028_wake_recognition,run-20261104-112028-tcl003-10cmd-10r,formal,fail,10,3,7,ok,11,converted,完整性清单校验通过
+tcl003-10cmd/20261104_113223_wake_recognition,run-20261104-113223-tcl003-10cmd-10r,formal,fail,10,5,5,ok,11,converted,完整性清单校验通过
+tcl003-5rounds/20261102_181057_wake_recognition,run-20261102-181057-tcl003-5rounds-5r,formal,pass,5,5,,failed,10,converted,缺少完整性清单，降级为候选回执
+tcl003-5rounds/20261103_192523_wake_recognition,run-20261103-192523-tcl003-5rounds-5r,formal,pass,5,5,,ok,11,converted,完整性清单校验通过
+tcl003-edge-tts-10cmd/20261104_142316_wake_recognition,run-20261104-142316-tcl003-edge-tts-10cmd-10r,formal,pass,10,10,,ok,11,converted,完整性清单校验通过
+tcl003-indextts-10cmd/20261104_144020_wake_recognition,run-20261104-144020-tcl003-indextts-10cmd-10r,formal,fail,10,2,8,failed,10,converted,缺少完整性清单，降级为候选回执
+tcl003-lstts-10cmd/20261104_150954_wake_recognition,run-20261104-150954-tcl003-lstts-10cmd-10r,formal,pass,10,10,,ok,11,converted,完整性清单校验通过
+NoahsArk/tasks/20261107-221155-nas-login-verify,,,,,,,absent,0,rejected,summary_final.json 含内网地址、第三方账号与他人共享目录清单，另有口令长度字段；脱敏后剩余的登录流程信息不足以支撑可复核回执，整条拒收。
+NoahsArk/tasks/20261108-140957-nas-t2a-verify,,,,,,,absent,0,rejected,t2a_run.json 与 pr_body.md 含内网 FTP 地址、完整包内目录；按知识库安全规则内网地址不入库，整条拒收。

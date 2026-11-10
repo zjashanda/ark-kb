@@ -1,0 +1,22 @@
+{
+  "task": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）唤醒与命令词长稳压测 8 小时通宵，重点复跑 indextts 场景",
+  "device": {
+    "model": "CSK7+HI3863",
+    "project": "tcl"
+  },
+  "bench": {
+    "node": "bszT14",
+    "os": "windows",
+    "ports": [
+      "COM3",
+      "COM4",
+      "COM6"
+    ],
+    "playback_key": "<已脱敏，原始值为被测声卡设备键>"
+  },
+  "constraints": {
+    "hours": 8,
+    "overnight": true,
+    "reset_allowed": true
+  }
+}

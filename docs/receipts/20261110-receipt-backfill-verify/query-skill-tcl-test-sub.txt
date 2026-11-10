@@ -1,0 +1,156 @@
+查询：skill=tcl-test-sub｜命中 19 / 19 条
+
+[pending] kb-knowledge-47f5e67ad298  score=4  device=TCL 智能语音设备（CSK7 + HI3863 双 MCU） · project=tcl-r5 / tcl-lstest-debug
+  indextts 调高温度后固件崩溃且后续轮次全失效
+  第 3 轮调高温度后立即出现 crash 与 exception 标记并伴随设备复位，此后第 4 至第 10 轮全部 WAKE_FAIL；同台架 edge-tts 与 lstts 场景十轮全通过，差异集中在 TTS 语料，排查应从 indextts 语料与固件崩溃现场入手。
+  - file:docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/summary_final.json sha256=b29f4ae45fa3… 已校验
+  - file:docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/summary_final.md sha256=836cabea9fbe… 已校验
+  - file:docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/rounds.csv sha256=3b58c27e00b0… 已校验
+  - file:docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/errors.log sha256=3204d2eec1c4… 已校验
+  - 另有 6 条证据
+
+[pending] kb-knowledge-597f2e028a57  score=4  device=TCL 智能语音设备（CSK7 + HI3863 双 MCU） · project=tcl-r5 / tcl-lstest-debug
+  ASR 超时占多数时不能据 network_down 标记归因网络
+  本场十命令运行 ASR_TIMEOUT 5 次、INTENT_MISMATCH 2 次、RECOGNIZED 3 次，串口 network_down 标记 50 次；同日全部通过的 edge-tts 场景同样出现 network_down 60 次，说明该标记在正常链路下也高频出现，不能作为网络故障归因依据，判定网络需另取连通性证据。
+  - file:docs/receipts/20261104-112028-tcl003-10cmd/evidence/SHA256SUMS sha256=b99211c8a20d… 已校验
+  - file:docs/receipts/20261104-112028-tcl003-10cmd/evidence/summary_final.json sha256=9c815ecccb63… 已校验
+  - file:docs/receipts/20261104-112028-tcl003-10cmd/evidence/summary_final.md sha256=9ff4452fc7d4… 已校验
+  - file:docs/receipts/20261104-112028-tcl003-10cmd/evidence/rounds.csv sha256=bcc26f2f2c93… 已校验
+  - 另有 7 条证据
+
+[pending] kb-knowledge-7c79f1217c93  score=4  device=TCL 智能语音设备（CSK7 + HI3863 双 MCU） · project=tcl-r5 / tcl-lstest-debug
+  同台架连续两场识别率波动不足以判定固件退化
+  同台架同固件相邻两场十命令运行识别率分别为 0.3 与 0.5，失败集合在 ASR_TIMEOUT 与 INTENT_MISMATCH 之间漂移，未出现固件崩溃标记；单场低识别率只能说明当次未过线，判定固件退化还需要跨版本对照或稳定复现。
+  - file:docs/receipts/20261104-113223-tcl003-10cmd/evidence/SHA256SUMS sha256=5c5d6ff81968… 已校验
+  - file:docs/receipts/20261104-113223-tcl003-10cmd/evidence/summary_final.json sha256=5d659fc4e01b… 已校验
+  - file:docs/receipts/20261104-113223-tcl003-10cmd/evidence/summary_final.md sha256=ca7fbc5962d2… 已校验
+  - file:docs/receipts/20261104-113223-tcl003-10cmd/evidence/rounds.csv sha256=e9150e336707… 已校验
+  - 另有 7 条证据
+
+[pending] kb-method-2866383e2331  score=4  device=TCL 智能语音设备（CSK7 + HI3863 双 MCU） · project=tcl-csk7 / aitest
+  远程扫描行只能生成候选回执，需先取回原始产物
+  该行的结论字段与日志判定行一致，但 cases.csv、results.csv、tool.log 均留在目标机未取回本机，哈希无法本机复算；扫描行摘要只能支撑候选回执，要转正式回执必须先取回产物并按证据目录重算 SHA-256。
+  - file:docs/receipts/20261022-103329-win009-v15-u1-command/evidence/scan-row.json sha256=65a1d17b485d… 已校验
+
+[pending] kb-method-419905a1c3d3  score=4  device=TCL 智能语音设备（CSK7 + HI3863 双 MCU） · project=tcl-csk7 / aitest
+  扫描推断的结论必须以日志判定行为准
+  该行扫描器按目录名与文件词频推断为 PASS，而 tool.log 的 [RESULT] 判定行写的是 BLOCKED 且完成数为 0；两者冲突时回执只能记为 blocked，并把责任层落在扫描工具上，说明任何自动推断都必须与判定行交叉校验后才能入库。
+  - file:docs/receipts/20261014-163403-win009-wake-interval/evidence/scan-row.json sha256=09b077e688d2… 已校验
+
+[pending] kb-method-4506a0f71d3b  score=4  device=TCL 智能语音设备（CSK7 + HI3863 双 MCU） · project=tcl-r5 / tcl-lstest-debug
+  lstts 与 edge-tts 均全通过说明 TTS 场景不是崩溃诱因
+  lstts 与 edge-tts 两个 TTS 场景各十轮全部 RECOGNIZED，仅 indextts 场景崩溃；三个场景共用同一台架、固件与命令集，可排除 TTS 场景整体不稳定，把排查面收窄到 indextts 专属语料或其在调温步骤上的时序。
+  - file:docs/receipts/20261104-150954-tcl003-lstts-10cmd/evidence/SHA256SUMS sha256=ae2bb5a05731… 已校验
+  - file:docs/receipts/20261104-150954-tcl003-lstts-10cmd/evidence/summary_final.json sha256=727ecd2b517f… 已校验
+  - file:docs/receipts/20261104-150954-tcl003-lstts-10cmd/evidence/summary_final.md sha256=30c846874791… 已校验
+  - file:docs/receipts/20261104-150954-tcl003-lstts-10cmd/evidence/rounds.csv sha256=4836f0ca6075… 已校验
+  - 另有 7 条证据
+
+[pending] kb-method-dfdcf389e051  score=4  device=TCL 智能语音设备（CSK7 + HI3863 双 MCU） · project=tcl-r5 / tcl-lstest-debug
+  归档阶段必须产出完整性清单
+  该目录证据文件齐全但缺少 SHA256SUMS，回执只能靠转换时复算的哈希自证；运行结束时立刻产出完整性清单，才能证明证据自结束起未被改动，事后补算做不到这一点。
+  - file:docs/receipts/20261102-181057-tcl003-5rounds/evidence/summary_final.json sha256=eed9df192255… 已校验
+  - file:docs/receipts/20261102-181057-tcl003-5rounds/evidence/summary_final.md sha256=53c92d8b1ed0… 已校验
+  - file:docs/receipts/20261102-181057-tcl003-5rounds/evidence/rounds.csv sha256=025ac397f078… 已校验
+  - file:docs/receipts/20261102-181057-tcl003-5rounds/evidence/errors.log sha256=620b4c13bbbf… 已校验
+  - 另有 6 条证据
+
+[pending] kb-method-e40eaaca8156  score=4  device=TCL 智能语音设备（CSK7 + HI3863 双 MCU） · project=tcl-r5 / tcl-lstest-debug
+  五轮冒烟不能替代长稳结论
+  五轮全部 RECOGNIZED 且完整性清单校验通过，但总时长约两分钟、boundary_window.rounds 为 0，既没有覆盖边界工况也没有覆盖长时间运行；该结果只能作为冒烟门槛，不能用于判定长稳能力。
+  - file:docs/receipts/20261103-192523-tcl003-5rounds/evidence/SHA256SUMS sha256=5e8763dbdb58… 已校验
+  - file:docs/receipts/20261103-192523-tcl003-5rounds/evidence/summary_final.json sha256=d04f5bb85acd… 已校验
+  - file:docs/receipts/20261103-192523-tcl003-5rounds/evidence/summary_final.md sha256=1345e24ecc61… 已校验
+  - file:docs/receipts/20261103-192523-tcl003-5rounds/evidence/rounds.csv sha256=73b209107dbd… 已校验
+  - 另有 7 条证据
+
+[pending] kb-method-e464b5e9a536  score=4  device=TCL 智能语音设备（CSK7 + HI3863 双 MCU） · project=tcl-r5 / tcl-lstest-debug
+  edge-tts 全通过可作为 indextts 故障的对照基线
+  同日同台架同固件下 edge-tts 场景十轮全部 RECOGNIZED，而 indextts 场景第 3 轮触发固件崩溃；两次运行台架、固件、命令集一致，差异集中在 TTS 语料，因此 edge-tts 结果可用作语料侧归因的对照基线。
+  - file:docs/receipts/20261104-142316-tcl003-edge-tts-10cmd/evidence/SHA256SUMS sha256=78e11553a27b… 已校验
+  - file:docs/receipts/20261104-142316-tcl003-edge-tts-10cmd/evidence/summary_final.json sha256=77162cf5f367… 已校验
+  - file:docs/receipts/20261104-142316-tcl003-edge-tts-10cmd/evidence/summary_final.md sha256=dc3ab0423b27… 已校验
+  - file:docs/receipts/20261104-142316-tcl003-edge-tts-10cmd/evidence/rounds.csv sha256=19c8b79b78fb… 已校验
+  - 另有 7 条证据
+
+[pending] kb-run-1371072607ce  score=4  device=TCL 智能语音设备（CSK7 + HI3863 双 MCU） · project=tcl-r5 / tcl-lstest-debug
+  执行记录：tcl003 十命令唤醒识别回归（11:20 场）
+  FAIL｜任务：tcl003 十命令唤醒识别回归（11:20 场）｜失败 2 项，缺陷 0 项｜rounds=10，recognized=3，failed=7，recognition_rate=0.3
+  - file:docs/receipts/20261104-112028-tcl003-10cmd/evidence/SHA256SUMS sha256=b99211c8a20d… 已校验
+  - file:docs/receipts/20261104-112028-tcl003-10cmd/evidence/summary_final.json sha256=9c815ecccb63… 已校验
+  - file:docs/receipts/20261104-112028-tcl003-10cmd/evidence/summary_final.md sha256=9ff4452fc7d4… 已校验
+  - file:docs/receipts/20261104-112028-tcl003-10cmd/evidence/rounds.csv sha256=bcc26f2f2c93… 已校验
+  - 另有 7 条证据
+
+[pending] kb-run-16a9cc2b6ccd  score=4  device=TCL 智能语音设备（CSK7 + HI3863 双 MCU） · project=tcl-r5 / tcl-lstest-debug
+  执行记录：tcl003 indextts 十命令唤醒识别（第 3 轮触发固件崩溃）
+  FAIL｜任务：tcl003 indextts 十命令唤醒识别（第 3 轮触发固件崩溃）｜失败 2 项，缺陷 1 项｜rounds=10，recognized=2，failed=8，recognition_rate=0.2
+  - file:docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/summary_final.json sha256=b29f4ae45fa3… 已校验
+  - file:docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/summary_final.md sha256=836cabea9fbe… 已校验
+  - file:docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/rounds.csv sha256=3b58c27e00b0… 已校验
+  - file:docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/errors.log sha256=3204d2eec1c4… 已校验
+  - 另有 6 条证据
+
+[pending] kb-run-230623b02f26  score=4  device=TCL 智能语音设备（CSK7 + HI3863 双 MCU） · project=tcl-r5 / tcl-lstest-debug
+  执行记录：tcl003 edge-tts 十命令唤醒识别
+  PASS｜任务：tcl003 edge-tts 十命令唤醒识别｜失败 0 项，缺陷 0 项｜rounds=10，recognized=10，failed=0，recognition_rate=1.0
+  - file:docs/receipts/20261104-142316-tcl003-edge-tts-10cmd/evidence/SHA256SUMS sha256=78e11553a27b… 已校验
+  - file:docs/receipts/20261104-142316-tcl003-edge-tts-10cmd/evidence/summary_final.json sha256=77162cf5f367… 已校验
+  - file:docs/receipts/20261104-142316-tcl003-edge-tts-10cmd/evidence/summary_final.md sha256=dc3ab0423b27… 已校验
+  - file:docs/receipts/20261104-142316-tcl003-edge-tts-10cmd/evidence/rounds.csv sha256=19c8b79b78fb… 已校验
+  - 另有 7 条证据
+
+[pending] kb-run-7fe400264b40  score=4  device=TCL 智能语音设备（CSK7 + HI3863 双 MCU） · project=tcl-csk7 / aitest
+  执行记录：win009 tcl-csk7 v15 单命令冒烟（远程扫描行回填）
+  NEEDS_REVIEW｜任务：win009 tcl-csk7 v15 单命令冒烟（远程扫描行回填）｜失败 0 项，缺陷 0 项｜scanned_rows=1，evidence_files=3，cases_total=1，cases_pass=1
+  - file:docs/receipts/20261022-103329-win009-v15-u1-command/evidence/scan-row.json sha256=65a1d17b485d… 已校验
+
+[pending] kb-run-89fb612bab53  score=4  device=TCL 智能语音设备（CSK7 + HI3863 双 MCU） · project=tcl-r5 / tcl-lstest-debug
+  执行记录：tcl003 五轮唤醒冒烟（19:25 场，含完整性清单）
+  PASS｜任务：tcl003 五轮唤醒冒烟（19:25 场，含完整性清单）｜失败 0 项，缺陷 0 项｜rounds=5，recognized=5，failed=0，recognition_rate=1.0
+  - file:docs/receipts/20261103-192523-tcl003-5rounds/evidence/SHA256SUMS sha256=5e8763dbdb58… 已校验
+  - file:docs/receipts/20261103-192523-tcl003-5rounds/evidence/summary_final.json sha256=d04f5bb85acd… 已校验
+  - file:docs/receipts/20261103-192523-tcl003-5rounds/evidence/summary_final.md sha256=1345e24ecc61… 已校验
+  - file:docs/receipts/20261103-192523-tcl003-5rounds/evidence/rounds.csv sha256=73b209107dbd… 已校验
+  - 另有 7 条证据
+
+[pending] kb-run-b1d69652f3be  score=4  device=TCL 智能语音设备（CSK7 + HI3863 双 MCU） · project=tcl-r5 / tcl-lstest-debug
+  执行记录：tcl003 五轮唤醒冒烟（18:11 场）
+  PASS｜任务：tcl003 五轮唤醒冒烟（18:11 场）｜失败 0 项，缺陷 0 项｜rounds=5，recognized=5，failed=0，recognition_rate=1.0
+  - file:docs/receipts/20261102-181057-tcl003-5rounds/evidence/summary_final.json sha256=eed9df192255… 已校验
+  - file:docs/receipts/20261102-181057-tcl003-5rounds/evidence/summary_final.md sha256=53c92d8b1ed0… 已校验
+  - file:docs/receipts/20261102-181057-tcl003-5rounds/evidence/rounds.csv sha256=025ac397f078… 已校验
+  - file:docs/receipts/20261102-181057-tcl003-5rounds/evidence/errors.log sha256=620b4c13bbbf… 已校验
+  - 另有 6 条证据
+
+[pending] kb-run-cc56dd024a22  score=4  device=TCL 智能语音设备（CSK7 + HI3863 双 MCU） · project=tcl-r5 / tcl-lstest-debug
+  执行记录：tcl003 lstts 十命令唤醒识别
+  PASS｜任务：tcl003 lstts 十命令唤醒识别｜失败 0 项，缺陷 0 项｜rounds=10，recognized=10，failed=0，recognition_rate=1.0
+  - file:docs/receipts/20261104-150954-tcl003-lstts-10cmd/evidence/SHA256SUMS sha256=ae2bb5a05731… 已校验
+  - file:docs/receipts/20261104-150954-tcl003-lstts-10cmd/evidence/summary_final.json sha256=727ecd2b517f… 已校验
+  - file:docs/receipts/20261104-150954-tcl003-lstts-10cmd/evidence/summary_final.md sha256=30c846874791… 已校验
+  - file:docs/receipts/20261104-150954-tcl003-lstts-10cmd/evidence/rounds.csv sha256=4836f0ca6075… 已校验
+  - 另有 7 条证据
+
+[pending] kb-run-ee12d5eb9ea7  score=4  device=TCL 智能语音设备（CSK7 + HI3863 双 MCU） · project=tcl-r5 / tcl-lstest-debug
+  执行记录：tcl003 十命令唤醒识别回归（11:32 场）
+  FAIL｜任务：tcl003 十命令唤醒识别回归（11:32 场）｜失败 2 项，缺陷 0 项｜rounds=10，recognized=5，failed=5，recognition_rate=0.5
+  - file:docs/receipts/20261104-113223-tcl003-10cmd/evidence/SHA256SUMS sha256=5c5d6ff81968… 已校验
+  - file:docs/receipts/20261104-113223-tcl003-10cmd/evidence/summary_final.json sha256=5d659fc4e01b… 已校验
+  - file:docs/receipts/20261104-113223-tcl003-10cmd/evidence/summary_final.md sha256=ca7fbc5962d2… 已校验
+  - file:docs/receipts/20261104-113223-tcl003-10cmd/evidence/rounds.csv sha256=e9150e336707… 已校验
+  - 另有 7 条证据
+
+[pending] kb-run-f5452cbfa17d  score=4  device=TCL 智能语音设备（CSK7 + HI3863 双 MCU） · project=tcl-csk7 / aitest
+  执行记录：win009 tcl-csk7 唤醒间隔测试（扫描行回填）
+  BLOCKED｜任务：win009 tcl-csk7 唤醒间隔测试（扫描行回填）｜失败 1 项，缺陷 0 项｜scanned_rows=1，evidence_files=3，cases_total=1，cases_pass=1
+  - file:docs/receipts/20261014-163403-win009-wake-interval/evidence/scan-row.json sha256=09b077e688d2… 已校验
+
+[pending] kb-bug-a6039e398e31  score=4  device=TCL 智能语音设备（CSK7 + HI3863 双 MCU） · project=tcl-r5 / tcl-lstest-debug
+  indextts 场景调高温度步骤触发 CSK 固件崩溃且未自愈
+  第 3 轮调高温度后 errors.log 依次记录系统或硬件复位、固件 exception、固件 crash、CSK AP 检测到设备重启，随后七轮全部 WAKE_FAIL；全程未出现 algo.restart，设备不具备自恢复能力。
+  - file:docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/summary_final.json sha256=b29f4ae45fa3… 已校验
+  - file:docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/summary_final.md sha256=836cabea9fbe… 已校验
+  - file:docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/rounds.csv sha256=3b58c27e00b0… 已校验
+  - file:docs/receipts/20261104-144020-tcl003-indextts-10cmd/evidence/errors.log sha256=3204d2eec1c4… 已校验
+  - 另有 6 条证据

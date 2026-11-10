@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "profile_id": "compat-tcl-csk7",
+  "audio": {
+    "render_device_key": "<已脱敏，原始值留在执行机>",
+    "endpoint": "Speakers (ListenAI Audio)"
+  },
+  "ports": [
+    {
+      "role": "csk_ap",
+      "port": "COM3",
+      "baudrate": 921600
+    },
+    {
+      "role": "upper",
+      "port": "COM4",
+      "baudrate": 921600
+    }
+  ]
+}

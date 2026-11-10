@@ -1,0 +1,54 @@
+{
+  "started_at": "2026-11-04 11:32:27.287",
+  "ended_at": "2026-11-04 11:36:22.088",
+  "completed_rounds": 10,
+  "target_rounds": 10,
+  "duration_minutes": 0,
+  "duration_limit_reached": false,
+  "status_counts": {
+    "RECOGNIZED": 5,
+    "ASR_TIMEOUT": 4,
+    "INTENT_MISMATCH": 1
+  },
+  "normal_window": {
+    "rounds": 10,
+    "status_counts": {
+      "RECOGNIZED": 5,
+      "ASR_TIMEOUT": 4,
+      "INTENT_MISMATCH": 1
+    },
+    "recognized": 5,
+    "failed": 5,
+    "recognition_rate": 0.5
+  },
+  "boundary_window": {
+    "rounds": 0,
+    "status_counts": {},
+    "expected_timeout_or_no_recognition": 0,
+    "unexpected_results": 0,
+    "expected_rate": 0
+  },
+  "critical_marker_round_counts": {},
+  "player_failure_marker_round_counts": {},
+  "warning_marker_round_counts": {
+    "wdt_not_feed": 10
+  },
+  "serial_errors": {},
+  "stop_requested": false,
+  "task_log": "task.log",
+  "task_events": "task_events.jsonl",
+  "errors_log": "errors.log",
+  "outcome": "FAILED",
+  "error": "",
+  "serial_marker_counts": {
+    "network_down": 52,
+    "soundplayer_prepare_status_0xef": 20,
+    "wdt_not_feed": 18,
+    "esr_timeout": 8,
+    "asr_record_timeout": 5
+  },
+  "serial_failure_marker_counts": {},
+  "online_asr_latency": {
+    "count": 0
+  }
+}

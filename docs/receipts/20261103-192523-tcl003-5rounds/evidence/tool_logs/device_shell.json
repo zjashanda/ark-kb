@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "version": "2026.09.10",
+  "device_id": "tcl-csk7",
+  "csk_port": "COM3",
+  "upper_port": "COM4",
+  "baudrate": 921600,
+  "log_level_command": "flash.setloglev 4",
+  "log_level_success_patterns": [
+    "flash\\s+set\\s+log_lev\\s*:\\s*4\\s+success",
+    "loglevel\\s+4",
+    "log_lev\\s*[:=]\\s*4"
+  ],
+  "player_log_level_command": "player.setloglev 4",
+  "player_log_level_success_patterns": [
+    "player\\s+set\\s+log_lev\\s*:\\s*4\\s+success",
+    "player\\.setloglev\\s+4\\s+success",
+    "player[_ ]?loglevel\\s*[:=]?\\s*4",
+    "player\\s+set\\s+log\\s+level\\s*:\\s*4",
+    "player\\s+set\\s+log(?:_lev|\\s+level)\\s*:\\s*4"
+  ],
+  "initialization_patterns": [
+    "algo\\s+ready\\s+!!!",
+    "ai[_ ]create\\s+success",
+    "algo\\s+recreate"
+  ],
+  "restart_patterns": [
+    "CSK\\s+AP\\s+Ready\\s+after\\s+exception",
+    "APP\\|exception",
+    "reboot\\s+by\\s+reason",
+    "ListenAI\\s+VENUSA\\s+BOOT",
+    "watchdog.{0,30}(?:reset|reboot)",
+    "\\bRESET\\s*=",
+    "\\bBoot\\s+Reason\\b",
+    "hardware\\s+reset",
+    "reset\\s+reason",
+    "system\\s+(?:reboot|restart)",
+    "device\\s+(?:reboot|restart)"
+  ],
+  "reboot_command": "reboot"
+}

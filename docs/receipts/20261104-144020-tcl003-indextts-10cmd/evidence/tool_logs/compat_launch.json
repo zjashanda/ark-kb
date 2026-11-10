@@ -1,0 +1,43 @@
+{
+  "scenario": "wake-recognition",
+  "runtime_version": "compat",
+  "contract_family": "core_voice",
+  "migration_state": "formal_default",
+  "compat_reason": "",
+  "adapter": "compat",
+  "binding": {
+    "profile": "C:\\ProgramData\\NoahsArk\\Node\\tests\\tcl-r5\\tcl-lstest-debug\\config\\profiles\\tcl-csk7.json",
+    "profile_id": "tcl-csk7",
+    "profile_sha256": "2da9f11b50be25ee91c6e2e149ce96d33fedb5dcc4a82e3f5933569a0735b536",
+    "bench": "C:\\ProgramData\\NoahsArk\\Node\\tests\\tcl-r5\\tcl-lstest-debug\\config\\benches\\tcl003.json",
+    "bench_id": "tcl003",
+    "bench_sha256": "32e1d8183caa2af99862addf3ef93194948b23439daa1aa3aca66eba7b6f0bb0",
+    "ports": [
+      {
+        "role": "csk_ap",
+        "port": "COM3",
+        "baudrate": 921600
+      },
+      {
+        "role": "upper",
+        "port": "COM4",
+        "baudrate": 921600
+      }
+    ],
+    "playback_device_key": "<已脱敏，原始值留在执行机>",
+    "endpoint": "Speakers (ListenAI Audio)",
+    "result_root": "C:\\ProgramData\\NoahsArk\\Node\\tests\\tcl-r5\\tcl-lstest-debug\\result"
+  },
+  "required_roles": [
+    "csk_ap"
+  ],
+  "forwarded_args": [
+    "--rounds",
+    "10",
+    "--commands-file",
+    "config/entry_gate_offline_commands.txt",
+    "--cycle-commands"
+  ],
+  "result_suffix": "",
+  "result_directory": "C:\\ProgramData\\NoahsArk\\Node\\tests\\tcl-r5\\tcl-lstest-debug\\result\\20261104_144020_wake_recognition"
+}

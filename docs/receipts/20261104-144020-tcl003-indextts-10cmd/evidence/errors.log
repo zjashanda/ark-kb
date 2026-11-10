@@ -1,0 +1,55 @@
+2026-11-04 14:40:32.616 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:40:32.616 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:40:32.616 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:40:32.635 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 14:40:36.918 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 14:40:36.975 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:40:38.657 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:40:38.657 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:40:52.938 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:40:52.938 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:40:52.938 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:40:52.956 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 14:40:57.319 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 14:40:57.367 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:40:58.845 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:40:58.845 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:41:14.211 [CRITICAL] 上位机 设备发生系统或硬件复位；证据=serial_logs\COM4_upper.log
+2026-11-04 14:41:16.043 [CRITICAL] 上位机 固件报告 exception；证据=serial_logs\COM4_upper.log
+2026-11-04 14:41:16.046 [CRITICAL] 上位机 固件发生 crash；证据=serial_logs\COM4_upper.log
+2026-11-04 14:41:18.323 [CRITICAL] CSK AP 检测到设备重启；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 14:41:18.336 [CRITICAL] CSK AP 设备发生系统或硬件复位；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 14:41:18.386 [CRITICAL] CSK AP 设备发生系统或硬件复位；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 14:41:19.341 [WARN] CSK AP 检测到 wdt not feed；证据=serial_logs\COM3_csk_ap.log
+2026-11-04 14:41:24.870 [FAIL] 第 3 轮：检测到固件严重异常
+2026-11-04 14:41:36.248 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:41:36.248 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:41:36.248 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:41:43.074 [FAIL] 第 4 轮：播放唤醒词后设备未成功唤醒
+2026-11-04 14:41:51.040 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:41:51.050 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:41:51.050 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:41:57.831 [FAIL] 第 5 轮：播放唤醒词后设备未成功唤醒
+2026-11-04 14:42:03.595 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:42:03.610 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:42:03.610 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:42:10.425 [FAIL] 第 6 轮：播放唤醒词后设备未成功唤醒
+2026-11-04 14:42:18.085 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:42:18.086 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:42:18.086 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:42:24.916 [FAIL] 第 7 轮：播放唤醒词后设备未成功唤醒
+2026-11-04 14:42:33.104 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:42:37.139 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:42:37.155 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:42:37.155 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:42:43.940 [FAIL] 第 8 轮：播放唤醒词后设备未成功唤醒
+2026-11-04 14:42:52.175 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:42:56.470 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:42:56.491 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:42:56.491 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:43:03.189 [FAIL] 第 9 轮：播放唤醒词后设备未成功唤醒
+2026-11-04 14:43:09.046 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:43:09.046 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:43:09.047 [WARN] 上位机 设备网络连接断开；证据=serial_logs\COM4_upper.log
+2026-11-04 14:43:15.794 [FAIL] 第 10 轮：播放唤醒词后设备未成功唤醒
+2026-11-04 14:43:15.965 [FAIL] 任务结束，测试期间检测到失败或异常。

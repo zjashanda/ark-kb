@@ -1,0 +1,128 @@
+{
+  "schema": "run.receipt.v1",
+  "run_id": "run-20261022-103329-win009-v15-u1-command",
+  "task": "win009 tcl-csk7 v15 单命令冒烟（远程扫描行回填）",
+  "skill": "tcl-test-sub",
+  "skill_version": "unregistered",
+  "node": "win009",
+  "scope": {
+    "device": "TCL 智能语音设备（CSK7 + HI3863 双 MCU）",
+    "project": "tcl-csk7 / aitest",
+    "firmware": null,
+    "platform": "win009 (Windows)"
+  },
+  "quality": "candidate",
+  "result": "needs_review",
+  "totals": {
+    "scanned_rows": 1,
+    "evidence_files": 3,
+    "cases_total": 1,
+    "cases_pass": 1
+  },
+  "failures": [],
+  "bugs_found": [],
+  "responsibility": [],
+  "steps": [
+    {
+      "n": 1,
+      "name": "扫描发现运行目录",
+      "status": "pass",
+      "evidence": [
+        "evidence/scan-row.json"
+      ],
+      "note": "运行目录位于 win009，证据文件 3 个"
+    },
+    {
+      "n": 2,
+      "name": "解析结论字段并与判定行交叉校验",
+      "status": "pass",
+      "evidence": [
+        "evidence/scan-row.json"
+      ],
+      "note": "扫描结论 PASS 与日志判定行 PASS 一致"
+    },
+    {
+      "n": 3,
+      "name": "取回并复算原始产物哈希",
+      "status": "not_run",
+      "evidence": [],
+      "note": "原始产物仍在目标机，未取回本机，无法复算 SHA-256"
+    }
+  ],
+  "toolchain": {
+    "runtime": "远程扫描器（noah-16）",
+    "skill_name": "NoahsArk",
+    "skill_version": "unregistered",
+    "tools": [
+      {
+        "name": "recscan.py",
+        "note": "远程巡检脚本，版本未记录"
+      }
+    ]
+  },
+  "firmware": {
+    "version": null,
+    "sha256": null,
+    "source": "not_recorded"
+  },
+  "recovery": {
+    "attempted": false,
+    "result": "not_attempted",
+    "actions": [],
+    "evidence": []
+  },
+  "stop_conditions": [
+    "结论字段与日志判定行冲突时停止入库，先人工核对原始产物。"
+  ],
+  "stop_rules": [],
+  "evidence_dir": "evidence",
+  "evidence_sha256": [
+    "65a1d17b485d0e0170f832e3ed914aeb25b95598b4fed903f61a6574d4956840"
+  ],
+  "evidence": [
+    {
+      "path": "evidence/scan-row.json",
+      "sha256": "65a1d17b485d0e0170f832e3ed914aeb25b95598b4fed903f61a6574d4956840",
+      "role": "summary",
+      "verified": true
+    }
+  ],
+  "lessons": [
+    {
+      "type": "method",
+      "title": "远程扫描行只能生成候选回执，需先取回原始产物",
+      "claim": "该行的结论字段与日志判定行一致，但 cases.csv、results.csv、tool.log 均留在目标机未取回本机，哈希无法本机复算；扫描行摘要只能支撑候选回执，要转正式回执必须先取回产物并按证据目录重算 SHA-256。",
+      "confidence": "low"
+    }
+  ],
+  "confidence": "low",
+  "started_at": "2026-10-22T02:33:29Z",
+  "ended_at": "2026-10-22T02:33:46Z",
+  "notes": "扫描器从运行目录名与日志尾部推断出 PASS，与 [RESULT] 判定行一致；仍缺原始产物与完整性清单。",
+  "tags": [
+    "wake-recognition",
+    "台架"
+  ],
+  "evidence_gap": {
+    "code": "EVIDENCE_GAP",
+    "missing": [
+      "原始运行产物（cases.csv / results.csv / tool.log 未取回本机）",
+      "运行目录的完整性清单（SHA256SUMS）",
+      "运行时区声明（时间来自目标机本地钟，按 +08:00 换算）"
+    ],
+    "reason": "历史运行只留下远程扫描行，原始证据未归档到本机，哈希无法复算，只能作为候选回执沉淀线索。",
+    "blocking": true
+  },
+  "backfill": {
+    "tool": "tools/backfill.py",
+    "version": "1.0.0",
+    "source_kind": "remote_scan_row",
+    "source_path": "noah-16/rec-win009.json#v15-u1-command-20261022_103328",
+    "converted_at": "2026-11-10T00:00:00Z",
+    "sanitised": true,
+    "notes": [
+      "扫描行中的目标机绝对路径、账号与目录结构已剔除",
+      "skill 由运行目录形态推断，未取回运行时声明"
+    ]
+  }
+}

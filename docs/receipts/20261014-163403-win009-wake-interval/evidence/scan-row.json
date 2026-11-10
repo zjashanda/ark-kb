@@ -1,0 +1,24 @@
+{
+  "machine": "win009",
+  "run_id": "20261014_163403_wake_interval",
+  "task": "（扫描器取到的账号名，已脱敏）",
+  "result": "PASS",
+  "totals": {
+    "total": 1,
+    "pass": 1
+  },
+  "started": "2026-10-14 16:34:03",
+  "ended": "2026-10-14 16:34:49",
+  "log_last": "2026-10-14 16:34:49.284 [RESULT] 判定: 任务=BLOCKED 完成=0 异常=0 原因=初始化或日志等级恢复未通过: initialization marker missing",
+  "evidence_files": [
+    "cases.csv",
+    "results.csv",
+    "tool.log"
+  ],
+  "notes": [],
+  "redacted": [
+    "evidence_dir 与 project_root（含账号与绝对路径）",
+    "evidence_files 的目录部分",
+    "task 账号名"
+  ]
+}

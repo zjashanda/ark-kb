@@ -1,0 +1,224 @@
+2026-11-02 18:10:57.404 [SYSTEM] 任务初始化 名称=TCL 唤醒与命令词稳定性压测
+2026-11-02 18:10:58.533 [SYSTEM] 已开始持续采集分端口串口日志
+2026-11-02 18:10:58.540 [SYSTEM] 串口已连接｜端口：COM3｜角色：csk_ap｜波特率：921600
+2026-11-02 18:10:58.540 [SYSTEM] 发送初始化命令｜端口：COM3｜命令：flash.setloglev 4
+2026-11-02 18:10:58.540 [SYSTEM] 串口已连接｜端口：COM4｜角色：upper｜波特率：921600
+2026-11-02 18:11:00.544 [SYSTEM] 测试开始 名称=TCL 测试任务
+2026-11-02 18:11:00.555 [ACTION] 等待轮间隔=6.382s
+2026-11-02 18:11:06.945 [CASE] 1/5 START 文本=打开空调
+2026-11-02 18:11:06.949 [ACTION] 播放=唤醒词 文本=小T小T 文件=小T小T.mp3
+2026-11-02 18:11:09.731 [DEVICE] WAKE: xiao ti xiao ti intent: xiao ti xiao ti-ch
+2026-11-02 18:11:09.759 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:11:09.759 [PLAYER] PLAYER: 请求 来源=设备播放 文件=001_wakeup_zaine.mp3 端口=COM4 marker=tone url: /data/001_wakeup_zaine.mp3
+2026-11-02 18:11:09.760 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:11:09.760 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:11:09.772 [PLAYER] PLAYER: 准备 来源=设备播放 文件=001_wakeup_zaine.mp3 端口=COM4 marker=on_player_status: 239
+2026-11-02 18:11:09.775 [ERROR] SERIAL_ALERT 原因=wdt_not_feed
+2026-11-02 18:11:09.818 [DEVICE] CSK状态 mode: 0 -> 1 状态=已进入命令词识别
+2026-11-02 18:11:09.818 [DEVICE] CSK播放器旁证=执行已确认 端口=COM3 文件=001_wakeup_zaine.mp3 marker=tone player evt 1
+2026-11-02 18:11:09.852 [PLAYER] PLAYER: 开始 来源=设备播放 文件=001_wakeup_zaine.mp3 端口=COM4 marker=on_player_status: 2
+2026-11-02 18:11:10.053 [ACTION] 播放结束=唤醒词 文本=小T小T 文件=小T小T.mp3 状态=PASS 耗时=3104ms
+2026-11-02 18:11:10.053 [ACTION] 等待唤醒识别结果 上限=7.0s
+2026-11-02 18:11:10.060 [RESULT] 判定: 唤醒=通过 期望keyword=xiao ti xiao ti 实际keyword=xiao ti xiao ti
+2026-11-02 18:11:10.060 [ACTION] 确认CSK当前命令识别 mode=1 上限=3.0s
+2026-11-02 18:11:10.066 [RESULT] 判定: CSK命令识别状态=通过 实际mode=0 -> 1
+2026-11-02 18:11:10.066 [ACTION] 等待命令词播报=1.6s 原因=唤醒后正常等待
+2026-11-02 18:11:10.329 [DEVICE] CSK播放器旁证=执行完成 端口=COM3 文件=001_wakeup_zaine.mp3 marker=tone player evt 6
+2026-11-02 18:11:10.343 [PLAYER] PLAYER: 结束 来源=设备播放 文件=001_wakeup_zaine.mp3 端口=COM4 marker=on_player_status: 6
+2026-11-02 18:11:11.673 [ACTION] 命令词播报等待结束 实际=1.609s
+2026-11-02 18:11:11.681 [ACTION] 播放=测试语料 文本=打开空调 文件=打开空调.mp3
+2026-11-02 18:11:14.149 [ACTION] 播放结束=测试语料 文本=打开空调 文件=打开空调.mp3 状态=PASS 耗时=2467ms
+2026-11-02 18:11:14.153 [ACTION] 等待离线命令词识别 文本=打开空调 上限=17.0s
+2026-11-02 18:11:14.530 [DEVICE] OFFLINE_ASR: da kai kong tiao intent: da kai kong tiao
+2026-11-02 18:11:14.530 [RESULT] 判定: 离线识别=已观察
+2026-11-02 18:11:14.531 [ERROR] SERIAL_ALERT 原因=wdt_not_feed
+2026-11-02 18:11:14.571 [ACTION] 等待CSK退出命令识别 mode: 1 -> 0 上限=8.0s
+2026-11-02 18:11:14.596 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:11:14.645 [PLAYER] PLAYER: 请求 来源=设备播放 文件=005_ac_power_on.mp3 端口=COM4 marker=tone url: /data/005_ac_power_on.mp3
+2026-11-02 18:11:14.664 [PLAYER] PLAYER: 准备 来源=设备播放 文件=005_ac_power_on.mp3 端口=COM4 marker=on_player_status: 239
+2026-11-02 18:11:14.704 [DEVICE] CSK播放器旁证=执行已确认 端口=COM3 文件=005_ac_power_on.mp3 marker=tone player evt 1
+2026-11-02 18:11:14.738 [PLAYER] PLAYER: 开始 来源=设备播放 文件=005_ac_power_on.mp3 端口=COM4 marker=on_player_status: 2
+2026-11-02 18:11:16.250 [DEVICE] CSK播放器旁证=执行完成 端口=COM3 文件=005_ac_power_on.mp3 marker=tone player evt 6
+2026-11-02 18:11:16.282 [PLAYER] PLAYER: 结束 来源=设备播放 文件=005_ac_power_on.mp3 端口=COM4 marker=on_player_status: 6
+2026-11-02 18:11:16.282 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:11:16.282 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:11:22.605 [RESULT] 判定: CSK命令识别退出=未观察到
+2026-11-02 18:11:22.627 [RESULT] 判定: 本轮=通过
+2026-11-02 18:11:22.627 [SUMMARY] 累计完成=1 状态=PASS:1 首次异常=无
+
+2026-11-02 18:11:22.627 [ACTION] 等待轮间隔=5.202s
+2026-11-02 18:11:27.835 [CASE] 2/5 START 文本=打开空调
+2026-11-02 18:11:27.844 [ACTION] 播放=唤醒词 文本=小T小T 文件=小T小T.mp3
+2026-11-02 18:11:29.645 [DEVICE] CSK状态 mode: 1 -> 0 状态=命令词识别已退出
+2026-11-02 18:11:30.529 [DEVICE] WAKE: xiao ti xiao ti intent: xiao ti xiao ti-ch
+2026-11-02 18:11:30.562 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:11:30.562 [PLAYER] PLAYER: 请求 来源=设备播放 文件=004_wakeup_ganma.mp3 端口=COM4 marker=tone url: /data/004_wakeup_ganma.mp3
+2026-11-02 18:11:30.563 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:11:30.563 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:11:30.578 [ERROR] SERIAL_ALERT 原因=wdt_not_feed
+2026-11-02 18:11:30.579 [PLAYER] PLAYER: 准备 来源=设备播放 文件=004_wakeup_ganma.mp3 端口=COM4 marker=on_player_status: 239
+2026-11-02 18:11:30.618 [DEVICE] CSK状态 mode: 0 -> 1 状态=已进入命令词识别
+2026-11-02 18:11:30.618 [DEVICE] CSK播放器旁证=执行已确认 端口=COM3 文件=004_wakeup_ganma.mp3 marker=tone player evt 1
+2026-11-02 18:11:30.658 [PLAYER] PLAYER: 开始 来源=设备播放 文件=004_wakeup_ganma.mp3 端口=COM4 marker=on_player_status: 2
+2026-11-02 18:11:30.894 [ACTION] 播放结束=唤醒词 文本=小T小T 文件=小T小T.mp3 状态=PASS 耗时=3050ms
+2026-11-02 18:11:30.894 [ACTION] 等待唤醒识别结果 上限=7.0s
+2026-11-02 18:11:30.902 [RESULT] 判定: 唤醒=通过 期望keyword=xiao ti xiao ti 实际keyword=xiao ti xiao ti
+2026-11-02 18:11:30.902 [ACTION] 确认CSK当前命令识别 mode=1 上限=3.0s
+2026-11-02 18:11:30.908 [RESULT] 判定: CSK命令识别状态=通过 实际mode=0 -> 1
+2026-11-02 18:11:30.909 [ACTION] 等待命令词播报=1.6s 原因=唤醒后正常等待
+2026-11-02 18:11:31.136 [DEVICE] CSK播放器旁证=执行完成 端口=COM3 文件=004_wakeup_ganma.mp3 marker=tone player evt 6
+2026-11-02 18:11:31.161 [PLAYER] PLAYER: 结束 来源=设备播放 文件=004_wakeup_ganma.mp3 端口=COM4 marker=on_player_status: 6
+2026-11-02 18:11:32.516 [ACTION] 命令词播报等待结束 实际=1.609s
+2026-11-02 18:11:32.524 [ACTION] 播放=测试语料 文本=打开空调 文件=打开空调.mp3
+2026-11-02 18:11:35.012 [ACTION] 播放结束=测试语料 文本=打开空调 文件=打开空调.mp3 状态=PASS 耗时=2486ms
+2026-11-02 18:11:35.026 [ACTION] 等待离线命令词识别 文本=打开空调 上限=17.0s
+2026-11-02 18:11:35.411 [DEVICE] OFFLINE_ASR: da kai kong tiao intent: da kai kong tiao
+2026-11-02 18:11:35.411 [RESULT] 判定: 离线识别=已观察
+2026-11-02 18:11:35.411 [ERROR] SERIAL_ALERT 原因=wdt_not_feed
+2026-11-02 18:11:35.461 [ACTION] 等待CSK退出命令识别 mode: 1 -> 0 上限=8.0s
+2026-11-02 18:11:35.461 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:11:35.465 [PLAYER] PLAYER: 请求 来源=设备播放 文件=005_ac_power_on.mp3 端口=COM4 marker=tone url: /data/005_ac_power_on.mp3
+2026-11-02 18:11:35.494 [PLAYER] PLAYER: 准备 来源=设备播放 文件=005_ac_power_on.mp3 端口=COM4 marker=on_player_status: 239
+2026-11-02 18:11:35.526 [DEVICE] CSK播放器旁证=执行已确认 端口=COM3 文件=005_ac_power_on.mp3 marker=tone player evt 1
+2026-11-02 18:11:35.565 [PLAYER] PLAYER: 开始 来源=设备播放 文件=005_ac_power_on.mp3 端口=COM4 marker=on_player_status: 2
+2026-11-02 18:11:37.073 [DEVICE] CSK播放器旁证=执行完成 端口=COM3 文件=005_ac_power_on.mp3 marker=tone player evt 6
+2026-11-02 18:11:37.107 [PLAYER] PLAYER: 结束 来源=设备播放 文件=005_ac_power_on.mp3 端口=COM4 marker=on_player_status: 6
+2026-11-02 18:11:37.107 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:11:37.107 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:11:43.547 [RESULT] 判定: CSK命令识别退出=未观察到
+2026-11-02 18:11:43.569 [RESULT] 判定: 本轮=通过
+2026-11-02 18:11:43.569 [SUMMARY] 累计完成=2 状态=PASS:2 首次异常=无
+
+2026-11-02 18:11:43.571 [ACTION] 等待轮间隔=9.925s
+2026-11-02 18:11:50.440 [DEVICE] CSK状态 mode: 1 -> 0 状态=命令词识别已退出
+2026-11-02 18:11:53.506 [CASE] 3/5 START 文本=打开空调
+2026-11-02 18:11:53.514 [ACTION] 播放=唤醒词 文本=小T小T 文件=小T小T.mp3
+2026-11-02 18:11:56.287 [DEVICE] WAKE: xiao ti xiao ti intent: xiao ti xiao ti-ch
+2026-11-02 18:11:56.316 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:11:56.317 [PLAYER] PLAYER: 请求 来源=设备播放 文件=003_wakeup_xiangwola.mp3 端口=COM4 marker=tone url: /data/003_wakeup_xiangwola.mp3
+2026-11-02 18:11:56.317 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:11:56.317 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:11:56.331 [PLAYER] PLAYER: 准备 来源=设备播放 文件=003_wakeup_xiangwola.mp3 端口=COM4 marker=on_player_status: 239
+2026-11-02 18:11:56.333 [ERROR] SERIAL_ALERT 原因=wdt_not_feed
+2026-11-02 18:11:56.376 [DEVICE] CSK播放器旁证=执行已确认 端口=COM3 文件=003_wakeup_xiangwola.mp3 marker=tone player evt 1
+2026-11-02 18:11:56.378 [DEVICE] CSK状态 mode: 0 -> 1 状态=已进入命令词识别
+2026-11-02 18:11:56.412 [PLAYER] PLAYER: 开始 来源=设备播放 文件=003_wakeup_xiangwola.mp3 端口=COM4 marker=on_player_status: 2
+2026-11-02 18:11:56.604 [ACTION] 播放结束=唤醒词 文本=小T小T 文件=小T小T.mp3 状态=PASS 耗时=3090ms
+2026-11-02 18:11:56.606 [ACTION] 等待唤醒识别结果 上限=7.0s
+2026-11-02 18:11:56.617 [RESULT] 判定: 唤醒=通过 期望keyword=xiao ti xiao ti 实际keyword=xiao ti xiao ti
+2026-11-02 18:11:56.617 [ACTION] 确认CSK当前命令识别 mode=1 上限=3.0s
+2026-11-02 18:11:56.624 [RESULT] 判定: CSK命令识别状态=通过 实际mode=0 -> 1
+2026-11-02 18:11:56.626 [ACTION] 等待命令词播报=1.6s 原因=唤醒后正常等待
+2026-11-02 18:11:56.897 [DEVICE] CSK播放器旁证=执行完成 端口=COM3 文件=003_wakeup_xiangwola.mp3 marker=tone player evt 6
+2026-11-02 18:11:56.916 [PLAYER] PLAYER: 结束 来源=设备播放 文件=003_wakeup_xiangwola.mp3 端口=COM4 marker=on_player_status: 6
+2026-11-02 18:11:58.230 [ACTION] 命令词播报等待结束 实际=1.61s
+2026-11-02 18:11:58.238 [ACTION] 播放=测试语料 文本=打开空调 文件=打开空调.mp3
+2026-11-02 18:12:00.702 [ACTION] 播放结束=测试语料 文本=打开空调 文件=打开空调.mp3 状态=PASS 耗时=2464ms
+2026-11-02 18:12:00.704 [ACTION] 等待离线命令词识别 文本=打开空调 上限=17.0s
+2026-11-02 18:12:01.171 [DEVICE] OFFLINE_ASR: da kai kong tiao intent: da kai kong tiao
+2026-11-02 18:12:01.171 [RESULT] 判定: 离线识别=已观察
+2026-11-02 18:12:01.171 [ERROR] SERIAL_ALERT 原因=wdt_not_feed
+2026-11-02 18:12:01.238 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:12:01.246 [PLAYER] PLAYER: 请求 来源=设备播放 文件=005_ac_power_on.mp3 端口=COM4 marker=tone url: /data/005_ac_power_on.mp3
+2026-11-02 18:12:01.253 [ACTION] 等待CSK退出命令识别 mode: 1 -> 0 上限=8.0s
+2026-11-02 18:12:01.268 [PLAYER] PLAYER: 准备 来源=设备播放 文件=005_ac_power_on.mp3 端口=COM4 marker=on_player_status: 239
+2026-11-02 18:12:01.295 [DEVICE] CSK播放器旁证=执行已确认 端口=COM3 文件=005_ac_power_on.mp3 marker=tone player evt 1
+2026-11-02 18:12:01.335 [PLAYER] PLAYER: 开始 来源=设备播放 文件=005_ac_power_on.mp3 端口=COM4 marker=on_player_status: 2
+2026-11-02 18:12:02.847 [DEVICE] CSK播放器旁证=执行完成 端口=COM3 文件=005_ac_power_on.mp3 marker=tone player evt 6
+2026-11-02 18:12:02.850 [PLAYER] PLAYER: 结束 来源=设备播放 文件=005_ac_power_on.mp3 端口=COM4 marker=on_player_status: 6
+2026-11-02 18:12:02.879 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:12:02.879 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:12:09.351 [RESULT] 判定: CSK命令识别退出=未观察到
+2026-11-02 18:12:09.367 [RESULT] 判定: 本轮=通过
+2026-11-02 18:12:09.367 [SUMMARY] 累计完成=3 状态=PASS:3 首次异常=无
+
+2026-11-02 18:12:09.367 [ACTION] 等待轮间隔=8.664s
+2026-11-02 18:12:16.198 [DEVICE] CSK状态 mode: 1 -> 0 状态=命令词识别已退出
+2026-11-02 18:12:18.036 [CASE] 4/5 START 文本=打开空调
+2026-11-02 18:12:18.045 [ACTION] 播放=唤醒词 文本=小T小T 文件=小T小T.mp3
+2026-11-02 18:12:20.769 [DEVICE] WAKE: xiao ti xiao ti intent: xiao ti xiao ti-ch
+2026-11-02 18:12:20.790 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:12:20.790 [PLAYER] PLAYER: 请求 来源=设备播放 文件=002_wakeup_wozai.mp3 端口=COM4 marker=tone url: /data/002_wakeup_wozai.mp3
+2026-11-02 18:12:20.798 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:12:20.798 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:12:20.811 [PLAYER] PLAYER: 准备 来源=设备播放 文件=002_wakeup_wozai.mp3 端口=COM4 marker=on_player_status: 239
+2026-11-02 18:12:20.812 [ERROR] SERIAL_ALERT 原因=wdt_not_feed
+2026-11-02 18:12:20.855 [DEVICE] CSK状态 mode: 0 -> 1 状态=已进入命令词识别
+2026-11-02 18:12:20.855 [DEVICE] CSK播放器旁证=执行已确认 端口=COM3 文件=002_wakeup_wozai.mp3 marker=tone player evt 1
+2026-11-02 18:12:20.895 [PLAYER] PLAYER: 开始 来源=设备播放 文件=002_wakeup_wozai.mp3 端口=COM4 marker=on_player_status: 2
+2026-11-02 18:12:21.082 [ACTION] 播放结束=唤醒词 文本=小T小T 文件=小T小T.mp3 状态=PASS 耗时=3035ms
+2026-11-02 18:12:21.084 [ACTION] 等待唤醒识别结果 上限=7.0s
+2026-11-02 18:12:21.090 [RESULT] 判定: 唤醒=通过 期望keyword=xiao ti xiao ti 实际keyword=xiao ti xiao ti
+2026-11-02 18:12:21.090 [ACTION] 确认CSK当前命令识别 mode=1 上限=3.0s
+2026-11-02 18:12:21.097 [RESULT] 判定: CSK命令识别状态=通过 实际mode=0 -> 1
+2026-11-02 18:12:21.097 [ACTION] 等待命令词播报=1.6s 原因=唤醒后正常等待
+2026-11-02 18:12:21.375 [DEVICE] CSK播放器旁证=执行完成 端口=COM3 文件=002_wakeup_wozai.mp3 marker=tone player evt 6
+2026-11-02 18:12:21.408 [PLAYER] PLAYER: 结束 来源=设备播放 文件=002_wakeup_wozai.mp3 端口=COM4 marker=on_player_status: 6
+2026-11-02 18:12:22.703 [ACTION] 命令词播报等待结束 实际=1.61s
+2026-11-02 18:12:22.706 [ACTION] 播放=测试语料 文本=打开空调 文件=打开空调.mp3
+2026-11-02 18:12:25.162 [ACTION] 播放结束=测试语料 文本=打开空调 文件=打开空调.mp3 状态=PASS 耗时=2456ms
+2026-11-02 18:12:25.164 [ACTION] 等待离线命令词识别 文本=打开空调 上限=17.0s
+2026-11-02 18:12:25.647 [DEVICE] OFFLINE_ASR: da kai kong tiao intent: da kai kong tiao
+2026-11-02 18:12:25.647 [RESULT] 判定: 离线识别=已观察
+2026-11-02 18:12:25.647 [ERROR] SERIAL_ALERT 原因=wdt_not_feed
+2026-11-02 18:12:25.700 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:12:25.710 [PLAYER] PLAYER: 请求 来源=设备播放 文件=005_ac_power_on.mp3 端口=COM4 marker=tone url: /data/005_ac_power_on.mp3
+2026-11-02 18:12:25.726 [ACTION] 等待CSK退出命令识别 mode: 1 -> 0 上限=8.0s
+2026-11-02 18:12:25.772 [PLAYER] PLAYER: 准备 来源=设备播放 文件=005_ac_power_on.mp3 端口=COM4 marker=on_player_status: 239
+2026-11-02 18:12:25.777 [DEVICE] CSK播放器旁证=执行已确认 端口=COM3 文件=005_ac_power_on.mp3 marker=tone player evt 1
+2026-11-02 18:12:25.820 [PLAYER] PLAYER: 开始 来源=设备播放 文件=005_ac_power_on.mp3 端口=COM4 marker=on_player_status: 2
+2026-11-02 18:12:27.340 [DEVICE] CSK播放器旁证=执行完成 端口=COM3 文件=005_ac_power_on.mp3 marker=tone player evt 6
+2026-11-02 18:12:27.369 [PLAYER] PLAYER: 结束 来源=设备播放 文件=005_ac_power_on.mp3 端口=COM4 marker=on_player_status: 6
+2026-11-02 18:12:27.373 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:12:27.373 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:12:33.766 [RESULT] 判定: CSK命令识别退出=未观察到
+2026-11-02 18:12:33.792 [RESULT] 判定: 本轮=通过
+2026-11-02 18:12:33.792 [SUMMARY] 累计完成=4 状态=PASS:4 首次异常=无
+
+2026-11-02 18:12:33.792 [ACTION] 等待轮间隔=5.285s
+2026-11-02 18:12:39.103 [CASE] 5/5 START 文本=打开空调
+2026-11-02 18:12:39.111 [ACTION] 播放=唤醒词 文本=小T小T 文件=小T小T.mp3
+2026-11-02 18:12:40.678 [DEVICE] CSK状态 mode: 1 -> 0 状态=命令词识别已退出
+2026-11-02 18:12:41.809 [DEVICE] WAKE: xiao ti xiao ti intent: xiao ti xiao ti-ch
+2026-11-02 18:12:41.811 [DEVICE] CSK状态 mode: 0 -> 1 状态=已进入命令词识别
+2026-11-02 18:12:41.831 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:12:41.831 [PLAYER] PLAYER: 请求 来源=设备播放 文件=004_wakeup_ganma.mp3 端口=COM4 marker=tone url: /data/004_wakeup_ganma.mp3
+2026-11-02 18:12:41.835 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:12:41.840 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:12:41.861 [PLAYER] PLAYER: 准备 来源=设备播放 文件=004_wakeup_ganma.mp3 端口=COM4 marker=on_player_status: 239
+2026-11-02 18:12:41.894 [DEVICE] CSK播放器旁证=执行已确认 端口=COM3 文件=004_wakeup_ganma.mp3 marker=tone player evt 1
+2026-11-02 18:12:41.933 [PLAYER] PLAYER: 开始 来源=设备播放 文件=004_wakeup_ganma.mp3 端口=COM4 marker=on_player_status: 2
+2026-11-02 18:12:41.947 [ERROR] SERIAL_ALERT 原因=wdt_not_feed
+2026-11-02 18:12:42.200 [ACTION] 播放结束=唤醒词 文本=小T小T 文件=小T小T.mp3 状态=PASS 耗时=3089ms
+2026-11-02 18:12:42.200 [ACTION] 等待唤醒识别结果 上限=7.0s
+2026-11-02 18:12:42.208 [RESULT] 判定: 唤醒=通过 期望keyword=xiao ti xiao ti 实际keyword=xiao ti xiao ti
+2026-11-02 18:12:42.208 [ACTION] 确认CSK当前命令识别 mode=1 上限=3.0s
+2026-11-02 18:12:42.214 [RESULT] 判定: CSK命令识别状态=通过 实际mode=0 -> 1
+2026-11-02 18:12:42.214 [ACTION] 等待命令词播报=1.6s 原因=唤醒后正常等待
+2026-11-02 18:12:42.431 [DEVICE] CSK播放器旁证=执行完成 端口=COM3 文件=004_wakeup_ganma.mp3 marker=tone player evt 6
+2026-11-02 18:12:42.442 [PLAYER] PLAYER: 结束 来源=设备播放 文件=004_wakeup_ganma.mp3 端口=COM4 marker=on_player_status: 6
+2026-11-02 18:12:43.832 [ACTION] 命令词播报等待结束 实际=1.61s
+2026-11-02 18:12:43.850 [ACTION] 播放=测试语料 文本=打开空调 文件=打开空调.mp3
+2026-11-02 18:12:46.330 [ACTION] 播放结束=测试语料 文本=打开空调 文件=打开空调.mp3 状态=PASS 耗时=2480ms
+2026-11-02 18:12:46.332 [ACTION] 等待离线命令词识别 文本=打开空调 上限=17.0s
+2026-11-02 18:12:46.768 [DEVICE] OFFLINE_ASR: da kai kong tiao intent: da kai kong tiao
+2026-11-02 18:12:46.768 [RESULT] 判定: 离线识别=已观察
+2026-11-02 18:12:46.768 [ERROR] SERIAL_ALERT 原因=wdt_not_feed
+2026-11-02 18:12:46.835 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:12:46.845 [PLAYER] PLAYER: 请求 来源=设备播放 文件=005_ac_power_on.mp3 端口=COM4 marker=tone url: /data/005_ac_power_on.mp3
+2026-11-02 18:12:46.877 [ACTION] 等待CSK退出命令识别 mode: 1 -> 0 上限=8.0s
+2026-11-02 18:12:46.907 [PLAYER] PLAYER: 准备 来源=设备播放 文件=005_ac_power_on.mp3 端口=COM4 marker=on_player_status: 239
+2026-11-02 18:12:46.938 [DEVICE] CSK播放器旁证=执行已确认 端口=COM3 文件=005_ac_power_on.mp3 marker=tone player evt 1
+2026-11-02 18:12:46.968 [PLAYER] PLAYER: 开始 来源=设备播放 文件=005_ac_power_on.mp3 端口=COM4 marker=on_player_status: 2
+2026-11-02 18:12:48.492 [DEVICE] CSK播放器旁证=执行完成 端口=COM3 文件=005_ac_power_on.mp3 marker=tone player evt 6
+2026-11-02 18:12:48.524 [PLAYER] PLAYER: 结束 来源=设备播放 文件=005_ac_power_on.mp3 端口=COM4 marker=on_player_status: 6
+2026-11-02 18:12:48.526 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:12:48.526 [ERROR] SERIAL_ALERT 原因=network_down
+2026-11-02 18:12:54.932 [RESULT] 判定: CSK命令识别退出=未观察到
+2026-11-02 18:12:54.957 [RESULT] 判定: 本轮=通过
+2026-11-02 18:12:54.957 [SUMMARY] 累计完成=5 状态=PASS:5 首次异常=无
+
+2026-11-02 18:12:54.957 [ACTION] 任务收尾等待CSK退出命令识别 mode: 1 -> 0 上限=25.0s
+2026-11-02 18:13:01.800 [DEVICE] CSK状态 mode: 1 -> 0 状态=命令词识别已退出
+2026-11-02 18:13:01.801 [RESULT] 判定: 任务收尾CSK退出命令识别=已观察 实际mode=0
+2026-11-02 18:13:02.006 [RESULT] 判定: 任务=通过
