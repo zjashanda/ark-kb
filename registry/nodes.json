@@ -1,0 +1,144 @@
+{
+  "schema": "skillhub-nodes.v1",
+  "updated_at": "2026-11-10",
+  "notes": "节点清单：hub 路径、SSH 端点、GitHub 可达能力。不含任何凭据；SSH 免密已由工部尚书布置。",
+  "github": {
+    "control_node": "bszT14",
+    "control_alias": "github-zjashanda",
+    "private_repos": ["a4m-Jenkins", "fileball", "qw-email-handle", "zhsh"]
+  },
+  "nodes": [
+    {
+      "node": "bszT14",
+      "endpoint": "10.11.63.42:22",
+      "ssh_user": "bszheng",
+      "os": "linux",
+      "hub": "/home/bszheng/zhsh/workspace/skillhub",
+      "codex_skills": "/home/bszheng/.codex/skills",
+      "github_access": "full",
+      "control": true,
+      "probe": "local"
+    },
+    {
+      "node": "pvm1005",
+      "endpoint": "10.11.63.24:10026",
+      "ssh_user": "administrator",
+      "os": "windows",
+      "hub": "D:\\zhsh\\workspace\\skillhub",
+      "codex_skills": "C:\\Users\\Administrator\\.codex\\skills",
+      "github_access": "public",
+      "control": false,
+      "probe": "powershell -NoProfile -EncodedCommand"
+    },
+    {
+      "node": "PVM1003",
+      "endpoint": "10.11.63.24:10023",
+      "ssh_user": "administrator",
+      "os": "windows",
+      "hub": "D:\\zhsh\\workspace\\skillhub",
+      "codex_skills": "C:\\Users\\Administrator\\.codex\\skills",
+      "github_access": "public",
+      "control": false,
+      "probe": "powershell -NoProfile -EncodedCommand"
+    },
+    {
+      "node": "win008",
+      "endpoint": "10.11.63.24:10024",
+      "ssh_user": "administrator",
+      "os": "windows",
+      "hub": "D:\\zhsh\\workspace\\skillhub",
+      "codex_skills": "C:\\Users\\Administrator\\.codex\\skills",
+      "github_access": "public",
+      "control": false,
+      "probe": "powershell -NoProfile -EncodedCommand"
+    },
+    {
+      "node": "win000",
+      "endpoint": "10.11.63.36:22",
+      "ssh_user": "administrator",
+      "os": "windows",
+      "hub": "D:\\zhsh\\workspace\\skillhub",
+      "codex_skills": "C:\\Users\\Administrator\\.codex\\skills",
+      "github_access": "public",
+      "control": false,
+      "probe": "powershell -NoProfile -EncodedCommand"
+    },
+    {
+      "node": "win002",
+      "endpoint": "10.11.63.44:22",
+      "ssh_user": "administrator",
+      "os": "windows",
+      "hub": "D:\\zhsh\\workspace\\skillhub",
+      "codex_skills": "C:\\Users\\Administrator\\.codex\\skills",
+      "github_access": "public",
+      "control": false,
+      "probe": "powershell -NoProfile -EncodedCommand"
+    },
+    {
+      "node": "win003",
+      "endpoint": "10.11.63.47:22",
+      "ssh_user": "administrator",
+      "os": "windows",
+      "hub": "D:\\zhsh\\workspace\\skillhub",
+      "codex_skills": "C:\\Users\\Administrator\\.codex\\skills",
+      "github_access": "public",
+      "control": false,
+      "probe": "powershell -NoProfile -EncodedCommand"
+    },
+    {
+      "node": "win004",
+      "endpoint": "10.11.63.37:22",
+      "ssh_user": "administrator",
+      "os": "windows",
+      "hub": "D:\\zhsh\\workspace\\skillhub",
+      "codex_skills": "C:\\Users\\Administrator\\.codex\\skills",
+      "github_access": "public",
+      "control": false,
+      "probe": "powershell -NoProfile -EncodedCommand"
+    },
+    {
+      "node": "win005",
+      "endpoint": "10.11.63.31:22",
+      "ssh_user": "administrator",
+      "os": "windows",
+      "hub": "D:\\zhsh\\workspace\\skillhub",
+      "codex_skills": "C:\\Users\\Administrator\\.codex\\skills",
+      "github_access": "public",
+      "control": false,
+      "probe": "powershell -NoProfile -EncodedCommand"
+    },
+    {
+      "node": "win006",
+      "endpoint": "10.11.63.35:22",
+      "ssh_user": "administrator",
+      "os": "windows",
+      "hub": "D:\\zhsh\\workspace\\skillhub",
+      "codex_skills": "C:\\Users\\Administrator\\.codex\\skills",
+      "github_access": "public",
+      "control": false,
+      "probe": "powershell -NoProfile -EncodedCommand"
+    },
+    {
+      "node": "win010",
+      "endpoint": "10.11.63.25:22",
+      "ssh_user": "administrator",
+      "os": "windows",
+      "hub": "D:\\zhsh\\workspace\\skillhub",
+      "codex_skills": "C:\\Users\\Administrator\\.codex\\skills",
+      "github_access": "public",
+      "control": false,
+      "probe": "powershell -NoProfile -EncodedCommand"
+    },
+    {
+      "node": "test-101",
+      "endpoint": "10.11.63.24:10022",
+      "ssh_user": "testadmin",
+      "os": "linux",
+      "hub": "/home/testadmin/zhsh/workspace/skillhub",
+      "codex_skills": "/home/testadmin/.codex/skills",
+      "github_access": "public",
+      "control": false,
+      "probe": "bash -s"
+    }
+  ]
+}

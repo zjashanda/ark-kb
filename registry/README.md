@@ -4,10 +4,17 @@ NoahsArk 工作区 35 个仓库的能力、适用设备/项目与可用状态的
 
 本版只做清点，不改任何被调查仓库；所有描述来自仓库 README、`SKILL.md`、顶层目录与最近提交，不包含代码、配置或凭据内容。
 
+相关文件：
+
+- [`skills.json`](skills.json)：35 个 GitHub skill 的能力台账（机器可读版，本文件同源）。
+- [`nodes.json`](nodes.json)：12 个节点的端点、hub 路径与 GitHub 可达能力。
+- [`skill-sync-manifest.json`](skill-sync-manifest.json)：节点 × skill 的版本清单（远端 SHA / 本地 SHA / 状态 / 时间）。
+
 相关文档：
 
 - [`docs/capability-boundaries.md`](../docs/capability-boundaries.md)：`Polaris` / `Trisolaris` / `mars-moon` 的选型边界（不合并的理由）。
 - [`docs/high-reuse-usage.md`](../docs/high-reuse-usage.md)：`reuse: high` 的「谁在用、怎么调用」及证据强度。
+- [`docs/skillhub-sync.md`](../docs/skillhub-sync.md)：云端 skill 到节点 skillhub 的同步流程、状态定义与节点侧约定。
 
 ## 数据来源与范围
 
