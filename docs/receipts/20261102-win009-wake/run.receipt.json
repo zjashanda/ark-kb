@@ -1,0 +1,146 @@
+{
+  "schema": "run.receipt.v1",
+  "run_id": "20261102_090644_wake_recognition",
+  "task": "TCL 离线语音交互压测：唤醒+命令词识别长稳（win009 台架，单轮冒烟）",
+  "skill": "lstest",
+  "skill_version": "lstest-debug 20261102",
+  "scope": {
+    "device": "TCL-R5",
+    "project": "tcl-r5",
+    "firmware": null,
+    "platform": "win009 (TCL-R5)"
+  },
+  "result": "pass",
+  "totals": {
+    "rounds": 1,
+    "target_rounds": 1,
+    "duration_minutes": 0,
+    "recognized": 1,
+    "failed": 0,
+    "recognition_rate": 1.0,
+    "boundary_unexpected": 0,
+    "serial_error_kinds": 0,
+    "warning_markers": 1,
+    "archived_files": 15,
+    "archived_bytes": 208999,
+    "status_counts": {
+      "RECOGNIZED": 1
+    }
+  },
+  "failures": [],
+  "bugs_found": [],
+  "evidence_dir": "/srv/storage/ark/results/win009/tcl-r5/20261102_090644_wake_recognition",
+  "evidence_sha256": [
+    "4f090f8b510cb483f4bd34c92ba23499faa515e75f744ead7b8f78955ac891ea",
+    "fa7e8c41a3b9c208fe3d4ddd8a11b753ef8be3f06e7860b6a3c9ddf010ebb209",
+    "f05e27fd80c4efaebe540f3e70e6f19eda9c5560c923295ee72f9dea8052a1e8",
+    "2e0bbcd04c90c0e5385334ad01752afecf95ace02db7101225180e929cbde9d6",
+    "ab726fbb62b10b5e19b3ecaf19137ddb1c2b011988c607540a4d4ac0dbdb1260",
+    "a101c3a85012a28585aa3a7fb54c26f6fc9edaaa9422c4372247e7c9071d6aa7",
+    "19d623e0c0eba6039aecebeb467ac6b35551000d6ccd17a723371c90bf4ab4b5",
+    "d694c032aab8a108058933fd6bdb520fd79ce51b1ffd6e2232dad736750e7298",
+    "6a23429ee76cc4ae669013a0e3a286cd8de7c95ddd2903dd54f2dfcd0fac0dbf",
+    "eab48aa3a40b0eec5e3763329e857ac90869900dbadf2e44663a1c7bfe95053b",
+    "13aa9b946850bbac317c531a59e069f33b108ab21685a7bc9f926d688750e02c",
+    "fb696c005f02892534c2e97090ce79dc369a401a64040c86ca7c097d01d939c5",
+    "559ba803371ffd0704842bcc05a564b95cce0d7639f67c53e94cffaa13aa92f8",
+    "00e8753296e36147b796c2c35ada03d107b9a38ef7d444428a054eafd09fcc96",
+    "a4a078fc8ea9ffe070f4d75784148a6c0ceb8a98d6848ad1b223448d523fcfe8"
+  ],
+  "evidence_files": [
+    {
+      "path": "errors.log",
+      "sha256": "4f090f8b510cb483f4bd34c92ba23499faa515e75f744ead7b8f78955ac891ea",
+      "bytes": 906
+    },
+    {
+      "path": "progress.json",
+      "sha256": "fa7e8c41a3b9c208fe3d4ddd8a11b753ef8be3f06e7860b6a3c9ddf010ebb209",
+      "bytes": 196
+    },
+    {
+      "path": "rounds.csv",
+      "sha256": "f05e27fd80c4efaebe540f3e70e6f19eda9c5560c923295ee72f9dea8052a1e8",
+      "bytes": 834
+    },
+    {
+      "path": "serial_logs/COM3_csk_ap.log",
+      "sha256": "2e0bbcd04c90c0e5385334ad01752afecf95ace02db7101225180e929cbde9d6",
+      "bytes": 21308
+    },
+    {
+      "path": "serial_logs/COM4_upper.log",
+      "sha256": "ab726fbb62b10b5e19b3ecaf19137ddb1c2b011988c607540a4d4ac0dbdb1260",
+      "bytes": 130090
+    },
+    {
+      "path": "summary_final.json",
+      "sha256": "a101c3a85012a28585aa3a7fb54c26f6fc9edaaa9422c4372247e7c9071d6aa7",
+      "bytes": 1170
+    },
+    {
+      "path": "summary_final.md",
+      "sha256": "19d623e0c0eba6039aecebeb467ac6b35551000d6ccd17a723371c90bf4ab4b5",
+      "bytes": 956
+    },
+    {
+      "path": "task_config.json",
+      "sha256": "d694c032aab8a108058933fd6bdb520fd79ce51b1ffd6e2232dad736750e7298",
+      "bytes": 1604
+    },
+    {
+      "path": "task_events.jsonl",
+      "sha256": "6a23429ee76cc4ae669013a0e3a286cd8de7c95ddd2903dd54f2dfcd0fac0dbf",
+      "bytes": 42766
+    },
+    {
+      "path": "tool.log",
+      "sha256": "eab48aa3a40b0eec5e3763329e857ac90869900dbadf2e44663a1c7bfe95053b",
+      "bytes": 4887
+    },
+    {
+      "path": "tool_logs/compat_launch.json",
+      "sha256": "13aa9b946850bbac317c531a59e069f33b108ab21685a7bc9f926d688750e02c",
+      "bytes": 1388
+    },
+    {
+      "path": "tool_logs/device_shell.json",
+      "sha256": "fb696c005f02892534c2e97090ce79dc369a401a64040c86ca7c097d01d939c5",
+      "bytes": 1227
+    },
+    {
+      "path": "tool_logs/online_asr.jsonl",
+      "sha256": "559ba803371ffd0704842bcc05a564b95cce0d7639f67c53e94cffaa13aa92f8",
+      "bytes": 354
+    },
+    {
+      "path": "tool_logs/playback.jsonl",
+      "sha256": "00e8753296e36147b796c2c35ada03d107b9a38ef7d444428a054eafd09fcc96",
+      "bytes": 922
+    },
+    {
+      "path": "tool_logs/runtime_profile.json",
+      "sha256": "a4a078fc8ea9ffe070f4d75784148a6c0ceb8a98d6848ad1b223448d523fcfe8",
+      "bytes": 391
+    }
+  ],
+  "lessons": [],
+  "confidence": "high",
+  "started_at": "2026-11-02T09:06:47+08:00",
+  "ended_at": "2026-11-02T09:07:16+08:00",
+  "notes": "回执由归档 manifest 自动生成：node=win009 project=tcl-r5 archived_at=2026-11-09T02:54:39Z files=15 bytes=208999；源目录 D:\\zhsh\\workspace\\tcl-r5\\tcl-lstest-debug\\result\\20261102_090644_wake_recognition",
+  "tags": [
+    "archive",
+    "pass",
+    "tcl-r5",
+    "win009"
+  ],
+  "archive": {
+    "node": "win009",
+    "project": "tcl-r5",
+    "storage_root": "/srv/storage/ark",
+    "archived_at": "2026-11-09T02:54:39Z",
+    "source_dir": "D:\\zhsh\\workspace\\tcl-r5\\tcl-lstest-debug\\result\\20261102_090644_wake_recognition",
+    "manifest_sha256": "6a4bea82abe7e2918a4b43b01077b46e10be0fe4b5bdebd6647cdf44917824b2"
+  }
+}

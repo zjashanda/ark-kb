@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-device",
-  "generated_at": "2026-11-09T10:52:25Z",
+  "generated_at": "2026-11-10T04:35:28Z",
   "keys": {
     "agentlinux": [
       "kb-knowledge-60d65219fd43",
@@ -14,6 +14,9 @@
     ],
     "tcldut": [
       "kb-knowledge-1cbdc4c52cf2"
+    ],
+    "tclr5": [
+      "kb-run-1938526ff8f6"
     ],
     "tcl智能语音设备csk7hi3863双mcu": [
       "kb-bug-241022256518",

@@ -388,7 +388,7 @@ def receipt_evidence(receipt: dict, receipt_path: Path, root: Path, warnings: li
             items.append({"kind": "file", "ref": ref, "sha256": value, "verified": True})
         return items
     warnings.append(f"evidence_dir 不在本机（{evidence_dir_raw}），按路径 + sha256 入库，未做文件校验")
-    return [
+    legacy_items = [
         {
             "kind": "run",
             "ref": receipt["run_id"],
@@ -398,6 +398,41 @@ def receipt_evidence(receipt: dict, receipt_path: Path, root: Path, warnings: li
         }
         for value in hashes
     ]
+    declared = receipt.get("evidence_files")
+    if not isinstance(declared, list) or not declared:
+        return legacy_items
+    # 远端回执自带 evidence_files 时按真实存储路径登记；哈希对不上 evidence_sha256 的条目一律丢弃。
+    known_hashes = set(hashes)
+    prefix = str(evidence_dir_raw).rstrip("/")
+    items: list[dict] = []
+    dropped = 0
+    for item in declared:
+        if not isinstance(item, dict):
+            dropped += 1
+            continue
+        rel = item.get("path")
+        digest = item.get("sha256")
+        if not isinstance(rel, str) or not rel.strip():
+            dropped += 1
+            continue
+        if not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest):
+            dropped += 1
+            continue
+        if digest not in known_hashes:
+            dropped += 1
+            continue
+        items.append(
+            {
+                "kind": "file",
+                "ref": f"{prefix}/{rel.strip().lstrip('/')}",
+                "sha256": digest,
+                "verified": False,
+                "note": "evidence_dir 不在本机，只登记路径与哈希",
+            }
+        )
+    if dropped:
+        warnings.append(f"evidence_files 有 {dropped} 项无效或不匹配 evidence_sha256，已忽略")
+    return items or legacy_items
 
 
 def clean_tags(*groups) -> list[str]:

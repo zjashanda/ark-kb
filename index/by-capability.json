@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-capability",
-  "generated_at": "2026-11-09T10:52:25Z",
+  "generated_at": "2026-11-10T04:35:28Z",
   "keys": {
     "070200duya上下电压测": [
       "kb-knowledge-88c26f79e24e"
@@ -49,6 +49,9 @@
     ],
     "apitest": [
       "kb-knowledge-a3f57e355bd0"
+    ],
+    "archive": [
+      "kb-run-1938526ff8f6"
     ],
     "arcs": [
       "kb-knowledge-b91dc97a69a9"
@@ -322,6 +325,9 @@
     ],
     "orionsynapse": [
       "kb-knowledge-00d4164803ec"
+    ],
+    "pass": [
+      "kb-run-1938526ff8f6"
     ],
     "polaris": [
       "kb-knowledge-31caa0374c16",
@@ -736,6 +742,9 @@
     "tclpvm1005": [
       "kb-knowledge-4871f3474f8c"
     ],
+    "tclr5": [
+      "kb-run-1938526ff8f6"
+    ],
     "tclr5tcllstestdebug": [
       "kb-bug-241022256518",
       "kb-bug-6d8501377c4c",
@@ -791,6 +800,7 @@
       "kb-knowledge-4910c80e2fba",
       "kb-method-5a97db5bfc22",
       "kb-method-fd3858d4baad",
+      "kb-run-1938526ff8f6",
       "kb-run-3228baa6c3f6",
       "kb-run-96ecdf985bf1"
     ],

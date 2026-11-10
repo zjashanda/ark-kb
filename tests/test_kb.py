@@ -238,6 +238,76 @@ class RecordTests(KBTestBase):
         self.assertEqual(code, 0)
 
 
+class ReceiptEvidenceTests(KBTestBase):
+    """evidence_dir 不在本机时，证据仍要保住远端真实存储路径。"""
+
+    def remote_dir(self) -> str:
+        return str(self.tmp / "remote" / "results" / "win009" / "tcl-r5" / "20261102_090644_wake_recognition")
+
+    def run_entry(self) -> dict:
+        return next(entry for entry in self.entries() if entry["type"] == "run")
+
+    def rewrite(self, receipt: Path, **fields) -> Path:
+        data = json.loads(receipt.read_text(encoding="utf-8"))
+        data.update(fields)
+        receipt.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+        return receipt
+
+    def test_non_local_evidence_files_keep_storage_paths(self) -> None:
+        names = ["wake.log", "uart.log"]
+        receipt = write_receipt(
+            self.root,
+            evidence_dir=self.remote_dir(),
+            evidence={name: f"{name} 内容\n" for name in names},
+        )
+        data = json.loads(receipt.read_text(encoding="utf-8"))
+        self.rewrite(receipt, evidence_files=[
+            {"path": name, "sha256": value} for name, value in zip(names, data["evidence_sha256"])
+        ])
+        code, out, err = record(self.root, receipt)
+        self.assertEqual(code, 0, err)
+        self.assertIn("不在本机", out)
+        evidence = self.run_entry()["evidence"]
+        self.assertEqual(len(evidence), 2)
+        self.assertTrue(all(item["kind"] == "file" for item in evidence))
+        self.assertTrue(all(item["verified"] is False for item in evidence))
+        self.assertEqual([item["ref"] for item in evidence], [f"{self.remote_dir()}/{name}" for name in names])
+
+    def test_non_local_without_evidence_files_stays_run_level(self) -> None:
+        receipt = write_receipt(
+            self.root,
+            "run-20261102T090644Z-remote",
+            evidence_dir=self.remote_dir(),
+            evidence={"wake.log": "a\n", "uart.log": "b\n"},
+        )
+        code, out, err = record(self.root, receipt)
+        self.assertEqual(code, 0, err)
+        self.assertIn("不在本机", out)
+        evidence = self.run_entry()["evidence"]
+        self.assertEqual({item["kind"] for item in evidence}, {"run"})
+        self.assertEqual([item["ref"] for item in evidence], ["run-20261102T090644Z-remote"] * 2)
+
+    def test_invalid_evidence_files_entry_dropped(self) -> None:
+        receipt = write_receipt(
+            self.root,
+            evidence_dir=self.remote_dir(),
+            evidence={"wake.log": "a\n", "uart.log": "b\n"},
+        )
+        data = json.loads(receipt.read_text(encoding="utf-8"))
+        valid = data["evidence_sha256"][0]
+        self.rewrite(receipt, evidence_files=[
+            {"path": "wake.log", "sha256": valid},
+            {"path": "uart.log", "sha256": "0" * 63},
+        ])
+        code, out, err = record(self.root, receipt)
+        self.assertEqual(code, 0, err)
+        self.assertIn("evidence_files 有 1 项无效或不匹配", out)
+        evidence = self.run_entry()["evidence"]
+        self.assertEqual(len(evidence), 1)
+        self.assertEqual(evidence[0]["ref"], f"{self.remote_dir()}/wake.log")
+        self.assertEqual(evidence[0]["sha256"], valid)
+
+
 class QueryTests(KBTestBase):
     def test_device_query_hits_and_counts_hits(self) -> None:
         first = write_receipt(self.root, "run-20261106T120000Z-a", device="bench-a", lessons=[lesson()])

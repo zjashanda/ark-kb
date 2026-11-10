@@ -36,6 +36,9 @@ ark-kb/
   tools/
     kb.py                # record / query / lint / sync / index
     secret_scan.py       # 复用 skill-git 的凭据规则
+    ark_receipt.py       # 归档后的 manifest+summary → run.receipt.v1
+    ark-receipt.sh       # 节点侧入口（Linux）：生成回执并回传到 receipts/
+    ark-receipt.ps1      # 节点侧入口（Windows PowerShell 5.1），同一契约
   tests/                 # 离线单测 + 测试替身
   docs/
     acceptance-v1.md     # v1 验收记录
@@ -108,12 +111,12 @@ python3 tools/kb.py sync --push              # 只推当前功能分支
 必填：`run_id`、`task`、`skill`、`skill_version`、`scope{device,project,firmware}`、`result`、`totals`、`failures[]`、`bugs_found[]`、`evidence_dir`、`evidence_sha256[]`、`lessons[]`、`confidence`、`started_at`、`ended_at`。
 
 - `result` 只允许 `pass | fail | blocked | invalid | needs_review`。
-- `evidence_dir` 相对回执文件所在目录（或绝对路径），否则无法定位。
+- `evidence_dir` 相对回执文件所在目录（或绝对路径），否则无法定位。归档到存储服务器的回执照样写 `/srv/storage/ark/results/<node>/<project>/<run_id>`：本机没有这个目录时按回执里的 `evidence_files[]` 逐文件登记「路径 + 哈希」，`verified=false`；没有 `evidence_files` 则退化成一条 `run` 级证据。
 - `evidence_sha256` 至少一条，每条 64 位小写十六进制。
 - `lessons[]` 的 `type` 只有 `knowledge` 与 `method`，一条 lesson 一条条目。
 - 执行方只写本机文件，不需要网络；大文件（日志、音频）只登记路径与哈希。
 
-示例：`docs/receipts/20261106-kb-selftest/run.receipt.json`。
+示例：`docs/receipts/20261106-kb-selftest/run.receipt.json`（本机证据）、`docs/receipts/20261102-win009-wake/run.receipt.json`（存储服务器证据）。归档与入库全流程见 `docs/result-archive.md`。
 
 ## 条目 `entry.v1`
 
