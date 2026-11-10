@@ -238,6 +238,99 @@ class RecordTests(KBTestBase):
         self.assertEqual(code, 0)
 
 
+class RunEntryIdentityTests(KBTestBase):
+    """同一任务的不同运行必须各自成条目，不得按相似度合并。"""
+
+    def test_distinct_runs_do_not_merge(self) -> None:
+        task = "tcl003 十命令唤醒识别回归"
+        first = write_receipt(self.root, "run-20261104-112028", override={"task": task})
+        second = write_receipt(self.root, "run-20261104-113223", override={"task": task})
+        code, _out, err = record(self.root, first)
+        self.assertEqual(code, 0, err)
+        code, _out, err = record(self.root, second)
+        self.assertEqual(code, 0, err)
+        runs = [item for item in self.entries() if item["type"] == "run"]
+        self.assertEqual(len(runs), 2)
+        self.assertEqual({item["validations"][0] for item in runs}, {"run-20261104-112028", "run-20261104-113223"})
+
+
+class CandidateReceiptTests(KBTestBase):
+    def candidate(self, **override) -> Path:
+        base = {
+            "quality": "candidate",
+            "result": "needs_review",
+            "evidence_gap": {"code": "EVIDENCE_GAP", "missing": ["rounds.csv"]},
+        }
+        base.update(override)
+        return write_receipt(self.root, "run-20261110-candidate", override=base)
+
+    def test_candidate_cannot_claim_pass(self) -> None:
+        receipt = self.candidate(result="pass")
+        code, _out, err = record(self.root, receipt, "--allow-candidate")
+        self.assertEqual(code, kb.EXIT_FAIL)
+        self.assertIn("候选回执不得为 pass", err)
+
+    def test_candidate_requires_missing_list(self) -> None:
+        receipt = json.loads(self.candidate().read_text(encoding="utf-8"))
+        del receipt["evidence_gap"]
+        errors = kb.check_receipt(receipt, self.root)
+        self.assertTrue(any("必须列出 missing" in item for item in errors), errors)
+
+    def test_formal_receipt_rejects_evidence_gap(self) -> None:
+        receipt = write_receipt(
+            self.root, "run-20261110-formal-gap",
+            override={"evidence_gap": {"code": "EVIDENCE_GAP", "missing": ["rounds.csv"]}},
+        )
+        code, _out, err = record(self.root, receipt)
+        self.assertEqual(code, kb.EXIT_FAIL)
+        self.assertIn("只有 quality=candidate 才允许", err)
+
+    def test_steps_failure_blocks_pass_result(self) -> None:
+        receipt = write_receipt(
+            self.root, "run-20261110-step-fail",
+            override={"steps": [{"n": 1, "name": "烧录", "status": "fail"}]},
+        )
+        code, _out, err = record(self.root, receipt)
+        self.assertEqual(code, kb.EXIT_FAIL)
+        self.assertIn("步骤里有 fail", err)
+
+    def test_candidate_refused_without_flag(self) -> None:
+        receipt = self.candidate()
+        code, _out, err = record(self.root, receipt)
+        self.assertEqual(code, kb.EXIT_FAIL)
+        self.assertIn("--allow-candidate", err)
+
+    def test_candidate_records_pending_with_gap_tag(self) -> None:
+        receipt = self.candidate()
+        code, _out, err = record(self.root, receipt, "--allow-candidate")
+        self.assertEqual(code, 0, err)
+        run_entry = next(item for item in self.entries() if item["type"] == "run")
+        self.assertEqual(run_entry["status"], "pending")
+        self.assertIn("evidence-gap", run_entry["tags"])
+        self.assertEqual(run_entry["claim"].split("｜")[0], "NEEDS_REVIEW")
+
+    def test_gap_entry_never_promoted_to_active(self) -> None:
+        existing = kb.new_entry(
+            "run", {"device": "bench-a", "project": "p", "firmware": None, "platform": "linux"},
+            "执行记录：演示", "NEEDS_REVIEW｜任务：演示", [], "medium", FAKE_SKILL, "run-1",
+            tags=["evidence-gap"],
+        )
+        candidate = kb.new_entry(
+            "run", {"device": "bench-a", "project": "p", "firmware": None, "platform": "linux"},
+            "执行记录：演示", "NEEDS_REVIEW｜任务：演示", [], "medium", FAKE_SKILL, "run-2",
+            tags=["evidence-gap"],
+        )
+        kb.merge_entry(existing, candidate)
+        self.assertEqual(len(existing["validations"]), 2)
+        self.assertEqual(existing["status"], "pending")
+
+    def test_lint_warns_on_gap_entry(self) -> None:
+        record(self.root, self.candidate(), "--allow-candidate")
+        code, out, _err = run_kb("lint", "--root", self.root, "--allow-missing-scanner")
+        self.assertEqual(code, 0)
+        self.assertIn("evidence-gap", out)
+
+
 class QueryTests(KBTestBase):
     def test_device_query_hits_and_counts_hits(self) -> None:
         first = write_receipt(self.root, "run-20261106T120000Z-a", device="bench-a", lessons=[lesson()])

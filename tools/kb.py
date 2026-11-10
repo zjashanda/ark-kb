@@ -462,7 +462,8 @@ def merge_entry(existing: dict, candidate: dict) -> dict:
     merged_tags = clean_tags(existing.get("tags"), candidate.get("tags"))
     if merged_tags:
         existing["tags"] = merged_tags
-    if len(validations) >= 2 and existing["status"] in ("pending", "stale"):
+    if len(validations) >= 2 and existing["status"] in ("pending", "stale") \
+            and "evidence-gap" not in (existing.get("tags") or []):
         existing["status"] = "active"
     if existing["status"] == "stale" and len(validations) < 2:
         existing["status"] = "pending"
@@ -492,7 +493,9 @@ def find_duplicate(entries: list[dict], candidate: dict) -> dict | None:
 
 
 def receipt_to_entries(receipt: dict, receipt_path: Path, root: Path, warnings: list[str]) -> list[dict]:
-    scope = receipt.get("scope") or {}
+    scope = dict(receipt.get("scope") or {})
+    if not scope.get("platform") and receipt.get("node"):
+        scope["platform"] = f"{receipt['node']} (未声明平台)"
     skill = receipt.get("skill")
     evidence = receipt_evidence(receipt, receipt_path, root, warnings)
     run_id = receipt["run_id"]
@@ -508,6 +511,8 @@ def receipt_to_entries(receipt: dict, receipt_path: Path, root: Path, warnings: 
             " ".join(str(item.get("claim", "")) for item in receipt.get("lessons") or [] if isinstance(item, dict)),
         )
         receipt_tags = [f"capability:{slug}" for slug in derived] or None
+    if receipt_quality(receipt) == "candidate":
+        receipt_tags = clean_tags(receipt_tags, ["evidence-gap"])
     claim = (
         f"{receipt['result'].upper()}｜任务：{receipt['task']}｜"
         f"失败 {len(receipt.get('failures') or [])} 项，缺陷 {len(receipt.get('bugs_found') or [])} 项｜{totals_text}"
@@ -536,6 +541,10 @@ def receipt_to_entries(receipt: dict, receipt_path: Path, root: Path, warnings: 
     return entries
 
 
+def receipt_quality(receipt: dict) -> str:
+    return str(receipt.get("quality") or "formal")
+
+
 def check_receipt(receipt: dict, root: Path) -> list[str]:
     schema = load_schema(root, "receipt.v1.json")
     errors = validate(receipt, schema)
@@ -550,6 +559,28 @@ def check_receipt(receipt: dict, root: Path) -> list[str]:
         errors.append("$.evidence_dir: 不能为空")
     if not receipt.get("evidence_sha256"):
         errors.append("$.evidence_sha256: 至少需要一个文件哈希")
+
+    quality = receipt_quality(receipt)
+    gap = receipt.get("evidence_gap")
+    if quality == "candidate":
+        if not isinstance(gap, dict) or not gap.get("missing"):
+            errors.append("$.evidence_gap: quality=candidate 必须列出 missing（缺什么证据）")
+        if receipt.get("result") == "pass":
+            errors.append("$.result: 候选回执不得为 pass（证据不足时只能 needs_review/blocked/fail/invalid）")
+    elif gap:
+        errors.append("$.evidence_gap: 只有 quality=candidate 才允许标记证据缺口")
+    if receipt.get("steps") and any(
+        isinstance(item, dict) and item.get("status") == "fail" for item in receipt["steps"]
+    ) and receipt.get("result") == "pass":
+        errors.append("$.result: 步骤里有 fail，整体结论不得为 pass")
+
+    structured = receipt.get("evidence") or []
+    if structured:
+        declared = {value for value in receipt["evidence_sha256"]}
+        missing_hash = [item.get("path", "?") for item in structured
+                        if isinstance(item, dict) and item.get("sha256") not in declared]
+        if missing_hash:
+            errors.append("$.evidence: 条目哈希未出现在 evidence_sha256：" + "、".join(missing_hash[:5]))
     return errors
 
 
@@ -566,6 +597,13 @@ def cmd_record(args) -> int:
     errors = check_receipt(receipt, root)
     if errors:
         raise KBError("回执未通过校验，拒绝入库：\n  " + "\n  ".join(errors))
+
+    if receipt_quality(receipt) == "candidate" and not getattr(args, "allow_candidate", False):
+        missing = "、".join(str(item) for item in (receipt.get("evidence_gap") or {}).get("missing") or [])
+        raise KBError(
+            "候选回执（quality=candidate）默认不入库，缺口：" + (missing or "未写明")
+            + "\n补齐证据后转 formal；确需沉淀线索请显式加 --allow-candidate"
+        )
 
     scanner = secret_scan.load_scanner(root, args.skill_git_home, args.allow_missing_scanner)
     if scanner:
@@ -592,8 +630,9 @@ def cmd_record(args) -> int:
         warnings.append(f"skill {receipt.get('skill')} 未在台账登记，条目仍以 pending 入库")
 
     created, merged, superseded = [], [], []
+    is_candidate = receipt_quality(receipt) == "candidate"
     for candidate in candidates:
-        existing = find_duplicate(entries, candidate)
+        existing = None if is_candidate or candidate["type"] == "run" else find_duplicate(entries, candidate)
         if existing is not None:
             merge_entry(existing, candidate)
             merged.append(existing["id"])
@@ -829,6 +868,11 @@ def cmd_lint(args) -> int:
         seen_ids[entry.get("id")] += 1
         if entry.get("status") not in STATUSES:
             errors.append(f"entry {label}: 非法 status {entry.get('status')!r}")
+        if "evidence-gap" in (entry.get("tags") or []):
+            if entry.get("status") == "active":
+                errors.append(f"entry {label}: 带 evidence-gap 的候选条目不得为 active，补齐证据后再验证升级")
+            else:
+                warnings.append(f"entry {label}: 证据不全（evidence-gap），仅作线索，不可作为调度依据")
         if not entry.get("evidence"):
             errors.append(f"entry {label}: 没有证据，不得入库")
         evidence = entry.get("evidence")
@@ -1018,6 +1062,8 @@ def build_parser() -> argparse.ArgumentParser:
     common(record)
     record.add_argument("--receipt", required=True, help="run.receipt.v1 回执路径")
     record.add_argument("--supersede", help="把旧条目标为 superseded，指向本次生成的新条目")
+    record.add_argument("--allow-candidate", action="store_true",
+                        help="允许把证据不全的候选回执（quality=candidate）以 pending + evidence-gap 入库")
     record.add_argument("--dry-run", action="store_true", help="只算不写")
     record.set_defaults(func=cmd_record)
 

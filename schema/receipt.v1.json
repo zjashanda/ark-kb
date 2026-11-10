@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/zjashanda/ark-kb/schema/receipt.v1.json",
   "title": "run.receipt.v1",
-  "description": "执行回执契约。执行方只写本机文件，不依赖网络；大文件只记路径与 sha256。",
+  "description": "执行回执契约。执行方只写本机文件，不依赖网络；大文件只记路径与 sha256。v1.1 向后兼容增补：node / toolchain / firmware / steps / responsibility / recovery / stop_conditions / stop_rules / quality / evidence_gap / evidence / backfill。",
   "type": "object",
   "required": [
     "run_id",
@@ -44,6 +44,13 @@
     "scope": {
       "$ref": "#/$defs/scope"
     },
+    "node": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "执行节点（台架所在机器）。scope.platform 保留 <node> (<os>) 的旧写法，node 是给调度做节点门禁用的一等字段"
+    },
     "result": {
       "enum": [
         "pass",
@@ -52,6 +59,13 @@
         "invalid",
         "needs_review"
       ]
+    },
+    "quality": {
+      "enum": [
+        "formal",
+        "candidate"
+      ],
+      "description": "formal=证据完整可复核的正式回执；candidate=证据不全的候选回执，必须带 evidence_gap 且 result 不得为 pass"
     },
     "totals": {
       "type": "object"
@@ -67,6 +81,55 @@
       "items": {
         "$ref": "#/$defs/bug"
       }
+    },
+    "responsibility": {
+      "type": "array",
+      "description": "责任层汇总：每条失败归到 device/bench/corpus/tool/unknown，写清判据；不得只写结论",
+      "items": {
+        "$ref": "#/$defs/responsibility"
+      }
+    },
+    "steps": {
+      "type": "array",
+      "description": "步骤级状态：执行到哪、哪步失败、哪步没跑",
+      "items": {
+        "$ref": "#/$defs/step"
+      }
+    },
+    "toolchain": {
+      "$ref": "#/$defs/toolchain"
+    },
+    "firmware": {
+      "$ref": "#/$defs/firmware"
+    },
+    "recovery": {
+      "$ref": "#/$defs/recovery"
+    },
+    "stop_conditions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "stop_rules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/stop_rule"
+      }
+    },
+    "evidence_gap": {
+      "$ref": "#/$defs/evidence_gap"
+    },
+    "evidence": {
+      "type": "array",
+      "description": "结构化证据表。evidence_dir + evidence_sha256 是兼容用的平铺写法，两者必须一致",
+      "items": {
+        "$ref": "#/$defs/evidence_item"
+      }
+    },
+    "backfill": {
+      "$ref": "#/$defs/backfill"
     },
     "evidence_dir": {
       "type": "string",
@@ -179,6 +242,347 @@
       },
       "additionalProperties": true
     },
+    "responsibility": {
+      "type": "object",
+      "required": [
+        "layer"
+      ],
+      "properties": {
+        "failure": {
+          "type": "string"
+        },
+        "layer": {
+          "enum": [
+            "device",
+            "bench",
+            "corpus",
+            "tool",
+            "unknown"
+          ]
+        },
+        "note": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "step": {
+      "type": "object",
+      "required": [
+        "n",
+        "name",
+        "status"
+      ],
+      "properties": {
+        "n": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "pass",
+            "fail",
+            "skipped",
+            "blocked",
+            "not_run"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "toolchain": {
+      "type": "object",
+      "properties": {
+        "runtime": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "skill_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "skill_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tools": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/tool"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "tool": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "firmware": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source": {
+          "enum": [
+            "serial_boot_log",
+            "device_shell",
+            "operator",
+            "package_manifest",
+            "not_recorded",
+            null
+          ]
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "recovery": {
+      "type": "object",
+      "properties": {
+        "attempted": {
+          "type": "boolean"
+        },
+        "result": {
+          "enum": [
+            "recovered",
+            "not_recovered",
+            "not_attempted",
+            "partial"
+          ]
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/recovery_action"
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "recovery_action": {
+      "type": "object",
+      "required": [
+        "n",
+        "action"
+      ],
+      "properties": {
+        "n": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "result": {
+          "enum": [
+            "ok",
+            "fail",
+            "skipped",
+            "unknown"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "stop_rule": {
+      "type": "object",
+      "required": [
+        "id",
+        "rule"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rule": {
+          "type": "string",
+          "minLength": 1
+        },
+        "basis": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "evidence_gap": {
+      "type": "object",
+      "required": [
+        "code",
+        "missing"
+      ],
+      "properties": {
+        "code": {
+          "const": "EVIDENCE_GAP"
+        },
+        "missing": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "reason": {
+          "type": "string"
+        },
+        "blocking": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    },
+    "evidence_item": {
+      "type": "object",
+      "required": [
+        "path",
+        "sha256",
+        "role"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "role": {
+          "enum": [
+            "summary",
+            "rounds",
+            "serial",
+            "tool_log",
+            "manifest",
+            "config",
+            "report",
+            "script",
+            "other"
+          ]
+        },
+        "verified": {
+          "type": "boolean"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "backfill": {
+      "type": "object",
+      "description": "回执由历史证据回填生成时的来源与脱敏记录；直接执行产生的回执不写本段",
+      "properties": {
+        "tool": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "source_kind": {
+          "type": "string"
+        },
+        "source_path": {
+          "type": "string"
+        },
+        "converted_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sanitised": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
     "bug": {
       "type": "object",
       "required": [
@@ -241,6 +645,12 @@
             "medium",
             "low"
           ]
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "additionalProperties": true
