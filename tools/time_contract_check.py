@@ -9,10 +9,9 @@
 2. ``--matrix``：用每个仓库自己的 lint 扫描其他仓库的源码树，检查是否出现
    「A 仓库的 lint 判定 B 仓库的产物违规」这类跨仓库冲突。
 
-契约基准（裁决前）：``YYYY-MM-DD HH:MM:SS``，北京时间，无时区后缀、无毫秒。
-``venusahisiburner`` 目前仍是 ``YYYY-MM-DDThh:mm:ss.sss``，属于待
-郑保山裁决的 A/B 项；用 ``--allow-pending-legacy`` 把它标为
-``PENDING`` 而不是 ``FAIL``。
+契约基准（已裁决，2026-11-11 生效）：``YYYY-MM-DD HH:MM:SS``，北京时间，
+无时区后缀、无小数秒。``venusahisiburner`` 已按该裁决改造完毕，本工具不再
+提供任何「待裁决例外」开关：任何仓库判定不一致都直接记 ``FAIL``。
 
 用法::
 
@@ -42,11 +41,11 @@ CONTRACT_EXAMPLE = "2026-11-10 14:05:00"
 #: 样例 -> 期望结论（True=合规）
 SAMPLES: List[Tuple[str, str, bool]] = [
     ("contract_text", CONTRACT_EXAMPLE, True),
-    ("t_separator", "2026-11-10T14:05:00", False),
-    ("t_millis", "2026-11-10T14:05:00.123", False),
-    ("utc_suffix", "2026-11-10 14:05:00Z", False),
-    ("offset_suffix", "2026-11-10 14:05:00+08:00", False),
-    ("space_millis", "2026-11-10 14:05:00.123", False),
+    ("t_separator", "2026-11-10T14:05:00", False),  # time-lint:allow
+    ("t_millis", "2026-11-10T14:05:00.123", False),  # time-lint:allow
+    ("utc_suffix", "2026-11-10 14:05:00Z", False),  # time-lint:allow
+    ("offset_suffix", "2026-11-10 14:05:00+08:00", False),  # time-lint:allow
+    ("space_millis", "2026-11-10 14:05:00.123", False),  # time-lint:allow
 ]
 
 
@@ -168,7 +167,7 @@ def _path_sample_verdicts(
     return verdicts, detail
 
 
-def check_samples(root: Path, allow_pending_legacy: bool) -> List[Dict[str, object]]:
+def check_samples(root: Path) -> List[Dict[str, object]]:
     """每个仓库对同一批样例给出结论，返回逐仓库明细。"""
 
     rows: List[Dict[str, object]] = []
@@ -210,31 +209,18 @@ def check_samples(root: Path, allow_pending_legacy: bool) -> List[Dict[str, obje
                 continue
 
         mismatches: List[str] = []
-        pending: List[str] = []
         for name, _value, expected in SAMPLES:
             got = verdicts[name]
             if got == expected:
                 continue
-            if (
-                allow_pending_legacy
-                and lint.repo == "venusahisiburner"
-                and name in ("t_millis", "t_separator")
-                and got
-            ):
-                pending.append(name)
-                continue
             mismatches.append("{0}: 期望 {1} 实得 {2}".format(name, expected, got))
 
-        status = "PASS" if not mismatches else "FAIL"
-        if status == "PASS" and pending:
-            status = "PENDING"
         rows.append(
             {
                 "repo": lint.repo,
-                "status": status,
+                "status": "PASS" if not mismatches else "FAIL",
                 "verdicts": verdicts,
                 "mismatches": mismatches,
-                "pending": pending,
                 "detail": detail,
             }
         )
@@ -314,8 +300,6 @@ def _print_samples(rows: Sequence[Dict[str, object]]) -> None:
         print(line)
         for item in row.get("mismatches", []) or []:
             print("    - " + str(item))
-        for item in row.get("pending", []) or []:
-            print("    ~ 待裁决放行: " + str(item))
 
 
 def _print_matrix(rows: Sequence[Dict[str, object]]) -> None:
@@ -348,11 +332,6 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         help="只跑某一部分",
     )
     parser.add_argument(
-        "--allow-pending-legacy",
-        action="store_true",
-        help="把 venusahisiburner 的 T+毫秒标记为待裁决(PENDING)而非 FAIL",
-    )
-    parser.add_argument(
         "--targets",
         default="ark-node,device-io,tts-runtime,audio-runtime,skillhub-sync,ark-archive,lstest",
         help="--matrix 的扫描目标，逗号分隔",
@@ -365,7 +344,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return 2
 
     samples = (
-        check_samples(root, args.allow_pending_legacy)
+        check_samples(root)
         if args.only in ("samples", "all")
         else []
     )
@@ -403,7 +382,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     if failed:
         print("\n结论: FAIL（{0} 项不一致）".format(len(failed)), file=sys.stderr)
         return 1
-    print("\n结论: PASS")
+    print("\n结论: PASS", file=sys.stderr if args.json else sys.stdout)
     return 0
 
 
