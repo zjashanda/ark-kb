@@ -77,7 +77,15 @@ LINTS: List[Lint] = [
         "skillhub-sync",
         path_cmd=("python3", "tools/time_lint.py", "--root", "{target}", "--json"),
     ),
-    Lint("ark-archive", value_cmd=("python3", "lib/ark_time.py", "check")),
+    Lint(
+        "ark-archive",
+        path_cmd=("python3", "tools/time_lint.py", "--root", "{target}", "--json"),
+        value_cmd=("python3", "lib/ark_time.py", "check"),
+    ),
+    Lint(
+        "asset-tools",
+        path_cmd=("python3", "tools/time_lint.py", "--root", "{target}", "--json"),
+    ),
     Lint(
         "venusahisiburner",
         value_cmd=(
@@ -92,7 +100,7 @@ LINTS: List[Lint] = [
 #: 只能扫自己仓库、或没有独立 lint 的仓库，仅作说明
 NOTES = {
     "audio-runtime": "lint 只扫自身仓库根，不支持外部路径；已纳入 --matrix 的扫描目标",
-    "asset-tools": "无 tools/time_lint.py；时间格式由 util.py 常量约束，需人工比对",
+    "lstest": "未提交 tools/time_lint.py（tests/ 为设备原始日志基线）；用分目录扫描取证，见 docs/time-contract.md",
 }
 
 
