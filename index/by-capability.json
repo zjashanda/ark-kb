@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-capability",
-  "generated_at": "2026-11-10T04:35:28Z",
+  "generated_at": "2026-11-11T07:36:00Z",
   "keys": {
     "070200duya上下电压测": [
       "kb-knowledge-88c26f79e24e"
@@ -73,6 +73,9 @@
     "bigvgan": [
       "kb-knowledge-18d89b2df319"
     ],
+    "capabilitypdupowercycle": [
+      "kb-knowledge-41efd9dfeac3"
+    ],
     "capabilityreset": [
       "kb-knowledge-4871f3474f8c"
     ],
@@ -127,6 +130,10 @@
       "kb-knowledge-0f2bab9750fc",
       "kb-method-fd3858d4baad",
       "kb-run-96ecdf985bf1"
+    ],
+    "deviceio": [
+      "kb-knowledge-41efd9dfeac3",
+      "kb-method-e28bc28cb620"
     ],
     "devicereset": [
       "kb-knowledge-4871f3474f8c"
@@ -291,6 +298,9 @@
       "kb-knowledge-1742dbbbb9aa",
       "kb-knowledge-d3ab0e9bdc84"
     ],
+    "methodwriteverify": [
+      "kb-method-e28bc28cb620"
+    ],
     "mideacsk6ap": [
       "kb-knowledge-12ad8268bd7d"
     ],
@@ -329,6 +339,10 @@
     "pass": [
       "kb-run-1938526ff8f6"
     ],
+    "pdu": [
+      "kb-knowledge-41efd9dfeac3",
+      "kb-method-e28bc28cb620"
+    ],
     "polaris": [
       "kb-knowledge-31caa0374c16",
       "kb-knowledge-d381e2e2abac"
@@ -350,6 +364,9 @@
     ],
     "polarislatest20260624": [
       "kb-knowledge-4111d89d7050"
+    ],
+    "powercontrol": [
+      "kb-knowledge-41efd9dfeac3"
     ],
     "project070200duya上下电压测": [
       "kb-knowledge-88c26f79e24e"
@@ -688,6 +705,9 @@
     "pvm1005": [
       "kb-knowledge-4871f3474f8c"
     ],
+    "readback": [
+      "kb-method-e28bc28cb620"
+    ],
     "resources": [
       "kb-knowledge-70cb66251b2a"
     ],
@@ -710,6 +730,9 @@
       "kb-knowledge-04795330a10d",
       "kb-knowledge-54293a841357",
       "kb-knowledge-b38a78002656"
+    ],
+    "snmp": [
+      "kb-knowledge-41efd9dfeac3"
     ],
     "ssh": [
       "kb-knowledge-0e8f85cddf7a"
@@ -780,6 +803,9 @@
     "venv": [
       "kb-knowledge-49d383c0b8a1",
       "kb-knowledge-72b7856e1559"
+    ],
+    "verification": [
+      "kb-method-e28bc28cb620"
     ],
     "wakerecognition": [
       "kb-bug-241022256518",

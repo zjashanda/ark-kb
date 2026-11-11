@@ -1,10 +1,14 @@
 {
   "schema": "index.v1",
   "index": "by-skill",
-  "generated_at": "2026-11-10T04:35:28Z",
+  "generated_at": "2026-11-11T07:36:00Z",
   "keys": {
     "cskflashtest": [
       "kb-knowledge-f23119d4a433"
+    ],
+    "deviceio": [
+      "kb-knowledge-41efd9dfeac3",
+      "kb-method-e28bc28cb620"
     ],
     "lstest": [
       "kb-bug-241022256518",
