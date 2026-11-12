@@ -44,7 +44,7 @@ def make_kb(root: Path) -> Path:
     root.mkdir(parents=True, exist_ok=True)
     (root / "schema").mkdir(exist_ok=True)
     for name in ("entry.v1.json", "receipt.v1.json", "index.v1.json",
-                 "kb-context.v1.json", "delivery.v1.json"):
+                 "kb-context.v1.json", "delivery.v1.json", "checkpoint.v1.json"):
         shutil.copy(SCHEMA / name, root / "schema" / name)
     for entry_type in ("knowledge", "method", "run", "bug"):
         path = root / "entries" / entry_type / "entries.jsonl"
@@ -365,6 +365,328 @@ class LayeringTests(unittest.TestCase):
         self.assertNotIn("候选结论不入库", titles)
         self.assertNotIn("证据缺口不入库", titles)
         self.assertTrue(all(entry["evidence"] for entry in entries))
+
+
+def good_checkpoint(**overrides) -> dict:
+    event = {
+        "schema": "ark.checkpoint.v1",
+        "checkpoint_id": "0" * 64,
+        "issue_id": "NOAH-66",
+        "run_id": "run-20261112-100000-kbsync",
+        "stage": 15,
+        "event_seq": 3,
+        "trigger": "STAGE_FINISHED",
+        "at": TIME,
+        "quality": "formal",
+        "scope": {"level": "capability", "key": "flashing", "parent": "global"},
+        "summary": {
+            "title": "烧录超时定位",
+            "claim": "供电不足导致烧录超时",
+            "phenomenon": "反复重试后仍在 8 秒超时",
+            "attempts": ["换 USB 线", "降速到 115200"],
+            "excluded": ["驱动版本"],
+            "recovery_hint": "先量 VBUS 再重烧",
+            "stop_rule": "三次超时后停机",
+        },
+        "evidence": [{"path": "result/burn.log", "sha256": "a" * 64, "bytes": 128}],
+        "outbox": {
+            "archive_status": "pending",
+            "kb_ingest_status": "pending",
+            "kb_query_back_status": "pending",
+            "kb_entry_ids": [],
+            "retry": {"attempts": 0, "last_error": ""},
+        },
+    }
+    event.update(overrides)
+    event["checkpoint_id"] = kb.checkpoint_id(event)
+    return event
+
+
+def write_event(root: Path, name: str, event: dict) -> Path:
+    folder = root / "receipts" / "events"
+    folder.mkdir(parents=True, exist_ok=True)
+    path = folder / name
+    path.write_text(json.dumps(event, ensure_ascii=False, indent=2), encoding="utf-8")
+    return path
+
+
+def checkpoint(root: Path, event_path: Path, *extra: str) -> tuple[int, str, str]:
+    return run_kb("checkpoint", "--root", root, "--outbox", "receipts/outbox",
+                  "--event", event_path, *extra)
+
+
+def outbox_index(root: Path) -> dict:
+    return json.loads((root / "receipts" / "outbox" / "outbox.json").read_text(encoding="utf-8"))
+
+
+def wal_path(root: Path) -> Path:
+    return root / "receipts" / "outbox" / "checkpoints-20261112.jsonl"
+
+
+def wal_lines(root: Path) -> list[str]:
+    path = wal_path(root)
+    if not path.is_file():
+        return []
+    return [line for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+
+
+def write_entries(root: Path, rows: list[dict]) -> None:
+    for entry_type in kb.ENTRY_TYPES:
+        path = kb.entry_file(root, entry_type)
+        selected = [row for row in rows if row["type"] == entry_type]
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text("".join(json.dumps(row, ensure_ascii=False) + "\n" for row in selected),
+                        encoding="utf-8")
+
+
+def base_entry(entry_id: str, **overrides) -> dict:
+    row = {
+        "schema": "entry.v1",
+        "id": entry_id,
+        "type": "knowledge",
+        "scope": {"device": None, "project": None, "firmware": None, "platform": None},
+        "title": "标题",
+        "claim": "结论",
+        "evidence": [{"kind": "issue", "ref": "NOAH-66"}],
+        "confidence": "medium",
+        "status": "active",
+        "superseded_by": None,
+        "source_skill": None,
+        "created": TIME,
+        "updated": TIME,
+        "hits": 0,
+        "validations": ["run-20261112-100000-kbsync"],
+    }
+    row.update(overrides)
+    return row
+
+
+class CheckpointSchemaTests(unittest.TestCase):
+    def load(self) -> dict:
+        return kb.load_schema(REPO, "checkpoint.v1.json")
+
+    def test_good_event_accepted(self) -> None:
+        self.assertEqual(kb.validate(good_checkpoint(), self.load()), [])
+
+    def test_bad_trigger_rejected(self) -> None:
+        event = good_checkpoint()
+        event["trigger"] = "TASK_DONE"
+        errors = kb.validate(event, self.load())
+        self.assertTrue(any("允许集合" in item for item in errors), errors)
+
+    def test_bad_checkpoint_id_rejected(self) -> None:
+        event = good_checkpoint()
+        event["checkpoint_id"] = "not-a-sha256"
+        errors = kb.validate(event, self.load())
+        self.assertTrue(any("checkpoint_id" in item for item in errors), errors)
+
+    def test_bad_timestamp_rejected(self) -> None:
+        event = good_checkpoint()
+        event["at"] = BAD_TIME
+        errors = kb.validate(event, self.load())
+        self.assertTrue(any("$.at" in item for item in errors), errors)
+
+    def test_missing_outbox_field_rejected(self) -> None:
+        event = good_checkpoint()
+        event["outbox"].pop("kb_entry_ids")
+        errors = kb.validate(event, self.load())
+        self.assertTrue(any("kb_entry_ids" in item for item in errors), errors)
+
+    def test_entry_schema_accepts_scope_extensions(self) -> None:
+        row = base_entry(
+            "kb-knowledge-bbbbbbbbbbbb",
+            scope_level="project",
+            scope_key="TCL",
+            parent_scope="capability:flashing",
+            derived_from=["kb-knowledge-0123456789ab"],
+            applies_to=["TCL", "CSK5062"],
+            exceptions=[{"rule": "烧录前断电", "reason": "上电烧录会锁死"}],
+            promote_to="capability",
+            lineage=["kb-knowledge-0123456789ab"],
+            checkpoint_ids=["c" * 64],
+        )
+        self.assertEqual(kb.validate(row, kb.load_schema(REPO, "entry.v1.json")), [])
+
+
+class CheckpointWalTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.tmp = Path(self._tmp.name)
+        self.root = make_kb(self.tmp / "kb")
+        self.addCleanup(self._tmp.cleanup)
+
+    def test_append_once_and_replay_is_idempotent(self) -> None:
+        event = good_checkpoint()
+        path = write_event(self.root, "stage-15.json", event)
+        code, out, err = checkpoint(self.root, path)
+        self.assertEqual(code, 0, err)
+        self.assertEqual(len(wal_lines(self.root)), 1)
+        index = outbox_index(self.root)
+        self.assertIn(event["checkpoint_id"], index)
+        self.assertEqual(index[event["checkpoint_id"]]["trigger"], "STAGE_FINISHED")
+        self.assertEqual(index[event["checkpoint_id"]]["stage"], 15)
+
+        code, out, err = checkpoint(self.root, path)
+        self.assertEqual(code, 0, err)
+        self.assertIn("duplicate checkpoint", out)
+        self.assertEqual(len(wal_lines(self.root)), 1)
+
+    def test_schema_error_exits_two_without_writing(self) -> None:
+        event = good_checkpoint()
+        event["trigger"] = "TASK_DONE"
+        path = write_event(self.root, "bad.json", event)
+        code, _, err = checkpoint(self.root, path)
+        self.assertEqual(code, 2)
+        self.assertIn("拒绝写入 WAL", err)
+        self.assertEqual(wal_lines(self.root), [])
+        self.assertFalse((self.root / "receipts" / "outbox" / "outbox.json").exists())
+
+    def test_outbox_replay_restores_missing_index_line(self) -> None:
+        event = good_checkpoint()
+        path = write_event(self.root, "stage-15.json", event)
+        self.assertEqual(checkpoint(self.root, path)[0], 0)
+        wal_before = wal_path(self.root).read_bytes()
+        index = outbox_index(self.root)
+        index.pop(event["checkpoint_id"])
+        (self.root / "receipts" / "outbox" / "outbox.json").write_text(
+            json.dumps(index), encoding="utf-8")
+
+        code, out, err = run_kb("outbox", "--root", self.root, "--replay", "--json")
+        self.assertEqual(code, 0, err)
+        payload = json.loads(out)
+        self.assertEqual(payload["replayed"], 1)
+        self.assertIn(event["checkpoint_id"], outbox_index(self.root))
+        self.assertEqual(wal_path(self.root).read_bytes(), wal_before)
+
+    def test_outbox_status_filter_and_pending_counts(self) -> None:
+        event = good_checkpoint()
+        path = write_event(self.root, "stage-15.json", event)
+        self.assertEqual(checkpoint(self.root, path)[0], 0)
+        payload = json.loads(run_kb("outbox", "--root", self.root, "--json")[1])
+        self.assertEqual(payload["total"], 1)
+        self.assertEqual(payload["pending"], 1)
+        payload = json.loads(run_kb("outbox", "--root", self.root,
+                                    "--status", "archived", "--json")[1])
+        self.assertEqual(payload["items"], [])
+
+
+class RecordCheckpointTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.tmp = Path(self._tmp.name)
+        self.root = make_kb(self.tmp / "kb")
+        self.addCleanup(self._tmp.cleanup)
+        self.receipt = write_receipt(self.root)
+        self.event = good_checkpoint()
+        path = write_event(self.root, "stage-15.json", self.event)
+        self.assertEqual(checkpoint(self.root, path)[0], 0)
+
+    def test_record_stamps_checkpoint_ids(self) -> None:
+        cid = self.event["checkpoint_id"]
+        code, _, err = record(self.root, self.receipt, "--checkpoint", cid)
+        self.assertEqual(code, 0, err)
+        entries = kb.load_entries(self.root)
+        self.assertTrue(entries)
+        for entry in entries:
+            self.assertIn(cid, entry.get("checkpoint_ids") or [])
+        schema = kb.load_schema(self.root, "entry.v1.json")
+        for entry in entries:
+            self.assertEqual(kb.validate(entry, schema), [])
+
+    def test_unknown_checkpoint_refused_without_writing(self) -> None:
+        before = row_count(self.root)
+        code, _, err = record(self.root, self.receipt, "--checkpoint", "f" * 64)
+        self.assertEqual(code, 2)
+        self.assertIn("未知 checkpoint", err)
+        self.assertEqual(row_count(self.root), before)
+
+
+class PromoteTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.tmp = Path(self._tmp.name)
+        self.root = make_kb(self.tmp / "kb")
+        self.addCleanup(self._tmp.cleanup)
+
+    def seed(self) -> None:
+        write_entries(self.root, [
+            base_entry("kb-knowledge-cccccccccccc", title="烧录前必须断电",
+                       claim="所有板型烧录前断电可避免锁死",
+                       applies_to=["CSK5062", "TCL"],
+                       tags=["capability:burn"]),
+            base_entry("kb-knowledge-dddddddddddd", title="单项目结论",
+                       claim="只在 TCL 上验证过",
+                       applies_to=["TCL"]),
+        ])
+
+    def test_candidate_found_and_nothing_written(self) -> None:
+        self.seed()
+        before = sorted(path.relative_to(self.root).as_posix()
+                        for path in self.root.rglob("*") if path.is_file())
+        code, out, err = run_kb("promote", "--root", self.root, "--json")
+        self.assertEqual(code, 0, err)
+        payload = json.loads(out)
+        ids = [row["entry_id"] for row in payload["candidates"]]
+        self.assertEqual(ids, ["kb-knowledge-cccccccccccc"])
+        row = payload["candidates"][0]
+        self.assertEqual(row["promote_to"], "capability")
+        self.assertEqual(row["projects"], ["CSK5062", "TCL"])
+        self.assertIn("reason", row)
+        after = sorted(path.relative_to(self.root).as_posix()
+                       for path in self.root.rglob("*") if path.is_file())
+        self.assertEqual(before, after)
+
+    def test_out_writes_report(self) -> None:
+        self.seed()
+        code, _, err = run_kb("promote", "--root", self.root,
+                              "--out", "reports/promote.json", "--json")
+        self.assertEqual(code, 0, err)
+        report_path = self.root / "reports" / "promote.json"
+        self.assertTrue(report_path.is_file())
+        payload = json.loads(report_path.read_text(encoding="utf-8"))
+        self.assertEqual(len(payload["candidates"]), 1)
+
+
+class CrossProjectScopeTests(unittest.TestCase):
+    CAPABILITY = "kb-knowledge-111111111111"
+    PROJECT_A = "kb-knowledge-222222222222"
+
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.tmp = Path(self._tmp.name)
+        self.root = make_kb(self.tmp / "kb")
+        self.addCleanup(self._tmp.cleanup)
+        write_entries(self.root, [
+            base_entry(self.CAPABILITY, title="烧录超时先量供电",
+                       claim="供电不足是烧录超时最常见原因",
+                       scope_level="capability", scope_key="flashing", parent_scope="global",
+                       tags=["capability:flashing"],
+                       applies_to=["CSK5062", "TCL"]),
+            base_entry(self.PROJECT_A, title="TCL 烧录必须断电",
+                       claim="TCL 板上电烧录会锁死",
+                       scope={"device": None, "project": "TCL", "firmware": None, "platform": None},
+                       scope_level="project", scope_key="TCL",
+                       parent_scope="capability:flashing",
+                       derived_from=[self.CAPABILITY],
+                       exceptions=[{"rule": "烧录前断电", "reason": "TCL 硬件版本差异"}],
+                       tags=["capability:flashing"]),
+        ])
+
+    def query_ids(self, project: str) -> list[str]:
+        code, out, err = run_kb("query", "--root", self.root, "--project", project,
+                                "--capability", "flashing", "--json", "--no-hit-count")
+        self.assertEqual(code, 0, err)
+        return [item["id"] for item in json.loads(out)["entries"]]
+
+    def test_other_project_hits_capability_not_exception(self) -> None:
+        ids = self.query_ids("CSK5062")
+        self.assertIn(self.CAPABILITY, ids)
+        self.assertNotIn(self.PROJECT_A, ids)
+
+    def test_exception_still_applies_to_its_own_project(self) -> None:
+        ids = self.query_ids("TCL")
+        self.assertIn(self.PROJECT_A, ids)
+        self.assertIn(self.CAPABILITY, ids)
 
 
 if __name__ == "__main__":

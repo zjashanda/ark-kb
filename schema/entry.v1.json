@@ -42,7 +42,21 @@
       "type": "array",
       "items": { "type": "string", "minLength": 1 }
     },
-    "tags": { "type": "array", "items": { "type": "string" } }
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "scope_level": {
+      "enum": ["global", "capability", "platform", "device_family", "project", "node", "run"]
+    },
+    "scope_key": { "type": "string" },
+    "parent_scope": { "type": "string" },
+    "derived_from": { "type": "array", "items": { "type": "string" } },
+    "applies_to": { "type": "array", "items": { "type": "string" } },
+    "exceptions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/exception" }
+    },
+    "promote_to": { "enum": ["capability", "global"] },
+    "lineage": { "type": "array", "items": { "type": "string" } },
+    "checkpoint_ids": { "type": "array", "items": { "type": "string" } }
   },
   "additionalProperties": false,
   "$defs": {
@@ -65,6 +79,15 @@
         "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
         "verified": { "type": "boolean" },
         "note": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "exception": {
+      "type": "object",
+      "required": ["rule", "reason"],
+      "properties": {
+        "rule": { "type": "string", "minLength": 1 },
+        "reason": { "type": "string", "minLength": 1 }
       },
       "additionalProperties": false
     }

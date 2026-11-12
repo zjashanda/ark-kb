@@ -2,6 +2,9 @@
 """ark-kb 知识库入口。
 
     kb.py record --receipt <path>     回执归一成条目（pending），更新索引
+    kb.py checkpoint --event <path>   生命周期事件校验后追加到 append-only WAL
+    kb.py outbox --replay             查看/恢复检查点 outbox 状态
+    kb.py promote                     扫描跨项目提升候选（只读）
     kb.py query  --device X ...       检索摘要 + 证据引用，不返回全文
     kb.py query-back --delivery X     回查新条目是否可检索，写回 delivery 回执
     kb.py lint                        校验 schema、证据、重复 id、索引、凭据
@@ -50,6 +53,20 @@ NO_KB_FIXED_REASONS = ("no-new-knowledge", "pure-inventory", "sensitive-not-inde
 DUPLICATE_REASON_PREFIX = "duplicate-of-existing:"
 BEIJING = timezone(timedelta(hours=8))
 TEXT_TIME_FORMAT = "%Y-%m-%d %H:%M:%S"
+
+# 事件驱动回流（v2）：检查点先落 append-only WAL，再异步归档入库
+CHECKPOINT_TRIGGERS = (
+    "EXECUTION_CHECK", "STAGE_FINISHED", "FINAL_RECEIPT",
+    "BLOCKED", "FAIL", "NEEDS_REVIEW",
+    "WATCHDOG_RUNNING_NO_EVIDENCE", "WATCHDOG_STATE_DRIFT",
+    "WATCHDOG_TIMEOUT", "WATCHDOG_HEARTBEAT_LOST",
+    "MANUAL_CANCEL", "RUNTIME_CRASH", "RECOVERY_REPLAY",
+)
+CHECKPOINT_QUALITIES = ("formal", "candidate", "evidence_gap")
+SCOPE_LEVELS = ("global", "capability", "platform", "device_family", "project", "node", "run")
+OUTBOX_STATUSES = ("pending", "archived", "ingested", "failed", "all")
+PROJECT_TAG_PREFIX = "project:"
+GENERIC_PROJECTS = ("通用", "general", "common")
 
 
 class KBError(RuntimeError):
@@ -318,6 +335,139 @@ def load_schema(root: Path, name: str) -> dict:
     if not path.is_file():
         raise KBError(f"缺少 schema 文件：{path}")
     return read_json(path)
+
+
+# --------------------------------------------------------------------------- #
+# 检查点 WAL 与 outbox（append-only，索引可重建）
+# --------------------------------------------------------------------------- #
+
+def evidence_digest(evidence) -> str:
+    hashes = sorted(
+        str(item.get("sha256"))
+        for item in (evidence or [])
+        if isinstance(item, dict) and item.get("sha256")
+    )
+    return hashlib.sha256("\n".join(hashes).encode("utf-8")).hexdigest()
+
+
+def checkpoint_id(event: dict) -> str:
+    """幂等键 = sha256(issue_id|run_id|stage|event_seq|evidence_digest)。"""
+    material = "|".join([
+        str(event.get("issue_id", "")),
+        str(event.get("run_id", "")),
+        str(event.get("stage", "")),
+        str(event.get("event_seq", "")),
+        evidence_digest(event.get("evidence")),
+    ])
+    return hashlib.sha256(material.encode("utf-8")).hexdigest()
+
+
+def resolve_outbox_dir(root: Path, outbox_arg: str | None) -> Path:
+    if not outbox_arg:
+        return root / "receipts" / "outbox"
+    path = Path(outbox_arg).expanduser()
+    return path if path.is_absolute() else (root / path)
+
+
+def resolve_output_path(root: Path, value: str) -> Path:
+    path = Path(value).expanduser()
+    return path if path.is_absolute() else (root / path)
+
+
+def wal_files(outbox_dir: Path) -> list[Path]:
+    return sorted(outbox_dir.glob("checkpoints-*.jsonl"))
+
+
+def load_wal_events(outbox_dir: Path) -> list[dict]:
+    """WAL 只读：解析所有 checkpoints-*.jsonl，坏行直接报错，绝不改写文件。"""
+    events: list[dict] = []
+    for path in wal_files(outbox_dir):
+        for line_no, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
+            if not line.strip():
+                continue
+            try:
+                row = json.loads(line)
+            except json.JSONDecodeError as exc:
+                raise KBError(f"{path.name}:{line_no} 不是合法 JSON: {exc}") from exc
+            if isinstance(row, dict):
+                events.append(row)
+    return events
+
+
+def outbox_index_path(outbox_dir: Path) -> Path:
+    return outbox_dir / "outbox.json"
+
+
+def load_outbox_index(path: Path) -> dict:
+    if not path.is_file():
+        return {}
+    data = read_json(path)
+    if isinstance(data, dict) and isinstance(data.get("checkpoints"), dict):
+        data = data["checkpoints"]
+    if not isinstance(data, dict):
+        raise KBError(f"{path} 不是 checkpoint_id → 状态的映射")
+    return {str(key): value for key, value in data.items() if isinstance(value, dict)}
+
+
+def save_outbox_index(path: Path, index: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(index, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+                    encoding="utf-8")
+
+
+def outbox_block(event: dict) -> dict:
+    block = dict(event.get("outbox") or {})
+    block["trigger"] = event.get("trigger")
+    block["at"] = event.get("at")
+    block["stage"] = event.get("stage")
+    return block
+
+
+def outbox_closed(block: dict) -> bool:
+    """关闭条件：归档 ok + 入库 recorded/skipped_no_kb + 回查 pass/deferred(带原因)。"""
+    if block.get("archive_status") != "ok":
+        return False
+    if block.get("kb_ingest_status") not in ("recorded", "skipped_no_kb"):
+        return False
+    query_back = block.get("kb_query_back_status")
+    if query_back == "pass":
+        return True
+    retry = block.get("retry") if isinstance(block.get("retry"), dict) else {}
+    return query_back == "deferred" and bool(str(retry.get("last_error") or "").strip())
+
+
+def outbox_state(block: dict) -> str:
+    failed = (
+        block.get("archive_status") == "failed"
+        or block.get("kb_ingest_status") == "failed"
+        or block.get("kb_query_back_status") == "fail"
+    )
+    if failed:
+        return "failed"
+    if outbox_closed(block):
+        return "ingested"
+    if block.get("archive_status") == "ok":
+        return "archived"
+    return "pending"
+
+
+def outbox_matches(block: dict, status: str) -> bool:
+    if status == "all":
+        return True
+    if status == "archived":
+        return block.get("archive_status") == "ok"
+    if status == "ingested":
+        return block.get("kb_ingest_status") in ("recorded", "skipped_no_kb")
+    if status == "failed":
+        return outbox_state(block) == "failed"
+    return outbox_state(block) == "pending"
+
+
+def stamp_checkpoint(entry: dict, checkpoint_id_value: str) -> None:
+    ids = [str(item) for item in entry.get("checkpoint_ids") or []]
+    if checkpoint_id_value not in ids:
+        ids.append(checkpoint_id_value)
+    entry["checkpoint_ids"] = ids
 
 
 # --------------------------------------------------------------------------- #
@@ -716,6 +866,16 @@ def cmd_record(args) -> int:
 
     run_id = receipt["run_id"]
     delivery_path = record_delivery_path(args, receipt_path)
+    checkpoint_arg = (getattr(args, "checkpoint", None) or "").strip()
+    if checkpoint_arg:
+        known = {
+            str(event.get("checkpoint_id"))
+            for event in load_wal_events(resolve_outbox_dir(root, None))
+        }
+        if checkpoint_arg not in known:
+            print(f"[error] 未知 checkpoint {checkpoint_arg}：WAL 中不存在，先运行 kb.py checkpoint",
+                  file=sys.stderr)
+            return 2
 
     if args.no_kb_required:
         reason = (args.reason or "").strip()
@@ -761,11 +921,13 @@ def cmd_record(args) -> int:
         warnings.append(f"skill {receipt.get('skill')} 未在台账登记，条目仍以 pending 入库")
 
     created, merged, superseded = [], [], []
+    merged_entries: list[dict] = []
     for candidate in candidates:
         existing = find_duplicate(entries, candidate)
         if existing is not None:
             merge_entry(existing, candidate)
             merged.append(existing["id"])
+            merged_entries.append(existing)
             continue
         candidate_id = candidate["id"]
         suffix = 1
@@ -788,6 +950,10 @@ def cmd_record(args) -> int:
         old["updated"] = now_iso()
         superseded.append({"id": old["id"], "superseded_by": old["superseded_by"]})
 
+    if checkpoint_arg:
+        for entry in [*created, *merged_entries]:
+            stamp_checkpoint(entry, checkpoint_arg)
+
     if not args.dry_run:
         save_entries(root, entries)
         save_indexes(root, entries)
@@ -802,6 +968,7 @@ def cmd_record(args) -> int:
         "superseded": superseded,
         "warnings": warnings,
         "dry_run": bool(args.dry_run),
+        "checkpoint": checkpoint_arg or None,
     }
     if args.json:
         print(json.dumps(summary, ensure_ascii=False, indent=2))
@@ -850,6 +1017,9 @@ def query_score(entry: dict, query: dict, registry: dict[str, dict] | None) -> i
             score += 2
         elif not project or project == norm_text("通用"):
             score += 1
+        # A 项目的例外只对 A 生效，别的项目查询不得被它的 exceptions 污染（v2 §3.2）
+        if entry.get("exceptions") and project != needle:
+            return None
     if query.get("skill"):
         skill = norm_text(entry.get("source_skill"))
         needle = norm_text(query["skill"])
@@ -1043,6 +1213,188 @@ def cmd_query_back(args) -> int:
     else:
         print(f"query-back：run {run_id} 状态 pass，{len(ids)} 条全部可检索（top {args.top}）")
     return EXIT_INCOMPLETE if missing else 0
+
+
+# --------------------------------------------------------------------------- #
+# checkpoint / outbox / promote（事件驱动回流 v2）
+# --------------------------------------------------------------------------- #
+
+def cmd_checkpoint(args) -> int:
+    root = resolve_root(args.root)
+    event_path = Path(args.event).expanduser()
+    if not event_path.is_file():
+        raise KBError(f"检查点事件不存在：{event_path}")
+    event = read_json(event_path)
+    if not isinstance(event, dict):
+        raise KBError(f"{event_path} 不是 ark.checkpoint.v1 对象")
+    errors = validate(event, load_schema(root, "checkpoint.v1.json"))
+    if errors:
+        print("[error] 检查点未通过校验，拒绝写入 WAL：\n  " + "\n  ".join(errors), file=sys.stderr)
+        return 2
+
+    outbox_dir = resolve_outbox_dir(root, args.outbox)
+    checkpoint_id_value = checkpoint_id(event)
+    event["checkpoint_id"] = checkpoint_id_value
+    known = {str(row.get("checkpoint_id")) for row in load_wal_events(outbox_dir)}
+    if checkpoint_id_value in known:
+        message = f"duplicate checkpoint {checkpoint_id_value}, skipped"
+        if args.json:
+            print(json.dumps({"checkpoint_id": checkpoint_id_value, "skipped": True,
+                              "message": message}, ensure_ascii=False, indent=2))
+        else:
+            print(message)
+        return 0
+
+    day = str(event["at"])[:10].replace("-", "")
+    wal_path = outbox_dir / f"checkpoints-{day}.jsonl"
+    outbox_dir.mkdir(parents=True, exist_ok=True)
+    with wal_path.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(event, ensure_ascii=False) + "\n")
+
+    index_path = outbox_index_path(outbox_dir)
+    index = load_outbox_index(index_path)
+    block = outbox_block(event)
+    index[checkpoint_id_value] = block
+    save_outbox_index(index_path, index)
+
+    if args.json:
+        print(json.dumps({"checkpoint_id": checkpoint_id_value, "skipped": False,
+                          "wal": wal_path.name, "outbox": block}, ensure_ascii=False, indent=2))
+    else:
+        print(f"checkpoint {checkpoint_id_value[:12]}… 已追加到 {wal_path.name}"
+              f"（trigger={event['trigger']} stage={event['stage']} quality={event['quality']}）")
+    return 0
+
+
+def cmd_outbox(args) -> int:
+    root = resolve_root(args.root)
+    outbox_dir = resolve_outbox_dir(root, args.outbox)
+    index_path = outbox_index_path(outbox_dir)
+    index = load_outbox_index(index_path)
+    events = load_wal_events(outbox_dir)
+
+    view = dict(index)
+    missing: list[str] = []
+    for event in events:
+        key = str(event.get("checkpoint_id") or "")
+        if key and key not in view:
+            view[key] = outbox_block(event)
+            missing.append(key)
+
+    replayed = 0
+    if args.replay:
+        for key in missing:
+            index[key] = view[key]
+        if missing:
+            save_outbox_index(index_path, index)
+            replayed = len(missing)
+
+    items = [
+        {"checkpoint_id": key, **block}
+        for key, block in sorted(view.items(), key=lambda pair: (str(pair[1].get("at") or ""), pair[0]))
+        if outbox_matches(block, args.status)
+    ]
+    pending = [key for key, block in view.items() if outbox_state(block) == "pending"]
+
+    if args.json:
+        print(json.dumps({
+            "outbox": outbox_dir.name,
+            "total": len(view),
+            "pending": len(pending),
+            "filter": args.status,
+            "replayed": replayed,
+            "items": items,
+        }, ensure_ascii=False, indent=2))
+    else:
+        print(f"outbox {outbox_dir.name}：{len(view)} 个检查点，{len(pending)} 个未关闭"
+              f"（筛选 {args.status}，{len(items)} 条）")
+        for item in items:
+            print(f"  {item['checkpoint_id'][:12]}…  {item.get('trigger')}  stage={item.get('stage')}"
+                  f"  archive={item.get('archive_status')} ingest={item.get('kb_ingest_status')}"
+                  f" query_back={item.get('kb_query_back_status')}")
+        if args.replay:
+            print(f"  已从 WAL 补写 {replayed} 条索引（WAL 未改动）")
+    return 0
+
+
+def entry_project_markers(entry: dict) -> set[str]:
+    markers: set[str] = set()
+    scope = entry.get("scope") if isinstance(entry.get("scope"), dict) else {}
+    project = str(scope.get("project") or "").strip()
+    if project and project not in GENERIC_PROJECTS:
+        markers.add(project)
+    for item in entry.get("applies_to") or []:
+        text = str(item).strip()
+        if text:
+            markers.add(text)
+    for tag in entry.get("tags") or []:
+        text = str(tag).strip()
+        if text.startswith(PROJECT_TAG_PREFIX):
+            value = text[len(PROJECT_TAG_PREFIX):].strip()
+            if value:
+                markers.add(value)
+    for item in entry.get("evidence") or []:
+        if not isinstance(item, dict):
+            continue
+        parts = [part for part in str(item.get("ref", "")).split("/") if part]
+        for index, part in enumerate(parts[:-1]):
+            if part.lower() in ("project", "projects"):
+                markers.add(parts[index + 1])
+    return markers
+
+
+def project_specific_fields(entry: dict) -> list[str]:
+    scope = entry.get("scope") if isinstance(entry.get("scope"), dict) else {}
+    fields = [name for name in ("device", "firmware") if scope.get(name)]
+    if entry.get("exceptions"):
+        fields.append("exceptions")
+    return fields
+
+
+def promotion_candidates(entries: list[dict], min_projects: int) -> list[dict]:
+    floor = max(min_projects, 1)
+    rows: list[dict] = []
+    for entry in entries:
+        if entry.get("status") == "superseded":
+            continue
+        if entry.get("scope_level") not in (None, "project"):
+            continue
+        if project_specific_fields(entry):
+            continue
+        projects = sorted(entry_project_markers(entry))
+        if len(projects) < floor:
+            continue
+        promote_to = entry.get("promote_to")
+        if promote_to not in ("capability", "global"):
+            promote_to = "capability"
+        rows.append({
+            "entry_id": entry.get("id"),
+            "promote_to": promote_to,
+            "projects": projects,
+            "reason": f"跨 {'、'.join(projects)} 共 {len(projects)} 个项目验证，且无项目专属字段",
+        })
+    return rows
+
+
+def cmd_promote(args) -> int:
+    root = resolve_root(args.root)
+    candidates = promotion_candidates(load_entries(root), args.min_projects)
+    payload = {"root": root.name, "min_projects": args.min_projects, "candidates": candidates}
+    if args.out:
+        out_path = resolve_output_path(root, args.out)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    if args.json:
+        print(json.dumps(payload, ensure_ascii=False, indent=2))
+    elif not candidates:
+        print(f"promote：没有跨 {args.min_projects} 个项目验证的候选")
+    else:
+        print(f"promote：{len(candidates)} 个提升候选（只读，不自动提升）")
+        for row in candidates:
+            print(f"  {row['entry_id']} → {row['promote_to']}  项目={'、'.join(row['projects'])}")
+        if args.out:
+            print(f"  报告已写入 {args.out}")
+    return 0
 
 
 # --------------------------------------------------------------------------- #
@@ -1246,7 +1598,8 @@ def cmd_sync(args) -> int:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="kb.py",
-                                     description="ark-kb 知识库工具：record / query / query-back / lint / sync")
+                                     description="ark-kb 知识库工具："
+                                                 "record / checkpoint / outbox / promote / query / query-back / lint / sync")
     sub = parser.add_subparsers(dest="command", required=True)
 
     def common(target):
@@ -1268,7 +1621,33 @@ def build_parser() -> argparse.ArgumentParser:
     record.add_argument("--reason",
                         help="--no-kb-required 的理由（no-new-knowledge / pure-inventory / "
                              "duplicate-of-existing:<entry_id> / sensitive-not-indexable）")
+    record.add_argument("--checkpoint", help="把本次条目挂到 WAL 中已存在的 checkpoint_id 上")
     record.set_defaults(func=cmd_record)
+
+    checkpoint = sub.add_parser("checkpoint", help="校验生命周期事件并追加到 append-only WAL")
+    checkpoint.add_argument("--root", help="知识库根目录（默认本仓库）")
+    checkpoint.add_argument("--outbox", default="receipts/outbox",
+                            help="WAL 与 outbox 目录（默认 receipts/outbox，相对知识库根）")
+    checkpoint.add_argument("--event", required=True, help="ark.checkpoint.v1 事件 JSON 路径")
+    checkpoint.add_argument("--json", action="store_true", help="输出 JSON")
+    checkpoint.set_defaults(func=cmd_checkpoint)
+
+    outbox = sub.add_parser("outbox", help="查看检查点 outbox 状态并从 WAL 恢复索引")
+    outbox.add_argument("--root", help="知识库根目录（默认本仓库）")
+    outbox.add_argument("--outbox", default="receipts/outbox",
+                        help="WAL 与 outbox 目录（默认 receipts/outbox，相对知识库根）")
+    outbox.add_argument("--status", choices=OUTBOX_STATUSES, default="pending",
+                        help="按状态筛选（默认 pending）")
+    outbox.add_argument("--replay", action="store_true", help="从 WAL 补写 outbox.json 缺失的行")
+    outbox.add_argument("--json", action="store_true", help="输出 JSON")
+    outbox.set_defaults(func=cmd_outbox)
+
+    promote = sub.add_parser("promote", help="扫描跨项目提升候选（只读，不自动提升）")
+    promote.add_argument("--root", help="知识库根目录（默认本仓库）")
+    promote.add_argument("--min-projects", type=int, default=2, help="至少跨几个项目（默认 2）")
+    promote.add_argument("--out", help="候选报告写入路径（默认不写文件，相对知识库根）")
+    promote.add_argument("--json", action="store_true", help="输出 JSON")
+    promote.set_defaults(func=cmd_promote)
 
     query = sub.add_parser("query", help="检索条目摘要与证据引用")
     common(query)

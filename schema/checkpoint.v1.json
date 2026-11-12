@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/zjashanda/ark-kb/schema/checkpoint.v1.json",
+  "title": "checkpoint.v1",
+  "description": "生命周期事件检查点。先追加进任务目录的 append-only WAL，再异步归档入库；幂等键由 issue_id+run_id+stage+event_seq+evidence_digest 计算，重复事件不新增知识。",
+  "type": "object",
+  "required": [
+    "schema",
+    "checkpoint_id",
+    "issue_id",
+    "run_id",
+    "stage",
+    "event_seq",
+    "trigger",
+    "at",
+    "quality",
+    "scope",
+    "summary",
+    "evidence",
+    "outbox"
+  ],
+  "properties": {
+    "schema": { "const": "ark.checkpoint.v1" },
+    "checkpoint_id": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "issue_id": { "type": "string", "minLength": 1 },
+    "run_id": { "type": "string", "minLength": 1 },
+    "stage": { "type": "integer", "minimum": 0 },
+    "event_seq": { "type": "integer", "minimum": 0 },
+    "trigger": {
+      "enum": [
+        "EXECUTION_CHECK",
+        "STAGE_FINISHED",
+        "FINAL_RECEIPT",
+        "BLOCKED",
+        "FAIL",
+        "NEEDS_REVIEW",
+        "WATCHDOG_RUNNING_NO_EVIDENCE",
+        "WATCHDOG_STATE_DRIFT",
+        "WATCHDOG_TIMEOUT",
+        "WATCHDOG_HEARTBEAT_LOST",
+        "MANUAL_CANCEL",
+        "RUNTIME_CRASH",
+        "RECOVERY_REPLAY"
+      ]
+    },
+    "at": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$" },
+    "quality": { "enum": ["formal", "candidate", "evidence_gap"] },
+    "scope": { "$ref": "#/$defs/scope" },
+    "kb_context_ref": { "$ref": "#/$defs/kb_context_ref" },
+    "summary": { "$ref": "#/$defs/summary" },
+    "evidence": {
+      "type": "array",
+      "minItems": 0,
+      "items": { "$ref": "#/$defs/evidence" }
+    },
+    "outbox": { "$ref": "#/$defs/outbox" }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "scope": {
+      "type": "object",
+      "required": ["level", "key"],
+      "properties": {
+        "level": {
+          "enum": ["global", "capability", "platform", "device_family", "project", "node", "run"]
+        },
+        "key": { "type": "string", "minLength": 1 },
+        "parent": { "type": "string" },
+        "derived_from": { "type": "array", "items": { "type": "string" } },
+        "exceptions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/exception" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "exception": {
+      "type": "object",
+      "required": ["rule", "reason"],
+      "properties": {
+        "rule": { "type": "string", "minLength": 1 },
+        "reason": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "kb_context_ref": {
+      "type": "object",
+      "properties": {
+        "queried_at": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$" },
+        "registry_commit": { "type": "string" },
+        "hit_ids": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "claim": { "type": "string" },
+        "phenomenon": { "type": "string" },
+        "attempts": { "type": "array", "items": { "type": "string" } },
+        "excluded": { "type": "array", "items": { "type": "string" } },
+        "recovery_hint": { "type": "string" },
+        "stop_rule": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["path", "sha256", "bytes"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "bytes": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "outbox": {
+      "type": "object",
+      "required": [
+        "archive_status",
+        "kb_ingest_status",
+        "kb_query_back_status",
+        "kb_entry_ids",
+        "retry"
+      ],
+      "properties": {
+        "archive_status": { "enum": ["pending", "ok", "failed", "skipped"] },
+        "kb_ingest_status": { "enum": ["pending", "recorded", "skipped_no_kb", "failed"] },
+        "kb_query_back_status": { "enum": ["pending", "pass", "fail", "deferred"] },
+        "kb_entry_ids": { "type": "array", "items": { "type": "string" } },
+        "retry": { "$ref": "#/$defs/retry" }
+      },
+      "additionalProperties": false
+    },
+    "retry": {
+      "type": "object",
+      "required": ["attempts", "last_error"],
+      "properties": {
+        "attempts": { "type": "integer", "minimum": 0 },
+        "last_error": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}
