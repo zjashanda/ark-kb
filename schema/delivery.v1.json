@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/zjashanda/ark-kb/schema/delivery.v1.json",
+  "title": "ark.delivery.v1",
+  "description": "结果回流回执。落 receipts/delivery.json，并复制进 run.receipt.json 的 delivery 字段；四个状态位缺一不可。",
+  "type": "object",
+  "required": [
+    "schema",
+    "run_id",
+    "idempotency_key",
+    "archive_status",
+    "kb_ingest_status",
+    "kb_entry_ids",
+    "kb_query_back_status",
+    "retry",
+    "updated_at"
+  ],
+  "properties": {
+    "schema": { "const": "ark.delivery.v1" },
+    "run_id": { "type": "string", "minLength": 8 },
+    "idempotency_key": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "sha256(scope+run_id)，同一 run 重放不新增条目"
+    },
+    "archive_status": { "enum": ["pending", "ok", "failed", "skipped"] },
+    "archive_manifest_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "kb_ingest_status": { "enum": ["pending", "recorded", "skipped_no_kb", "failed"] },
+    "kb_entry_ids": { "type": "array", "items": { "type": "string" } },
+    "kb_query_back_status": { "enum": ["pending", "pass", "fail", "deferred"] },
+    "kb_query_back_at": { "$ref": "#/$defs/timestamp" },
+    "kb_query_back_hits": { "type": "array", "items": { "type": "string" } },
+    "no_kb_reason": {
+      "type": "string",
+      "pattern": "^(no-new-knowledge|pure-inventory|duplicate-of-existing:.+|sensitive-not-indexable)$",
+      "description": "封闭集合；禁止静默跳过"
+    },
+    "retry": { "$ref": "#/$defs/retry" },
+    "updated_at": { "$ref": "#/$defs/timestamp" }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "timestamp": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$",
+      "description": "北京时间，空格分隔，秒精度，不带时区标记"
+    },
+    "retry": {
+      "type": "object",
+      "required": ["attempts", "last_error"],
+      "properties": {
+        "attempts": { "type": "integer", "minimum": 0 },
+        "last_error": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  }
+}

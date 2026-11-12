@@ -3,6 +3,7 @@
 
     kb.py record --receipt <path>     回执归一成条目（pending），更新索引
     kb.py query  --device X ...       检索摘要 + 证据引用，不返回全文
+    kb.py query-back --delivery X     回查新条目是否可检索，写回 delivery 回执
     kb.py lint                        校验 schema、证据、重复 id、索引、凭据
     kb.py sync                        拉取远端；--push 只允许推功能分支
     kb.py index                       重建索引（record 会自动调用）
@@ -40,7 +41,15 @@ EVIDENCE_KINDS = ("run", "file", "commit", "issue", "url")
 STALE_DAYS = 90
 MERGE_RATIO = 0.86
 EXIT_FAIL = 3
+EXIT_INCOMPLETE = 1
 INDEX_NAMES = ("by-device", "by-capability", "by-skill")
+
+# 知识同步契约（NOAH-66）：读侧留痕 + 写侧回流回执
+DELIVERY_SCHEMA = "ark.delivery.v1"
+NO_KB_FIXED_REASONS = ("no-new-knowledge", "pure-inventory", "sensitive-not-indexable")
+DUPLICATE_REASON_PREFIX = "duplicate-of-existing:"
+BEIJING = timezone(timedelta(hours=8))
+TEXT_TIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 
 class KBError(RuntimeError):
@@ -52,17 +61,38 @@ class KBError(RuntimeError):
 # --------------------------------------------------------------------------- #
 
 def now_iso() -> str:
-    return datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
+    return datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")  # noqa: time-lint  # time-lint:allow
 
 
 def parse_time(value: str) -> datetime:
     text = value.strip()
     if text.endswith("Z"):
         text = text[:-1] + "+00:00"
-    parsed = datetime.fromisoformat(text)
+    parsed = datetime.fromisoformat(text)  # noqa: time-lint  # time-lint:allow
     if parsed.tzinfo is None:
-        parsed = parsed.replace(tzinfo=timezone.utc)
+        parsed = parsed.replace(tzinfo=timezone.utc)  # noqa: time-lint  # time-lint:allow
     return parsed
+
+
+def now_bj_text() -> str:
+    """北京时间文本（空格分隔、秒精度、无时区标记），同步契约字段一律用它。"""
+    return datetime.now(BEIJING).strftime(TEXT_TIME_FORMAT)
+
+
+def valid_no_kb_reason(value: str | None) -> bool:
+    """NO_KB_REQUIRED 的理由必须落在封闭集合内，禁止静默跳过。"""
+    text = (value or "").strip()
+    if text in NO_KB_FIXED_REASONS:
+        return True
+    if text.startswith(DUPLICATE_REASON_PREFIX):
+        return bool(text[len(DUPLICATE_REASON_PREFIX):].strip())
+    return False
+
+
+def idempotency_key(scope: dict, run_id: str) -> str:
+    """幂等键 = sha256(scope + run_id)；同一 run 重放不新增条目。"""
+    material = json.dumps(scope if isinstance(scope, dict) else {}, ensure_ascii=False, sort_keys=True)
+    return hashlib.sha256(f"{material}|{run_id}".encode("utf-8")).hexdigest()
 
 
 def sha256_file(path: Path) -> str:
@@ -138,6 +168,61 @@ def read_json(path: Path):
         raise KBError(f"读不到 {path}: {exc}") from exc
     except json.JSONDecodeError as exc:
         raise KBError(f"{path} 不是合法 JSON: {exc}") from exc
+
+
+# --------------------------------------------------------------------------- #
+# 回流回执 ark.delivery.v1（读改写，绝不删除未知字段）
+# --------------------------------------------------------------------------- #
+
+def load_delivery(path: Path) -> dict | None:
+    if not path.is_file():
+        return None
+    data = read_json(path)
+    if not isinstance(data, dict):
+        raise KBError(f"{path} 不是 ark.delivery.v1 对象")
+    return data
+
+
+def write_delivery(path: Path, data: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def delivery_defaults(run_id: str, scope: dict) -> dict:
+    return {
+        "schema": DELIVERY_SCHEMA,
+        "run_id": run_id,
+        "idempotency_key": idempotency_key(scope, run_id),
+        "archive_status": "pending",
+        "kb_ingest_status": "pending",
+        "kb_entry_ids": [],
+        "kb_query_back_status": "pending",
+        "retry": {"attempts": 0, "last_error": ""},
+        "updated_at": now_bj_text(),
+    }
+
+
+def ensure_delivery(path: Path, run_id: str, scope: dict) -> dict:
+    """已有回执只补齐缺失项；已有值与未知字段原样保留，避免覆盖上游写入。"""
+    data = load_delivery(path) or {}
+    for key, value in delivery_defaults(run_id, scope).items():
+        data.setdefault(key, value)
+    data["schema"] = DELIVERY_SCHEMA
+    data["run_id"] = run_id
+    retry = data.get("retry") if isinstance(data.get("retry"), dict) else {}
+    data["retry"] = {**retry, "attempts": int(retry.get("attempts") or 0),
+                     "last_error": str(retry.get("last_error") or "")}
+    data["updated_at"] = now_bj_text()
+    write_delivery(path, data)
+    return data
+
+
+def update_delivery(path: Path, fields: dict) -> dict:
+    data = load_delivery(path) or {}
+    data.update(fields)
+    data["updated_at"] = now_bj_text()
+    write_delivery(path, data)
+    return data
 
 
 # --------------------------------------------------------------------------- #
@@ -592,6 +677,33 @@ def check_receipt(receipt: dict, root: Path) -> list[str]:
 # record
 # --------------------------------------------------------------------------- #
 
+def record_delivery_path(args, receipt_path: Path) -> Path | None:
+    """--delivery-out 优先；NO_KB_REQUIRED 未显式给路径时落回执同目录 delivery.json。"""
+    if args.delivery_out:
+        return Path(args.delivery_out).expanduser()
+    if args.no_kb_required:
+        return receipt_path.parent / "delivery.json"
+    return None
+
+
+def write_recorded_delivery(path: Path, receipt: dict, entry_ids: list[str]) -> dict:
+    scope = receipt.get("scope") if isinstance(receipt.get("scope"), dict) else {}
+    data = ensure_delivery(path, receipt["run_id"], scope)
+    data["kb_ingest_status"] = "recorded"
+    data["kb_entry_ids"] = list(dict.fromkeys([*(data.get("kb_entry_ids") or []), *entry_ids]))
+    data["dims"] = {
+        "capability": [],
+        "project": scope.get("project") or "",
+        "device": scope.get("device"),
+        "firmware": scope.get("firmware"),
+        "profile": "",
+        "skill": receipt.get("skill") or "",
+    }
+    data["updated_at"] = now_bj_text()
+    write_delivery(path, data)
+    return data
+
+
 def cmd_record(args) -> int:
     root = resolve_root(args.root)
     receipt_path = Path(args.receipt).expanduser()
@@ -601,6 +713,26 @@ def cmd_record(args) -> int:
     errors = check_receipt(receipt, root)
     if errors:
         raise KBError("回执未通过校验，拒绝入库：\n  " + "\n  ".join(errors))
+
+    run_id = receipt["run_id"]
+    delivery_path = record_delivery_path(args, receipt_path)
+
+    if args.no_kb_required:
+        reason = (args.reason or "").strip()
+        if not valid_no_kb_reason(reason):
+            print(
+                "[error] --no-kb-required 必须配 --reason，取值："
+                "no-new-knowledge / pure-inventory / duplicate-of-existing:<entry_id> / sensitive-not-indexable",
+                file=sys.stderr,
+            )
+            return 2
+        data = ensure_delivery(delivery_path, run_id, receipt.get("scope") or {})
+        data["kb_ingest_status"] = "skipped_no_kb"
+        data["no_kb_reason"] = reason
+        data["updated_at"] = now_bj_text()
+        write_delivery(delivery_path, data)
+        print(f"回执 {run_id}：无知识价值（{reason}），跳过入库；回执已写 {delivery_path}")
+        return 0
 
     scanner = secret_scan.load_scanner(root, args.skill_git_home, args.allow_missing_scanner)
     if scanner:
@@ -615,9 +747,11 @@ def cmd_record(args) -> int:
     warnings: list[str] = []
     candidates = receipt_to_entries(receipt, receipt_path, root, warnings)
     entries = load_entries(root)
-    run_id = receipt["run_id"]
     if any(run_id in (entry.get("validations") or []) and entry["type"] == "run" for entry in entries):
         print(f"回执 {run_id} 已入库，跳过（record 幂等）")
+        if delivery_path:
+            known = [entry["id"] for entry in entries if run_id in (entry.get("validations") or [])]
+            write_recorded_delivery(delivery_path, receipt, known)
         return 0
 
     registry = load_registry(root, args.registry)
@@ -657,6 +791,9 @@ def cmd_record(args) -> int:
     if not args.dry_run:
         save_entries(root, entries)
         save_indexes(root, entries)
+        if delivery_path:
+            known = sorted({entry["id"] for entry in entries if run_id in (entry.get("validations") or [])})
+            write_recorded_delivery(delivery_path, receipt, known)
 
     summary = {
         "run_id": run_id,
@@ -761,28 +898,19 @@ def summarize_entry(entry: dict, score: int) -> dict:
     }
 
 
-def cmd_query(args) -> int:
-    root = resolve_root(args.root)
-    registry = load_registry(root, args.registry)
-    entries = load_entries(root)
-    query = {
-        "device": args.device,
-        "project": args.project,
-        "firmware": args.firmware,
-        "skill": args.skill,
-        "capability": args.capability,
-    }
+def run_query(entries: list[dict], query: dict, registry: dict[str, dict] | None, top: int,
+              entry_type: str | None = None, include_stale: bool = False):
+    """query 与 query-back 共用的检索管线：状态过滤、打分、排序、截断。"""
     has_filter = any(query.values())
-
     allowed_status = {"pending", "active"}
-    if args.include_stale:
+    if include_stale:
         allowed_status.update({"stale", "superseded"})
 
     scored = []
     for entry in entries:
         if entry.get("status") not in allowed_status:
             continue
-        if args.type and entry.get("type") != args.type:
+        if entry_type and entry.get("type") != entry_type:
             continue
         score = query_score(entry, query, registry) if has_filter else 0
         if has_filter and not score:
@@ -799,8 +927,23 @@ def cmd_query(args) -> int:
         ),
         reverse=True,
     )
-    selected = scored[: max(args.top, 1)]
-    hits = [summarize_entry(entry, score) for score, entry in selected]
+    selected = scored[: max(top, 1)]
+    return scored, selected, [summarize_entry(entry, score) for score, entry in selected]
+
+
+def cmd_query(args) -> int:
+    root = resolve_root(args.root)
+    registry = load_registry(root, args.registry)
+    entries = load_entries(root)
+    query = {
+        "device": args.device,
+        "project": args.project,
+        "firmware": args.firmware,
+        "skill": args.skill,
+        "capability": args.capability,
+    }
+
+    scored, selected, hits = run_query(entries, query, registry, args.top, args.type, args.include_stale)
 
     if not args.no_hit_count and selected:
         touched = {entry["id"] for _, entry in selected}
@@ -836,6 +979,70 @@ def cmd_query(args) -> int:
         if item["evidence_total"] > len(item["evidence"]):
             print(f"  - 另有 {item['evidence_total'] - len(item['evidence'])} 条证据")
     return 0
+
+
+def delivery_dimension(delivery: dict, key: str):
+    """取 delivery 的查询维度：dims 优先，其次 scope；数组维度取第一个非空值。"""
+    dims = delivery.get("dims") if isinstance(delivery.get("dims"), dict) else {}
+    scope = delivery.get("scope") if isinstance(delivery.get("scope"), dict) else {}
+    value = dims.get(key)
+    if value in (None, "", []):
+        value = scope.get(key)
+    if isinstance(value, list):
+        value = next((item for item in value if str(item).strip()), None)
+    return value or None
+
+
+def cmd_query_back(args) -> int:
+    root = resolve_root(args.root)
+    path = Path(args.delivery).expanduser()
+    delivery = load_delivery(path)
+    if delivery is None:
+        raise KBError(f"delivery 文件不存在：{path}")
+    run_id = str(delivery.get("run_id") or "")
+    ids = list(dict.fromkeys(
+        str(item).strip() for item in (args.entry_id or delivery.get("kb_entry_ids") or []) if str(item).strip()
+    ))
+    if not ids:
+        print(f"[error] run {run_id or '<unknown>'} 没有可回查的 kb_entry_ids", file=sys.stderr)
+        return EXIT_INCOMPLETE
+
+    query = {
+        "device": args.device or delivery_dimension(delivery, "device"),
+        "project": args.project or delivery_dimension(delivery, "project"),
+        "firmware": args.firmware or delivery_dimension(delivery, "firmware"),
+        "skill": args.skill or delivery_dimension(delivery, "skill"),
+        "capability": args.capability or delivery_dimension(delivery, "capability"),
+    }
+    registry = load_registry(root, args.registry)
+    entries = load_entries(root)
+    _scored, _selected, hits = run_query(entries, query, registry, args.top)
+    found = [item["id"] for item in hits]
+    missing = [entry_id_value for entry_id_value in ids if entry_id_value not in found]
+    status = "fail" if missing else "pass"
+    stamp = now_bj_text()
+    update_delivery(path, {
+        "kb_query_back_status": status,
+        "kb_query_back_at": stamp,
+        "kb_query_back_hits": found,
+    })
+
+    payload = {
+        "run_id": run_id,
+        "status": status,
+        "queried_at": stamp,
+        "dims": {key: value for key, value in query.items() if value},
+        "requested": ids,
+        "found": found,
+        "missing": missing,
+    }
+    if args.json:
+        print(json.dumps(payload, ensure_ascii=False, indent=2))
+    elif missing:
+        print(f"query-back：run {run_id} 状态 fail，{len(missing)}/{len(ids)} 条不可检索：{'、'.join(missing)}")
+    else:
+        print(f"query-back：run {run_id} 状态 pass，{len(ids)} 条全部可检索（top {args.top}）")
+    return EXIT_INCOMPLETE if missing else 0
 
 
 # --------------------------------------------------------------------------- #
@@ -895,7 +1102,7 @@ def cmd_lint(args) -> int:
         elif entry.get("superseded_by"):
             errors.append(f"entry {label}: 非 superseded 条目不应有 superseded_by")
         try:
-            age = datetime.now(timezone.utc) - parse_time(entry.get("updated") or entry.get("created", ""))
+            age = datetime.now(timezone.utc) - parse_time(entry.get("updated") or entry.get("created", ""))  # noqa: time-lint  # time-lint:allow
             if entry.get("status") in ("pending", "active") and age > timedelta(days=STALE_DAYS) \
                     and entry.get("hits", 0) == 0:
                 warnings.append(f"entry {label}: 超过 {STALE_DAYS} 天零命中，应标 stale")
@@ -1038,7 +1245,8 @@ def cmd_sync(args) -> int:
 # --------------------------------------------------------------------------- #
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="kb.py", description="ark-kb 知识库工具：record / query / lint / sync")
+    parser = argparse.ArgumentParser(prog="kb.py",
+                                     description="ark-kb 知识库工具：record / query / query-back / lint / sync")
     sub = parser.add_subparsers(dest="command", required=True)
 
     def common(target):
@@ -1054,6 +1262,12 @@ def build_parser() -> argparse.ArgumentParser:
     record.add_argument("--receipt", required=True, help="run.receipt.v1 回执路径")
     record.add_argument("--supersede", help="把旧条目标为 superseded，指向本次生成的新条目")
     record.add_argument("--dry-run", action="store_true", help="只算不写")
+    record.add_argument("--delivery-out", help="写入/合并 ark.delivery.v1 回执的路径（receipts/delivery.json）")
+    record.add_argument("--no-kb-required", action="store_true",
+                        help="本次无知识价值：不写条目，只记 skipped_no_kb")
+    record.add_argument("--reason",
+                        help="--no-kb-required 的理由（no-new-knowledge / pure-inventory / "
+                             "duplicate-of-existing:<entry_id> / sensitive-not-indexable）")
     record.set_defaults(func=cmd_record)
 
     query = sub.add_parser("query", help="检索条目摘要与证据引用")
@@ -1068,6 +1282,19 @@ def build_parser() -> argparse.ArgumentParser:
     query.add_argument("--include-stale", action="store_true", help="包含 stale / superseded")
     query.add_argument("--no-hit-count", action="store_true", help="不写命中计数")
     query.set_defaults(func=cmd_query)
+
+    query_back = sub.add_parser("query-back", help="record 后用相同维度回查条目是否可检索")
+    common(query_back)
+    query_back.add_argument("--delivery", required=True, help="ark.delivery.v1 回执路径")
+    query_back.add_argument("--entry-id", action="append",
+                            help="覆盖 delivery 里的 kb_entry_ids，可重复")
+    query_back.add_argument("--device")
+    query_back.add_argument("--project")
+    query_back.add_argument("--firmware")
+    query_back.add_argument("--skill")
+    query_back.add_argument("--capability")
+    query_back.add_argument("--top", type=int, default=20)
+    query_back.set_defaults(func=cmd_query_back)
 
     lint = sub.add_parser("lint", help="校验条目、证据、索引与凭据")
     common(lint)
