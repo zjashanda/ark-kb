@@ -10,7 +10,6 @@
 |---|---|---|---|
 | `lstest` | `cskflashtest` | `from lstest.scripts.core/profile/runtime/timeline/interaction_acceptance/environment_cleanup/result_stats/serial_recovery import ...`；外部依赖，按"已安装包 → `LSTEST_HOME` → 同级目录"解析 | A：`cskflashtest/scripts/run.py`、`run_multi.py`、`scripts/lstest_env.py` |
 | `lstest` | `test-plan-architect` | 只引用 profile/case contract 口径，不 import 代码 | B：台账 `depends_skills`，`test-plan-architect` 为规范类仓库 |
-| `lstest` | `NoahsArk` | 只引用"四类产物 + 回执"契约 | B：台账 `depends_skills`，`NoahsArk` 为规格仓库无运行时代码 |
 | `lstts` | `lstest` | `lstts_core.client.request_audio/extract_wav`、`lstts_core.audio.inspect_wav`、`lstts_core.voices.resolve_voice` | A：`lstest/scripts/audio_synthesis.py:17-22` |
 | `lstts` | `Trisolaris` | `run_tts` 只走 `lstts_core`（NOAH-10 已删除 edge-tts 兜底） | A：`Trisolaris` TTS 改造提交 `e7eb8a1` |
 | `lstts` | `tcl-test-sub` | 语料重生成脚本 `scripts/regen_audio.py` | A：`tcl-test-sub` 提交 `3c4e1db` |
@@ -34,8 +33,6 @@
 | `generate-html-report` | 无仓库调用方 | 人工：按 `SKILL.md` 流程生成报告 | C |
 | `melotts` | 无仓库调用方 | 人工/现场：`scripts/synth.py`（离线合成） | C |
 | `qw-email-handle` | 无仓库调用方 | 人工/现场：`scripts/mailbox_tool.py` | C |
-| `NoahsArk` | 无仓库把它当运行依赖 | 规格仓库，`docs/VERSIONING.md` | C |
-| `zhsh` | 无仓库调用方 | 平台部署：`start_all.bat` | C |
 | `Polaris` | 无仓库调用方 | 真机执行入口：`python satellite/cucumber-agent-testing/scripts/run_task.py -- ...` | C |
 
 ## 结论
@@ -43,4 +40,5 @@
 1. **有运行时耦合的只有 6 个**：`lstest`（← cskflashtest）、`lstts`（← lstest/Trisolaris/tcl/arcs）、`listenai-play`（← Polaris/tcl/mars-moon/cskflashtest）、`burn_bundle`（← Trisolaris）、`skill-git`（← lstest）、`skill-creator`/`trails`（← tcl）。
 2. **其余 high 是"独立 CLI + 人工调用"**，没有仓库级依赖，所以去重时不能拿"有没有人 import"当唯一判据；要区分"库"和"工具"。
 3. **需要盯的两处副本**：`Trisolaris/tools/audio/listenai-play`（整份副本）、`Polaris` 里写死的 `~/.codex/skills/listenai-play/...` 绝对路径。前者建议后续改外部依赖，后者建议改配置项。
-4. **调用方缺证据的**：`power-on-record-check`、`mars-moon → burn_bundle`、`NoahsArk/test-plan-architect → lstest` 都只有声明没有代码级证据，已在表里标 B，不要当 A 用。
+4. **调用方缺证据的**：`power-on-record-check`、`mars-moon → burn_bundle`、`test-plan-architect → lstest` 都只有声明没有代码级证据，已在表里标 B，不要当 A 用。
+5. **已归档旧仓库（2026-11-12，NOAH-65）**：`zjashanda/NoahsArk` 与 `zjashanda/zhsh` 的完整历史已备份到私有 `zjashanda/noahsark-legacy-archive`，台账条目已移除；原「NoahsArk 引用四类产物契约」的表述只作为历史记录保留在本条。

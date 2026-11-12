@@ -1,6 +1,6 @@
 # 能力台账 v1
 
-NoahsArk 工作区 46 个仓库的能力、适用设备/项目与可用状态的单一事实源。机器可读版在同目录 [`skills.json`](skills.json)。
+NoahsArk 工作区 44 个仓库的能力、适用设备/项目与可用状态的单一事实源。机器可读版在同目录 [`skills.json`](skills.json)。
 
 本版只做清点，不改任何被调查仓库；所有描述来自仓库 README、`SKILL.md`、顶层目录与最近提交，不包含代码、配置或凭据内容。
 
@@ -14,9 +14,9 @@ NoahsArk 工作区 46 个仓库的能力、适用设备/项目与可用状态的
 
 ## 数据来源与范围
 
-- 采集：GitHub API 只读（`zjashanda`，46 个仓库；2026-11-06 首采 35 个，其中 4 个私有）。2026-11-11 补录 7 个 canonical 仓库与 4 个旧入口/跨仓库契约条目（NOAH-55）。
+- 采集：GitHub API 只读（`zjashanda`，46 个仓库；2026-11-06 首采 35 个，其中 4 个私有）。2026-11-11 补录 7 个 canonical 仓库与 4 个旧入口/跨仓库契约条目（NOAH-55）。2026-11-12 按 NOAH-65 移除已归档的 `NoahsArk`、`zhsh` 两条，当前 44 条。
 - 逐仓库核对：README、`SKILL.md` 全文、顶层文件清单、最近提交、`requirements.txt` 与关键 payload 目录。
-- 私有仓库（`zhsh`、`fileball`、`qw-email-handle`、`a4m-Jenkins`）只能读到 README，依赖标注为“待核验”，不臆造。`tcl-device-autoburn` 是空/私有仓库，GitHub 不可读，只能依据节点侧说明记录。
+- 私有仓库（`fileball`、`qw-email-handle`、`a4m-Jenkins`）只能读到 README，依赖标注为“待核验”，不臆造。`tcl-device-autoburn` 是空/私有仓库，GitHub 不可读，只能依据节点侧说明记录。
 - `last_verified` = 本台账静态核验日期（元数据 + 文档 + 依赖清单），**不等于真机验证**。真机结论只能来自节点侧执行证据。
 
 ## 字段与口径
@@ -36,7 +36,7 @@ NoahsArk 工作区 46 个仓库的能力、适用设备/项目与可用状态的
 - `legacy`：项目已收尾、绑定单一项目，但资产与方法论仍可复用；新任务不应默认选它。
 - `archived`：已被替代或与方舟无关，只作历史参照。
 
-当前分布（由 `skills.json` 程序统计，2026-11-11）：`active` 32 / `legacy` 10 / `archived` 4；分层 `spec` 4 / `kernel` 7 / `capability` 17 / `knowledge` 1 / `tool` 14 / `orchestration` 3；复用 `high` 27 / `medium` 11 / `low` 8。复算命令见文末[校验](#校验)。
+当前分布（由 `skills.json` 程序统计，2026-11-12）：`active` 30 / `legacy` 10 / `archived` 4；分层 `spec` 4 / `kernel` 7 / `capability` 17 / `knowledge` 1 / `tool` 14 / `orchestration` 1；复用 `high` 25 / `medium` 11 / `low` 8。复算命令见文末[校验](#校验)。
 
 ## 对照表
 
@@ -113,8 +113,6 @@ NoahsArk 工作区 46 个仓库的能力、适用设备/项目与可用状态的
 | 仓库 | 能干什么 | 项目 | 硬件 | 平台 | 复用 | 状态 | 最近推送 | 备注 |
 |---|---|---|---|---|---|---|---|---|
 | `ark-dispatch` | 只做决策不执行：输入任务+设备条件，查台账输出 plan.v1（选型/顺序/门禁/退出点），禁止网络与设备访问。 | 通用 | — | Win/Linux | high | active | 2026-11-09 | 依赖 `ark-kb` 本地快照；缺失失败关闭（退出码 3） |
-| `NoahsArk` | AI 测试平台方案与规格仓库：控制面/节点分工、会话编排、证据 manifest、租约与 C1-C7 门禁设计。 | 通用 | — | Win/Linux | high | active | 2026-11-04 | 唯一带 CI 的仓库 |
-| `zhsh` | 局域网分布式 CLI 网关与任务调度：Dashboard、任务队列、PTY 终端桥接、Agent 上报硬件并执行任务、Beacon 一键接入。 | 通用 | — | Win/Linux | high | active | 2026-10-24 |  |
 
 ## 依赖关系
 
@@ -125,7 +123,6 @@ ark-dispatch            -> ark-kb
 cskflashtest            -> lstest
 lstest                  -> lstts, skill-git
 mars-moon               -> burn_bundle, listenai-play
-NoahsArk                -> lstest
 power-on-record-check   -> listenai-play        （随包内嵌副本）
 tcl-test-sub            -> listenai-play, trails, skill-creator
 test-plan-architect     -> lstest
@@ -134,7 +131,7 @@ Trisolaris              -> burn_bundle
 tts-runtime             -> lstts, melotts
 ```
 
-被依赖最多：`lstest`（3）、`listenai-play`（3）、`burn_bundle`（2）、`lstts`（2）、`skill-creator`（2）。2 次档三家并列，所以严格 Top4 实际是 5 个仓库；这批是抽包与兼容性改造的第一优先级。
+被依赖最多：`listenai-play`（3）；`lstest`、`burn_bundle`、`lstts`、`skill-creator` 各 2。2 次档四家并列，所以严格 Top4 实际是 5 个仓库；这批是抽包与兼容性改造的第一优先级。
 
 补充两条事实（避免按旧版误读）：
 
@@ -150,7 +147,7 @@ tts-runtime             -> lstts, melotts
 | `mars-moon` | README 的 Skill layout 曾列出 `.git/` 条目 | 远端仓库无法跟踪 `.git`；同时原先依赖已归档的 `listenai-laid-installer` | 已清理布局清单；bootstrap 改为只依赖 `listenai-play` |
 | `usb-tree` | `.omo/run-continuation/ses_*.json` 入库 | 会话续跑状态进入发布包 | 加入 `.gitignore` |
 | `melotts` | `.venv/`、`models/`、`outputs/`、`vendor/` 入库（130MB） | 自包含是设计目标，但 `outputs/` 属历史结果 | 保留模型与 vendor，清理 `outputs/` |
-| `NoahsArk` | 唯一带 `.github/` 的仓库 | 其余 45 个仓库无 CI，测试靠本地 `python -m unittest` | 给内核层仓库补最小 CI |
+| `—` | 无仓库带 `.github/` CI（原唯一带 CI 的 `NoahsArk` 已随 NOAH-65 归档删除） | 44 个仓库测试靠本地 `python -m unittest` | 给内核层仓库补最小 CI |
 | `a4m-Jenkins` | 74MB 私有历史工程 | 与设备测试无关，拉取成本高 | 保持归档，不下载 |
 | `listenai-laid-installer` | ~~仓库内 `install_laid_windows.ps1` / `install_laid_linux.sh` 与 `listenai-play` 同源~~ | **已修复（2026-11-07）**：删脚本副本，降级为文档入口，`status=archived` | 无 |
 | `Trisolaris` | `tools/audio/listenai-play` 是 `listenai-play` 的整份副本 | 升级时要同步两份，否则播放行为漂移 | 后续改为外部依赖（需真机回归，本轮未动） |
@@ -165,7 +162,7 @@ tts-runtime             -> lstts, melotts
 
 1. **~~`Polaris` 的状态~~ → 已裁决（2026-11-11）**：归 `legacy`，`replaced_by=lstest`。依据：可复用能力已迁入 `lstest` 的 profiles/adapters/cases（NOAH-54 parity 31/31），仓库保留只读，不再并列 canonical。
 2. **10 个 `legacy` 是“项目收尾/已被取代”判断，不是“代码坏掉”**：`scanpen-api-test`、`arcs-aopu-test`、`bootship`、`mideaSmoke`、`duya-ota-powercut`、`mars-moon`、`Trisolaris`、`Polaris`、`omni-pickup`、`tcl-device-autoburn` 仍可运行；若其中某个项目仍在交付，应改回 `active`。`tcl-test-sub` 已于 2026-11-07 按现场证据（TCL-ac 仍在 win009 台架交付，NOAH-20）改回 `active`。
-3. **4 个私有仓库的依赖未核验**（`zhsh`、`fileball`、`qw-email-handle`、`a4m-Jenkins`）：只能读 README，`depends_pkgs` 标为“待核验”，后续有权限时补齐。`tcl-device-autoburn` 是空/私有仓库，只能依据节点侧说明记录。
+3. **3 个私有仓库的依赖未核验**（`fileball`、`qw-email-handle`、`a4m-Jenkins`）：只能读 README，`depends_pkgs` 标为“待核验”，后续有权限时补齐。`tcl-device-autoburn` 是空/私有仓库，只能依据节点侧说明记录。
 4. **`Trisolaris` 的定位**：它同时是项目资产库和通用验证池。本版按“项目绑定”记 `legacy`；若定位为长期复用的多项目框架，应改 `active`。
 5. **时间契约 A/B 待郑保山裁决（BLOCKED）**：记录层是否允许毫秒。方案 A（记录层统一 `YYYY-MM-DD HH:MM:SS`，毫秒仅限设备层回执）只影响 `venusahisiburner`；方案 B（全线 `YYYY-MM-DDThh:mm:ss.sss`）要改 7 个仓库。当前唯一违约仓库是 `venusahisiburner`。交叉验证另发现 `ark-node` 与 `skillhub-sync` 的判定函数偏宽（接受空格毫秒 / `Z` / 偏移），产物本身合规。详见 [`docs/time-contract.md`](../docs/time-contract.md)。
 6. **4 个归档候选待批准打 tag**：`burn_bundle`、`polaris-device-validation`、`listenai-laid-installer`、`a4m-Jenkins`，提案见 [`docs/archive-candidates.md`](../docs/archive-candidates.md)；未获批准前不创建任何 tag、不删仓库。
@@ -176,15 +173,15 @@ tts-runtime             -> lstts, melotts
 # 1. JSON 合法性
 python3 -m json.tool registry/skills.json > /dev/null
 
-# 2. 46 条、字段齐全、枚举合法、无空字符串
+# 2. 44 条、字段齐全、枚举合法、无空字符串
 python3 - <<'PY'
 import json
 d = json.load(open("registry/skills.json"))
 F = ["name","repo","layer","status","capability","platform","projects",
      "hardware","depends_skills","depends_pkgs","entry","reuse",
      "scope_note","replaced_by","last_verified"]
-assert len(d) == 46, len(d)
-assert len({r["name"] for r in d}) == 46
+assert len(d) == 44, len(d)
+assert len({r["name"] for r in d}) == 44
 for r in d:
     assert list(r) == F, r["name"]
     assert r["layer"] in {"spec","kernel","capability","knowledge","orchestration","tool"}
@@ -200,7 +197,7 @@ for r in d:
             assert v.strip(), (r["name"], k)
         else:
             assert v and all(isinstance(i, str) and i.strip() for i in v), (r["name"], k)
-print("OK 46/46")
+print("OK 44/44")
 PY
 
 # 3. 统计分布（与正文「当前分布」逐项比对）
@@ -220,3 +217,8 @@ PY
 另有 188 条「证据文件不在本机」警告，属节点侧证据路径，不影响台账校验。
 
 本版仅交付文件，未改动任何被调查仓库，也未推送任何分支。
+
+## 已归档删除（2026-11-12，NOAH-65）
+
+`zjashanda/NoahsArk`（旧 Git 仓库，公共）与 `zjashanda/zhsh`（旧私有仓库）已完整历史备份到私有归档仓库 `zjashanda/noahsark-legacy-archive`（分支 `archive/noahsark`、`archive/zhsh`、`archive/index`），并从本台账移除。
+注意：被删除的是**旧 Git 仓库**，不是 NoahsArk 平台本身；平台名、规则体系与 OSS 总览里的「NoahsArk」保留不变。

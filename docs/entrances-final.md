@@ -80,7 +80,7 @@ ark-dispatch  → ark-kb
 
 | 仓库 | 命令 | 结果 |
 |---|---|---|
-| `ark-kb` | `registry/README.md` 校验脚本 | `OK 46/46`（status active32/legacy10/archived4） |
+| `ark-kb` | `registry/README.md` 校验脚本 | `OK 44/44`（status active30/legacy10/archived4） |
 | `ark-dispatch` | `python3 -m unittest tests.test_dispatch` | 74 tests OK；`dispatch.py rules` → OK routing.v1 |
 | `skillhub-sync` | `python3 -m unittest tests.test_skill_sync`；`tools/time_lint.py --gate --root .` | 28 tests OK；0 violation / 18 files |
 | `ark-archive` | `python3 -m unittest discover -s tests` | 47 tests OK |
