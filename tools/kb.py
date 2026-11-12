@@ -10,6 +10,8 @@
     kb.py lint                        校验 schema、证据、重复 id、索引、凭据
     kb.py sync                        拉取远端；--push 只允许推功能分支
     kb.py index                       重建索引（record 会自动调用）
+    kb.py asset-record --asset <path> 登记 TTS 资产 manifest（同上，索引条目）
+    kb.py asset-query  --voice X ...  检索 TTS 资产索引（只读）
 
 设计口径见 README.md 与 schema/*.json。所有命令离线可跑（sync 除外）。
 """
@@ -19,6 +21,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import subprocess
 import sys
@@ -67,6 +70,24 @@ SCOPE_LEVELS = ("global", "capability", "platform", "device_family", "project", 
 OUTBOX_STATUSES = ("pending", "archived", "ingested", "failed", "all")
 PROJECT_TAG_PREFIX = "project:"
 GENERIC_PROJECTS = ("通用", "general", "common")
+
+# TTS 音频库索引（NOAH-66）：asset-tools 是库的真源，本仓只登记可搜索索引
+ASSET_MANIFEST_SCHEMA = "ark.tts-asset.v1"
+ASSET_ENTRY_SCHEMA = "ark.tts-asset-entry.v1"
+ASSET_QUALITIES = ("formal", "candidate", "evidence_gap")
+ASSET_STATUSES = ("active", "stale", "superseded")
+ASSET_VISIBILITIES = ("public", "project", "restricted")
+ASSET_LIVENESS = {"active": 2, "stale": 1, "superseded": 0}
+ASSET_ID_RE = re.compile(r"^tts-[0-9a-f]{16}(-v[0-9]+)?$")
+ASSET_HEX64_RE = re.compile(r"^[0-9a-f]{64}$")
+ASSET_TIME_RE = re.compile(r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$")
+# 受控相对路径：禁止绝对路径、盘符、反斜杠与 .. 逃逸；只允许相对 1006 库根的 POSIX 形状
+ASSET_PATH_RE = re.compile(r"^(?!/)(?!.*\.\.)(?![A-Za-z]:)(?!.*\\)[A-Za-z0-9][A-Za-z0-9._/-]*$")
+ASSET_SUMMARY_LIMIT = 300
+ASSET_INDEX_SCHEMA = "ark.tts-asset-index.v1"
+ASSET_INDEX_NAME = "asset-index.json"
+ASSET_INDEX_FIELDS = ("voice", "language", "engine")
+ASSET_QUERY_NOTE = "索引只用于发现线索；取件前必须用 asset-tools tts-library fetch/verify 复核 manifest 与 SHA"
 
 
 class KBError(RuntimeError):
@@ -297,6 +318,8 @@ def validate(value, schema: dict, root_schema: dict | None = None, path: str = "
     if isinstance(value, str):
         if "minLength" in schema and len(value) < schema["minLength"]:
             errors.append(f"{path}: 长度不足 {schema['minLength']}")
+        if "maxLength" in schema and len(value) > schema["maxLength"]:
+            errors.append(f"{path}: 长度超过 {schema['maxLength']}")
         pattern = schema.get("pattern")
         if pattern and not re.search(pattern, value):
             errors.append(f"{path}: 不匹配模式 {pattern}")
@@ -1498,6 +1521,54 @@ def cmd_lint(args) -> int:
         if drift:
             errors.append(f"index {name}: 键内容漂移 {drift[:5]}")
 
+    asset_path = asset_entry_file(root)
+    if asset_path.is_file():
+        asset_entries = load_asset_entries(root)
+        asset_schema_path = root / "schema" / "asset-entry.v1.json"
+        if asset_schema_path.is_file():
+            asset_schema = load_schema(root, "asset-entry.v1.json")
+            asset_ids = [entry.get("asset_id") for entry in asset_entries]
+            for entry in asset_entries:
+                label = entry.get("asset_id", "<无 asset_id>")
+                for problem in validate(entry, asset_schema):
+                    errors.append(f"asset {label}: {problem}")
+                status = entry.get("status")
+                target = entry.get("superseded_by")
+                if status == "superseded" and not target:
+                    errors.append(f"asset {label}: superseded 条目必须写 superseded_by")
+                if status != "superseded" and target:
+                    errors.append(f"asset {label}: 非 superseded 条目不应有 superseded_by")
+                if target and target not in asset_ids:
+                    errors.append(f"asset {label}: superseded_by 指向不存在的资产 {target}")
+                scope = entry.get("scope") if isinstance(entry.get("scope"), dict) else {}
+                if scope.get("visibility") == "project" and not scope.get("projects"):
+                    errors.append(f"asset {label}: visibility=project 时 projects 不能为空")
+                if scope.get("visibility") == "restricted" \
+                        and not scope.get("projects") and not scope.get("nodes"):
+                    errors.append(f"asset {label}: visibility=restricted 时 projects/nodes 不能为空")
+            duplicates = sorted({item for item in asset_ids if item and asset_ids.count(item) > 1})
+            for asset_id in duplicates:
+                errors.append(f"重复资产索引条目：{asset_id}")
+        else:
+            warnings.append("缺少 schema/asset-entry.v1.json，跳过资产索引条目校验")
+
+        expected_asset = build_asset_index(asset_entries)
+        index_path = asset_index_file(root)
+        if not index_path.is_file():
+            errors.append(f"缺少资产索引 {index_path.relative_to(root)}（运行 kb.py index）")
+        else:
+            stored = read_json(index_path)
+            if not isinstance(stored, dict):
+                errors.append("资产索引不是 JSON 对象")
+            elif stored.get("schema") != ASSET_INDEX_SCHEMA:
+                errors.append(f"资产索引 schema 应为 {ASSET_INDEX_SCHEMA}")
+            else:
+                expected_asset.pop("generated_at", None)
+                stored = dict(stored)
+                stored.pop("generated_at", None)
+                if stored != expected_asset:
+                    errors.append("资产索引漂移（运行 kb.py index 重建）")
+
     scanner = secret_scan.load_scanner(root, args.skill_git_home, args.allow_missing_scanner)
     if scanner:
         candidates = list((root / "entries").rglob("*.jsonl")) + list((root / "index").glob("*.json"))
@@ -1524,8 +1595,502 @@ def cmd_index(args) -> int:
     registry = load_registry(root, args.registry)
     entries = load_entries(root)
     maps = save_indexes(root, entries)
+    asset_entries = load_asset_entries(root)
+    asset_note = ""
+    if asset_entries or asset_entry_file(root).parent.is_dir():
+        save_asset_index(root, asset_entries)
+        asset_note = f"；资产索引 {len(asset_entries)} 条"
     summary = "，".join(f"{name}={len(maps[name])} 个键" for name in INDEX_NAMES)
-    print(f"索引已重建：{summary}")
+    print(f"索引已重建：{summary}{asset_note}")
+    return 0
+
+
+# --------------------------------------------------------------------------- #
+# TTS 音频库索引（asset-record / asset-query）
+# --------------------------------------------------------------------------- #
+
+def asset_entry_file(root: Path) -> Path:
+    return root / "entries" / "asset" / "entries.jsonl"
+
+
+def load_asset_entries(root: Path) -> list[dict]:
+    path = asset_entry_file(root)
+    if not path.is_file():
+        return []
+    entries: list[dict] = []
+    for line_no, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
+        if not line.strip():
+            continue
+        try:
+            item = json.loads(line)
+        except json.JSONDecodeError as exc:
+            raise KBError(f"{path}:{line_no} 不是合法 JSON: {exc}") from exc
+        if not isinstance(item, dict):
+            raise KBError(f"{path}:{line_no} 应为 JSON 对象")
+        entries.append(item)
+    return entries
+
+
+def save_asset_entries(root: Path, entries: list[dict]) -> Path:
+    """按 asset_id 稳定排序后原子重写；临时文件与目标同目录，避免跨盘 rename。"""
+    path = asset_entry_file(root)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    rows = sorted(entries, key=lambda item: str(item.get("asset_id", "")))
+    text = "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in rows)
+    tmp = path.with_name(path.name + ".tmp")
+    tmp.write_text(text, encoding="utf-8")
+    os.replace(tmp, path)
+    return path
+
+
+def asset_index_file(root: Path) -> Path:
+    return root / "index" / ASSET_INDEX_NAME
+
+
+def build_asset_index(entries: list[dict]) -> dict:
+    """只由索引条目派生的廉价发现索引；不做全文、不落音频、不写绝对路径。"""
+    buckets: dict[str, dict[str, set[str]]] = {field: defaultdict(set) for field in ASSET_INDEX_FIELDS}
+    for entry in entries:
+        if entry.get("status") == "superseded":
+            continue
+        asset_id = str(entry.get("asset_id") or "")
+        if not asset_id:
+            continue
+        for field in ASSET_INDEX_FIELDS:
+            key = norm_text(entry.get(field))
+            if key:
+                buckets[field][key].add(asset_id)
+    payload = {
+        "schema": ASSET_INDEX_SCHEMA,
+        "generated_at": now_bj_text(),
+        "total": len(entries),
+        "active": sum(1 for entry in entries if entry.get("status") == "active"),
+        "stale": sum(1 for entry in entries if entry.get("status") == "stale"),
+        "superseded": sum(1 for entry in entries if entry.get("status") == "superseded"),
+    }
+    for field in ASSET_INDEX_FIELDS:
+        payload[f"by_{field}"] = {
+            key: sorted(ids) for key, ids in sorted(buckets[field].items()) if ids
+        }
+    return payload
+
+
+def save_asset_index(root: Path, entries: list[dict]) -> Path:
+    payload = build_asset_index(entries)
+    path = asset_index_file(root)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_name(path.name + ".tmp")
+    tmp.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    os.replace(tmp, path)
+    return path
+
+
+def asset_summary(manifest: dict) -> str:
+    """摘要只由元数据拼装：不复制 text.normalized，避免把文本全文带进索引。"""
+    given = str(manifest.get("summary") or "").strip()
+    if given:
+        return given[:ASSET_SUMMARY_LIMIT]
+    language = str((manifest.get("text") or {}).get("language") or "").strip()
+    voice_block = manifest.get("voice") if isinstance(manifest.get("voice"), dict) else {}
+    voice = str(voice_block.get("speaker") or "").strip()
+    engine_block = manifest.get("engine") if isinstance(manifest.get("engine"), dict) else {}
+    engine = str(engine_block.get("engine") or "").strip()
+    quality = str(manifest.get("quality") or "").strip()
+    audio = manifest.get("audio") if isinstance(manifest.get("audio"), dict) else {}
+    duration = audio.get("duration_seconds")
+    seconds = f"{duration}s" if isinstance(duration, (int, float)) and not isinstance(duration, bool) else ""
+    parts = [part for part in (language, voice, engine, quality, seconds) if part]
+    return ("TTS " + " · ".join(parts))[:ASSET_SUMMARY_LIMIT]
+
+
+def asset_library_path(manifest: dict, asset_id: str) -> str:
+    explicit = str(manifest.get("library_path") or "").strip()
+    if explicit:
+        return explicit
+    audio = manifest.get("audio") if isinstance(manifest.get("audio"), dict) else {}
+    filename = str(audio.get("filename") or "").strip()
+    if not filename:
+        filename = f"{audio.get('sha256') or ''}.wav"
+    return f"{asset_id}/{filename}"
+
+
+def asset_manifest_errors(manifest: dict) -> tuple[list[str], list[str]]:
+    """本地校验 ark.tts-asset.v1：不引入 jsonschema，口径与 schema/asset-entry.v1.json 一致。"""
+    errors: list[str] = []
+    warnings: list[str] = []
+    if not isinstance(manifest, dict):
+        return ["manifest 应为 JSON 对象"], warnings
+
+    if manifest.get("schema") != ASSET_MANIFEST_SCHEMA:
+        errors.append(f"schema 必须为 {ASSET_MANIFEST_SCHEMA}，实际 {manifest.get('schema')!r}")
+
+    asset_id = str(manifest.get("asset_id") or "")
+    if not ASSET_ID_RE.match(asset_id):
+        errors.append(f"asset_id 非法（应为 tts-<16hex> 或 tts-<16hex>-vN）：{asset_id!r}")
+
+    cache_key = str(manifest.get("cache_key") or "")
+    if not ASSET_HEX64_RE.match(cache_key):
+        errors.append("cache_key 必须是 64 位小写十六进制")
+    elif asset_id.split("-v")[0] != f"tts-{cache_key[:16]}":
+        warnings.append("asset_id 前缀与 cache_key 前 16 位不一致；请确认 manifest 来源")
+
+    audio = manifest.get("audio") if isinstance(manifest.get("audio"), dict) else {}
+    if not ASSET_HEX64_RE.match(str(audio.get("sha256") or "")):
+        errors.append("audio.sha256 必须是 64 位小写十六进制")
+
+    if manifest.get("quality") not in ASSET_QUALITIES:
+        errors.append(f"quality 必须是 {'/'.join(ASSET_QUALITIES)}")
+    status = manifest.get("status")
+    if status not in ASSET_STATUSES:
+        errors.append(f"status 必须是 {'/'.join(ASSET_STATUSES)}")
+    superseded_by = manifest.get("superseded_by")
+    if superseded_by is not None and not ASSET_ID_RE.match(str(superseded_by)):
+        errors.append(f"superseded_by 必须是资产 ID 或 null：{superseded_by!r}")
+    if status == "superseded" and not superseded_by:
+        errors.append("status=superseded 时必须写 superseded_by")
+    if superseded_by and status != "superseded":
+        errors.append("只有 status=superseded 的 manifest 才能带 superseded_by")
+    supersedes = manifest.get("supersedes")
+    if supersedes is not None:
+        if not ASSET_ID_RE.match(str(supersedes)):
+            errors.append(f"supersedes 必须是资产 ID 或 null：{supersedes!r}")
+        elif str(supersedes) == asset_id:
+            errors.append("supersedes 不能指向自身")
+
+
+    scope = manifest.get("scope") if isinstance(manifest.get("scope"), dict) else {}
+    visibility = scope.get("visibility")
+    if visibility not in ASSET_VISIBILITIES:
+        errors.append(f"scope.visibility 必须是 {'/'.join(ASSET_VISIBILITIES)}")
+    projects = scope.get("projects") if isinstance(scope.get("projects"), list) else []
+    nodes = scope.get("nodes") if isinstance(scope.get("nodes"), list) else []
+    if visibility == "project" and not projects:
+        errors.append("scope.visibility=project 时 scope.projects 不能为空")
+    if visibility == "restricted" and not projects and not nodes:
+        errors.append("scope.visibility=restricted 时 scope.projects 或 scope.nodes 不能为空")
+
+    text = manifest.get("text") if isinstance(manifest.get("text"), dict) else {}
+    language = str(text.get("language") or manifest.get("language") or "").strip()
+    if not language:
+        errors.append("缺少 text.language")
+    voice_block = manifest.get("voice") if isinstance(manifest.get("voice"), dict) else {}
+    speaker = str(voice_block.get("speaker") or "").strip()
+    voice_ref = str(voice_block.get("voice_ref_sha256") or "").strip()
+    if not speaker and not voice_ref:
+        errors.append("voice.speaker 与 voice.voice_ref_sha256 至少填一个")
+    engine_block = manifest.get("engine") if isinstance(manifest.get("engine"), dict) else {}
+    engine = str(engine_block.get("engine") or manifest.get("engine") or "").strip()
+    if not engine:
+        errors.append("缺少 engine.engine")
+
+    library_path = asset_library_path(manifest, asset_id)
+    if not ASSET_PATH_RE.match(library_path):
+        errors.append(f"library_path 必须是相对库根路径且禁止 .. 越界：{library_path!r}")
+
+    created = str(manifest.get("created_at") or "").strip()
+    if not created:
+        provenance = manifest.get("provenance") if isinstance(manifest.get("provenance"), dict) else {}
+        created = str(provenance.get("generated_at") or "").strip()
+    if not created:
+        errors.append("缺少 created_at（或 provenance.generated_at）")
+    elif not ASSET_TIME_RE.match(created):
+        errors.append(f"created_at 必须是北京时间的 YYYY-MM-DD HH:MM:SS：{created!r}")
+
+    summary = asset_summary(manifest)
+    if len(summary) > ASSET_SUMMARY_LIMIT:
+        errors.append(f"summary 不得超过 {ASSET_SUMMARY_LIMIT} 字")
+    normalized = str(text.get("normalized") or "").strip()
+    given_summary = str(manifest.get("summary") or "").strip()
+    if given_summary and len(normalized) >= 12 and normalized in given_summary:
+        errors.append("summary 不得复制 text.normalized 全文（索引只存脱敏短摘要）")
+    return errors, warnings
+
+
+def asset_entry_from_manifest(manifest: dict) -> dict:
+    asset_id = str(manifest["asset_id"])
+    audio = manifest.get("audio") if isinstance(manifest.get("audio"), dict) else {}
+    scope = manifest.get("scope") if isinstance(manifest.get("scope"), dict) else {}
+    text = manifest.get("text") if isinstance(manifest.get("text"), dict) else {}
+    voice_block = manifest.get("voice") if isinstance(manifest.get("voice"), dict) else {}
+    engine_block = manifest.get("engine") if isinstance(manifest.get("engine"), dict) else {}
+    speaker = str(voice_block.get("speaker") or "").strip()
+    voice_ref = str(voice_block.get("voice_ref_sha256") or "").strip()
+    created = str(manifest.get("created_at") or "").strip()
+    if not created:
+        provenance = manifest.get("provenance") if isinstance(manifest.get("provenance"), dict) else {}
+        created = str(provenance.get("generated_at") or "").strip()
+    return {
+        "schema": ASSET_ENTRY_SCHEMA,
+        "asset_id": asset_id,
+        "cache_key": str(manifest["cache_key"]),
+        "audio_sha256": str(audio.get("sha256") or ""),
+        "quality": manifest["quality"],
+        "status": manifest["status"],
+        "scope": {
+            "visibility": scope["visibility"],
+            "projects": [str(item) for item in (scope.get("projects") or [])],
+            "nodes": [str(item) for item in (scope.get("nodes") or [])],
+        },
+        "language": str(text.get("language") or manifest.get("language") or "").strip(),
+        "voice": speaker or f"ref:{voice_ref[:16]}",
+        "engine": str(engine_block.get("engine") or "").strip(),
+        "library_path": asset_library_path(manifest, asset_id),
+        "created_at": created,
+        "updated_at": now_bj_text(),
+        "summary": asset_summary(manifest),
+        "superseded_by": manifest.get("superseded_by") or None,
+    }
+
+
+def merge_asset_entry(existing: dict, incoming: dict) -> tuple[dict, list[str]]:
+    """同 SHA 重登记：只刷新 updated_at，其余字段保持原样；状态只降不升。"""
+    notes: list[str] = []
+    merged = dict(existing)
+    merged["updated_at"] = now_bj_text()
+    old_status = str(existing.get("status") or "")
+    new_status = str(incoming.get("status") or "")
+    if ASSET_LIVENESS.get(new_status, 9) < ASSET_LIVENESS.get(old_status, 9):
+        merged["status"] = new_status
+        notes.append(f"状态由 {old_status} 降为 {new_status}")
+        if new_status == "superseded" and incoming.get("superseded_by"):
+            merged["superseded_by"] = incoming["superseded_by"]
+    elif old_status in ("stale", "superseded") and new_status == "active":
+        notes.append(f"已存在状态 {old_status}，拒绝提升为 active")
+    return merged, notes
+
+
+def resolve_supersede_target(spec, asset_id: str, manifest: dict) -> str | None:
+    if spec is None:
+        return None
+    if spec == "__from_manifest__":
+        target = manifest.get("supersedes")
+        if target:
+            return str(target)
+        if "-v" not in asset_id:
+            return None
+        base, _, version = asset_id.rpartition("-v")
+        number = int(version) if version.isdigit() else 1
+        return base if number <= 2 else f"{base}-v{number - 1}"
+    return str(spec).strip() or None
+
+
+def cmd_asset_record(args) -> int:
+    root = resolve_root(args.root)
+    if args.asset == "-":
+        payload = sys.stdin.read()
+    else:
+        path = Path(args.asset).expanduser()
+        if not path.is_file():
+            print(f"[error] manifest 不存在：{path}", file=sys.stderr)
+            return 2
+        payload = path.read_text(encoding="utf-8")
+    try:
+        manifest = json.loads(payload)
+    except json.JSONDecodeError as exc:
+        print(f"[error] manifest 不是合法 JSON：{exc}", file=sys.stderr)
+        return 2
+
+    scanner = secret_scan.load_scanner(root, args.skill_git_home, args.allow_missing_scanner)
+    if scanner:
+        hits = scanner.scan_text(payload)
+        if hits:
+            raise KBError(
+                "manifest 命中凭据规则（skill-git SECRET_PATTERNS 第 "
+                + "、".join(str(index) for index in hits)
+                + " 条），拒绝写入索引"
+            )
+
+    errors, warnings = asset_manifest_errors(manifest)
+    if errors:
+        print("[error] manifest 未通过校验，拒绝登记：", file=sys.stderr)
+        for message in errors:
+            print(f"  - {message}", file=sys.stderr)
+        return 2
+
+    incoming = asset_entry_from_manifest(manifest)
+    if (root / "schema" / "asset-entry.v1.json").is_file():
+        entry_errors = validate(incoming, load_schema(root, "asset-entry.v1.json"))
+        if entry_errors:
+            print("[error] 生成的索引条目未通过 schema 校验，拒绝登记：", file=sys.stderr)
+            for message in entry_errors:
+                print(f"  - {message}", file=sys.stderr)
+            return 2
+    entries = load_asset_entries(root)
+    existing = next((item for item in entries if item.get("asset_id") == incoming["asset_id"]), None)
+    supersede_spec = getattr(args, "supersede", None)
+    supersede_target = resolve_supersede_target(supersede_spec, incoming["asset_id"], manifest)
+    if supersede_spec is not None and not supersede_target:
+        print("[error] --supersede 无法推断被取代的资产，请显式给出资产 ID", file=sys.stderr)
+        return 2
+    if supersede_target and supersede_target == incoming["asset_id"]:
+        print("[error] --supersede 不能指向本次登记的资产自身", file=sys.stderr)
+        return 2
+
+    result = {"asset_id": incoming["asset_id"], "created": False, "updated": False,
+              "idempotent": False, "superseded": None, "warnings": warnings,
+              "notes": [], "dry_run": bool(args.dry_run)}
+
+    if existing is not None and existing.get("audio_sha256") != incoming["audio_sha256"]:
+        print(
+            f"[error] {incoming['asset_id']} 已存在且 audio_sha256 不同"
+            f"（旧 {existing.get('audio_sha256')}，新 {incoming['audio_sha256']}）。"
+            "版本化属于 asset-tools：请先由 tts-library publish 生成 tts-<key16>-vN 再登记。"
+            " reason=ASSET_VERSION_CONFLICT",
+            file=sys.stderr,
+        )
+        return 2
+
+    target_entry = None
+    if supersede_target:
+        target_entry = next((item for item in entries if item.get("asset_id") == supersede_target), None)
+        if target_entry is None:
+            print(f"[error] --supersede 指向的资产不存在：{supersede_target}", file=sys.stderr)
+            return 2
+        current_successor = target_entry.get("superseded_by")
+        if current_successor and current_successor != incoming["asset_id"]:
+            print(
+                f"[error] {supersede_target} 已被 {current_successor} 取代，拒绝改指向 "
+                f"{incoming['asset_id']}。 reason=ASSET_SUPERSEDE_CONFLICT",
+                file=sys.stderr,
+            )
+            return 2
+
+    if existing is not None:
+        merged, notes = merge_asset_entry(existing, incoming)
+        result.update({"idempotent": True, "updated": True, "notes": notes})
+        for index, item in enumerate(entries):
+            if item.get("asset_id") == incoming["asset_id"]:
+                entries[index] = merged
+                break
+        action = "已存在，幂等刷新 updated_at"
+    else:
+        entries.append(incoming)
+        result["created"] = True
+        action = "新增索引条目"
+
+    if target_entry is not None and target_entry.get("status") != "superseded":
+        target_entry["status"] = "superseded"
+        target_entry["superseded_by"] = incoming["asset_id"]
+        target_entry["updated_at"] = now_bj_text()
+        result["superseded"] = {"asset_id": supersede_target, "superseded_by": incoming["asset_id"]}
+
+    if not args.dry_run:
+        save_asset_entries(root, entries)
+        save_asset_index(root, entries)
+    result["total"] = len(entries)
+    result["path"] = str(asset_entry_file(root))
+
+    if args.json:
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+    else:
+        print(f"资产 {incoming['asset_id']}：{action}；索引共 {len(entries)} 条")
+        if result["superseded"]:
+            print(f"  - 已取代 {result['superseded']['asset_id']}（superseded_by={incoming['asset_id']}）")
+        for warning in warnings:
+            print(f"  ! {warning}")
+        for note in result["notes"]:
+            print(f"  ~ {note}")
+    return 0
+
+
+def asset_visibility_allows(entry: dict, project: str | None, node: str | None) -> bool:
+    scope = entry.get("scope") if isinstance(entry.get("scope"), dict) else {}
+    visibility = scope.get("visibility")
+    projects = [str(item) for item in (scope.get("projects") or [])]
+    nodes = [str(item) for item in (scope.get("nodes") or [])]
+    if visibility == "public":
+        return True
+    if visibility == "project":
+        return bool(project) and project in projects
+    if visibility == "restricted":
+        return (bool(project) and project in projects) or (bool(node) and node in nodes)
+    return False
+
+
+def asset_query_match(entry: dict, query: dict, project: str | None, node: str | None,
+                      include_stale: bool = False) -> str | None:
+    """identity 精确匹配与软条件候选分开判定；没有 identity 过滤一律记 candidate。"""
+    for flag, field in (("asset_id", "asset_id"), ("cache_key", "cache_key"), ("sha256", "audio_sha256")):
+        needle = query.get(flag)
+        if needle and entry.get(field) != needle:
+            return None
+    for field in ("voice", "language", "engine", "quality"):
+        needle = query.get(field)
+        if needle and norm_text(entry.get(field)) != norm_text(needle):
+            return None
+    entry_scope = entry.get("scope") if isinstance(entry.get("scope"), dict) else {}
+    if query.get("scope") and entry_scope.get("visibility") != query["scope"]:
+        return None
+    if query.get("status"):
+        if entry.get("status") != query["status"]:
+            return None
+    elif entry.get("status") in ("stale", "superseded") and not include_stale:
+        return None
+    if not asset_visibility_allows(entry, project, node):
+        return None
+    identity = any(query.get(name) for name in ("asset_id", "cache_key", "sha256"))
+    return "exact" if identity else "candidate"
+
+
+def cmd_asset_query(args) -> int:
+    root = resolve_root(args.root)
+    entries = load_asset_entries(root)
+    query = {
+        "asset_id": args.asset_id,
+        "cache_key": args.cache_key,
+        "sha256": args.sha256,
+        "voice": args.voice,
+        "language": args.language,
+        "engine": args.engine,
+        "quality": args.quality,
+        "status": args.status,
+        "scope": args.scope,
+    }
+    match_rank = {"exact": 2, "candidate": 1}
+    quality_rank = {"formal": 3, "candidate": 2, "evidence_gap": 1}
+    status_rank = {"active": 2, "stale": 1, "superseded": 0}
+
+    scored: list[tuple[int, int, int, str, dict]] = []
+    for entry in entries:
+        match = asset_query_match(entry, query, args.project, args.node, args.include_stale)
+        if match is None:
+            continue
+        scored.append((match_rank[match], quality_rank.get(str(entry.get("quality")), 0),
+                       status_rank.get(str(entry.get("status")), 0),
+                       str(entry.get("asset_id")), {**entry, "match": match}))
+    scored.sort(key=lambda row: (-row[0], -row[1], -row[2], row[3]))
+    selected = scored[: max(args.top, 1)]
+
+    hits = [row[4] for row in selected]
+    payload = {
+        "query": {key: value for key, value in query.items() if value},
+        "project": args.project,
+        "node": args.node,
+        "include_stale": bool(args.include_stale),
+        "total": len(scored),
+        "returned": len(hits),
+        "index_only": True,
+        "note": ASSET_QUERY_NOTE,
+        "entries": hits,
+    }
+    if args.json:
+        print(json.dumps(payload, ensure_ascii=False, indent=2))
+        return 0
+
+    filters = "、".join(f"{key}={value}" for key, value in query.items() if value) or "无条件"
+    context = "、".join(f"{key}={value}" for key, value in (("project", args.project), ("node", args.node)) if value)
+    print(f"资产查询：{filters}｜作用域 {context or '仅 public'}｜索引命中 {len(hits)} / {len(scored)} 条")
+    print(f"提示：{ASSET_QUERY_NOTE}")
+    for item in hits:
+        scope = item.get("scope") or {}
+        where = f"{scope.get('visibility')}" if not (scope.get("projects") or scope.get("nodes")) else \
+            f"{scope.get('visibility')}:{'/'.join(scope.get('projects') or scope.get('nodes') or [])}"
+        print(f"\n[{item['match']}] {item['asset_id']}  {item.get('quality')}/{item.get('status')}  {where}")
+        print(f"  {item.get('language')} · {item.get('voice')} · {item.get('engine')}")
+        print(f"  {item.get('summary')}")
+        print(f"  位置 {item.get('library_path')}（相对 1006 库根；不是可直接访问的地址）")
+    if not hits:
+        print("索引未命中：只代表本索引没有线索，不代表 1006 库里不存在；请用 asset-tools tts-library lookup 确认。")
     return 0
 
 
@@ -1692,6 +2257,38 @@ def build_parser() -> argparse.ArgumentParser:
     index = sub.add_parser("index", help="重建索引")
     common(index)
     index.set_defaults(func=cmd_index)
+
+    asset_record = sub.add_parser("asset-record", help="把 tts-asset.v1 manifest 登记为可搜索索引条目")
+    asset_record.add_argument("--root", help="知识库根目录（默认本仓库）")
+    asset_record.add_argument("--asset", required=True, help="manifest 路径，或 - 表示从 stdin 读取")
+    asset_record.add_argument("--supersede", nargs="?", const="__from_manifest__", default=None,
+                              help="显式把旧资产标 superseded；省略值时取 manifest.supersedes 或上一版本")
+    asset_record.add_argument("--skill-git-home", help="skill-git 仓库路径（凭据扫描器来源）")
+    asset_record.add_argument("--allow-missing-scanner", action="store_true",
+                              help="允许跳过凭据扫描（仅离线自检，公开写入不要用）")
+    asset_record.add_argument("--dry-run", action="store_true", help="只算不写")
+    asset_record.add_argument("--json", action="store_true", help="输出 JSON")
+    asset_record.set_defaults(func=cmd_asset_record)
+
+    asset_query = sub.add_parser("asset-query", help="检索 TTS 资产索引（只读，不写命中计数）")
+    asset_query.add_argument("--root", help="知识库根目录（默认本仓库）")
+    asset_query.add_argument("--asset-id")
+    asset_query.add_argument("--cache-key")
+    asset_query.add_argument("--sha256")
+    asset_query.add_argument("--project", help="ACL 上下文：项目名")
+    asset_query.add_argument("--node", help="ACL 上下文：节点名")
+    asset_query.add_argument("--voice")
+    asset_query.add_argument("--language")
+    asset_query.add_argument("--engine")
+    asset_query.add_argument("--quality", choices=ASSET_QUALITIES)
+    asset_query.add_argument("--scope", choices=ASSET_VISIBILITIES, help="按 scope.visibility 过滤")
+    asset_query.add_argument("--status", choices=ASSET_STATUSES,
+                             help="按状态过滤（默认只返回 active）")
+    asset_query.add_argument("--top", type=int, default=10)
+    asset_query.add_argument("--include-stale", action="store_true",
+                             help="检索时包含 stale / superseded（仅供人工核查，不用于任务输入）")
+    asset_query.add_argument("--json", action="store_true", help="输出 JSON")
+    asset_query.set_defaults(func=cmd_asset_query)
     return parser
 
 
