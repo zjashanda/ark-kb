@@ -1,0 +1,11 @@
+{
+  "schema": "ark.tts-asset-index.v1",
+  "generated_at": "2026-11-12 17:09:45",
+  "total": 0,
+  "active": 0,
+  "stale": 0,
+  "superseded": 0,
+  "by_voice": {},
+  "by_language": {},
+  "by_engine": {}
+}

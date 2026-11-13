@@ -24,15 +24,18 @@ ark-kb/
     receipt.v1.json      # 执行回执契约
     entry.v1.json        # 知识条目 schema
     index.v1.json        # 索引格式
+    asset-entry.v1.json  # TTS 资产索引条目（只存元数据，不存音频）
   entries/
     knowledge/entries.jsonl
     method/entries.jsonl
     run/entries.jsonl
     bug/entries.jsonl
+    asset/entries.jsonl  # TTS 资产可搜索索引（真源在 asset-tools）
   index/                 # 由 kb.py 生成，不要手改
     by-device.json
     by-capability.json
     by-skill.json
+    asset-index.json     # 资产索引（voice/language/engine 分桶）
   tools/
     kb.py                # record / query / lint / sync / index
     secret_scan.py       # 复用 skill-git 的凭据规则
@@ -43,6 +46,7 @@ ark-kb/
   docs/
     acceptance-v1.md     # v1 验收记录
     seed-sources.md      # 首批条目的来源
+    tts-library-index.md # TTS 资产索引边界与用法
     receipts/            # 真实回执与证据（只放小文本）
 ```
 
@@ -81,7 +85,18 @@ python3 tools/kb.py query --skill lstts --include-stale
 
 命中会给条目的 `hits += 1` 并回写；只读检出或并发查询用 `--no-hit-count`。
 
-### 3. 校验
+### 3. TTS 资产索引
+
+```bash
+python3 tools/kb.py asset-record --asset manifest.json --json
+python3 tools/kb.py asset-query --voice 付小春 --language ZH --json
+```
+
+只登记已发布资产的搜索元数据（asset ID、cache key、SHA、作用域、受控相对路径、摘要），
+不存音频与文本全文；命中只是线索，取件仍由 `asset-tools tts-library fetch/verify` 负责。
+详见 `docs/tts-library-index.md`。
+
+### 4. 校验
 
 ```bash
 python3 tools/kb.py lint              # 有问题退出码 3
@@ -90,7 +105,7 @@ python3 tools/kb.py lint --strict     # 告警也算失败
 
 校验内容：schema、重复 id、证据完整性、证据文件哈希、`superseded_by` 指向、索引是否漂移、同一 `run_id` 重复入库、台账登记情况、过期提示、凭据规则。
 
-### 4. 同步
+### 5. 同步
 
 ```bash
 python3 tools/kb.py sync                     # fetch + pull --rebase（默认 main）
@@ -166,7 +181,7 @@ python3 tools/kb.py sync --push              # 只推当前功能分支
 python3 -m unittest discover -s tests -v
 ```
 
-21 条用例，全程离线（sync 用本地 bare 仓库），覆盖四条命令与治理规则。
+73 条用例，全程离线（sync 用本地 bare 仓库），覆盖全部子命令与治理规则。
 
 ## v1 的已知限制
 
