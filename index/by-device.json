@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-device",
-  "generated_at": "2026-11-11T09:41:01Z",
+  "generated_at": "2026-11-16T11:38:36Z",
   "keys": {
     "agentlinux": [
       "kb-knowledge-60d65219fd43",

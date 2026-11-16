@@ -85,6 +85,20 @@ python3 tools/kb.py query --skill lstts --include-stale
 
 命中会给条目的 `hits += 1` 并回写；只读检出或并发查询用 `--no-hit-count`。
 
+### 2.1 前置检查与降级判定
+
+查询只回答「有没有命中」；开工前还要判定这份知识能不能用：
+
+```bash
+python3 tools/kb_policy.py --risk high --freshness stale --cache cache.json --json
+python3 tools/kb_policy.py --selftest        # 判定矩阵自检，10 条
+```
+
+`fresh` 直接 `PROCEED`；`stale` / 服务不可用时普通任务可用未过期缓存（回执写明 freshness 与提交），
+高风险任务（烧录、真机、发布、删除、权限变更）直接 `BLOCKED_KB_STALE` / `BLOCKED_KB_UNAVAILABLE`。
+`build_preflight()` 把命中条目变成 `ark.knowledge-preflight.v1`，可直接贴进任务 `plan.md`。
+详见 `docs/preflight-and-degradation.md`。
+
 ### 3. TTS 资产索引
 
 ```bash

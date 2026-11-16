@@ -1,8 +1,15 @@
 {
   "schema": "index.v1",
   "index": "by-skill",
-  "generated_at": "2026-11-11T09:41:01Z",
+  "generated_at": "2026-11-16T11:38:36Z",
   "keys": {
+    "arkkb": [
+      "kb-bug-7a4682a3b07c",
+      "kb-method-2dc428e31410",
+      "kb-run-3839715d5592",
+      "kb-run-b617d06cf033",
+      "kb-run-c821d773a205"
+    ],
     "cskflashtest": [
       "kb-knowledge-f23119d4a433"
     ],
