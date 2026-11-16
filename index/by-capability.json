@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-capability",
-  "generated_at": "2026-11-11T09:41:01Z",
+  "generated_at": "2026-11-16T11:38:36Z",
   "keys": {
     "070200duya上下电压测": [
       "kb-knowledge-88c26f79e24e"
@@ -72,6 +72,13 @@
     ],
     "bigvgan": [
       "kb-knowledge-18d89b2df319"
+    ],
+    "capabilityknowledgeservice": [
+      "kb-bug-7a4682a3b07c",
+      "kb-method-2dc428e31410",
+      "kb-run-3839715d5592",
+      "kb-run-b617d06cf033",
+      "kb-run-c821d773a205"
     ],
     "capabilitypdupowercycle": [
       "kb-knowledge-41efd9dfeac3"
@@ -317,7 +324,12 @@
       "kb-knowledge-b62f825710d5"
     ],
     "noahsark": [
-      "kb-knowledge-d68aefff8b43"
+      "kb-bug-7a4682a3b07c",
+      "kb-knowledge-d68aefff8b43",
+      "kb-method-2dc428e31410",
+      "kb-run-3839715d5592",
+      "kb-run-b617d06cf033",
+      "kb-run-c821d773a205"
     ],
     "ocplus": [
       "kb-knowledge-cebac04d7348"
