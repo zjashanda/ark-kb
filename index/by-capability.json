@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-capability",
-  "generated_at": "2026-11-16T11:38:36Z",
+  "generated_at": "2026-11-18T10:53:17Z",
   "keys": {
     "070200duya上下电压测": [
       "kb-knowledge-88c26f79e24e"
@@ -149,7 +149,8 @@
       "kb-knowledge-cd7857c9f72e"
     ],
     "duyaota": [
-      "kb-knowledge-260bf6607048"
+      "kb-knowledge-260bf6607048",
+      "kb-knowledge-b05d900e1c6b"
     ],
     "fieldsurvey": [
       "kb-knowledge-00d4164803ec",
@@ -322,6 +323,9 @@
     ],
     "mideasmoketestbak": [
       "kb-knowledge-b62f825710d5"
+    ],
+    "noah191": [
+      "kb-knowledge-b05d900e1c6b"
     ],
     "noahsark": [
       "kb-bug-7a4682a3b07c",
