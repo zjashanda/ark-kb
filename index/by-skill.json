@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-skill",
-  "generated_at": "2026-11-18T10:53:17Z",
+  "generated_at": "2026-11-18T15:19:55Z",
   "keys": {
     "arkkb": [
       "kb-bug-7a4682a3b07c",
@@ -46,6 +46,22 @@
       "kb-method-0205df2c95f8",
       "kb-method-9b11d61e6bed",
       "kb-run-42681662dc2c"
+    ],
+    "venusahisiburner": [
+      "kb-bug-1b7861b4d79f",
+      "kb-bug-a9e3072fbaa0",
+      "kb-bug-aaacbd2d3429",
+      "kb-bug-cdb93160a496",
+      "kb-knowledge-158d1416a657",
+      "kb-knowledge-368ec0d51d2c",
+      "kb-knowledge-5f25b39ebe82",
+      "kb-knowledge-84602a2f32dc",
+      "kb-knowledge-8ec3191c1698",
+      "kb-knowledge-99ced0adc4e3",
+      "kb-method-7675c53f29b4",
+      "kb-method-cad7be93134e",
+      "kb-run-3bb39adcf103",
+      "kb-run-3d971a515eae"
     ],
     "军器监丞·pvm1005": [
       "kb-knowledge-4871f3474f8c"

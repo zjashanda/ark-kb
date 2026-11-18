@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-capability",
-  "generated_at": "2026-11-18T10:53:17Z",
+  "generated_at": "2026-11-18T15:19:55Z",
   "keys": {
     "070200duya上下电压测": [
       "kb-knowledge-88c26f79e24e"
@@ -14,6 +14,18 @@
     ],
     "102200cskflashst": [
       "kb-knowledge-860c9541cf5b"
+    ],
+    "13s": [
+      "kb-knowledge-84602a2f32dc"
+    ],
+    "13sreset": [
+      "kb-run-3bb39adcf103"
+    ],
+    "4615": [
+      "kb-knowledge-84602a2f32dc"
+    ],
+    "4618": [
+      "kb-knowledge-84602a2f32dc"
     ],
     "7z": [
       "kb-knowledge-2916d95fae4c",
@@ -29,6 +41,9 @@
       "kb-method-fd3858d4baad",
       "kb-run-3228baa6c3f6",
       "kb-run-96ecdf985bf1"
+    ],
+    "acceptance": [
+      "kb-method-cad7be93134e"
     ],
     "acpagent": [
       "kb-knowledge-caca7f7575e0"
@@ -73,6 +88,12 @@
     "bigvgan": [
       "kb-knowledge-18d89b2df319"
     ],
+    "burnacceptance": [
+      "kb-knowledge-368ec0d51d2c"
+    ],
+    "burnandpower": [
+      "kb-method-cad7be93134e"
+    ],
     "capabilityknowledgeservice": [
       "kb-bug-7a4682a3b07c",
       "kb-method-2dc428e31410",
@@ -85,6 +106,9 @@
     ],
     "capabilityreset": [
       "kb-knowledge-4871f3474f8c"
+    ],
+    "ch344": [
+      "kb-knowledge-99ced0adc4e3"
     ],
     "controlplane": [
       "kb-knowledge-263318a6f30a"
@@ -99,6 +123,13 @@
     ],
     "csk": [
       "kb-knowledge-f23119d4a433"
+    ],
+    "csk6": [
+      "kb-bug-aaacbd2d3429",
+      "kb-knowledge-368ec0d51d2c",
+      "kb-method-cad7be93134e",
+      "kb-run-3bb39adcf103",
+      "kb-run-3d971a515eae"
     ],
     "csk7": [
       "kb-bug-241022256518",
@@ -115,6 +146,22 @@
       "kb-knowledge-4fd5f42ad8ac",
       "kb-knowledge-a21615df5eb0"
     ],
+    "cskflashtestvenusaws63": [
+      "kb-bug-1b7861b4d79f",
+      "kb-bug-a9e3072fbaa0",
+      "kb-bug-aaacbd2d3429",
+      "kb-bug-cdb93160a496",
+      "kb-knowledge-158d1416a657",
+      "kb-knowledge-368ec0d51d2c",
+      "kb-knowledge-5f25b39ebe82",
+      "kb-knowledge-84602a2f32dc",
+      "kb-knowledge-8ec3191c1698",
+      "kb-knowledge-99ced0adc4e3",
+      "kb-method-7675c53f29b4",
+      "kb-method-cad7be93134e",
+      "kb-run-3bb39adcf103",
+      "kb-run-3d971a515eae"
+    ],
     "cucumberagenttesting": [
       "kb-knowledge-1526bbcba2e6",
       "kb-knowledge-15281dfa20fa",
@@ -130,6 +177,9 @@
     ],
     "deployed": [
       "kb-knowledge-615a77c011d6"
+    ],
+    "dev01": [
+      "kb-knowledge-99ced0adc4e3"
     ],
     "devicehang": [
       "kb-bug-241022256518",
@@ -148,9 +198,29 @@
     "docs": [
       "kb-knowledge-cd7857c9f72e"
     ],
+    "dryrun": [
+      "kb-bug-cdb93160a496"
+    ],
     "duyaota": [
       "kb-knowledge-260bf6607048",
       "kb-knowledge-b05d900e1c6b"
+    ],
+    "encoding": [
+      "kb-bug-1b7861b4d79f"
+    ],
+    "evidencekeeping": [
+      "kb-method-7675c53f29b4"
+    ],
+    "exit2": [
+      "kb-bug-cdb93160a496"
+    ],
+    "fail": [
+      "kb-run-3bb39adcf103",
+      "kb-run-3d971a515eae"
+    ],
+    "falsepositive": [
+      "kb-bug-a9e3072fbaa0",
+      "kb-bug-aaacbd2d3429"
     ],
     "fieldsurvey": [
       "kb-knowledge-00d4164803ec",
@@ -255,8 +325,14 @@
       "kb-knowledge-feb0bf5cd480",
       "kb-knowledge-ffe1f7824254"
     ],
+    "gbk": [
+      "kb-bug-1b7861b4d79f"
+    ],
     "gegeikun2yearshalf": [
       "kb-knowledge-a7d1ddac143c"
+    ],
+    "handles": [
+      "kb-knowledge-158d1416a657"
     ],
     "hi3863": [
       "kb-bug-241022256518",
@@ -269,18 +345,36 @@
       "kb-run-3228baa6c3f6",
       "kb-run-96ecdf985bf1"
     ],
+    "hisi": [
+      "kb-bug-1b7861b4d79f",
+      "kb-knowledge-5f25b39ebe82",
+      "kb-knowledge-84602a2f32dc",
+      "kb-knowledge-8ec3191c1698",
+      "kb-method-cad7be93134e",
+      "kb-run-3bb39adcf103",
+      "kb-run-3d971a515eae"
+    ],
     "home": [
       "kb-knowledge-387165acc1e1",
       "kb-knowledge-d9fa583169f3"
     ],
+    "humandecision": [
+      "kb-method-7675c53f29b4"
+    ],
     "indextts": [
       "kb-knowledge-d81c3d1877cc"
+    ],
+    "invocationmissing": [
+      "kb-bug-cdb93160a496"
     ],
     "jenkinswork": [
       "kb-knowledge-67fc2594f781",
       "kb-knowledge-76e83bb2a187",
       "kb-knowledge-a04808bf37a7",
       "kb-knowledge-bfcf986b8948"
+    ],
+    "leakbaseline": [
+      "kb-knowledge-158d1416a657"
     ],
     "lstest": [
       "kb-knowledge-5913806ca3f5",
@@ -302,9 +396,18 @@
     "marstoolchain": [
       "kb-knowledge-44439c2ad1db"
     ],
+    "md5": [
+      "kb-knowledge-368ec0d51d2c"
+    ],
     "melotts": [
       "kb-knowledge-1742dbbbb9aa",
       "kb-knowledge-d3ab0e9bdc84"
+    ],
+    "memoryleak": [
+      "kb-bug-a9e3072fbaa0"
+    ],
+    "memorymonitor": [
+      "kb-knowledge-158d1416a657"
     ],
     "methodwriteverify": [
       "kb-method-e28bc28cb620"
@@ -335,6 +438,12 @@
       "kb-run-b617d06cf033",
       "kb-run-c821d773a205"
     ],
+    "noretry": [
+      "kb-method-7675c53f29b4"
+    ],
+    "noserialoutput": [
+      "kb-knowledge-8ec3191c1698"
+    ],
     "ocplus": [
       "kb-knowledge-cebac04d7348"
     ],
@@ -349,8 +458,14 @@
       "kb-method-5a97db5bfc22",
       "kb-run-3228baa6c3f6"
     ],
+    "optlog": [
+      "kb-knowledge-5f25b39ebe82"
+    ],
     "orionsynapse": [
       "kb-knowledge-00d4164803ec"
+    ],
+    "partitionmismatch": [
+      "kb-knowledge-5f25b39ebe82"
     ],
     "pass": [
       "kb-run-1938526ff8f6"
@@ -358,6 +473,9 @@
     "pdu": [
       "kb-knowledge-41efd9dfeac3",
       "kb-method-e28bc28cb620"
+    ],
+    "periodicreset": [
+      "kb-knowledge-84602a2f32dc"
     ],
     "polaris": [
       "kb-knowledge-31caa0374c16",
@@ -381,8 +499,23 @@
     "polarislatest20260624": [
       "kb-knowledge-4111d89d7050"
     ],
+    "portmap": [
+      "kb-knowledge-99ced0adc4e3"
+    ],
+    "postprocess": [
+      "kb-bug-1b7861b4d79f"
+    ],
     "powercontrol": [
       "kb-knowledge-41efd9dfeac3"
+    ],
+    "powercycle": [
+      "kb-knowledge-8ec3191c1698"
+    ],
+    "preflight": [
+      "kb-knowledge-99ced0adc4e3"
+    ],
+    "profile": [
+      "kb-bug-cdb93160a496"
     ],
     "project070200duya上下电压测": [
       "kb-knowledge-88c26f79e24e"
@@ -724,6 +857,9 @@
     "readback": [
       "kb-method-e28bc28cb620"
     ],
+    "resourcegate": [
+      "kb-bug-a9e3072fbaa0"
+    ],
     "resources": [
       "kb-knowledge-70cb66251b2a"
     ],
@@ -733,8 +869,17 @@
     "runner": [
       "kb-knowledge-cbe54ea2271a"
     ],
+    "runnoah215": [
+      "kb-run-3bb39adcf103"
+    ],
+    "runnoah216": [
+      "kb-run-3d971a515eae"
+    ],
     "scanpenapitestmain": [
       "kb-knowledge-d133dabbd009"
+    ],
+    "singlerun": [
+      "kb-method-7675c53f29b4"
     ],
     "singlesegment": [
       "kb-bug-241022256518",
@@ -753,8 +898,15 @@
     "ssh": [
       "kb-knowledge-0e8f85cddf7a"
     ],
+    "stability": [
+      "kb-knowledge-84602a2f32dc",
+      "kb-knowledge-8ec3191c1698"
+    ],
     "subsystems": [
       "kb-knowledge-59342cda5c78"
+    ],
+    "tasktree": [
+      "kb-bug-a9e3072fbaa0"
     ],
     "tcl": [
       "kb-bug-241022256518",
@@ -810,8 +962,18 @@
     "uac": [
       "kb-knowledge-1cbdc4c52cf2"
     ],
+    "uartburntool": [
+      "kb-knowledge-368ec0d51d2c"
+    ],
+    "unicodeerror": [
+      "kb-bug-1b7861b4d79f"
+    ],
     "uutswitch1": [
       "kb-knowledge-4871f3474f8c"
+    ],
+    "venusahisiburner": [
+      "kb-bug-aaacbd2d3429",
+      "kb-bug-cdb93160a496"
     ],
     "venusaws63": [
       "kb-knowledge-5f6ac21b82c5"
@@ -820,8 +982,20 @@
       "kb-knowledge-49d383c0b8a1",
       "kb-knowledge-72b7856e1559"
     ],
+    "verdictrubric": [
+      "kb-method-cad7be93134e"
+    ],
     "verification": [
       "kb-method-e28bc28cb620"
+    ],
+    "versioncheck": [
+      "kb-bug-aaacbd2d3429"
+    ],
+    "versionmismatch": [
+      "kb-knowledge-84602a2f32dc"
+    ],
+    "vprefix": [
+      "kb-bug-aaacbd2d3429"
     ],
     "wakerecognition": [
       "kb-bug-241022256518",
@@ -833,6 +1007,24 @@
       "kb-method-fd3858d4baad",
       "kb-run-3228baa6c3f6",
       "kb-run-96ecdf985bf1"
+    ],
+    "win003": [
+      "kb-bug-a9e3072fbaa0",
+      "kb-bug-cdb93160a496",
+      "kb-knowledge-158d1416a657",
+      "kb-knowledge-368ec0d51d2c",
+      "kb-knowledge-5f25b39ebe82",
+      "kb-knowledge-8ec3191c1698",
+      "kb-knowledge-99ced0adc4e3",
+      "kb-run-3d971a515eae"
+    ],
+    "win005": [
+      "kb-bug-1b7861b4d79f",
+      "kb-knowledge-158d1416a657",
+      "kb-knowledge-368ec0d51d2c",
+      "kb-knowledge-84602a2f32dc",
+      "kb-knowledge-99ced0adc4e3",
+      "kb-run-3bb39adcf103"
     ],
     "win009": [
       "kb-bug-241022256518",
@@ -849,9 +1041,21 @@
     "worktools": [
       "kb-knowledge-4ebe878111fc"
     ],
+    "writesize": [
+      "kb-knowledge-368ec0d51d2c"
+    ],
+    "ws63": [
+      "kb-knowledge-5f25b39ebe82"
+    ],
+    "ws63allnv": [
+      "kb-knowledge-5f25b39ebe82"
+    ],
     "xtsc": [
       "kb-knowledge-02a423cc120b",
       "kb-knowledge-b21e5b7c74e8"
+    ],
+    "zerobyte": [
+      "kb-knowledge-8ec3191c1698"
     ],
     "zhsh": [
       "kb-knowledge-7a65fd7d0e57"
