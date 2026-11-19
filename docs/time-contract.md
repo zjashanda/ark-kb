@@ -37,7 +37,7 @@
 
 **裁决**：记录层统一 `YYYY-MM-DD HH:MM:SS`（空格、秒级、无时区）；需要毫秒的原始时序只保留在 `raw_*` 字段或 step 内的设备侧字段，并在字段名与文档中标注为设备层。
 
-**落地结果**：`venusahisiburner` 已改造完毕（commit `8bd7ddd`）：
+**落地结果**：`burner` 已改造完毕（commit `8bd7ddd`）：
 
 - `scripts/core/contract.py`：`TIME_CONTRACT` / `_TIME_RE` / `_TIME_FMT` / `now_bj()` / `parse_bj()` 全部改为空格秒级；`is_bj_timestamp()` 反向收紧，`T`、小数秒、`Z`、`+08:00` 一律拒绝。
 - `references/result-contract.md`：时间段重写，新增 `raw_*` 规则；`assets/manifest.json` 的 `updated_at` 改新格式。
@@ -57,8 +57,8 @@
 | `audio-runtime` | `audio_runtime/models.py`（`TIMESTAMP_FORMAT`）、`audio_runtime/record.py`（录音文件戳） | `YYYY-MM-DD HH:MM:SS` | `YYYYMMDD-HHMMSS` | `python3 tools/time_lint.py` | 0 violation / 0 raw_* exemption |
 | `device-io` | `device_io/schema.py`（`_TIME_FMT`，`now_bj()`） | `YYYY-MM-DD HH:MM:SS` | 不生成（本仓库无目录戳） | `python3 tools/time_lint.py` | 0 violations / 41 files |
 | `skillhub-sync` | `skill_sync.py`（`FMT_TIME` / `FMT_STAMP`） | `YYYY-MM-DD HH:MM:SS` | `YYYYMMDD-HHMMSS` | `python3 tools/time_lint.py` | PASS：0 violation / 18 files，17 处 allow（含 3 条正样例） |
-| `venusahisiburner` | `scripts/core/contract.py`（`TIME_CONTRACT`、`_TIME_FMT`） | `YYYY-MM-DD HH:MM:SS` | 不生成（`--run-dir` 由调用方给定） | `python3 tools/time_lint.py --gate`；另有 `scripts/lint_scan.py --strict`（schema/资产/凭据/编译） | 0 违规 / 22 文件，25 处 allow；契约自带 `is_bj_timestamp()` |
-| `lstest` | `scripts/core.py`（`FMT_TEXT` / `FMT_STAMP` / `now_text()`；`scripts/audio_synthesis.py` 同名 `now_iso()` 已改） | `YYYY-MM-DD HH:MM:SS` | `YYYYMMDD-HHMMSS`（`TaskArtifacts` 运行目录） | 借用 `venusahisiburner/tools/time_lint.py --root <dir>` 分目录扫描（本仓不提交门禁） | `scripts` 24 文件 0 违规、`adapters` 7 文件 0 违规、`docs` 41 文件 0 违规；`tests` 24 条设备原始日志夹具基线另记 |
+| `burner` | `scripts/core/contract.py`（`TIME_CONTRACT`、`_TIME_FMT`） | `YYYY-MM-DD HH:MM:SS` | 不生成（`--run-dir` 由调用方给定） | `python3 tools/time_lint.py --gate`；另有 `scripts/lint_scan.py --strict`（schema/资产/凭据/编译） | 0 违规 / 22 文件，25 处 allow；契约自带 `is_bj_timestamp()` |
+| `lstest` | `scripts/core.py`（`FMT_TEXT` / `FMT_STAMP` / `now_text()`；`scripts/audio_synthesis.py` 同名 `now_iso()` 已改） | `YYYY-MM-DD HH:MM:SS` | `YYYYMMDD-HHMMSS`（`TaskArtifacts` 运行目录） | 借用 `burner/tools/time_lint.py --root <dir>` 分目录扫描（本仓不提交门禁） | `scripts` 24 文件 0 违规、`adapters` 7 文件 0 违规、`docs` 41 文件 0 违规；`tests` 24 条设备原始日志夹具基线另记 |
 
 ## 交叉验证
 
@@ -90,13 +90,13 @@ python3 tools/time_contract_check.py --repos ../ --only samples
 | `audio-runtime` | 仅自身仓库扫描（不接受外部目标） | `tools/time_lint.py` 四类值规则齐全，0 violation |
 | `asset-tools` | 本地文件级 lint 不计入样例矩阵（未注册 `LINTS` 适配器），单独验证 | `tools/time_lint.py --gate` 0 violation / 45 files，21 处 allow；151 tests OK；`status --json` 默认无 `generated_at_rfc3339` |
 | `lstest` | 本地文件级 lint 不计入样例矩阵，分目录扫描验证 | `scripts`/`adapters`/`docs` 共 72 文件 0 违规；193 tests OK（`lstts-core 1.0.0`） |
-| `venusahisiburner` | PASS | 契约已改空格秒级（commit `8bd7ddd`）；50 tests OK；`tools/time_lint.py --gate` 0 违规 |
+| `burner` | PASS | 契约已改空格秒级（commit `8bd7ddd`）；50 tests OK；`tools/time_lint.py --gate` 0 违规 |
 
 收敛过程（本轮实际改动）：  `asset-tools` 的 `status` 默认输出曾带 `generated_at_rfc3339`（ISO `T` 分隔 + `+0800` 偏移），已收敛为 `--legacy-rfc3339` 显式开关（commit `985aab6`），并补上 `tools/time_lint.py`；`ark-archive` 的 `mtime_iso()` 不再走 isoformat 路径、补上文件级 lint 与四段门禁（commit `f1a9302`）；`skillhub-sync` 的 UTC/`Z` 违约被修（`now_utc()`/`stamp_compact()` → `now_text()`/`now_stamp()`，全部北京时间无后缀）；`ark-node` 与 `skillhub-sync` 补上缺失的「小数秒」值规则，`skillhub-sync` 另补 `Z` 后缀与时区偏移两条；`lstest` 修掉毫秒级 isoformat 的 `now_iso()`、`now_human()` 的空格毫秒与运行目录下划线戳。
 
 矩阵（A 仓库 lint 扫 B 仓库源码）**只作信息展示，不参与 PASS/FAIL**：它必然命中别的仓库文档里作为反例引用的 `T`/`Z` 字样，以及 `time-lint:allow` 写法差异；把这些当冲突会产生假阳性。真正的验收口径是「同一组样例在各仓库判定一致」，即上表。
 
-`venusahisiburner` 已于 2026-11-11 按 R4 方案 A 落地（commit `8bd7ddd`），6 个可判定仓库样例判定完全一致。
+`burner` 已于 2026-11-11 按 R4 方案 A 落地（commit `8bd7ddd`），6 个可判定仓库样例判定完全一致。
 
 ## 违规样例（正反例）
 

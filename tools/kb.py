@@ -51,7 +51,7 @@ EXIT_INCOMPLETE = 1
 INDEX_NAMES = ("by-device", "by-capability", "by-skill")
 
 # entry.v2 的执行能力关联：索引 skill id → 台账 skill 名（NOAH-242）
-SKILL_REF_ALIASES = {"burner": "venusahisiburner", "lstest": "lstest"}
+SKILL_REF_ALIASES = {"burner": "burner", "lstest": "lstest"}
 
 # 知识同步契约（NOAH-66）：读侧留痕 + 写侧回流回执
 DELIVERY_SCHEMA = "ark.delivery.v1"
@@ -548,7 +548,15 @@ def load_registry(root: Path, registry_arg: str | None) -> dict[str, dict] | Non
         if path.is_file():
             data = read_json(path)
             items = data if isinstance(data, list) else data.get("skills", [])
-            return {item["name"]: item for item in items if isinstance(item, dict) and item.get("name")}
+            registry: dict[str, dict] = {}
+            for item in items:
+                if not isinstance(item, dict) or not item.get("name"):
+                    continue
+                registry[item["name"]] = item
+                for alias in item.get("aliases") or []:
+                    # 重命名台账：旧名作为可检索别名指向当前 canonical，条目不改写
+                    registry.setdefault(alias, {**item, "_canonical": item["name"]})
+            return registry
     return None
 
 
@@ -1500,7 +1508,8 @@ def cmd_lint(args) -> int:
                         f"entry {label}: capability {capability} 与 skill_ref {skill_ref} 不匹配（应以 {expected_prefix} 开头）")
                 if source_skill and registry and source_skill in registry:
                     alias_target = SKILL_REF_ALIASES.get(skill_ref, skill_ref)
-                    if alias_target != source_skill:
+                    source_canonical = registry[source_skill].get("_canonical", source_skill)
+                    if alias_target != source_canonical:
                         errors.append(
                             f"entry {label}: skill_ref {skill_ref} 与 source_skill {source_skill} 指向不同 skill")
         if entry.get("status") == "superseded":

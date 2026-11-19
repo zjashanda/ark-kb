@@ -18,14 +18,14 @@
 
 - **仓库**：`zjashanda/burn_bundle`
 - **当前 SHA**：`33483b4`（台账记录值，打 tag 前复核）
-- **归档依据**：`status=archived`、`replaced_by=venusahisiburner`；`scope_note` 已写明「2026-11 起归档候选，资产清单由 venusahisiburner 接管」。纯 UART payload，被 `venusahisiburner` 的 `venusa-uart` 阶段（`Uart_Burn_Tool -b -p -f -a`）覆盖。
+- **归档依据**：`status=archived`、`replaced_by=burner`；`scope_note` 已写明「2026-11 起归档候选，资产清单由 burner 接管」。纯 UART payload，被 `burner` 的 `venusa-uart` 阶段（`Uart_Burn_Tool -b -p -f -a`）覆盖。
 - **前置条件**：
-  - [x] 替代实现可用：`venusahisiburner` 的 `scripts/burn.py` 与 `assets/manifest.json` 已覆盖双芯片烧录与资产登记。
-  - [x] 台账状态已改：`skills.json` 中 `burn_bundle.status=archived`、`replaced_by="venusahisiburner"`。
+  - [x] 替代实现可用：`burner` 的 `scripts/burn.py` 与 `assets/manifest.json` 已覆盖双芯片烧录与资产登记。
+  - [x] 台账状态已改：`skills.json` 中 `burn_bundle.status=archived`、`replaced_by="burner"`。
   - [x] 长期无更新：最后推送 2026-04-19（超过 6 个月）。
   - [ ] 依赖方已迁移：**未满足**。`Trisolaris` 与 `mars-moon` 的 `depends_skills` 仍声明 `burn_bundle`（历史声明未改）。
-  - [ ] 真机回归：**未做**。`venusahisiburner` 的 TCL profile 有实测记录，但 Media/美的 profile 仍是 `draft`。
-- **冻结形态**：tag `freeze-20261111`；README 顶部横幅「已冻结，替代仓库 → `zjashanda/venusahisiburner`」。
+  - [ ] 真机回归：**未做**。`burner` 的 TCL profile 有实测记录，但 Media/美的 profile 仍是 `draft`。
+- **冻结形态**：tag `freeze-20261111`；README 顶部横幅「已冻结，替代仓库 → `zjashanda/burner`」。
 - **回滚**：删 tag；横幅 `git revert`。
 - **明确不删除仓库**：保留 payload 与历史启动脚本，供追溯 2026-04 前的烧录参数。
 

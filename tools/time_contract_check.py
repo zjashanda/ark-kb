@@ -10,7 +10,7 @@
    「A 仓库的 lint 判定 B 仓库的产物违规」这类跨仓库冲突。
 
 契约基准（已裁决，2026-11-11 生效）：``YYYY-MM-DD HH:MM:SS``，北京时间，
-无时区后缀、无小数秒。``venusahisiburner`` 已按该裁决改造完毕，本工具不再
+无时区后缀、无小数秒。``burner`` 已按该裁决改造完毕，本工具不再
 提供任何「待裁决例外」开关：任何仓库判定不一致都直接记 ``FAIL``。
 
 用法::
@@ -87,7 +87,7 @@ LINTS: List[Lint] = [
         path_cmd=("python3", "tools/time_lint.py", "--root", "{target}", "--json"),
     ),
     Lint(
-        "venusahisiburner",
+        "burner",
         value_cmd=(
             "python3",
             "-c",

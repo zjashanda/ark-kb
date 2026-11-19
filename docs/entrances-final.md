@@ -7,7 +7,7 @@
 
 | # | 仓库 | 层 | 职责边界 | 本次收口 commit | 依赖 skill |
 |---|---|---|---|---|---|
-| 1 | `venusahisiburner` | capability | VenusA/CSK 与 HISI/HI3863 统一烧录状态机 | `8bd7ddd`（R4 按方案 A 落地） | 无 |
+| 1 | `burner` | capability | VenusA/CSK 与 HISI/HI3863 统一烧录状态机 | `8bd7ddd`（R4 按方案 A 落地） | 无 |
 | 2 | `lstest` | kernel | 跨项目设备测试/压测框架（吸收 Polaris 能力） | `b69cc58` | lstts、skill-git |
 | 3 | `listenai-play` | kernel | 声卡端点查询与播报底层 | `84944c2`（未改） | 无 |
 | 4 | `mars-belt` | capability | MarsPlatform 固件打包→烧录→验证自治流程 | `92b3178`（未改） | 无 |
@@ -42,7 +42,7 @@ profile 覆盖：
 | profile | 平台 | 收录 | 排除 |
 |---|---|---|---|
 | `bsz-t14` | linux | skill-git、ark-kb、ark-dispatch、lstest、ark-node、asset-tools | — |
-| `win-bench` | windows | venusahisiburner、lstest、listenai-play、usb-tree、clearusb、skill-git、device-io、audio-runtime、tts-runtime | mars-belt |
+| `win-bench` | windows | burner、lstest、listenai-play、usb-tree、clearusb、skill-git、device-io、audio-runtime、tts-runtime | mars-belt |
 | `template` | 通用 | skill-git | — |
 
 已知空白：`mars-belt` 目前没有任何 profile 收录（win-bench 显式排除）。MarsPlatform 台架若需同步，应在该机器上单独建 profile，不在通用 profile 里扩散。
@@ -52,8 +52,8 @@ profile 覆盖：
 | 旧入口 | 处理 | 承接者 |
 |---|---|---|
 | `Polaris` | disabled + 台账 `status=legacy`，`replaced_by=lstest` | `lstest`（NOAH-54 parity 31/31 agreed） |
-| `tcl-device-autoburn` | disabled，停用；私有空仓库，不再读取 | `venusahisiburner` |
-| `burn_bundle` | disabled；归档候选 | `venusahisiburner` |
+| `tcl-device-autoburn` | disabled，停用；私有空仓库，不再读取 | `burner` |
+| `burn_bundle` | disabled；归档候选 | `burner` |
 | `polaris-device-validation` | disabled；归档候选 | `lstest` |
 | `listenai-laid-installer` | disabled；归档候选 | `listenai-play` |
 | `ark-env` / `ark-mesh` | disabled；无独立仓库 | `ark-node` |
@@ -73,7 +73,7 @@ ark-dispatch  → ark-kb
 
 说明两点：
 
-- `usb-tree` / `clearusb` 是台架编排时由调用方（人或 dispatch 的步骤模板）先行执行的工具，不在 `venusahisiburner` 代码里 import；实测该仓库源码无 `usb-tree`/`clearusb`/`ark-mesh` 引用，故不写进 `depends_skills`，避免台账声明不存在的代码依赖。
+- `usb-tree` / `clearusb` 是台架编排时由调用方（人或 dispatch 的步骤模板）先行执行的工具，不在 `burner` 代码里 import；实测该仓库源码无 `usb-tree`/`clearusb`/`ark-mesh` 引用，故不写进 `depends_skills`，避免台账声明不存在的代码依赖。
 - `listenai-play` 与 `mars-belt` 的关系是 mars-belt 内嵌了一份 `listenai-play`/`listenai-laid-installer` 的调用副本，属打包内容而非安装依赖，台账按「不重复登记」处理。
 
 ## 验收证据（2026-11-11 实测）
@@ -86,6 +86,6 @@ ark-dispatch  → ark-kb
 | `ark-archive` | `python3 -m unittest discover -s tests` | 47 tests OK |
 | `ark-node` | `python3 -m unittest`；`tools/time_lint.py` | 58 tests OK (skipped=1)；0 violation / 35 files |
 | `lstest` | `python3 -m unittest discover -s tests` | 193 tests OK (skipped=2) |
-| 跨仓库时间样例 | `python3 tools/time_contract_check.py --repos ../ --only samples` | 6/6 仓库判定一致，退出码 0（R4 已按方案 A 落地，`venusahisiburner` 已改造） |
+| 跨仓库时间样例 | `python3 tools/time_contract_check.py --repos ../ --only samples` | 6/6 仓库判定一致，退出码 0（R4 已按方案 A 落地，`burner` 已改造） |
 
 时间契约全文与 R4 落地记录见 `docs/time-contract.md`。
