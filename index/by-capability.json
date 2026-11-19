@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-capability",
-  "generated_at": "2026-11-18T15:19:55Z",
+  "generated_at": "2026-11-19T01:52:41Z",
   "keys": {
     "070200duya上下电压测": [
       "kb-knowledge-88c26f79e24e"
@@ -22,10 +22,10 @@
       "kb-run-3bb39adcf103"
     ],
     "4615": [
-      "kb-knowledge-84602a2f32dc"
+      "kb-knowledge-5b92a7b0c5d9"
     ],
     "4618": [
-      "kb-knowledge-84602a2f32dc"
+      "kb-knowledge-5b92a7b0c5d9"
     ],
     "7z": [
       "kb-knowledge-2916d95fae4c",
@@ -43,6 +43,7 @@
       "kb-run-96ecdf985bf1"
     ],
     "acceptance": [
+      "kb-knowledge-5b92a7b0c5d9",
       "kb-method-cad7be93134e"
     ],
     "acpagent": [
@@ -85,6 +86,10 @@
       "kb-knowledge-ed76f4dfc89a",
       "kb-knowledge-feb0bf5cd480"
     ],
+    "baseboardabsent": [
+      "kb-knowledge-84602a2f32dc",
+      "kb-method-c3adcba01df0"
+    ],
     "bigvgan": [
       "kb-knowledge-18d89b2df319"
     ],
@@ -99,6 +104,7 @@
       "kb-method-2dc428e31410",
       "kb-run-3839715d5592",
       "kb-run-b617d06cf033",
+      "kb-run-c4408aab0464",
       "kb-run-c821d773a205"
     ],
     "capabilitypdupowercycle": [
@@ -153,11 +159,13 @@
       "kb-bug-cdb93160a496",
       "kb-knowledge-158d1416a657",
       "kb-knowledge-368ec0d51d2c",
+      "kb-knowledge-5b92a7b0c5d9",
       "kb-knowledge-5f25b39ebe82",
       "kb-knowledge-84602a2f32dc",
       "kb-knowledge-8ec3191c1698",
       "kb-knowledge-99ced0adc4e3",
       "kb-method-7675c53f29b4",
+      "kb-method-c3adcba01df0",
       "kb-method-cad7be93134e",
       "kb-run-3bb39adcf103",
       "kb-run-3d971a515eae"
@@ -214,8 +222,12 @@
     "exit2": [
       "kb-bug-cdb93160a496"
     ],
+    "expectedtopologybehavior": [
+      "kb-knowledge-84602a2f32dc",
+      "kb-method-c3adcba01df0",
+      "kb-run-3bb39adcf103"
+    ],
     "fail": [
-      "kb-run-3bb39adcf103",
       "kb-run-3d971a515eae"
     ],
     "falsepositive": [
@@ -347,6 +359,7 @@
     ],
     "hisi": [
       "kb-bug-1b7861b4d79f",
+      "kb-knowledge-5b92a7b0c5d9",
       "kb-knowledge-5f25b39ebe82",
       "kb-knowledge-84602a2f32dc",
       "kb-knowledge-8ec3191c1698",
@@ -372,6 +385,9 @@
       "kb-knowledge-76e83bb2a187",
       "kb-knowledge-a04808bf37a7",
       "kb-knowledge-bfcf986b8948"
+    ],
+    "knowledgecorrection": [
+      "kb-run-c4408aab0464"
     ],
     "leakbaseline": [
       "kb-knowledge-158d1416a657"
@@ -427,6 +443,11 @@
     "mideasmoketestbak": [
       "kb-knowledge-b62f825710d5"
     ],
+    "moduleonly": [
+      "kb-knowledge-84602a2f32dc",
+      "kb-method-c3adcba01df0",
+      "kb-run-c4408aab0464"
+    ],
     "noah191": [
       "kb-knowledge-b05d900e1c6b"
     ],
@@ -436,6 +457,7 @@
       "kb-method-2dc428e31410",
       "kb-run-3839715d5592",
       "kb-run-b617d06cf033",
+      "kb-run-c4408aab0464",
       "kb-run-c821d773a205"
     ],
     "noretry": [
@@ -443,6 +465,9 @@
     ],
     "noserialoutput": [
       "kb-knowledge-8ec3191c1698"
+    ],
+    "nottopologyrelated": [
+      "kb-knowledge-5b92a7b0c5d9"
     ],
     "ocplus": [
       "kb-knowledge-cebac04d7348"
@@ -512,7 +537,8 @@
       "kb-knowledge-8ec3191c1698"
     ],
     "preflight": [
-      "kb-knowledge-99ced0adc4e3"
+      "kb-knowledge-99ced0adc4e3",
+      "kb-method-c3adcba01df0"
     ],
     "profile": [
       "kb-bug-cdb93160a496"
@@ -895,12 +921,16 @@
     "snmp": [
       "kb-knowledge-41efd9dfeac3"
     ],
+    "spipeermissing": [
+      "kb-knowledge-84602a2f32dc"
+    ],
     "ssh": [
       "kb-knowledge-0e8f85cddf7a"
     ],
     "stability": [
       "kb-knowledge-84602a2f32dc",
-      "kb-knowledge-8ec3191c1698"
+      "kb-knowledge-8ec3191c1698",
+      "kb-method-c3adcba01df0"
     ],
     "subsystems": [
       "kb-knowledge-59342cda5c78"
@@ -956,6 +986,18 @@
     "testserver": [
       "kb-knowledge-bce7f5be4e3f"
     ],
+    "topology": [
+      "kb-knowledge-84602a2f32dc",
+      "kb-run-c4408aab0464"
+    ],
+    "topologygate": [
+      "kb-method-c3adcba01df0",
+      "kb-method-cad7be93134e"
+    ],
+    "topologymoduleonly": [
+      "kb-run-3bb39adcf103",
+      "kb-run-3d971a515eae"
+    ],
     "trisolaris": [
       "kb-knowledge-736f257cabd5"
     ],
@@ -983,6 +1025,7 @@
       "kb-knowledge-72b7856e1559"
     ],
     "verdictrubric": [
+      "kb-method-c3adcba01df0",
       "kb-method-cad7be93134e"
     ],
     "verification": [
@@ -992,7 +1035,8 @@
       "kb-bug-aaacbd2d3429"
     ],
     "versionmismatch": [
-      "kb-knowledge-84602a2f32dc"
+      "kb-knowledge-5b92a7b0c5d9",
+      "kb-run-3bb39adcf103"
     ],
     "vprefix": [
       "kb-bug-aaacbd2d3429"
@@ -1022,6 +1066,7 @@
       "kb-bug-1b7861b4d79f",
       "kb-knowledge-158d1416a657",
       "kb-knowledge-368ec0d51d2c",
+      "kb-knowledge-5b92a7b0c5d9",
       "kb-knowledge-84602a2f32dc",
       "kb-knowledge-99ced0adc4e3",
       "kb-run-3bb39adcf103"
