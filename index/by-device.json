@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-device",
-  "generated_at": "2026-11-18T15:19:55Z",
+  "generated_at": "2026-11-19T01:52:41Z",
   "keys": {
     "agentlinux": [
       "kb-knowledge-60d65219fd43",
@@ -16,11 +16,13 @@
       "kb-bug-cdb93160a496",
       "kb-knowledge-158d1416a657",
       "kb-knowledge-368ec0d51d2c",
+      "kb-knowledge-5b92a7b0c5d9",
       "kb-knowledge-5f25b39ebe82",
       "kb-knowledge-84602a2f32dc",
       "kb-knowledge-8ec3191c1698",
       "kb-knowledge-99ced0adc4e3",
       "kb-method-7675c53f29b4",
+      "kb-method-c3adcba01df0",
       "kb-method-cad7be93134e",
       "kb-run-3bb39adcf103",
       "kb-run-3d971a515eae"

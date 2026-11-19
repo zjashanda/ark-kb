@@ -1,13 +1,14 @@
 {
   "schema": "index.v1",
   "index": "by-skill",
-  "generated_at": "2026-11-18T15:19:55Z",
+  "generated_at": "2026-11-19T01:52:41Z",
   "keys": {
     "arkkb": [
       "kb-bug-7a4682a3b07c",
       "kb-method-2dc428e31410",
       "kb-run-3839715d5592",
       "kb-run-b617d06cf033",
+      "kb-run-c4408aab0464",
       "kb-run-c821d773a205"
     ],
     "cskflashtest": [
@@ -54,11 +55,13 @@
       "kb-bug-cdb93160a496",
       "kb-knowledge-158d1416a657",
       "kb-knowledge-368ec0d51d2c",
+      "kb-knowledge-5b92a7b0c5d9",
       "kb-knowledge-5f25b39ebe82",
       "kb-knowledge-84602a2f32dc",
       "kb-knowledge-8ec3191c1698",
       "kb-knowledge-99ced0adc4e3",
       "kb-method-7675c53f29b4",
+      "kb-method-c3adcba01df0",
       "kb-method-cad7be93134e",
       "kb-run-3bb39adcf103",
       "kb-run-3d971a515eae"
