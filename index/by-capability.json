@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-capability",
-  "generated_at": "2026-11-19T01:52:41Z",
+  "generated_at": "2026-11-19T04:41:08Z",
   "keys": {
     "070200duya上下电压测": [
       "kb-knowledge-88c26f79e24e"
@@ -93,11 +93,20 @@
     "bigvgan": [
       "kb-knowledge-18d89b2df319"
     ],
+    "burn": [
+      "kb-bug-1b7861b4d79f",
+      "kb-knowledge-158d1416a657",
+      "kb-knowledge-368ec0d51d2c",
+      "kb-knowledge-5f25b39ebe82"
+    ],
     "burnacceptance": [
       "kb-knowledge-368ec0d51d2c"
     ],
     "burnandpower": [
       "kb-method-cad7be93134e"
+    ],
+    "burnsinglechipvenusa": [
+      "kb-knowledge-4871f3474f8c"
     ],
     "capabilityknowledgeservice": [
       "kb-bug-7a4682a3b07c",
@@ -537,6 +546,8 @@
       "kb-knowledge-8ec3191c1698"
     ],
     "preflight": [
+      "kb-bug-cdb93160a496",
+      "kb-knowledge-4871f3474f8c",
       "kb-knowledge-99ced0adc4e3",
       "kb-method-c3adcba01df0"
     ],
@@ -892,6 +903,10 @@
     "result": [
       "kb-knowledge-432c9f14e4d1"
     ],
+    "run": [
+      "kb-run-3bb39adcf103",
+      "kb-run-3d971a515eae"
+    ],
     "runner": [
       "kb-knowledge-cbe54ea2271a"
     ],
@@ -903,6 +918,9 @@
     ],
     "scanpenapitestmain": [
       "kb-knowledge-d133dabbd009"
+    ],
+    "singlechipvenusa": [
+      "kb-knowledge-4871f3474f8c"
     ],
     "singlerun": [
       "kb-method-7675c53f29b4"
@@ -930,7 +948,13 @@
     "stability": [
       "kb-knowledge-84602a2f32dc",
       "kb-knowledge-8ec3191c1698",
-      "kb-method-c3adcba01df0"
+      "kb-method-c3adcba01df0",
+      "kb-run-3228baa6c3f6",
+      "kb-run-96ecdf985bf1"
+    ],
+    "stabilitysoak": [
+      "kb-run-3228baa6c3f6",
+      "kb-run-96ecdf985bf1"
     ],
     "subsystems": [
       "kb-knowledge-59342cda5c78"
@@ -986,8 +1010,13 @@
     "testserver": [
       "kb-knowledge-bce7f5be4e3f"
     ],
+    "teststabilitysoak": [
+      "kb-run-3228baa6c3f6",
+      "kb-run-96ecdf985bf1"
+    ],
     "topology": [
       "kb-knowledge-84602a2f32dc",
+      "kb-method-c3adcba01df0",
       "kb-run-c4408aab0464"
     ],
     "topologygate": [
@@ -1031,6 +1060,12 @@
     "verification": [
       "kb-method-e28bc28cb620"
     ],
+    "verify": [
+      "kb-bug-aaacbd2d3429",
+      "kb-knowledge-5b92a7b0c5d9",
+      "kb-knowledge-8ec3191c1698",
+      "kb-method-cad7be93134e"
+    ],
     "versioncheck": [
       "kb-bug-aaacbd2d3429"
     ],
@@ -1049,6 +1084,13 @@
       "kb-knowledge-4910c80e2fba",
       "kb-method-5a97db5bfc22",
       "kb-method-fd3858d4baad",
+      "kb-run-3228baa6c3f6",
+      "kb-run-96ecdf985bf1"
+    ],
+    "wfburnsinglevenusa": [
+      "kb-knowledge-4871f3474f8c"
+    ],
+    "wflsteststabilitysoak": [
       "kb-run-3228baa6c3f6",
       "kb-run-96ecdf985bf1"
     ],
@@ -1082,6 +1124,9 @@
       "kb-run-1938526ff8f6",
       "kb-run-3228baa6c3f6",
       "kb-run-96ecdf985bf1"
+    ],
+    "workflow": [
+      "kb-method-7675c53f29b4"
     ],
     "worktools": [
       "kb-knowledge-4ebe878111fc"
