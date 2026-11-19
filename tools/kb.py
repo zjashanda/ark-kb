@@ -50,6 +50,9 @@ EXIT_FAIL = 3
 EXIT_INCOMPLETE = 1
 INDEX_NAMES = ("by-device", "by-capability", "by-skill")
 
+# entry.v2 的执行能力关联：索引 skill id → 台账 skill 名（NOAH-242）
+SKILL_REF_ALIASES = {"burner": "burner", "lstest": "lstest"}
+
 # 知识同步契约（NOAH-66）：读侧留痕 + 写侧回流回执
 DELIVERY_SCHEMA = "ark.delivery.v1"
 NO_KB_FIXED_REASONS = ("no-new-knowledge", "pure-inventory", "sensitive-not-indexable")
@@ -545,7 +548,15 @@ def load_registry(root: Path, registry_arg: str | None) -> dict[str, dict] | Non
         if path.is_file():
             data = read_json(path)
             items = data if isinstance(data, list) else data.get("skills", [])
-            return {item["name"]: item for item in items if isinstance(item, dict) and item.get("name")}
+            registry: dict[str, dict] = {}
+            for item in items:
+                if not isinstance(item, dict) or not item.get("name"):
+                    continue
+                registry[item["name"]] = item
+                for alias in item.get("aliases") or []:
+                    # 重命名台账：旧名作为可检索别名指向当前 canonical，条目不改写
+                    registry.setdefault(alias, {**item, "_canonical": item["name"]})
+            return registry
     return None
 
 
@@ -574,6 +585,12 @@ def capability_keys(entry: dict, registry: dict[str, dict] | None, include_regis
         keys.add(norm_text(skill))
     for tag in entry.get("tags") or []:
         keys.add(norm_text(tag))
+    for field in ("capability", "module", "workflow"):
+        value = entry.get(field)
+        if isinstance(value, str) and value:
+            keys.add(norm_text(value))
+            if field == "capability" and "." in value:
+                keys.add(norm_text(value.split(".", 1)[1]))
     scope = entry.get("scope") if isinstance(entry.get("scope"), dict) else {}
     project = scope.get("project")
     if project:
@@ -591,9 +608,10 @@ def build_indexes(entries: list[dict]) -> dict[str, dict[str, list[str]]]:
         device = norm_text(scope.get("device"))
         if device:
             maps["by-device"][device].add(entry["id"])
-        skill = norm_text(entry.get("source_skill"))
-        if skill:
-            maps["by-skill"][skill].add(entry["id"])
+        for skill_name in (entry.get("source_skill"), entry.get("skill_ref")):
+            skill = norm_text(skill_name)
+            if skill:
+                maps["by-skill"][skill].add(entry["id"])
         for key in capability_keys(entry, None, include_registry=False):
             maps["by-capability"][key].add(entry["id"])
     return {
@@ -1430,6 +1448,9 @@ def cmd_lint(args) -> int:
     warnings: list[str] = []
 
     entry_schema = load_schema(root, "entry.v1.json")
+    entry_schemas = {"entry.v1": entry_schema}
+    if (root / "schema" / "entry.v2.json").is_file():
+        entry_schemas["entry.v2"] = load_schema(root, "entry.v2.json")
     index_schema = load_schema(root, "index.v1.json")
     registry = load_registry(root, args.registry)
     if registry is None:
@@ -1441,8 +1462,13 @@ def cmd_lint(args) -> int:
 
     for entry in entries:
         label = entry.get("id", "<无 id>")
-        for problem in validate(entry, entry_schema):
-            errors.append(f"entry {label}: {problem}")
+        schema_name = entry.get("schema") or "entry.v1"
+        schema_for_entry = entry_schemas.get(schema_name)
+        if schema_for_entry is None:
+            errors.append(f"entry {label}: 未知 schema {schema_name!r}（只接受 {sorted(entry_schemas)}）")
+        else:
+            for problem in validate(entry, schema_for_entry):
+                errors.append(f"entry {label}: {problem}")
         seen_ids[entry.get("id")] += 1
         if entry.get("status") not in STATUSES:
             errors.append(f"entry {label}: 非法 status {entry.get('status')!r}")
@@ -1468,6 +1494,24 @@ def cmd_lint(args) -> int:
         if source_skill and registry and source_skill not in registry:
             message = f"entry {label}: source_skill {source_skill} 未在台账登记"
             (errors if args.strict else warnings).append(message)
+        skill_ref = entry.get("skill_ref")
+        if skill_ref:
+            resolved = SKILL_REF_ALIASES.get(skill_ref, skill_ref)
+            if registry and resolved not in registry:
+                message = f"entry {label}: skill_ref {skill_ref} 未在台账登记（或未登记别名）"
+                (errors if args.strict else warnings).append(message)
+            capability = entry.get("capability")
+            if capability:
+                expected_prefix = {"burner": "burn.", "lstest": "test."}.get(skill_ref)
+                if expected_prefix and not capability.startswith(expected_prefix):
+                    errors.append(
+                        f"entry {label}: capability {capability} 与 skill_ref {skill_ref} 不匹配（应以 {expected_prefix} 开头）")
+                if source_skill and registry and source_skill in registry:
+                    alias_target = SKILL_REF_ALIASES.get(skill_ref, skill_ref)
+                    source_canonical = registry[source_skill].get("_canonical", source_skill)
+                    if alias_target != source_canonical:
+                        errors.append(
+                            f"entry {label}: skill_ref {skill_ref} 与 source_skill {source_skill} 指向不同 skill")
         if entry.get("status") == "superseded":
             target = entry.get("superseded_by")
             if not target:

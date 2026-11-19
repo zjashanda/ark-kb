@@ -55,7 +55,7 @@ NoahsArk 工作区 44 个仓库的能力、适用设备/项目与可用状态的
 |---|---|---|---|---|---|---|---|---|
 | `asset-tools` | 资产供给层：发现/manifest/校验/内容寻址缓存/供给，供烧录与测试取资产。 | 通用 | — | Win/Linux | high | active | 2026-11-10 | 默认 dry-run；不归档、不烧录、不跑测试 |
 | `audio-runtime` | 音频视图与执行层：端点枚举、媒体探测、单/双设备播放、Windows 多 Host API 原始 PCM 录音、转码标准化。 | 通用 | 播报声卡、录音声卡、USB 声卡 | Win/Linux | high | active | 2026-11-11 | 不捆绑 ffmpeg/ffprobe/OmniPickup 二进制 |
-| `burn_bundle` | 跨平台 UART 烧录工具的原始 payload：windows/linux 两侧原生烧录程序与启动脚本，供项目级封装调用。 | 通用 | 烧录口 | Win/Linux | high | archived | 2026-04-19 | 2026-11 归档候选，资产清单由 `venusahisiburner` 接管 |
+| `burn_bundle` | 跨平台 UART 烧录工具的原始 payload：windows/linux 两侧原生烧录程序与启动脚本，供项目级封装调用。 | 通用 | 烧录口 | Win/Linux | high | archived | 2026-04-19 | 2026-11 归档候选，资产清单由 `burner` 接管 |
 | `device-io` | 设备视图层：USB/串口枚举、板卡分组、端口角色解析、驱动适配、Windows 幽灵设备预览与清理（唯一写操作默认 dry-run）。 | 通用 | USB 串口、CH344/CH348、USB 声卡 | Win/Linux | high | active | 2026-11-11 | 与 `usb-tree`/`clearusb` 重叠，收敛待真机回归 |
 | `listenai-play` | 声卡端点查询与播报底层：安装 laid/audio-list、按稳定 Key 或默认设备选路，支持单文件/双设备播放与多后端。 | 通用 | 播报声卡、USB 声卡 | Win/Linux | high | active | 2026-09-21 | 安装脚本唯一来源；播放/采集底层与 `audio-runtime` 重叠 |
 | `lstest` | 跨项目设备测试验证与压测框架：profile 驱动日志发现、串口与音频证据采集、时序关联、结果校验，输出可复算的场景回执。 | 通用 | 控制串口、日志串口、播报声卡、录音声卡 | Win/Linux | high | active | 2026-11-06 |  |
@@ -77,11 +77,11 @@ NoahsArk 工作区 44 个仓库的能力、适用设备/项目与可用状态的
 | `polaris-device-validation` | Polaris 旧版真机验证实现（同源 Cucumber/Event Runtime），2026-06 后停更，保留为历史参照。 | 通用 | 日志串口、控制串口、播报声卡、录音声卡 | Win | low | archived | 2026-11-07 | 由 `Polaris` 替代；两仓库曾同名 |
 | `power-on-record-check` | 上电→等录音声卡枚举→立即录音→指定声卡播报→收尾断电的多轮压测，输出轮次 CSV/JSON、串口原文与工具日志。 | 通用 | 控制串口、录音声卡、播报声卡 | Win | medium | active | 2026-09-08 |  |
 | `scanpen-api-test` | ScanPen 设备 AP/CP 双串口 API 验证与压测：version、trans_start、xtts_start，按正则判定并流式落盘两侧日志。 | ScanPen | AP 口、CP 口 | Win | low | legacy | 2026-06-29 |  |
-| `tcl-device-autoburn` | TCL 台架旧烧录入口（节点本地/私有仓库，GitHub 不可读）。 | TCL-ac | 控制串口、烧录口 | Win | low | legacy | 未知（私有/空仓库） | 2026-11 停用，参数映射由 `venusahisiburner` 的 tcl-pvm1005 profile 承担；仓库不删 |
+| `tcl-device-autoburn` | TCL 台架旧烧录入口（节点本地/私有仓库，GitHub 不可读）。 | TCL-ac | 控制串口、烧录口 | Win | low | legacy | 未知（私有/空仓库） | 2026-11 停用，参数映射由 `burner` 的 tcl-pvm1005 profile 承担；仓库不删 |
 | `tcl-test-sub` | TCL 双麦空调语音验证与压测：唤醒加命令识别长稳、2s/20s 交替间隔、489 条核心命令覆盖、在线交互探测与双串口证据。 | TCL-ac | 日志串口、命令口、播报声卡 | Win | low | active | 2026-11-07 | 设备/串口/语料已写明适用边界；2026-11-07 按现场证据改回 active（TCL-ac 仍在 win009 台架交付，NOAH-20） |
 | `Trisolaris` | 离线语音多项目验证：需求→方案/用例→烧录→播放→串口证据→断言，内置小度风扇与好太太晾衣机的项目资产和验证池。 | CSK5062-xiaodu-fan / CSK3022-htt-clothes-airer | 烧录口、日志串口、控制串口、播报声卡 | Win/Linux | medium | legacy | 2026-11-07 | 项目沉淀定位；内嵌 `listenai-play` 整份副本 |
 | `tts-runtime` | TTS 统一入口：lstts 云端 IndexTTS / melotts 本地 / mock 离线自检，一个稳定接口。 | 通用 | — | Win/Linux | high | active | 2026-11-11 | URL/token 只从环境变量读取；不含模型与虚拟环境 |
-| `venusahisiburner` | VenusA/CSK 与 HISI/HI3863 双芯片统一烧录状态机（preflight/boot/burn/verify/recover/receipt）+ profile 隔离 + 资产清单。 | TCL-ac / CSK6012-midea-smoke | 控制串口、烧录口、日志串口 | Win | high | active | 2026-11-10 | 烧录唯一 canonical；毫秒时间戳待裁决（见 `docs/time-contract.md`） |
+| `burner` | VenusA/CSK 与 HISI/HI3863 双芯片统一烧录状态机（preflight/boot/burn/verify/recover/receipt）+ profile 隔离 + 资产清单。 | TCL-ac / CSK6012-midea-smoke | 控制串口、烧录口、日志串口 | Win | high | active | 2026-11-10 | 烧录唯一 canonical；毫秒时间戳待裁决（见 `docs/time-contract.md`） |
 
 ### 知识层（knowledge）
 
@@ -135,8 +135,8 @@ tts-runtime             -> lstts, melotts
 
 补充两条事实（避免按旧版误读）：
 
-- `venusahisiburner` 的 `depends_skills` 是 `["无"]`：它的 SKILL.md 与代码里没有引用 `usb-tree` / `clearusb`，枚举与清理能力是各仓库独立实现，没有登记调用关系。
-- `burn_bundle` 已 `archived`，但 `Trisolaris` 与 `mars-moon` 仍声明依赖它（历史声明未改）；新流程应走 `venusahisiburner`，这两条依赖只作遗留记录。
+- `burner` 的 `depends_skills` 是 `["无"]`：它的 SKILL.md 与代码里没有引用 `usb-tree` / `clearusb`，枚举与清理能力是各仓库独立实现，没有登记调用关系。
+- `burn_bundle` 已 `archived`，但 `Trisolaris` 与 `mars-moon` 仍声明依赖它（历史声明未改）；新流程应走 `burner`，这两条依赖只作遗留记录。
 
 ## 残留与重复实现
 
@@ -156,7 +156,7 @@ tts-runtime             -> lstts, melotts
 | `audio-runtime` | 与 `listenai-play`（端点/播放）、`omni-pickup`（Windows 多 Host API 录音）能力重叠 | 同一能力两套实现，行为可能漂移；新代码难以决定调用谁 | 收敛为 `audio-runtime` 单一实现需真机回归，本阶段不动；`omni-pickup` 已记 `legacy` |
 | `device-io` | 与 `usb-tree`（拓扑 GUI/CLI）、`clearusb`（幽灵设备清理）能力重叠 | 枚举、分组与清理各有实现，结论可能不一致 | 收敛需真机回归（CH344/CH348 + Windows 幽灵实例），本阶段保留三份 |
 | `tts-runtime` | 与 `lstts`/`melotts` 是入口重叠关系（前者是统一入口，后两者是实现） | 同一能力有两个入口，调用口径不一致 | 入口收敛到 `tts-runtime`，`lstts`/`melotts` 保留为引擎实现；切换待回归 |
-| `venusahisiburner` | 取代 `burn_bundle`（payload）与 `tcl-device-autoburn`（旧 TCL 入口）—— **已收口（2026-11-11）** | 旧入口仍在台账，误用会绕过 profile 与资产清单校验 | `burn_bundle` 记 `archived`、`tcl-device-autoburn` 记 `legacy` 且 `replaced_by=venusahisiburner`；仓库本身不删 |
+| `burner` | 取代 `burn_bundle`（payload）与 `tcl-device-autoburn`（旧 TCL 入口）—— **已收口（2026-11-11）** | 旧入口仍在台账，误用会绕过 profile 与资产清单校验 | `burn_bundle` 记 `archived`、`tcl-device-autoburn` 记 `legacy` 且 `replaced_by=burner`；仓库本身不删 |
 
 ## 待确认
 
@@ -164,7 +164,7 @@ tts-runtime             -> lstts, melotts
 2. **10 个 `legacy` 是“项目收尾/已被取代”判断，不是“代码坏掉”**：`scanpen-api-test`、`arcs-aopu-test`、`bootship`、`mideaSmoke`、`duya-ota-powercut`、`mars-moon`、`Trisolaris`、`Polaris`、`omni-pickup`、`tcl-device-autoburn` 仍可运行；若其中某个项目仍在交付，应改回 `active`。`tcl-test-sub` 已于 2026-11-07 按现场证据（TCL-ac 仍在 win009 台架交付，NOAH-20）改回 `active`。
 3. **3 个私有仓库的依赖未核验**（`fileball`、`qw-email-handle`、`a4m-Jenkins`）：只能读 README，`depends_pkgs` 标为“待核验”，后续有权限时补齐。`tcl-device-autoburn` 是空/私有仓库，只能依据节点侧说明记录。
 4. **`Trisolaris` 的定位**：它同时是项目资产库和通用验证池。本版按“项目绑定”记 `legacy`；若定位为长期复用的多项目框架，应改 `active`。
-5. **时间契约 A/B 待郑保山裁决（BLOCKED）**：记录层是否允许毫秒。方案 A（记录层统一 `YYYY-MM-DD HH:MM:SS`，毫秒仅限设备层回执）只影响 `venusahisiburner`；方案 B（全线 `YYYY-MM-DDThh:mm:ss.sss`）要改 7 个仓库。当前唯一违约仓库是 `venusahisiburner`。交叉验证另发现 `ark-node` 与 `skillhub-sync` 的判定函数偏宽（接受空格毫秒 / `Z` / 偏移），产物本身合规。详见 [`docs/time-contract.md`](../docs/time-contract.md)。
+5. **时间契约 A/B 待郑保山裁决（BLOCKED）**：记录层是否允许毫秒。方案 A（记录层统一 `YYYY-MM-DD HH:MM:SS`，毫秒仅限设备层回执）只影响 `burner`；方案 B（全线 `YYYY-MM-DDThh:mm:ss.sss`）要改 7 个仓库。当前唯一违约仓库是 `burner`。交叉验证另发现 `ark-node` 与 `skillhub-sync` 的判定函数偏宽（接受空格毫秒 / `Z` / 偏移），产物本身合规。详见 [`docs/time-contract.md`](../docs/time-contract.md)。
 6. **4 个归档候选待批准打 tag**：`burn_bundle`、`polaris-device-validation`、`listenai-laid-installer`、`a4m-Jenkins`，提案见 [`docs/archive-candidates.md`](../docs/archive-candidates.md)；未获批准前不创建任何 tag、不删仓库。
 
 ## 校验

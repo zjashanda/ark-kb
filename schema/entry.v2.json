@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/zjashanda/ark-kb/schema/entry.v2.json",
+  "title": "entry.v2",
+  "description": "知识条目 v2：在 entry.v1 之上增加执行能力关联（skill_ref/capability/module/workflow/profile/固件/拓扑）与证据三件套引用。旧条目继续用 entry.v1，二者可共存；不改写原始证据与历史结论。",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "type",
+    "scope",
+    "title",
+    "claim",
+    "evidence",
+    "confidence",
+    "status",
+    "superseded_by",
+    "source_skill",
+    "created",
+    "hits"
+  ],
+  "properties": {
+    "schema": { "const": "entry.v2" },
+    "id": { "type": "string", "pattern": "^kb-(knowledge|method|run|bug)-[0-9a-f]{12}$" },
+    "type": { "enum": ["knowledge", "method", "run", "bug"] },
+    "scope": { "$ref": "#/$defs/scope" },
+    "title": { "type": "string", "minLength": 1 },
+    "claim": { "type": "string", "minLength": 1 },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/evidence" }
+    },
+    "confidence": { "enum": ["high", "medium", "low"] },
+    "status": { "enum": ["pending", "active", "stale", "superseded"] },
+    "superseded_by": { "type": ["string", "null"] },
+    "source_skill": { "type": ["string", "null"] },
+    "created": { "type": "string", "format": "date-time" },
+    "updated": { "type": "string", "format": "date-time" },
+    "hits": { "type": "integer", "minimum": 0 },
+    "validations": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "scope_level": {
+      "enum": ["global", "capability", "platform", "device_family", "project", "node", "run"]
+    },
+    "scope_key": { "type": "string" },
+    "parent_scope": { "type": "string" },
+    "derived_from": { "type": "array", "items": { "type": "string" } },
+    "applies_to": { "type": "array", "items": { "type": "string" } },
+    "exceptions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/exception" }
+    },
+    "promote_to": { "enum": ["capability", "global"] },
+    "lineage": { "type": "array", "items": { "type": "string" } },
+    "checkpoint_ids": { "type": "array", "items": { "type": "string" } },
+
+    "skill_ref": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "执行能力关联：burner / lstest 等索引 skill id。必须与 skill index 的 skill 字段一致。"
+    },
+    "skill_version": { "type": "string", "minLength": 1 },
+    "capability": {
+      "type": "string",
+      "pattern": "^(burn|test)\\.[a-z0-9][a-z0-9-]*$",
+      "description": "ark.skill-route.v1 的 capability_id。"
+    },
+    "module": { "type": "string", "minLength": 1 },
+    "workflow": { "type": "string", "pattern": "^wf\\.[a-z0-9][a-z0-9.-]*$" },
+    "profile": { "type": ["string", "null"] },
+    "firmware_family": { "type": ["string", "null"] },
+    "topology": { "type": ["string", "null"] },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "uri", "sha256"],
+        "properties": {
+          "kind": { "enum": ["storage", "file", "url"] },
+          "uri": { "type": "string", "minLength": 1 },
+          "bytes": { "type": "integer", "minimum": 0 },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        },
+        "additionalProperties": false
+      },
+      "description": "8090/归档证据三件套（uri + bytes + sha256）。原始 evidence[] 保持不动，这里只加指针。"
+    },
+    "routing_note": { "type": "string", "description": "为什么归到这条 capability；给审核人看的一句话。" }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "scope": {
+      "type": "object",
+      "properties": {
+        "device": { "type": ["string", "null"] },
+        "project": { "type": ["string", "null"] },
+        "firmware": { "type": ["string", "null"] },
+        "platform": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["kind", "ref"],
+      "properties": {
+        "kind": { "enum": ["run", "file", "commit", "issue", "url"] },
+        "ref": { "type": "string", "minLength": 1 },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "verified": { "type": "boolean" },
+        "note": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "exception": {
+      "type": "object",
+      "required": ["rule", "reason"],
+      "properties": {
+        "rule": { "type": "string", "minLength": 1 },
+        "reason": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    }
+  }
+}
