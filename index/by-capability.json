@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-capability",
-  "generated_at": "2026-11-19T06:32:24Z",
+  "generated_at": "2026-11-23T02:11:23Z",
   "keys": {
     "070200duya上下电压测": [
       "kb-knowledge-88c26f79e24e"
@@ -103,6 +103,7 @@
       "kb-knowledge-368ec0d51d2c"
     ],
     "burnandpower": [
+      "kb-knowledge-296370575259",
       "kb-method-cad7be93134e"
     ],
     "burnsinglechipvenusa": [
@@ -141,6 +142,7 @@
     ],
     "csk6": [
       "kb-bug-aaacbd2d3429",
+      "kb-knowledge-296370575259",
       "kb-knowledge-368ec0d51d2c",
       "kb-method-cad7be93134e",
       "kb-run-3bb39adcf103",
@@ -167,6 +169,7 @@
       "kb-bug-aaacbd2d3429",
       "kb-bug-cdb93160a496",
       "kb-knowledge-158d1416a657",
+      "kb-knowledge-296370575259",
       "kb-knowledge-368ec0d51d2c",
       "kb-knowledge-5b92a7b0c5d9",
       "kb-knowledge-5f25b39ebe82",
@@ -368,6 +371,7 @@
     ],
     "hisi": [
       "kb-bug-1b7861b4d79f",
+      "kb-knowledge-296370575259",
       "kb-knowledge-5b92a7b0c5d9",
       "kb-knowledge-5f25b39ebe82",
       "kb-knowledge-84602a2f32dc",
@@ -460,6 +464,9 @@
     "noah191": [
       "kb-knowledge-b05d900e1c6b"
     ],
+    "noah304": [
+      "kb-knowledge-296370575259"
+    ],
     "noahsark": [
       "kb-bug-7a4682a3b07c",
       "kb-knowledge-d68aefff8b43",
@@ -497,6 +504,9 @@
     ],
     "orionsynapse": [
       "kb-knowledge-00d4164803ec"
+    ],
+    "parallelburn": [
+      "kb-knowledge-296370575259"
     ],
     "partitionmismatch": [
       "kb-knowledge-5f25b39ebe82"
@@ -1098,6 +1108,7 @@
       "kb-bug-a9e3072fbaa0",
       "kb-bug-cdb93160a496",
       "kb-knowledge-158d1416a657",
+      "kb-knowledge-296370575259",
       "kb-knowledge-368ec0d51d2c",
       "kb-knowledge-5f25b39ebe82",
       "kb-knowledge-8ec3191c1698",
