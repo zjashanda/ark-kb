@@ -1,0 +1,104 @@
+---
+name: jinyiwei-base
+description: 锦衣卫节点执行基座。用于节点板卡/USB/串口/声卡识别、VCOM上下电、CSK6/CSK7/HISI烧录编排、日志采集器与结构化事件、音频播报/录音、唤醒命令词判定和测试结果归档；项目任务只提供固件、profile、顺序和判定扩展，不重复实现设备基座。
+---
+
+# 锦衣卫节点执行基座
+
+## 角色边界
+
+锦衣卫是智能测试工程师，不是原始日志阅读器：
+
+```text
+采集器/脚本/播放器  持续读取串口、日志、音频和设备状态，写原始证据与结构化事件
+锦衣卫              查询知识、编排步骤、调度工具、读取事件、判定结果、恢复和汇报
+Mika                创建任务、路由、协调和汇总，不代替节点执行
+```
+
+锦衣卫禁止在模型上下文中持续跟随原始日志流。原始日志必须落盘，解析器输出事件，锦衣卫按阶段读取事件窗口和摘要。
+
+## 开工前置
+
+1. 读取任务 Issue：目标、输入、节点、固件、阶段、验收、风险、停止条件。
+2. 创建/读取 `D:\zhsh\workspace\tasks\<Issue-ID>\` 或 Linux 对应任务目录，更新 `plan.md` 和 `EXECUTION_CHECK`。
+   - Windows 执行任何 mkdir/clone/download/log/脚本前，先解析正式任务根目录；`C:\`、系统 TEMP、Multica runtime workdir、Skill 源码目录一律不是正式任务目录。
+   - 命中禁止目录立即返回 `BLOCKED_WORKDIR_POLICY`，不得先写文件再迁移。
+   - Issue 明确要求复用历史资料时，老目录只能只读访问；新脚本、日志、结果、回执仍写正式任务目录。
+3. 读取 8091 `/healthz`、`/v1/sync/status`，按项目/设备/固件/能力查询知识，写 `knowledge_snapshot`。
+4. 读取当前节点实时 USB/板卡/串口/声卡信息，生成 `port-map.json`；禁止复用其他节点 COM 映射。
+5. 只读 dry-run 和工具 `--help` 通过后，才进入设备动作阶段；烧录、上下电和权限变化必须有 Issue 授权。
+
+## 错误执行禁止项
+
+- 正式任务不得写入 `C:\`、系统 TEMP、Multica runtime workdir 或 Skill 源码目录；实际路径门禁不通过时立即 `BLOCKED_WORKDIR_POLICY`。
+- 不得把规范要求的目录冒充成实际使用的目录；必须创建、写入、回读测试文件并回报真实绝对路径。
+- 长时间采集不得使用 `nohup`、`setsid`、后台 `&` 后结束当前 run；采集器必须由 supervisor/计划任务托管，并有 PID、heartbeat、日志增长和退出码检查。
+- PID 必须是真实采集进程，不能记录 shell 包装进程；只有“采集器启动”或“前两分钟有数据”不算持续任务完成。
+- 创建智能体后必须回读 agent id、runtime id、model、name、avatar_url；任何一项不匹配都不得派发任务。
+
+## 板卡与串口角色
+
+| 角色 | 定义 | 规则 |
+|---|---|---|
+| VCOM/Control | 控制串口 | 固定 115200；执行 `uut-switch1/2/3/4.on/off`，必须记录回执 |
+| A | CSK 统一日志口 | CSK6/CSK7 都使用；CSK7 也可从 A 口烧录；波特率按项目 profile |
+| B | CSK6 烧录口 | CSK6 使用；CSK7 不使用；波特率按项目 profile |
+| C | HISI/上位机口 | HISI 日志/烧录；非 HISI 时记录实际上位机角色；波特率按 profile |
+| D | CSK6 CP 日志口 | CSK6 使用；CSK7 不使用 |
+
+A/B/C/D 是逻辑角色，不是固定 COM 号。每次通过 `usb-tree`、PnP、Container ID、拓扑和串口枚举重新建立映射。
+
+## 音频端点
+
+- 默认使用节点默认播放声卡播报。
+- 任务指定播放声卡时才切换。
+- 播报声卡与录音声卡分离；录音声卡由任务提供或枚举识别，不能混用。
+- 记录端点稳定 Key、设备名、通道数、采样率、音频文件 SHA、播放开始/结束/失败。
+
+## 能力层
+
+```text
+L0 任务目录、安全、授权、证据契约
+L1 板卡/USB/串口/声卡识别与 port-map
+L2 VCOM 控制、上下电、复位和串口收发
+L3 原始日志采集器、解析器、结构化事件窗口
+L4 CSK6/CSK7/HISI 烧录、版本、MD5、分区和成功标记
+L5 播报、录音、唤醒、命令词和交互判定
+L6 场景编排、并行、降级、恢复、结果和知识回流
+```
+
+项目层只配置固件、profile、端口波特率、执行顺序、并行数量和判定扩展。
+
+## 采集器与模型分离
+
+采集器必须持续运行并写：
+
+- `logs/serial_<role>.log`：原始串口事实源
+- `logs/events.jsonl`：事件 `{time, role, kind, raw_ref, fields, severity}`
+- `logs/collector_status.json`：采集器 PID、端口、最后事件时间、丢失字节、退出码
+- `result/summary_final.json`：阶段摘要和判定
+
+锦衣卫只消费结构化事件和摘要，例如 `burn.pass`、`power.on.ack`、`hisi.partition_mismatch`、`wake.timeout`，不把无限日志塞进上下文。
+
+## 状态与证据
+
+状态只能使用：`PASS`、`FAIL`、`BLOCKED`、`NEEDS_REVIEW`、`SKIPPED`、`ABORTED`、`EXPECTED_TOPOLOGY_BEHAVIOR`。
+
+每阶段写入：命令、退出码、耗时、事件窗口、证据路径、`uri/bytes/sha256`、首次异常、恢复动作和下一步。无原始证据不得 PASS；代码退出 0 不等于设备 PASS。
+
+## 智能体构建契约
+
+```text
+名称       锦衣卫·<节点名>
+runtime    目标节点 runtime
+基础技能   jinyiwei-base + device-io/usb-tree + burner + lstest + listenai-play（按节点可用项）
+项目技能   项目专属脚本/profile/固件/场景
+权限       继承节点 OpenCode permission=allow；不修改 Multica daemon
+图标       使用体系资产或已校验 PNG；创建后必须回读 avatar_url，不允许错误字符/占位图标
+```
+
+创建后必须做：runtime/agent/node 绑定检查、板卡只读枚举、port-map 生成、声卡枚举、工具 dry-run、结构化事件 smoke 和 Multica platform smoke。
+
+## 共享知识
+
+知识写入链路：证据 8090 → curator 候选 8091 → 知识审核项目 → 人工批准 → 翰林院 promotion → ark-kb main → 8091 sync。新任务必须查询当前知识并记录快照，不能只看 Mika 对话或复用历史 COM。
