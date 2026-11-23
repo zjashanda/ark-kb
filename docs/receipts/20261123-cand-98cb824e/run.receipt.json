@@ -1,0 +1,126 @@
+{
+  "schema": "run.receipt.v1",
+  "run_id": "promo-cand-98cb824ee5a42a58835c",
+  "task": "知识归档 promotion：候选 cand-98cb824ee5a42a58835c 提升为 ark-kb 条目并推 promo 分支（NOAH-391，不合并 main）",
+  "skill": "ark-kb",
+  "skill_version": "2.5.7",
+  "scope": {
+    "device": null,
+    "firmware": null,
+    "platform": null,
+    "project": "NoahsArk"
+  },
+  "result": "pass",
+  "totals": {
+    "entries_added": 1,
+    "evidence_refs": 9,
+    "evidence_readback_ok": 9,
+    "evidence_mismatches": 0,
+    "decision_checks": 1,
+    "digest_checks": 1,
+    "merged_to_main": 0
+  },
+  "failures": [],
+  "bugs_found": [],
+  "evidence_dir": "ark://evidence/NOAH-274/bszT14；ark://receipts/NOAH-280/bszT14；ark://receipts/NOAH-387/bszT14",
+  "evidence_sha256": [
+    "49cdf5e39a3fa9653b285761835ff13f575eace1480d31bbf2d1ce6b6d135a4b",
+    "76d5c3a920d644f91accbcd7f66c22c83ba7bb7a9e2620aa042a2af3741a53b8",
+    "700afeb9fadf3f48ed90e4d27e71d382a5edb01da429f7cedea1329500be3f9d",
+    "5ef90a31489c757515e145d6da86ee8f1bec1810c5f83e983496b313b0cd5852",
+    "a005d1fe36746f177e690a838c2ed967da11d601f368a59e5bce93ab47e2078c",
+    "5af74421d3f3a158a914d3231cb2397092fa36081e33d4d947ecaa905edd3811",
+    "89c51c0486a5ebe50f3b839162e50a92f48e62d5907b1cc1bb59e0f7ca6850ab",
+    "0ac50f81bf0310bc0702a5dd9d5d047cca393f6b20ed50103f8a5be0b8fc1837",
+    "70e4a30c21a982ab1892c81f70c3cd5a302c269b4d2357507e4f7a314e8299ee"
+  ],
+  "evidence_files": [
+    {
+      "path": "ark://evidence/NOAH-274/bszT14/evidence/kb_retrieval_summary.md",
+      "sha256": "49cdf5e39a3fa9653b285761835ff13f575eace1480d31bbf2d1ce6b6d135a4b",
+      "bytes": 3638
+    },
+    {
+      "path": "ark://evidence/NOAH-274/bszT14/evidence/kb_retrieval.json",
+      "sha256": "76d5c3a920d644f91accbcd7f66c22c83ba7bb7a9e2620aa042a2af3741a53b8",
+      "bytes": 293418
+    },
+    {
+      "path": "ark://evidence/NOAH-274/bszT14/evidence/kb_decisions_corrected.json",
+      "sha256": "700afeb9fadf3f48ed90e4d27e71d382a5edb01da429f7cedea1329500be3f9d",
+      "bytes": 292727
+    },
+    {
+      "path": "ark://evidence/NOAH-274/bszT14/evidence/kb_entries_hisense.md",
+      "sha256": "5ef90a31489c757515e145d6da86ee8f1bec1810c5f83e983496b313b0cd5852",
+      "bytes": 16240
+    },
+    {
+      "path": "ark://evidence/NOAH-274/bszT14/dual_dir_comparison.md",
+      "sha256": "a005d1fe36746f177e690a838c2ed967da11d601f368a59e5bce93ab47e2078c",
+      "bytes": 15314
+    },
+    {
+      "path": "ark://evidence/NOAH-274/bszT14/evidence/evidence_gaps.json",
+      "sha256": "5af74421d3f3a158a914d3231cb2397092fa36081e33d4d947ecaa905edd3811",
+      "bytes": 2339
+    },
+    {
+      "path": "ark://receipts/NOAH-280/bszT14/noah280_storage_receipt.json",
+      "sha256": "89c51c0486a5ebe50f3b839162e50a92f48e62d5907b1cc1bb59e0f7ca6850ab",
+      "bytes": 12123
+    },
+    {
+      "path": "ark://receipts/NOAH-387/bszT14/noah387_retrieval_snapshot.json",
+      "sha256": "0ac50f81bf0310bc0702a5dd9d5d047cca393f6b20ed50103f8a5be0b8fc1837",
+      "bytes": 31816
+    },
+    {
+      "path": "ark://receipts/NOAH-387/bszT14/noah387_evidence_readback.json",
+      "sha256": "70e4a30c21a982ab1892c81f70c3cd5a302c269b4d2357507e4f7a314e8299ee",
+      "bytes": 5401
+    }
+  ],
+  "lessons": [],
+  "confidence": "high",
+  "started_at": "2026-11-23T11:47:44Z",
+  "ended_at": "2026-11-23T12:00:45Z",
+  "notes": "按知识审核 Issue NOAH-391 的批准执行 promotion。审批人 郑保山 在评论 01a2076d-e9ac-75b0-a404-04074e592945 回「批准知识 cand-98cb824ee5a42a58835c」。decision 由本节点以 X-Ark-Actor: Mika 提交，HTTP 200，state=MIKA_APPROVED；candidate_sha256 与 Issue 一致，且可由 promotion-packet 正文规范化 JSON（sort_keys + 紧凑分隔符）复算得到同一个值 98cb824e…affc60。promotion-packet 端点首次以 X-Ark-Actor: Mika 请求返回 403 curator_forbidden，改用节点名 X-Ark-Actor: bszT14 后返回 200，正文 sha256 已校验，未使用回退路径。9 份证据在 promotion 时从 8090（http://10.11.63.24:8090，X-Ark-Node: bszT14）回读并复算 sha256，逐份与 bytes 一致（9/9）；条目 evidence 使用 ark:// 语义引用，不写内网地址。候选 type=policy 不在 entry.v2 的 type 枚举内，按 method 归档；候选 scope（domain/applies_to/gates/retry_scope）按 entry.v2 scope 约束展平为 project=NoahsArk，scope_level=global，细节写入 routing_note 与 exceptions。条目 id 由 ark-kb tools/kb.py 的 entry_id 规则确定性计算（kb-method-3ca9cffd32cc）。kb.py lint 在本机因缺少 skill-git 凭据扫描器（scripts/skill_assets.py）返回非 0，该缺口在 main 上同样存在、与本次条目无关；改用 --allow-missing-scanner 做离线自检，结果 151 条条目、0 个错误，警告均为既有『证据不在本机』类。未合并 main、未强推；合并 ark-kb main 与 8091 sync 由人执行。",
+  "tags": [
+    "promotion",
+    "noah-391",
+    "cand-98cb824ee5a42a58835c"
+  ],
+  "promotion": {
+    "candidate_id": "cand-98cb824ee5a42a58835c",
+    "candidate_sha256": "98cb824ee5a42a58835ce17cd205f63524dc8ba4a7418127882ed55333affc60",
+    "candidate_packet_sha256": "98cb824ee5a42a58835ce17cd205f63524dc8ba4a7418127882ed55333affc60",
+    "approval": {
+      "actor": "Mika",
+      "decision": "approved",
+      "message_id": "01a2076d-e9ac-75b0-a404-04074e592945",
+      "approved_by": "郑保山",
+      "note": "2026-11-23 批准（bszT14 本地执行 decision，HTTP 200）"
+    },
+    "kb_root": "zjashanda/ark-kb",
+    "branch": "promo/cand-98cb824ee5a42a58835c",
+    "entry_file": "entries/method/entries.jsonl",
+    "entry_id": "kb-method-3ca9cffd32cc",
+    "commit": "2009a7ebee3c03198b9d8b9f8346340aefc8f77a",
+    "merged_to_main": false,
+    "promotion_packet_endpoint": {
+      "request": "GET /v1/candidates/cand-98cb824ee5a42a58835c/promotion-packet",
+      "actor": "bszT14",
+      "status": 200,
+      "code": null,
+      "fallback": "不需要（首次以 Mika 请求 403 curator_forbidden，改用节点名 bszT14 后 200；正文 sha256 复算与 candidate_sha256 一致）"
+    },
+    "service_at_promotion": {
+      "version": "1.4.5",
+      "source_commit": "b3881b8d3ad38e36cda0fc76b78ef9bee52f1002",
+      "indexed_commit": "b3881b8d3ad38e36cda0fc76b78ef9bee52f1002",
+      "freshness": "fresh",
+      "entries": 150
+    }
+  }
+}
