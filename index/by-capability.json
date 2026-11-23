@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-capability",
-  "generated_at": "2026-11-23T02:11:23Z",
+  "generated_at": "2026-11-23T11:09:23Z",
   "keys": {
     "070200duya上下电压测": [
       "kb-knowledge-88c26f79e24e"
@@ -77,6 +77,9 @@
       "kb-method-0205df2c95f8",
       "kb-method-9b11d61e6bed",
       "kb-run-42681662dc2c"
+    ],
+    "audio": [
+      "kb-method-660cafc58c2b"
     ],
     "autobus": [
       "kb-knowledge-268e925c68ea",
@@ -200,6 +203,9 @@
     ],
     "dev01": [
       "kb-knowledge-99ced0adc4e3"
+    ],
+    "devicediscovery": [
+      "kb-method-660cafc58c2b"
     ],
     "devicehang": [
       "kb-bug-241022256518",
@@ -399,6 +405,9 @@
       "kb-knowledge-a04808bf37a7",
       "kb-knowledge-bfcf986b8948"
     ],
+    "jinyiwei": [
+      "kb-method-660cafc58c2b"
+    ],
     "knowledgecorrection": [
       "kb-run-c4408aab0464"
     ],
@@ -467,10 +476,14 @@
     "noah304": [
       "kb-knowledge-296370575259"
     ],
+    "noah404": [
+      "kb-method-660cafc58c2b"
+    ],
     "noahsark": [
       "kb-bug-7a4682a3b07c",
       "kb-knowledge-d68aefff8b43",
       "kb-method-2dc428e31410",
+      "kb-method-660cafc58c2b",
       "kb-run-3839715d5592",
       "kb-run-b617d06cf033",
       "kb-run-c4408aab0464",
@@ -544,7 +557,8 @@
       "kb-knowledge-4111d89d7050"
     ],
     "portmap": [
-      "kb-knowledge-99ced0adc4e3"
+      "kb-knowledge-99ced0adc4e3",
+      "kb-method-660cafc58c2b"
     ],
     "postprocess": [
       "kb-bug-1b7861b4d79f"
@@ -904,6 +918,9 @@
     "readback": [
       "kb-method-e28bc28cb620"
     ],
+    "readonlycanary": [
+      "kb-method-660cafc58c2b"
+    ],
     "resourcegate": [
       "kb-bug-a9e3072fbaa0"
     ],
@@ -928,6 +945,9 @@
     ],
     "scanpenapitestmain": [
       "kb-knowledge-d133dabbd009"
+    ],
+    "serial": [
+      "kb-method-660cafc58c2b"
     ],
     "singlechipvenusa": [
       "kb-knowledge-4871f3474f8c"
@@ -1113,6 +1133,7 @@
       "kb-knowledge-5f25b39ebe82",
       "kb-knowledge-8ec3191c1698",
       "kb-knowledge-99ced0adc4e3",
+      "kb-method-660cafc58c2b",
       "kb-run-3d971a515eae"
     ],
     "win005": [
