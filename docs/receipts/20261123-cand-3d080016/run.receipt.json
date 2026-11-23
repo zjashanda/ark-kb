@@ -1,0 +1,114 @@
+{
+  "schema": "run.receipt.v1",
+  "run_id": "promo-cand-3d0800167f9586bbae41",
+  "task": "知识归档 promotion：候选 cand-3d0800167f9586bbae41 提升为 ark-kb 条目并推 promo 分支（NOAH-404，不合并 main）",
+  "skill": "ark-kb",
+  "skill_version": "2.5.4",
+  "scope": {
+    "device": "CSK6/CSK7/HISI 通用节点台架",
+    "firmware": null,
+    "platform": "Windows win003",
+    "project": "NoahsArk"
+  },
+  "result": "pass",
+  "totals": {
+    "entries_added": 1,
+    "evidence_refs": 7,
+    "evidence_readback_ok": 7,
+    "evidence_mismatches": 0,
+    "decision_checks": 1,
+    "digest_checks": 1,
+    "merged_to_main": 0
+  },
+  "failures": [],
+  "bugs_found": [],
+  "evidence_dir": "ark://evidence/noahsark/win003/JY-BASE-CANARY-WIN003",
+  "evidence_sha256": [
+    "9db3666e061278446546364d5fe8bad0a1459f53ad60059a72a769fce0d17bd2",
+    "e6d3d6a515d7a3943f0657dc382e6a0bff163351e6dde5694448209661c86241",
+    "3bcb4567e96f631e7a91a136e7a1a56f64eec42ed3890450038a7e3cb46cfe1d",
+    "b44aaa52c9add6b2d6d6c74466f926eaca478cd13a0bef617304a56bac4a8759",
+    "3d854f4258515d97f79b8d913d5ef74682fdf11c6561dc6f9c77a891d6fdd066",
+    "ee62e3f6f12a1843d8819570f0886c4249c276753d210e48d1ea216be54ffb62",
+    "121a1cfa3c18f17a9a46eab2b24d2c5443090a5fb9528d532f4fb83cf0e56432"
+  ],
+  "evidence_files": [
+    {
+      "path": "ark://evidence/noahsark/win003/JY-BASE-CANARY-WIN003/EXECUTION_CHECK",
+      "sha256": "9db3666e061278446546364d5fe8bad0a1459f53ad60059a72a769fce0d17bd2",
+      "bytes": 74
+    },
+    {
+      "path": "ark://evidence/noahsark/win003/JY-BASE-CANARY-WIN003/plan.md",
+      "sha256": "e6d3d6a515d7a3943f0657dc382e6a0bff163351e6dde5694448209661c86241",
+      "bytes": 55
+    },
+    {
+      "path": "ark://evidence/noahsark/win003/JY-BASE-CANARY-WIN003/logs/events.jsonl",
+      "sha256": "3bcb4567e96f631e7a91a136e7a1a56f64eec42ed3890450038a7e3cb46cfe1d",
+      "bytes": 334
+    },
+    {
+      "path": "ark://evidence/noahsark/win003/JY-BASE-CANARY-WIN003/result/summary_final.json",
+      "sha256": "b44aaa52c9add6b2d6d6c74466f926eaca478cd13a0bef617304a56bac4a8759",
+      "bytes": 646
+    },
+    {
+      "path": "ark://evidence/noahsark/win003/JY-BASE-CANARY-WIN003/work/audio-info.json",
+      "sha256": "3d854f4258515d97f79b8d913d5ef74682fdf11c6561dc6f9c77a891d6fdd066",
+      "bytes": 4959
+    },
+    {
+      "path": "ark://evidence/noahsark/win003/JY-BASE-CANARY-WIN003/work/board-info.json",
+      "sha256": "ee62e3f6f12a1843d8819570f0886c4249c276753d210e48d1ea216be54ffb62",
+      "bytes": 2122
+    },
+    {
+      "path": "ark://evidence/noahsark/win003/JY-BASE-CANARY-WIN003/work/port-map.json",
+      "sha256": "121a1cfa3c18f17a9a46eab2b24d2c5443090a5fb9528d532f4fb83cf0e56432",
+      "bytes": 2488
+    }
+  ],
+  "lessons": [],
+  "confidence": "high",
+  "started_at": "2026-11-23T10:47:00Z",
+  "ended_at": "2026-11-23T11:10:14Z",
+  "notes": "按知识审核 Issue NOAH-404 的批准执行 promotion。decision 由 bszT14 以 X-Ark-Actor: Mika 提交，HTTP 200，state=MIKA_APPROVED； candidate_sha256 与 Issue 一致，且可由 promotion-packet 正文规范化 JSON（sort_keys + 紧凑分隔符）复算得到同一个值。 promotion-packet 端点在 v1.4.5 上对 X-Ark-Actor=Mika / 翰林院·bszT14 均返回 403 curator_forbidden，改用节点名 X-Ark-Actor: bszT14 后返回 200，正文 sha256 已校验，未使用回退路径。 7 份证据在 promotion 时从 8090（http://10.11.63.24:8090，X-Ark-Node: bszT14）回读并复算 sha256，逐份与 bytes 一致；条目 evidence 使用 ark:// 语义引用，不写内网地址。 条目 id 由 ark-kb tools/kb.py 的 entry_id 规则确定性计算（kb-method-660cafc58c2b）。 kb.py lint 在本机因缺少 skill-git 凭据扫描器（scripts/skill_assets.py）返回 3，该缺口在 main 上同样存在、与本次条目无关；改用 --allow-missing-scanner 做离线自检，结果 150 条条目、0 个错误、217 个警告（均为既有『证据不在本机』类）。 未合并 main、未强推，合并与 sync 由人执行。",
+  "tags": [
+    "promotion",
+    "noah-404",
+    "cand-3d0800167f9586bbae41"
+  ],
+  "promotion": {
+    "candidate_id": "cand-3d0800167f9586bbae41",
+    "candidate_sha256": "3d0800167f9586bbae41cf701fe58f7866343b288b0d203289d4f7f33a712340",
+    "candidate_packet_sha256": "d9c9ccbd88b5a1e9e373e172dbc4eba7a9703ddf854b7a8e17231490edc4f908",
+    "approval": {
+      "actor": "Mika",
+      "decision": "approved",
+      "message_id": "01a2080b-9083-7b48-8ab7-da36dcaaa07c",
+      "approved_by": "郑保山",
+      "note": "2026-11-23 10:55 批准（bszT14 本地执行 decision，HTTP 200）"
+    },
+    "kb_root": "zjashanda/ark-kb",
+    "branch": "promo/cand-3d0800167f9586bbae41",
+    "entry_file": "entries/method/entries.jsonl",
+    "entry_id": "kb-method-660cafc58c2b",
+    "commit": "6deab66128f651a7ece83fa6fe20933fc3ab65bf",
+    "merged_to_main": false,
+    "promotion_packet_endpoint": {
+      "request": "GET /v1/candidates/cand-3d0800167f9586bbae41/promotion-packet",
+      "actor": "bszT14",
+      "status": 200,
+      "code": null,
+      "fallback": "不需要（端点直接返回 200，正文 sha256 与 candidate_sha256 一致）"
+    },
+    "service_at_promotion": {
+      "version": "1.4.5",
+      "source_commit": "c9cbb6ac366db85ea1cb9c85655e70a8f81ee73f",
+      "indexed_commit": "c9cbb6ac366db85ea1cb9c85655e70a8f81ee73f",
+      "freshness": "fresh",
+      "entries": 149
+    }
+  }
+}
