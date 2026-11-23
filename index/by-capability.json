@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-capability",
-  "generated_at": "2026-11-23T11:09:23Z",
+  "generated_at": "2026-11-23T11:59:45Z",
   "keys": {
     "070200duya上下电压测": [
       "kb-knowledge-88c26f79e24e"
@@ -95,6 +95,9 @@
     ],
     "bigvgan": [
       "kb-knowledge-18d89b2df319"
+    ],
+    "boundedretry": [
+      "kb-method-3ca9cffd32cc"
     ],
     "burn": [
       "kb-bug-1b7861b4d79f",
@@ -226,6 +229,9 @@
     ],
     "dryrun": [
       "kb-bug-cdb93160a496"
+    ],
+    "dualdirverify": [
+      "kb-method-3ca9cffd32cc"
     ],
     "duyaota": [
       "kb-knowledge-260bf6607048",
@@ -375,6 +381,9 @@
       "kb-run-3228baa6c3f6",
       "kb-run-96ecdf985bf1"
     ],
+    "hiddenexecution": [
+      "kb-method-3ca9cffd32cc"
+    ],
     "hisi": [
       "kb-bug-1b7861b4d79f",
       "kb-knowledge-296370575259",
@@ -393,6 +402,9 @@
     "humandecision": [
       "kb-method-7675c53f29b4"
     ],
+    "idempotent": [
+      "kb-method-3ca9cffd32cc"
+    ],
     "indextts": [
       "kb-knowledge-d81c3d1877cc"
     ],
@@ -410,6 +422,9 @@
     ],
     "knowledgecorrection": [
       "kb-run-c4408aab0464"
+    ],
+    "knowledgegates": [
+      "kb-method-3ca9cffd32cc"
     ],
     "leakbaseline": [
       "kb-knowledge-158d1416a657"
@@ -473,8 +488,20 @@
     "noah191": [
       "kb-knowledge-b05d900e1c6b"
     ],
+    "noah274": [
+      "kb-method-3ca9cffd32cc"
+    ],
+    "noah280": [
+      "kb-method-3ca9cffd32cc"
+    ],
     "noah304": [
       "kb-knowledge-296370575259"
+    ],
+    "noah387": [
+      "kb-method-3ca9cffd32cc"
+    ],
+    "noah391": [
+      "kb-method-3ca9cffd32cc"
     ],
     "noah404": [
       "kb-method-660cafc58c2b"
@@ -483,6 +510,7 @@
       "kb-bug-7a4682a3b07c",
       "kb-knowledge-d68aefff8b43",
       "kb-method-2dc428e31410",
+      "kb-method-3ca9cffd32cc",
       "kb-method-660cafc58c2b",
       "kb-run-3839715d5592",
       "kb-run-b617d06cf033",
@@ -927,8 +955,14 @@
     "resources": [
       "kb-knowledge-70cb66251b2a"
     ],
+    "resourcetrend": [
+      "kb-method-3ca9cffd32cc"
+    ],
     "result": [
       "kb-knowledge-432c9f14e4d1"
+    ],
+    "retrievalfusion": [
+      "kb-method-3ca9cffd32cc"
     ],
     "run": [
       "kb-run-3bb39adcf103",
@@ -1036,6 +1070,9 @@
     ],
     "tcltestsublstest": [
       "kb-knowledge-e865dd518477"
+    ],
+    "testexecution": [
+      "kb-method-3ca9cffd32cc"
     ],
     "testserver": [
       "kb-knowledge-bce7f5be4e3f"
