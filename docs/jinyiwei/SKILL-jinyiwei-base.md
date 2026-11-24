@@ -102,3 +102,30 @@ runtime    目标节点 runtime
 ## 共享知识
 
 知识写入链路：证据 8090 → curator 候选 8091 → 知识审核项目 → 人工批准 → 翰林院 promotion → ark-kb main → 8091 sync。新任务必须查询当前知识并记录快照，不能只看 Mika 对话或复用历史 COM。
+
+## 串口连接生命周期（强制）
+
+串口属于任务，不属于采集窗口。默认保持连接，只在两种情况下断开：
+
+1. `TASK_DONE`：当前任务（含调试阶段）结束，或调试完成、等待进入正式任务。
+2. `INTERRUPT`：用户显式下达停止命令，或智能体判定任务异常且无法自行中断。
+
+除以上两种情况，不得主动断开：暂时没有新数据、等待下一步、切换阶段、修改脚本都不构成断开理由。
+
+### 会话账本
+
+- 位置：任务目录 `logs/serial_session.json`（schema `noahsark.serial-session.v1`）。
+- 字段：`state`（ATTACHED/DETACHED）、`task_id`、`attach_at`/`detach_at`、`detach_reason`、`ports{port,role,baud,offset}`、`heartbeat_at`、`gaps`。
+- 同一文件即归属登记：新任务读到 `ATTACHED` 且属主不是自己时，报 `BLOCKED_SERIAL_LEASE` 并写明属主，不得反复试开、试失败再猜。
+
+### 跨 run
+
+- 必须跨 run 续采时，上一 run 收尾前登记 wakeup 接力并保留会话；下一 run 接管后记一条 `cross_run_resume` 空隙，不得假装连续。
+- 没有合法理由就结束 run：记 `UNEXPECTED_DETACH` 并判 FAIL。
+
+### 代码入口
+
+- `lstest/scripts/serial_session.py`：会话账本与租约（attach/heartbeat/detach）。
+- `lstest/scripts/serial_capture.py`：`finish(reason)` 是唯一收尾入口；`stop()` 无理由即报错；空闲不关闭；打开串口带 8 s 超时。
+- `lstest/scripts/serial_monitor.py`：长窗口监控入口（`--hours`）。
+- `lstest/scripts/collect_gate.py`：开工前/收尾前门禁（工作目录、STOP 残留、租约、自测参数、断开理由、字节增长）。
