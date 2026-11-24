@@ -71,14 +71,47 @@ L6 场景编排、并行、降级、恢复、结果和知识回流
 
 ## 采集器与模型分离
 
-采集器必须持续运行并写：
+采集器必须持续运行，把原始事实落盘；锦衣卫只消费结构化事件和摘要，例如 `burn.pass`、`power.on.ack`、`hisi.partition_mismatch`、`wake.timeout`，不把无限日志塞进上下文。
 
-- `logs/serial_<role>.log`：原始串口事实源
-- `logs/events.jsonl`：事件 `{time, role, kind, raw_ref, fields, severity}`
-- `logs/collector_status.json`：采集器 PID、端口、最后事件时间、丢失字节、退出码
-- `result/summary_final.json`：阶段摘要和判定
+落盘位置见下一节「结果目录结构（强制，唯一允许）」，不再使用 `logs/serial_<role>.log`、`logs/events.jsonl`、`logs/collector_status.json`、`result/summary_final.json` 这套旧写法。
 
-锦衣卫只消费结构化事件和摘要，例如 `burn.pass`、`power.on.ack`、`hisi.partition_mismatch`、`wake.timeout`，不把无限日志塞进上下文。
+## 结果目录结构（强制，唯一允许）
+
+任务目录 `D:\zhsh\workspace\tasks\<Issue-ID>\`（Linux：`/home/zhsh/workspace/tasks/<Issue-ID>/`）。`result\` 下只允许这五项，多一个都不行：
+
+```text
+<Issue-ID>\result\
+├─ serial_logs\     原始串口日志，文件名 serial_<port>_<role>.log，行首毫秒时间戳
+├─ tool.log         工具事件流水，固定字段，行首毫秒时间戳
+├─ cases.csv        设备动作之前冻结的用例与顺序（含输入/音频 sha256）
+├─ results.csv      每个用例一行终态
+└─ task.json        本次运行身份 + 结论 + 产物哈希（不含自身）
+```
+
+`task.json` 固定为 `schema=lstest.task.v1`，必含：
+
+- `task`：`task_id`、`node`、`started_at`、`ended_at`、`status`、`reason`
+- `generator`：工具名与 Python/平台版本
+- `inputs`：`ports[{port,role,baud}]`、窗口或轮次参数
+- `lifecycle`：`session{state,detach_reason,attach_at,detach_at,resume_count,gaps}`
+- `summary`：行数/字节/OTA 判定等汇总
+- `artifacts[{path,bytes,hash}]`，`hash` 必须写成 `sha256:<hex>`，且**不得包含 task.json 自身**
+- 启动即写 `status=running`，结束时原子替换（tmp → rename）
+
+### 禁止
+
+- 在 `result\` 下新建除 `serial_logs\` 以外的任何目录（不得有 `monitor\`、时间戳目录、run_name 目录）
+- 生成 `snapshot_*.json`、`summary_latest.md`、`analysis.json/md`、`manifest.json`、`progress.md` 等额外文件
+- 在 `result\` 之外重复保存原始日志或复制全量日志
+- 用文件大小判断日志是否增长（Windows 下写入中的文件 `Length` 会长期为 0/stale），必须用行数或字节偏移
+
+### 跨 run 运行态
+
+`serial_session.json`、`monitor_progress.jsonl`、`monitor_heartbeat.jsonl`、`STOP` 放任务级 `logs\`，不放 `result\`；分析产物也写 `logs\`。
+
+### 时间戳
+
+所有日志行、事件、`task.json` 时间字段一律毫秒精度：`YYYY-MM-DDTHH:MM:SS.mmm+08:00`；`task.json` 另给一个 UTC 字段。禁止秒级或本地化格式。
 
 ## 状态与证据
 
