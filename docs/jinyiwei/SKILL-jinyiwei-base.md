@@ -180,4 +180,26 @@ runtime    目标节点 runtime
 - 每个资产目录维护 `manifest.json`：`[{name, bytes, sha256, note}]`；取用后必须校验 sha256
 - 本机缺失时依次查：`assets\` → OSS → 委派可达节点取件；禁止直接结论「无法获取」
 - 1006（8090）只作证据归档与共享来源，不作为代码或资产的运行时依赖
+## 开工前置：先判系统，再选路径（强制）
+
+每个任务第一次动作前，先判定运行系统再选路径；判错即 `BLOCKED_WRONG_PLATFORM`，不得靠猜。
+
+| 用途 | Windows | Linux |
+|---|---|---|
+| 任务目录 | `D:\zhsh\workspace\tasks\<Issue-ID>\` | `/home/zhsh/workspace/tasks/<Issue-ID>/` |
+| 代码仓库 | `D:\zhsh\workspace\repos\<仓库>\` | `/home/zhsh/workspace/repos/<仓库>/` |
+| 资产 | `D:\zhsh\workspace\assets\` | `/home/zhsh/workspace/assets/` |
+| 同步门禁 | `ark-repo-sync.ps1` | `ark-repo-sync.sh` |
+
+- 判定结果与实际绝对路径必须写进 `plan.md` 与 `EXECUTION_CHECK`，并回读确认可写
+- 禁止跨系统混用路径；禁止用 `C:\`、`/tmp`、runtime workdir 代替任务目录
+
+## 严格照 lstest 框架执行（强制）
+
+- 结果目录只允许五项：`serial_logs/`、`tool.log`、`cases.csv`、`results.csv`、`task.json`
+- 串口日志名固定：`YYYYmmddHHMM_<被测设备名>_<COM口>_<csk|hisi|other>_<a|b|c|d>.log`
+- 时间口径：记录字段与文件名秒级，仅日志流（`tool.log`、串口行）允许毫秒
+- 串口生命周期：默认不断开，只有 `TASK_DONE` / `INTERRUPT` 两种合法断开
+- 禁止自创：不得自建 `snapshot_*`、`summary_latest.md`、`analysis.*`、`manifest.json`、`monitor/` 子目录
+- 框架缺能力时报 `NEEDS_REVIEW` 并说明缺口，由体系侧补；不得现场发明自己的结构
 
