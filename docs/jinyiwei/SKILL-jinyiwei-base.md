@@ -81,7 +81,7 @@ L6 场景编排、并行、降级、恢复、结果和知识回流
 
 ```text
 <Issue-ID>\result\
-├─ serial_logs\     原始串口日志，文件名 YYYYmmddHHMM_<设备名>_<COM口>_<csk|hisi|other>_<a|b|c|d>.log，行首毫秒时间戳
+├─ serial_logs\     原始串口日志，文件名 YYYYmmddHHMM_<被测设备名>_<COM口>_<csk|hisi|other>_<a|b|c|d>.log（被测设备名=实际的被测设备，如 海尔001、海尔002，不是节点名；示例 202611241538_海尔001_COM10_csk_a.log；`--ports` 用 `设备名@COM口:角色:波特率` 传入），行首毫秒时间戳
 ├─ tool.log         工具事件流水，固定字段，行首毫秒时间戳
 ├─ cases.csv        设备动作之前冻结的用例与顺序（含输入/音频 sha256）
 ├─ results.csv      每个用例一行终态
