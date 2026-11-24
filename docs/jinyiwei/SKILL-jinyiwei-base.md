@@ -162,3 +162,22 @@ runtime    目标节点 runtime
 - `lstest/scripts/serial_capture.py`：`finish(reason)` 是唯一收尾入口；`stop()` 无理由即报错；空闲不关闭；打开串口带 8 s 超时。
 - `lstest/scripts/serial_monitor.py`：长窗口监控入口（`--hours`）。
 - `lstest/scripts/collect_gate.py`：开工前/收尾前门禁（工作目录、STOP 残留、租约、自测参数、断开理由、字节增长）。
+## 代码与资产获取（强制）
+
+### 代码仓库
+
+- 唯一位置：Windows `D:\zhsh\workspace\repos\<仓库名>\`；Linux `/home/zhsh/workspace/repos/<仓库名>/`
+- 开工前必须执行同步门禁：`D:\zhsh\workspace\tools\ark-repo-sync.ps1 -Repo lstest,ark-kb,burner,ark-node`（Linux 用同名 `.sh`）
+- 锚定版本取 OSS `noahsark/index.json` 的 `source_commit`；HEAD 与锚定值不一致即 `BLOCKED_STALE_REPO`，禁止用旧代码执行任务
+- A 通道：git 直连（HTTP/1.1、浅克隆、重试 3 次）；A 连续失败自动切 C 通道：读 `noahsark/repos/<仓库>/latest.json`，下载 bundle 并校验 sha256 后本地 clone
+- 节点计划任务 `NoahsArk-Repo-Sync` 每 30 分钟自动执行一次 A+C，云端发布后节点自动追到锚定版本
+- 禁止在任务目录复制仓库代码；禁止跳过门禁直接用磁盘上的旧副本
+
+### 资产（音频/固件/工具包）
+
+- 唯一位置：`D:\zhsh\workspace\assets\`（Linux `/home/zhsh/workspace/assets/`）
+- 音频只按语种分目录：`assets\audio\中文\`、`assets\audio\英文\`；文件平铺，不再按项目细分子目录
+- 每个资产目录维护 `manifest.json`：`[{name, bytes, sha256, note}]`；取用后必须校验 sha256
+- 本机缺失时依次查：`assets\` → OSS → 委派可达节点取件；禁止直接结论「无法获取」
+- 1006（8090）只作证据归档与共享来源，不作为代码或资产的运行时依赖
+
