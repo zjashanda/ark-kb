@@ -77,16 +77,44 @@ L6 场景编排、并行、降级、恢复、结果和知识回流
 
 ## 结果目录结构（强制，唯一允许）
 
-任务目录 `D:\zhsh\workspace\tasks\<Issue-ID>\`（Linux：`/home/zhsh/workspace/tasks/<Issue-ID>/`）。`result\` 下只允许这五项，多一个都不行：
+任务目录 `D:\zhsh\workspace\tasks\<Issue-ID>\`（Linux：`/home/zhsh/workspace/tasks/<Issue-ID>/`）。`result\` 下**每次运行一个时间戳目录**，运行产物全部放在该目录内：
 
 ```text
 <Issue-ID>\result\
-├─ serial_logs\     原始串口日志，文件名 YYYYmmddHHMM_<被测设备名>_<COM口>_<csk|hisi|other>_<a|b|c|d>.log（被测设备名=实际的被测设备，如 海尔001、海尔002，不是节点名；示例 202611241538_海尔001_COM10_csk_a.log；`--ports` 用 `设备名@COM口:角色:波特率` 传入），行首毫秒时间戳
-├─ tool.log         工具事件流水，固定字段，行首毫秒时间戳
-├─ cases.csv        设备动作之前冻结的用例与顺序（含输入/音频 sha256）
-├─ results.csv      每个用例一行终态
-└─ task.json        本次运行身份 + 结论 + 产物哈希（不含自身）
+├─ <YYYYmmddHHMM>\        每次运行一个目录；同分钟重名自动 -02；重跑不覆盖，天然归档
+│   ├─ serial_logs\      原始串口日志，文件名 YYYYmmddHHMM_<被测设备名>_<COM口>_<csk|hisi|other>_<a|b|c|d>.log（被测设备名=实际的被测设备，如 海尔001、海尔002，不是节点名；示例 202611241538_海尔001_COM10_csk_a.log；`--ports` 用 `设备名@COM口:角色:波特率` 传入），行首毫秒时间戳
+│   ├─ burn_logs\        烧录工具日志，文件名 <YYYYmmddHHMM>_burn_<n>.log（角色 burn/burn_tool 自动路由，轮次递增）
+│   ├─ tool.log          本次运行的流水账（见下节）
+│   ├─ cases.csv         设备动作之前冻结的用例与顺序（含输入/音频 sha256）
+│   ├─ results.csv       每个用例一行终态
+│   └─ task.json         本次运行身份 + 结论 + 产物哈希（不含自身）
+└─ STOP                  （可选）停止标记
 ```
+
+时间戳目录本身即归档：**禁止**把六项直接摊在 `result\` 根下，**禁止**自建 `prev_result_*`、`runs\`、`archive_*` 之类的备用目录，也**禁止**用人工搬迁来避免覆盖。
+
+## tool.log = 流水账（强制）
+
+`tool.log` 只回答三件事：这一轮脚本/工具做了什么、设备回了什么时序标记、最后判定是什么。按时间顺序，一行一条。
+
+格式固定：
+
+```text
+YYYY-MM-DD HH:MM:SS,mmm - LEVEL - [TAG] 正文 [k=v ...]
+```
+
+- `LEVEL`：`DEBUG` / `INFO` / `WARN` / `ERROR`
+- `TAG`：`TASK ENV ASSET CASES CASE SERIAL CONTROL POWER BURN BOOT MARK WAKE ASR PLAY OTA RESULT ANOMALY GATE ACTION`
+
+规则：
+
+- 设备信息只出现在行首：`[SERIAL] COM6(CSK6_A): 串口 COM6 已打开`；**禁止**在行尾再挂 `channel=`、`port=`、`role=` 这类重复后缀
+- 同一个键的取值在正文里已出现，就不再追加
+- 脚本/工具的设备动作（上下电、烧录、播报、唤醒、增益设置等）一律用 lstest 公共库 `artifacts.emit_action(action, detail=..., **fields)` 记一条 `[ACTION]`
+- 串口原始行只进 `serial_logs/`，不进 `tool.log`；`tool.log` 只记结构化事件与时序标记
+- 标记行由 markers 引擎渲染：`  <设备>(<COM>): <code>: <值>`
+- v4 下不允许旧格式行（`YYYY-MM-DD HH:MM:SS [TAG] ...`），渲染器统一转换为 ledger 格式
+- **项目只适配正则**（`profile.event_rules`、`markers/catalog.json`）；日志结构、时间戳、字段渲染全部由 lstest 负责，项目不得自己拼日志格式，也不需要从串口日志反推动作
 
 `task.json` 固定为 `schema=lstest.task.v1`，必含：
 
@@ -100,7 +128,8 @@ L6 场景编排、并行、降级、恢复、结果和知识回流
 
 ### 禁止
 
-- 在 `result\` 下新建除 `serial_logs\` 以外的任何目录（不得有 `monitor\`、时间戳目录、run_name 目录）
+- 在 `result\` 根下直接摊放运行六项（必须放进时间戳运行目录）
+- 自建 `monitor\`、`prev_result_*`、`runs\`、`archive_*`、run_name 目录
 - 生成 `snapshot_*.json`、`summary_latest.md`、`analysis.json/md`、`manifest.json`、`progress.md` 等额外文件
 - 在 `result\` 之外重复保存原始日志或复制全量日志
 - 用文件大小判断日志是否增长（Windows 下写入中的文件 `Length` 会长期为 0/stale），必须用行数或字节偏移
@@ -196,10 +225,11 @@ runtime    目标节点 runtime
 
 ## 严格照 lstest 框架执行（强制）
 
-- 结果目录只允许五项：`serial_logs/`、`tool.log`、`cases.csv`、`results.csv`、`task.json`
+- 结果目录：`result\<YYYYmmddHHMM>\` 时间戳运行目录，内含六项 `serial_logs/`、`burn_logs/`、`tool.log`、`cases.csv`、`results.csv`、`task.json`
+- `tool.log` 由 lstest 渲染器生成，禁止手写或自拼字段；设备动作走 `artifacts.emit_action()`
 - 串口日志名固定：`YYYYmmddHHMM_<被测设备名>_<COM口>_<csk|hisi|other>_<a|b|c|d>.log`
 - 时间口径：记录字段与文件名秒级，仅日志流（`tool.log`、串口行）允许毫秒
 - 串口生命周期：默认不断开，只有 `TASK_DONE` / `INTERRUPT` 两种合法断开
-- 禁止自创：不得自建 `snapshot_*`、`summary_latest.md`、`analysis.*`、`manifest.json`、`monitor/` 子目录
+- 禁止自创：不得自建 `snapshot_*`、`summary_latest.md`、`analysis.*`、`manifest.json`、`monitor/`、`prev_result_*`、`runs/`、`archive_*`
 - 框架缺能力时报 `NEEDS_REVIEW` 并说明缺口，由体系侧补；不得现场发明自己的结构
 
