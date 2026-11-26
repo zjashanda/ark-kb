@@ -1,0 +1,24 @@
+{
+  "schema": "run.receipt.v1",
+  "run_id": "inventory-20261126-csk5062-duya-reference",
+  "task": "CSK5062杜亚窗帘项目测试知识参考画像沉淀",
+  "skill": "ark-kb",
+  "skill_version": "2.6.5",
+  "scope": {"device": "CSK5062杜亚窗帘", "project": "csk5062-duya-curtain-reference", "firmware": null, "platform": "repository-reference"},
+  "result": "needs_review",
+  "totals": {"lessons": 3, "source_reports": 2},
+  "failures": [],
+  "bugs_found": [],
+  "evidence_dir": "D:/workstation/quattro/data/remote-repos/zjashanda-20261125/reports",
+  "evidence_sha256": ["d4b2fbb55949264f72afa76c85178f6cea64d439a332c6faa6ba873489500cf8", "ab45b3e688d3b94f12ee0cccffa82d6ddae6acd12cbac9fb4acdc8fa56c69ae6"],
+  "evidence_files": [{"path": "project-inventory.md", "sha256": "d4b2fbb55949264f72afa76c85178f6cea64d439a332c6faa6ba873489500cf8"}, {"path": "knowledge-inventory.md", "sha256": "ab45b3e688d3b94f12ee0cccffa82d6ddae6acd12cbac9fb4acdc8fa56c69ae6"}],
+  "lessons": [
+    {"type": "method", "title": "CSK5062 杜亚窗帘 离线语音 测试方案按唤醒命令播报执行器闭环组织", "claim": "杜亚窗帘项目可参考按离线唤醒词、命令词、串口协议、播报和窗帘执行器反馈组织测试闭环；当前具体语料和协议需绑定杜亚产品 profile。", "confidence": "medium", "tags": ["usage:reference", "usage:plan-input", "reuse:cross-project", "project:csk5062-duya-curtain", "product:duya-curtain", "chip:csk5062", "capability:offline-voice", "capability:actuator", "needs-confirmation"]},
+    {"type": "knowledge", "title": "CSK5062 杜亚窗帘 协议与runner 产品画像隔离维护", "claim": "杜亚窗帘的离线语音 runner、端口、协议、烧录和播报资料应绑定杜亚产品及固件/profile，不能因CSK5062相同而引用小度风扇资料。", "confidence": "medium", "tags": ["usage:reference", "project:csk5062-duya-curtain", "product:duya-curtain", "chip:csk5062", "capability:protocol", "capability:runner", "isolation:product", "needs-confirmation"]},
+    {"type": "method", "title": "CSK5062 杜亚窗帘 最大音量 音量边界与执行器反馈分开判定", "claim": "杜亚窗帘若验证最大音量，应复用通用边界探测方法，但具体音量编码、步进、播报 ID和协议回包必须从杜亚当前profile取得，执行器动作与音量播报分别判定。", "confidence": "low", "tags": ["usage:reference", "usage:plan-input", "project:csk5062-duya-curtain", "product:duya-curtain", "chip:csk5062", "capability:volume", "test-type:boundary", "needs-confirmation"]}
+  ],
+  "confidence": "medium",
+  "started_at": "2026-11-26T09:51:00Z",
+  "ended_at": "2026-11-26T09:58:00Z",
+  "notes": "杜亚窗帘项目经验候选条目，未把芯片号当作协议身份。"
+}

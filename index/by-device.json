@@ -1,13 +1,35 @@
 {
   "schema": "index.v1",
   "index": "by-device",
-  "generated_at": "2026-11-23T11:59:45Z",
+  "generated_at": "2026-11-26T02:47:41Z",
   "keys": {
     "agentlinux": [
       "kb-knowledge-60d65219fd43",
       "kb-method-0205df2c95f8",
       "kb-method-9b11d61e6bed",
       "kb-run-42681662dc2c"
+    ],
+    "csk3021设备族": [
+      "kb-knowledge-6d9e826a7340",
+      "kb-method-28ac45deffcb",
+      "kb-run-1d34ab37f6b5"
+    ],
+    "csk3022好太太晾衣机": [
+      "kb-knowledge-6a7f2e762b40",
+      "kb-method-6d5f2638c113",
+      "kb-method-7a55ce606183",
+      "kb-run-317fba704222"
+    ],
+    "csk5062小度风扇": [
+      "kb-knowledge-9142c79255dc",
+      "kb-method-331aa77b4b97",
+      "kb-run-1228458a8e3b"
+    ],
+    "csk5062杜亚窗帘": [
+      "kb-knowledge-47195fbf0fec",
+      "kb-method-04febec438d3",
+      "kb-method-582ed26652fc",
+      "kb-run-5240ef73f295"
     ],
     "csk6csk7hisi通用节点台架": [
       "kb-method-660cafc58c2b"
@@ -32,6 +54,12 @@
     ],
     "csk6hisiliconws63四板台架每台ch344四串口vcom控制口": [
       "kb-knowledge-296370575259"
+    ],
+    "mideapolarisfa2venusws63cskwb01": [
+      "kb-knowledge-32faf5587ad3",
+      "kb-knowledge-4034f5eb0971",
+      "kb-method-50c9cc438db7",
+      "kb-run-a620317a2fd2"
     ],
     "tclcsk7hi3863pvm1005": [
       "kb-knowledge-4871f3474f8c"
