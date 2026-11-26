@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-skill",
-  "generated_at": "2026-11-26T02:47:41Z",
+  "generated_at": "2026-11-26T08:03:47Z",
   "keys": {
     "arkkb": [
       "kb-bug-7a4682a3b07c",
@@ -63,6 +63,16 @@
     "deviceio": [
       "kb-knowledge-41efd9dfeac3",
       "kb-method-e28bc28cb620"
+    ],
+    "jinyiweibase": [
+      "kb-bug-79bc8ecbf237",
+      "kb-bug-baf5ff071118",
+      "kb-knowledge-1e05d7a0e8f6",
+      "kb-knowledge-32a7e1e76fd0",
+      "kb-knowledge-ddaae802ca5d",
+      "kb-method-03b45ce7ac87",
+      "kb-method-dd7b81cb6577",
+      "kb-method-f8e9ff7ac91d"
     ],
     "lstest": [
       "kb-bug-241022256518",
