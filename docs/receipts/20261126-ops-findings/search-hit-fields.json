@@ -1,0 +1,18 @@
+{
+  "note": "8091 /v1/search 命中的完整字段（ark-kb 条目），无 claim 字段",
+  "example_hit": {
+    "citation": "kb:kb-knowledge-368ec0d51d2c@b8c577f6fbc2afca1220bfe0b2131b386f032a0d",
+    "id": "kb-knowledge-368ec0d51d2c",
+    "score": 5,
+    "snippet": "CSK6 单次烧录的 PASS 需同时成立：WRITE SIZE 等于 profile 期望 5,685,248 B；设备 MD5 为 0xf6d63694...",
+    "source": "ark-kb",
+    "status": "active",
+    "title": "CSK6 单次烧录的成功判据（Uart_Burn_Tool 1.0.5 + 上电启动行）",
+    "type": "knowledge"
+  },
+  "missing_fields": ["claim", "evidence", "confidence", "scope"],
+  "workaround": {
+    "endpoint": "GET /v1/entries/{entry_id}",
+    "observed": "200，返回完整 entry（含 claim/evidence/confidence/scope）"
+  }
+}

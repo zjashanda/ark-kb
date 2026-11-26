@@ -1,0 +1,16 @@
+{
+  "schema": "run.receipt.v1",
+  "run_id": "20261126-ops-findings",
+  "task_id": "ops-20261126",
+  "title": "平台巡检上线过程中的五项可复用发现",
+  "created": "2026-11-26T12:32:37Z",
+  "entries": [
+    "kb-bug-93f1ecf49a4b",
+    "kb-bug-51037bf99028",
+    "kb-knowledge-c9ba6a9bee64",
+    "kb-bug-7f09f331cf3f",
+    "kb-method-62b4b75074db"
+  ],
+  "evidence_dir": "docs/receipts/20261126-ops-findings",
+  "notes": "8091 同步停摆修复、检索限制、接口缺陷与音量边界方案的综合取证"
+}

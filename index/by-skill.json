@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-skill",
-  "generated_at": "2026-11-26T08:03:47Z",
+  "generated_at": "2026-11-26T12:32:37Z",
   "keys": {
     "arkkb": [
       "kb-bug-7a4682a3b07c",
@@ -99,8 +99,13 @@
       "kb-knowledge-72b7856e1559"
     ],
     "skillkb": [
+      "kb-bug-51037bf99028",
+      "kb-bug-7f09f331cf3f",
+      "kb-bug-93f1ecf49a4b",
       "kb-knowledge-60d65219fd43",
+      "kb-knowledge-c9ba6a9bee64",
       "kb-method-0205df2c95f8",
+      "kb-method-62b4b75074db",
       "kb-method-9b11d61e6bed",
       "kb-run-42681662dc2c"
     ],

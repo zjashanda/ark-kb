@@ -1,0 +1,18 @@
+# 8091 /v1/documents/{doc_id} 对带路径的 doc_id 返回 404（2026-11-26 实测）
+
+$ curl -s -o /dev/null -w '%{http_code}' \
+    'http://127.0.0.1:8091/v1/documents/sources%2Frepos%2Fmars-moon%2Freferences%2Fmasr-pillar.md'
+404
+
+响应体:
+{"error":"document_not_found",
+ "message":"文档不存在：sources%2Frepos%2Fmars-moon%2Freferences%2Fmasr-pillar.md",
+ "request_id":"req-6613ee3a3dca"}
+
+对比:
+$ curl 'http://127.0.0.1:8091/v1/documents/README.md'
+200  (无特殊字符的 doc_id 正常)
+
+## 结论
+服务端未对 path 段做百分号解码（%2F 未还原为 /），带目录的 doc_id 一律 404。
+可用替代：以只读方式直查 kb.sqlite 的 documents/chunks 表（8092 已采用）。

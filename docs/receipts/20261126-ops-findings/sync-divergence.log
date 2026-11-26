@@ -1,0 +1,27 @@
+# 8091 同步仓库分叉导致 ff-only 永久失败（2026-11-26 实测）
+
+## 现场
+$ git -C .../work/ark-kb status --short --branch
+## main...origin/main [ahead 2, behind 12]
+
+$ git log --oneline -3
+3872956 docs(jinyiwei): result 改为时间戳运行目录
+2b6e692 docs(jinyiwei): 标记位码表、tool.log 两类内容
+d647ebc docs(jinyiwei): 开工前置先判系统
+
+## 服务侧
+/v1/sync/status:
+  freshness=stale, behind=true, entries=151,
+  consecutive_failures=108 -> 109,
+  last_success_at=2026-11-25 12:55:05,
+  last_error="ff-only 失败（本地有分叉或保护分支）：fatal: Not possible to fast-forward, aborting."
+
+## 修复
+git fetch origin main
+git reset --hard origin/main
+git clean -fdq
+-> HEAD=b8c577f
+
+## 修复后
+freshness=fresh, behind=false, entries=187,
+indexed_commit=source_commit=b8c577f, consecutive_failures=0

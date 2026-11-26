@@ -1,0 +1,26 @@
+# 8091 检索的词法限制（2026-11-26 实测）
+
+## 代码证据
+arkks/sqlite_source.py:250
+    if len(text) >= 3:
+        ... FTS5 MATCH (tokenize='trigram') ...
+    except:
+        log.info("FTS MATCH 失败，退到 LIKE")
+
+arkks/sqlite_source.py:3
+    真实 schema 未固化（409 documents / 7514 chunks / FTS5 trigram）
+
+## 查询实测（counts = ark-kb / kb.sqlite）
+音量边界   count=10  {ark-kb:0, kb.sqlite:10}
+音量       count=11  {ark-kb:1, kb.sqlite:10}
+volume     count=12  {ark-kb:2, kb.sqlite:10}
+volumeLevel count=2  {ark-kb:2, kb.sqlite:0}
+唤醒       count=8   {ark-kb:3, kb.sqlite:5}
+唤醒词     有命中    body 为原始 chunk（含面包屑与 markdown）
+误唤醒     count=10  {ark-kb:0, kb.sqlite:10}
+wake       count=18  {ark-kb:8, kb.sqlite:10}
+
+## 结论
+- trigram 需要 >=3 个字符才能构成索引项，中文双字词退化到 LIKE 全表扫描
+- 中文双字词（唤醒/音量/烧录）命中率显著低于三字词（误唤醒/唤醒词）
+- 英文术语（volume/volumeLevel）命中优于中文同义词，导致"中文搜不到英文写的知识"

@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-capability",
-  "generated_at": "2026-11-26T08:03:47Z",
+  "generated_at": "2026-11-26T12:32:37Z",
   "keys": {
     "070200duya上下电压测": [
       "kb-knowledge-88c26f79e24e"
@@ -30,6 +30,12 @@
     "7z": [
       "kb-knowledge-2916d95fae4c",
       "kb-knowledge-e8f95404834d"
+    ],
+    "8091": [
+      "kb-bug-51037bf99028",
+      "kb-bug-7f09f331cf3f",
+      "kb-bug-93f1ecf49a4b",
+      "kb-knowledge-c9ba6a9bee64"
     ],
     "8hstress": [
       "kb-bug-241022256518",
@@ -65,6 +71,10 @@
     ],
     "apache24": [
       "kb-knowledge-9c32a51b95e0"
+    ],
+    "api": [
+      "kb-bug-7f09f331cf3f",
+      "kb-knowledge-c9ba6a9bee64"
     ],
     "apitest": [
       "kb-knowledge-a3f57e355bd0"
@@ -368,8 +378,14 @@
       "kb-method-331aa77b4b97",
       "kb-method-582ed26652fc"
     ],
+    "claim": [
+      "kb-knowledge-c9ba6a9bee64"
+    ],
     "controlplane": [
       "kb-knowledge-263318a6f30a"
+    ],
+    "crash0x30": [
+      "kb-method-62b4b75074db"
     ],
     "crashbudgetstop": [
       "kb-bug-241022256518",
@@ -386,6 +402,9 @@
       "kb-knowledge-6d9e826a7340",
       "kb-method-28ac45deffcb",
       "kb-run-1d34ab37f6b5"
+    ],
+    "csk3022": [
+      "kb-method-62b4b75074db"
     ],
     "csk3022reference": [
       "kb-knowledge-6a7f2e762b40",
@@ -488,6 +507,9 @@
     "docs": [
       "kb-knowledge-cd7857c9f72e"
     ],
+    "documents": [
+      "kb-bug-7f09f331cf3f"
+    ],
     "dryrun": [
       "kb-bug-cdb93160a496"
     ],
@@ -522,6 +544,9 @@
     "falsepositive": [
       "kb-bug-a9e3072fbaa0",
       "kb-bug-aaacbd2d3429"
+    ],
+    "ffonly": [
+      "kb-bug-93f1ecf49a4b"
     ],
     "fieldsurvey": [
       "kb-knowledge-00d4164803ec",
@@ -626,11 +651,17 @@
       "kb-knowledge-feb0bf5cd480",
       "kb-knowledge-ffe1f7824254"
     ],
+    "fts5": [
+      "kb-bug-51037bf99028"
+    ],
     "gbk": [
       "kb-bug-1b7861b4d79f"
     ],
     "gegeikun2yearshalf": [
       "kb-knowledge-a7d1ddac143c"
+    ],
+    "git": [
+      "kb-bug-93f1ecf49a4b"
     ],
     "handles": [
       "kb-knowledge-158d1416a657"
@@ -837,6 +868,12 @@
       "kb-run-b617d06cf033",
       "kb-run-c4408aab0464",
       "kb-run-c821d773a205"
+    ],
+    "noahsarkknowledgeservice": [
+      "kb-bug-51037bf99028",
+      "kb-bug-7f09f331cf3f",
+      "kb-bug-93f1ecf49a4b",
+      "kb-knowledge-c9ba6a9bee64"
     ],
     "noahsarkreferencemethods": [
       "kb-method-10c162c0755b",
@@ -1380,6 +1417,10 @@
     "scopeproductprofile": [
       "kb-knowledge-6a7f2e762b40"
     ],
+    "search": [
+      "kb-bug-51037bf99028",
+      "kb-knowledge-c9ba6a9bee64"
+    ],
     "searchprojectfirst": [
       "kb-method-cad0322932ad"
     ],
@@ -1406,6 +1447,9 @@
       "kb-knowledge-54293a841357",
       "kb-knowledge-b38a78002656"
     ],
+    "snippet": [
+      "kb-knowledge-c9ba6a9bee64"
+    ],
     "snmp": [
       "kb-knowledge-41efd9dfeac3"
     ],
@@ -1430,8 +1474,14 @@
       "kb-run-3228baa6c3f6",
       "kb-run-96ecdf985bf1"
     ],
+    "stale": [
+      "kb-bug-93f1ecf49a4b"
+    ],
     "subsystems": [
       "kb-knowledge-59342cda5c78"
+    ],
+    "sync": [
+      "kb-bug-93f1ecf49a4b"
     ],
     "tasktree": [
       "kb-bug-a9e3072fbaa0"
@@ -1535,6 +1585,9 @@
       "kb-run-3bb39adcf103",
       "kb-run-3d971a515eae"
     ],
+    "trigram": [
+      "kb-bug-51037bf99028"
+    ],
     "trisolaris": [
       "kb-knowledge-736f257cabd5"
     ],
@@ -1546,6 +1599,9 @@
     ],
     "unicodeerror": [
       "kb-bug-1b7861b4d79f"
+    ],
+    "urlencode": [
+      "kb-bug-7f09f331cf3f"
     ],
     "usageplaninput": [
       "kb-method-04febec438d3",
@@ -1615,8 +1671,14 @@
       "kb-knowledge-5b92a7b0c5d9",
       "kb-run-3bb39adcf103"
     ],
+    "volumelevel": [
+      "kb-method-62b4b75074db"
+    ],
     "volumemarkerstriplet": [
       "kb-knowledge-1e05d7a0e8f6"
+    ],
+    "volumeset": [
+      "kb-method-62b4b75074db"
     ],
     "vprefix": [
       "kb-bug-aaacbd2d3429"
@@ -1700,6 +1762,9 @@
     "zhsh": [
       "kb-knowledge-7a65fd7d0e57"
     ],
+    "中文分词": [
+      "kb-bug-51037bf99028"
+    ],
     "体积门禁": [
       "kb-knowledge-49d383c0b8a1"
     ],
@@ -1731,6 +1796,9 @@
       "kb-knowledge-72b7856e1559",
       "kb-knowledge-f23119d4a433"
     ],
+    "测试方案": [
+      "kb-method-62b4b75074db"
+    ],
     "烧录": [
       "kb-knowledge-f23119d4a433"
     ],
@@ -1758,6 +1826,9 @@
       "kb-knowledge-72b7856e1559",
       "kb-knowledge-d81c3d1877cc",
       "kb-knowledge-f23119d4a433"
+    ],
+    "音量边界": [
+      "kb-method-62b4b75074db"
     ]
   }
 }
