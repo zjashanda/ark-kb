@@ -1,0 +1,24 @@
+{
+  "schema": "run.receipt.v1",
+  "run_id": "inventory-20261126-csk3022-reference",
+  "task": "CSK3022项目测试知识参考画像沉淀",
+  "skill": "ark-kb",
+  "skill_version": "2.6.5",
+  "scope": {"device": "CSK3022好太太晾衣机", "project": "csk3022-reference", "firmware": null, "platform": "repository-reference"},
+  "result": "needs_review",
+  "totals": {"lessons": 3, "source_reports": 2},
+  "failures": [],
+  "bugs_found": [],
+  "evidence_dir": "D:/workstation/quattro/data/remote-repos/zjashanda-20261125/reports",
+  "evidence_sha256": ["d4b2fbb55949264f72afa76c85178f6cea64d439a332c6faa6ba873489500cf8", "ab45b3e688d3b94f12ee0cccffa82d6ddae6acd12cbac9fb4acdc8fa56c69ae6"],
+  "evidence_files": [{"path": "project-inventory.md", "sha256": "d4b2fbb55949264f72afa76c85178f6cea64d439a332c6faa6ba873489500cf8"}, {"path": "knowledge-inventory.md", "sha256": "ab45b3e688d3b94f12ee0cccffa82d6ddae6acd12cbac9fb4acdc8fa56c69ae6"}],
+  "lessons": [
+    {"type": "method", "title": "CSK3022 主动被动协议 ready与心跳 先建立设备状态再测命令", "claim": "CSK3022可参考先完成 MCU ready、心跳和品牌应答闭环，再发送主动命令并等待被动回包；协议原始帧、回包和设备动作需同时留证。", "confidence": "medium", "tags": ["usage:reference", "usage:plan-input", "reuse:cross-project", "project:csk3022", "chip:csk3022", "capability:protocol", "capability:serial", "test-type:active-passive", "needs-confirmation"]},
+    {"type": "method", "title": "CSK3022 音量边界 最大最小音量 双向命令与播报保持验证", "claim": "CSK3022资料可作为最大/最小音量边界测试参考，需分别核对主动命令、被动响应、播报 ID、边界保持和越界行为；这些具体值不能外推到其他项目。", "confidence": "low", "tags": ["usage:reference", "project:csk3022", "chip:csk3022", "capability:volume", "test-type:boundary", "evidence:repository", "needs-confirmation"]},
+    {"type": "knowledge", "title": "CSK3022 播报与协议 命令闭环 具体 ID按项目profile隔离", "claim": "CSK3022项目包含命令词、音量和播报 ID 资料，可用于生成用例结构和取证清单；播报 ID、协议帧和端口只能在该产品及固件 profile 内使用。", "confidence": "low", "tags": ["usage:reference", "project:csk3022", "chip:csk3022", "capability:tts", "capability:protocol", "scope:product-profile", "needs-confirmation"]}
+  ],
+  "confidence": "medium",
+  "started_at": "2026-11-26T09:36:00Z",
+  "ended_at": "2026-11-26T09:43:00Z",
+  "notes": "CSK3022项目经验候选条目，不把具体协议值升级为通用芯片知识。"
+}

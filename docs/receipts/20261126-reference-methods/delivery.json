@@ -1,0 +1,56 @@
+{
+  "schema": "ark.delivery.v1",
+  "run_id": "inventory-20261126-reference-methods",
+  "idempotency_key": "089099ef4e0d0e604f16613c2d198ccd1a33667b4e5645fac82d9c405b555f31",
+  "archive_status": "pending",
+  "kb_ingest_status": "recorded",
+  "kb_entry_ids": [
+    "kb-method-10c162c0755b",
+    "kb-method-2852c7325db9",
+    "kb-method-2ce234d14b3c",
+    "kb-method-629cd23d1714",
+    "kb-method-6d504de99090",
+    "kb-method-a7d13b47c68b",
+    "kb-method-a8d4b386c8b3",
+    "kb-method-b8df276b901e",
+    "kb-method-cad0322932ad",
+    "kb-run-8e3127c7cb77"
+  ],
+  "kb_query_back_status": "pass",
+  "retry": {
+    "attempts": 0,
+    "last_error": ""
+  },
+  "updated_at": "2026-11-26 10:54:21",
+  "dims": {
+    "capability": [],
+    "project": "NoahsArk-reference-methods",
+    "device": null,
+    "firmware": null,
+    "profile": "",
+    "skill": "ark-kb"
+  },
+  "kb_query_back_at": "2026-11-26 10:54:21",
+  "kb_query_back_hits": [
+    "kb-method-10c162c0755b",
+    "kb-method-2852c7325db9",
+    "kb-method-2ce234d14b3c",
+    "kb-method-629cd23d1714",
+    "kb-method-6d504de99090",
+    "kb-method-a7d13b47c68b",
+    "kb-method-a8d4b386c8b3",
+    "kb-method-b8df276b901e",
+    "kb-method-cad0322932ad",
+    "kb-run-8e3127c7cb77",
+    "kb-run-c4408aab0464",
+    "kb-method-2dc428e31410",
+    "kb-run-b617d06cf033",
+    "kb-run-c821d773a205",
+    "kb-run-3839715d5592",
+    "kb-bug-7a4682a3b07c",
+    "kb-knowledge-47195fbf0fec",
+    "kb-knowledge-6a7f2e762b40",
+    "kb-knowledge-9142c79255dc",
+    "kb-method-331aa77b4b97"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "run.receipt.v1",
+  "run_id": "inventory-20261126-csk3021-reference",
+  "task": "CSK3021项目测试知识参考画像沉淀",
+  "skill": "ark-kb",
+  "skill_version": "2.6.5",
+  "scope": {"device": "CSK3021设备族", "project": "csk3021-reference", "firmware": null, "platform": "repository-reference"},
+  "result": "needs_review",
+  "totals": {"lessons": 2, "source_reports": 2},
+  "failures": [],
+  "bugs_found": [],
+  "evidence_dir": "D:/workstation/quattro/data/remote-repos/zjashanda-20261125/reports",
+  "evidence_sha256": ["d4b2fbb55949264f72afa76c85178f6cea64d439a332c6faa6ba873489500cf8", "ab45b3e688d3b94f12ee0cccffa82d6ddae6acd12cbac9fb4acdc8fa56c69ae6"],
+  "evidence_files": [{"path": "project-inventory.md", "sha256": "d4b2fbb55949264f72afa76c85178f6cea64d439a332c6faa6ba873489500cf8"}, {"path": "knowledge-inventory.md", "sha256": "ab45b3e688d3b94f12ee0cccffa82d6ddae6acd12cbac9fb4acdc8fa56c69ae6"}],
+  "lessons": [
+    {"type": "method", "title": "CSK3021 语音验证 配置清理与边界控制 先建干净状态再验证", "claim": "CSK3021项目可参考烧录前清理历史配置、启动后读取运行配置、语音注册完成后清理配置以及 special 控制词与普通词分离验证的方案结构。", "confidence": "medium", "tags": ["usage:reference", "usage:plan-input", "project:csk3021", "chip:csk3021", "capability:voice", "capability:configuration", "test-type:state-cleanup", "needs-confirmation"]},
+    {"type": "knowledge", "title": "CSK3021 边界验证 wakeTimeout 左边界 仅验证启动和超时链路", "claim": "CSK3021资料中包含 wakeTimeout<=1 的左边界验证思路；该边界只适合验证启动、日志、协议和唤醒超时链路，不能自动外推为完整功能通过。", "confidence": "low", "tags": ["usage:reference", "project:csk3021", "chip:csk3021", "capability:wake-recognition", "test-type:boundary", "evidence:repository", "needs-confirmation"]}
+  ],
+  "confidence": "medium",
+  "started_at": "2026-11-26T09:29:00Z",
+  "ended_at": "2026-11-26T09:35:00Z",
+  "notes": "项目经验候选条目，具体 profile、固件和协议尚未在本轮现场验证。"
+}
