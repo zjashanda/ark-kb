@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-skill",
-  "generated_at": "2026-11-26T12:32:37Z",
+  "generated_at": "2026-11-26T13:00:51Z",
   "keys": {
     "arkkb": [
       "kb-bug-7a4682a3b07c",
@@ -106,6 +106,7 @@
       "kb-knowledge-c9ba6a9bee64",
       "kb-method-0205df2c95f8",
       "kb-method-62b4b75074db",
+      "kb-method-6afd289b08ff",
       "kb-method-9b11d61e6bed",
       "kb-run-42681662dc2c"
     ],

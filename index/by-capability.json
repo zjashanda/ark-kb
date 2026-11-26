@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-capability",
-  "generated_at": "2026-11-26T12:32:37Z",
+  "generated_at": "2026-11-26T13:00:51Z",
   "keys": {
     "070200duya上下电压测": [
       "kb-knowledge-88c26f79e24e"
@@ -381,6 +381,9 @@
     "claim": [
       "kb-knowledge-c9ba6a9bee64"
     ],
+    "commissioning": [
+      "kb-method-6afd289b08ff"
+    ],
     "controlplane": [
       "kb-knowledge-263318a6f30a"
     ],
@@ -758,6 +761,9 @@
     "marstoolchain": [
       "kb-knowledge-44439c2ad1db"
     ],
+    "maxruns": [
+      "kb-method-6afd289b08ff"
+    ],
     "md5": [
       "kb-knowledge-368ec0d51d2c"
     ],
@@ -868,6 +874,9 @@
       "kb-run-b617d06cf033",
       "kb-run-c4408aab0464",
       "kb-run-c821d773a205"
+    ],
+    "noahsarkcommissioning": [
+      "kb-method-6afd289b08ff"
     ],
     "noahsarkknowledgeservice": [
       "kb-bug-51037bf99028",
@@ -1765,6 +1774,9 @@
     "中文分词": [
       "kb-bug-51037bf99028"
     ],
+    "人工授权": [
+      "kb-method-6afd289b08ff"
+    ],
     "体积门禁": [
       "kb-knowledge-49d383c0b8a1"
     ],
@@ -1800,7 +1812,8 @@
       "kb-method-62b4b75074db"
     ],
     "烧录": [
-      "kb-knowledge-f23119d4a433"
+      "kb-knowledge-f23119d4a433",
+      "kb-method-6afd289b08ff"
     ],
     "盘根散落文件d": [
       "kb-knowledge-09b57b2851ef",
@@ -1826,6 +1839,9 @@
       "kb-knowledge-72b7856e1559",
       "kb-knowledge-d81c3d1877cc",
       "kb-knowledge-f23119d4a433"
+    ],
+    "配额": [
+      "kb-method-6afd289b08ff"
     ],
     "音量边界": [
       "kb-method-62b4b75074db"
