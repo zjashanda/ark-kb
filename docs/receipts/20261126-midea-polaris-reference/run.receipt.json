@@ -1,0 +1,24 @@
+{
+  "schema": "run.receipt.v1",
+  "run_id": "inventory-20261126-midea-polaris-reference",
+  "task": "美的北极星项目测试知识参考画像沉淀",
+  "skill": "ark-kb",
+  "skill_version": "2.6.5",
+  "scope": {"device": "Midea Polaris FA2 / VenusWS63 / CSKWB01", "project": "midea-polaris-reference", "firmware": null, "platform": "repository-reference"},
+  "result": "needs_review",
+  "totals": {"lessons": 3, "source_reports": 2},
+  "failures": [],
+  "bugs_found": [],
+  "evidence_dir": "D:/workstation/quattro/data/remote-repos/zjashanda-20261125/reports",
+  "evidence_sha256": ["d4b2fbb55949264f72afa76c85178f6cea64d439a332c6faa6ba873489500cf8", "ab45b3e688d3b94f12ee0cccffa82d6ddae6acd12cbac9fb4acdc8fa56c69ae6"],
+  "evidence_files": [{"path": "project-inventory.md", "sha256": "d4b2fbb55949264f72afa76c85178f6cea64d439a332c6faa6ba873489500cf8"}, {"path": "knowledge-inventory.md", "sha256": "ab45b3e688d3b94f12ee0cccffa82d6ddae6acd12cbac9fb4acdc8fa56c69ae6"}],
+  "lessons": [
+    {"type": "knowledge", "title": "美的 Polaris 语音命令 反馈链路 TTS空URL与执行器反馈分段归因", "claim": "美的/北极星项目的语音命令测试应分别保留识别、控制回包、TTS 响应和执行器反馈证据；TTS 空 URL、蜂鸣缺失或执行器无反馈不能直接归因于识别失败。", "confidence": "medium", "tags": ["usage:reference", "project:midea-polaris", "product:fa2", "product:venusws63", "capability:voice", "capability:attribution", "needs-confirmation"]},
+    {"type": "method", "title": "美的 Polaris 语音测试 事件链 从ready到反馈闭环验证", "claim": "可参考 Polaris 的 ready、唤醒、命令、协议事件、播报和执行器反馈闭环设计生成测试方案；具体协议、端口、固件和 marker 必须绑定当前 profile。", "confidence": "medium", "tags": ["usage:reference", "usage:plan-input", "reuse:cross-project", "project:midea-polaris", "capability:voice", "test-type:event-chain", "needs-confirmation"]},
+    {"type": "knowledge", "title": "美的 Polaris 设备验证 真机执行 串口电源网络与结果证据分层", "claim": "美的真机验证可参考串口、电源、网络、批量用例和 trace 分层组织，但节点端口和设备能力必须执行前重新枚举并绑定到当前项目 profile。", "confidence": "medium", "tags": ["usage:reference", "project:midea-polaris", "capability:device-validation", "capability:preflight", "needs-confirmation"]}
+  ],
+  "confidence": "medium",
+  "started_at": "2026-11-26T09:21:00Z",
+  "ended_at": "2026-11-26T09:28:00Z",
+  "notes": "项目仓库参考画像，不代表当前固件或真机已经验证。"
+}

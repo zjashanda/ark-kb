@@ -1,0 +1,23 @@
+{
+  "schema": "run.receipt.v1",
+  "run_id": "inventory-20261126-csk5062-xiaodu-reference",
+  "task": "CSK5062小度风扇项目测试知识参考画像沉淀",
+  "skill": "ark-kb",
+  "skill_version": "2.6.5",
+  "scope": {"device": "CSK5062小度风扇", "project": "csk5062-xiaodu-fan-reference", "firmware": null, "platform": "repository-reference"},
+  "result": "needs_review",
+  "totals": {"lessons": 2, "source_reports": 2},
+  "failures": [],
+  "bugs_found": [],
+  "evidence_dir": "D:/workstation/quattro/data/remote-repos/zjashanda-20261125/reports",
+  "evidence_sha256": ["d4b2fbb55949264f72afa76c85178f6cea64d439a332c6faa6ba873489500cf8", "ab45b3e688d3b94f12ee0cccffa82d6ddae6acd12cbac9fb4acdc8fa56c69ae6"],
+  "evidence_files": [{"path": "project-inventory.md", "sha256": "d4b2fbb55949264f72afa76c85178f6cea64d439a332c6faa6ba873489500cf8"}, {"path": "knowledge-inventory.md", "sha256": "ab45b3e688d3b94f12ee0cccffa82d6ddae6acd12cbac9fb4acdc8fa56c69ae6"}],
+  "lessons": [
+    {"type": "method", "title": "CSK5062 小度风扇 语音与协议 验证池 先登记语料和协议证据", "claim": "小度风扇项目可参考先登记需求词表、语音注册、串口采集、主动/被动帧和完整套件，再按命令、播报、状态和执行器反馈组织用例。", "confidence": "medium", "tags": ["usage:reference", "usage:plan-input", "reuse:cross-project", "project:csk5062-xiaodu-fan", "product:xiaodu-fan", "chip:csk5062", "capability:voice", "capability:protocol", "needs-confirmation"]},
+    {"type": "knowledge", "title": "CSK5062 小度风扇 芯片相同 不能复用杜亚窗帘协议", "claim": "CSK5062小度风扇和CSK5062杜亚窗帘必须作为两个独立产品画像；芯片相同不能推出协议、端口、播报 ID、状态机或阈值相同。", "confidence": "high", "tags": ["usage:reference", "project:csk5062-xiaodu-fan", "product:xiaodu-fan", "chip:csk5062", "isolation:product", "warning:cross-project-protocol", "needs-confirmation"]}
+  ],
+  "confidence": "medium",
+  "started_at": "2026-11-26T09:44:00Z",
+  "ended_at": "2026-11-26T09:50:00Z",
+  "notes": "小度风扇与杜亚窗帘严格分开沉淀。"
+}

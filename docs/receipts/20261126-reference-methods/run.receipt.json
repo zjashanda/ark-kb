@@ -1,0 +1,41 @@
+{
+  "schema": "run.receipt.v1",
+  "run_id": "inventory-20261126-reference-methods",
+  "task": "远程项目测试知识提取：通用方法与跨项目复用规则",
+  "skill": "ark-kb",
+  "skill_version": "2.6.5",
+  "scope": {
+    "device": null,
+    "project": "NoahsArk-reference-methods",
+    "firmware": null,
+    "platform": "offline-repository-analysis"
+  },
+  "result": "needs_review",
+  "totals": {"lessons": 9, "projects_reviewed": 7, "source_reports": 2},
+  "failures": [],
+  "bugs_found": [],
+  "evidence_dir": "D:/workstation/quattro/data/remote-repos/zjashanda-20261125/reports",
+  "evidence_sha256": [
+    "d4b2fbb55949264f72afa76c85178f6cea64d439a332c6faa6ba873489500cf8",
+    "ab45b3e688d3b94f12ee0cccffa82d6ddae6acd12cbac9fb4acdc8fa56c69ae6"
+  ],
+  "evidence_files": [
+    {"path": "project-inventory.md", "sha256": "d4b2fbb55949264f72afa76c85178f6cea64d439a332c6faa6ba873489500cf8"},
+    {"path": "knowledge-inventory.md", "sha256": "ab45b3e688d3b94f12ee0cccffa82d6ddae6acd12cbac9fb4acdc8fa56c69ae6"}
+  ],
+  "lessons": [
+    {"type": "method", "title": "通用 测试方案 跨项目复用 按功能召回而非按芯片限制", "claim": "同功能测试方案、验证思路和证据组织方法可以跨项目、跨芯片作为参考召回；项目协议、端口、播报 ID、阈值和固件事实必须在当前项目中重新确认。", "confidence": "medium", "tags": ["usage:reference", "usage:plan-input", "reuse:cross-project", "scope:function", "needs-confirmation", "capability:test-plan"]},
+    {"type": "method", "title": "通用 测试方案 检索排序 当前项目优先同时保留跨项目参考", "claim": "检索应按当前项目/产品精确结果、同芯片参考、同功能其他项目、全局通用方法分层排序，不能因为当前项目没有条目就放弃跨项目验证思路。", "confidence": "medium", "tags": ["usage:reference", "reuse:cross-project", "search:wide-recall", "search:project-first", "needs-confirmation"]},
+    {"type": "method", "title": "通用 最大音量 边界测试 从默认值逐步探测并验证持久化", "claim": "最大音量应从默认音量逐步向上探测，记录每步命令、原始协议回包、播报行为和边界保持；若需求包含掉电保持，还必须看到保存完成证据并在重启后复核，不能只读取 raw 音量值。", "confidence": "medium", "tags": ["usage:reference", "reuse:cross-project", "capability:volume", "test-type:boundary", "needs-confirmation"]},
+    {"type": "method", "title": "通用 主动被动协议 协议闭环 先抓原始帧再判回包", "claim": "主动帧和被动回包应先保存原始串口帧，再结合 ready 状态、状态变化、回包时序和设备动作判定；不能只依据日志中的 send/receive 文本，也不能只看单侧帧。", "confidence": "medium", "tags": ["usage:reference", "reuse:cross-project", "capability:serial", "capability:protocol", "test-type:active-passive", "needs-confirmation"]},
+    {"type": "method", "title": "通用 语音命令 失败归因 识别控制播报执行四段分判", "claim": "语音命令应拆分为 recognition、control_reply、tts_response、actuator_feedback 四段分别判定；控制回包或 TTS URL 为空时不能直接把整条用例归因为识别失败。", "confidence": "medium", "tags": ["usage:reference", "reuse:cross-project", "capability:voice", "test-type:attribution", "needs-confirmation"]},
+    {"type": "method", "title": "通用 语音测试 播报链路 播放器生命周期与设备反馈分离", "claim": "播放器 start/playing/complete 只能证明播放链路状态，不能单独证明设备功能成功；功能结论仍需协议、状态或执行器反馈证据支持。", "confidence": "medium", "tags": ["usage:reference", "reuse:cross-project", "capability:playback", "capability:voice", "needs-confirmation"]},
+    {"type": "method", "title": "通用 串口测试 端口映射 每个节点执行前重新枚举", "claim": "同编号 COM 在不同节点可能对应不同物理口，执行前应完成设备枚举、角色识别和 port-map 快照，不能跨节点复用端口号。", "confidence": "medium", "tags": ["usage:reference", "reuse:cross-project", "capability:serial", "test-type:preflight", "needs-confirmation"]},
+    {"type": "method", "title": "通用 烧录验收 启动健康 烧录成功与启动成功分开判定", "claim": "烧录工具成功、上下电回执成功不等于设备启动成功；必须结合启动串口实际字节、版本行和健康标记单独判定，零字节启动证据不能被烧录结果覆盖。", "confidence": "medium", "tags": ["usage:reference", "reuse:cross-project", "capability:burn", "capability:boot", "test-type:acceptance", "needs-confirmation"]},
+    {"type": "method", "title": "通用 结果判定 证据链 PASS FAIL BLOCKED NEEDS_REVIEW 分离", "claim": "工具故障、环境阻塞、证据缺失和设备功能失败必须分开记录；参考知识只能用于生成方案和取证清单，不能直接驱动 PASS、stop rule 或恢复动作。", "confidence": "medium", "tags": ["usage:reference", "usage:plan-input", "reuse:cross-project", "capability:verdict", "test-type:evidence", "needs-confirmation"]}
+  ],
+  "confidence": "medium",
+  "started_at": "2026-11-26T09:00:00Z",
+  "ended_at": "2026-11-26T09:20:00Z",
+  "notes": "来源为远程仓库项目盘点和知识提取报告；未进行本轮真机复测，条目初始保持 pending。"
+}

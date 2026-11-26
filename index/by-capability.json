@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-capability",
-  "generated_at": "2026-11-23T11:59:45Z",
+  "generated_at": "2026-11-26T02:47:41Z",
   "keys": {
     "070200duya上下电压测": [
       "kb-knowledge-88c26f79e24e"
@@ -115,6 +115,68 @@
     "burnsinglechipvenusa": [
       "kb-knowledge-4871f3474f8c"
     ],
+    "capabilityactuator": [
+      "kb-method-04febec438d3"
+    ],
+    "capabilityasr": [
+      "kb-knowledge-32faf5587ad3",
+      "kb-knowledge-4034f5eb0971",
+      "kb-method-10c162c0755b",
+      "kb-method-2852c7325db9",
+      "kb-method-2ce234d14b3c",
+      "kb-method-50c9cc438db7",
+      "kb-method-629cd23d1714",
+      "kb-method-6d504de99090",
+      "kb-method-a7d13b47c68b",
+      "kb-method-a8d4b386c8b3",
+      "kb-method-b8df276b901e",
+      "kb-method-cad0322932ad",
+      "kb-run-8e3127c7cb77",
+      "kb-run-a620317a2fd2"
+    ],
+    "capabilityattribution": [
+      "kb-knowledge-32faf5587ad3"
+    ],
+    "capabilityboot": [
+      "kb-method-629cd23d1714"
+    ],
+    "capabilityburn": [
+      "kb-knowledge-47195fbf0fec",
+      "kb-knowledge-6d9e826a7340",
+      "kb-method-04febec438d3",
+      "kb-method-10c162c0755b",
+      "kb-method-2852c7325db9",
+      "kb-method-28ac45deffcb",
+      "kb-method-2ce234d14b3c",
+      "kb-method-582ed26652fc",
+      "kb-method-629cd23d1714",
+      "kb-method-6d504de99090",
+      "kb-method-a7d13b47c68b",
+      "kb-method-a8d4b386c8b3",
+      "kb-method-b8df276b901e",
+      "kb-method-cad0322932ad",
+      "kb-run-1d34ab37f6b5",
+      "kb-run-5240ef73f295",
+      "kb-run-8e3127c7cb77"
+    ],
+    "capabilityconfiguration": [
+      "kb-method-28ac45deffcb"
+    ],
+    "capabilitycrash": [
+      "kb-method-10c162c0755b",
+      "kb-method-2852c7325db9",
+      "kb-method-2ce234d14b3c",
+      "kb-method-629cd23d1714",
+      "kb-method-6d504de99090",
+      "kb-method-a7d13b47c68b",
+      "kb-method-a8d4b386c8b3",
+      "kb-method-b8df276b901e",
+      "kb-method-cad0322932ad",
+      "kb-run-8e3127c7cb77"
+    ],
+    "capabilitydevicevalidation": [
+      "kb-knowledge-4034f5eb0971"
+    ],
     "capabilityknowledgeservice": [
       "kb-bug-7a4682a3b07c",
       "kb-method-2dc428e31410",
@@ -123,14 +185,185 @@
       "kb-run-c4408aab0464",
       "kb-run-c821d773a205"
     ],
+    "capabilityofflinevoice": [
+      "kb-method-04febec438d3"
+    ],
+    "capabilityota": [
+      "kb-method-10c162c0755b",
+      "kb-method-2852c7325db9",
+      "kb-method-2ce234d14b3c",
+      "kb-method-629cd23d1714",
+      "kb-method-6d504de99090",
+      "kb-method-a7d13b47c68b",
+      "kb-method-a8d4b386c8b3",
+      "kb-method-b8df276b901e",
+      "kb-method-cad0322932ad",
+      "kb-run-8e3127c7cb77"
+    ],
     "capabilitypdupowercycle": [
       "kb-knowledge-41efd9dfeac3"
     ],
+    "capabilityplayback": [
+      "kb-method-10c162c0755b",
+      "kb-method-2852c7325db9",
+      "kb-method-2ce234d14b3c",
+      "kb-method-629cd23d1714",
+      "kb-method-6d504de99090",
+      "kb-method-a7d13b47c68b",
+      "kb-method-a8d4b386c8b3",
+      "kb-method-b8df276b901e",
+      "kb-method-cad0322932ad",
+      "kb-run-8e3127c7cb77"
+    ],
+    "capabilitypreflight": [
+      "kb-knowledge-4034f5eb0971"
+    ],
+    "capabilityprotocol": [
+      "kb-knowledge-47195fbf0fec",
+      "kb-knowledge-6a7f2e762b40",
+      "kb-method-10c162c0755b",
+      "kb-method-331aa77b4b97",
+      "kb-method-7a55ce606183"
+    ],
+    "capabilityrecording": [
+      "kb-knowledge-9142c79255dc",
+      "kb-method-331aa77b4b97",
+      "kb-run-1228458a8e3b"
+    ],
     "capabilityreset": [
-      "kb-knowledge-4871f3474f8c"
+      "kb-knowledge-32faf5587ad3",
+      "kb-knowledge-4034f5eb0971",
+      "kb-knowledge-4871f3474f8c",
+      "kb-method-10c162c0755b",
+      "kb-method-2852c7325db9",
+      "kb-method-2ce234d14b3c",
+      "kb-method-50c9cc438db7",
+      "kb-method-629cd23d1714",
+      "kb-method-6d504de99090",
+      "kb-method-a7d13b47c68b",
+      "kb-method-a8d4b386c8b3",
+      "kb-method-b8df276b901e",
+      "kb-method-cad0322932ad",
+      "kb-run-8e3127c7cb77",
+      "kb-run-a620317a2fd2"
+    ],
+    "capabilityrunner": [
+      "kb-knowledge-47195fbf0fec"
+    ],
+    "capabilityserial": [
+      "kb-knowledge-32faf5587ad3",
+      "kb-knowledge-4034f5eb0971",
+      "kb-knowledge-47195fbf0fec",
+      "kb-knowledge-6d9e826a7340",
+      "kb-knowledge-9142c79255dc",
+      "kb-method-04febec438d3",
+      "kb-method-10c162c0755b",
+      "kb-method-2852c7325db9",
+      "kb-method-28ac45deffcb",
+      "kb-method-2ce234d14b3c",
+      "kb-method-331aa77b4b97",
+      "kb-method-50c9cc438db7",
+      "kb-method-582ed26652fc",
+      "kb-method-629cd23d1714",
+      "kb-method-6d504de99090",
+      "kb-method-7a55ce606183",
+      "kb-method-a7d13b47c68b",
+      "kb-method-a8d4b386c8b3",
+      "kb-method-b8df276b901e",
+      "kb-method-cad0322932ad",
+      "kb-run-1228458a8e3b",
+      "kb-run-1d34ab37f6b5",
+      "kb-run-5240ef73f295",
+      "kb-run-8e3127c7cb77",
+      "kb-run-a620317a2fd2"
+    ],
+    "capabilitytestplan": [
+      "kb-method-6d504de99090"
+    ],
+    "capabilitytts": [
+      "kb-knowledge-32faf5587ad3",
+      "kb-knowledge-4034f5eb0971",
+      "kb-knowledge-47195fbf0fec",
+      "kb-knowledge-6a7f2e762b40",
+      "kb-knowledge-9142c79255dc",
+      "kb-method-04febec438d3",
+      "kb-method-10c162c0755b",
+      "kb-method-2852c7325db9",
+      "kb-method-2ce234d14b3c",
+      "kb-method-331aa77b4b97",
+      "kb-method-50c9cc438db7",
+      "kb-method-582ed26652fc",
+      "kb-method-629cd23d1714",
+      "kb-method-6d504de99090",
+      "kb-method-6d5f2638c113",
+      "kb-method-7a55ce606183",
+      "kb-method-a7d13b47c68b",
+      "kb-method-a8d4b386c8b3",
+      "kb-method-b8df276b901e",
+      "kb-method-cad0322932ad",
+      "kb-run-1228458a8e3b",
+      "kb-run-317fba704222",
+      "kb-run-5240ef73f295",
+      "kb-run-8e3127c7cb77",
+      "kb-run-a620317a2fd2"
+    ],
+    "capabilityverdict": [
+      "kb-method-a7d13b47c68b"
+    ],
+    "capabilityvoice": [
+      "kb-knowledge-32faf5587ad3",
+      "kb-method-2852c7325db9",
+      "kb-method-28ac45deffcb",
+      "kb-method-331aa77b4b97",
+      "kb-method-50c9cc438db7",
+      "kb-method-a8d4b386c8b3"
+    ],
+    "capabilityvolume": [
+      "kb-method-582ed26652fc",
+      "kb-method-6d5f2638c113",
+      "kb-method-b8df276b901e"
+    ],
+    "capabilitywakerecognition": [
+      "kb-knowledge-32faf5587ad3",
+      "kb-knowledge-4034f5eb0971",
+      "kb-knowledge-47195fbf0fec",
+      "kb-knowledge-6d9e826a7340",
+      "kb-method-04febec438d3",
+      "kb-method-10c162c0755b",
+      "kb-method-2852c7325db9",
+      "kb-method-28ac45deffcb",
+      "kb-method-2ce234d14b3c",
+      "kb-method-50c9cc438db7",
+      "kb-method-582ed26652fc",
+      "kb-method-629cd23d1714",
+      "kb-method-6d504de99090",
+      "kb-method-a7d13b47c68b",
+      "kb-method-a8d4b386c8b3",
+      "kb-method-b8df276b901e",
+      "kb-method-cad0322932ad",
+      "kb-run-1d34ab37f6b5",
+      "kb-run-5240ef73f295",
+      "kb-run-8e3127c7cb77",
+      "kb-run-a620317a2fd2"
     ],
     "ch344": [
       "kb-knowledge-99ced0adc4e3"
+    ],
+    "chipcsk3021": [
+      "kb-knowledge-6d9e826a7340",
+      "kb-method-28ac45deffcb"
+    ],
+    "chipcsk3022": [
+      "kb-knowledge-6a7f2e762b40",
+      "kb-method-6d5f2638c113",
+      "kb-method-7a55ce606183"
+    ],
+    "chipcsk5062": [
+      "kb-knowledge-47195fbf0fec",
+      "kb-knowledge-9142c79255dc",
+      "kb-method-04febec438d3",
+      "kb-method-331aa77b4b97",
+      "kb-method-582ed26652fc"
     ],
     "controlplane": [
       "kb-knowledge-263318a6f30a"
@@ -145,6 +378,28 @@
     ],
     "csk": [
       "kb-knowledge-f23119d4a433"
+    ],
+    "csk3021reference": [
+      "kb-knowledge-6d9e826a7340",
+      "kb-method-28ac45deffcb",
+      "kb-run-1d34ab37f6b5"
+    ],
+    "csk3022reference": [
+      "kb-knowledge-6a7f2e762b40",
+      "kb-method-6d5f2638c113",
+      "kb-method-7a55ce606183",
+      "kb-run-317fba704222"
+    ],
+    "csk5062duyacurtainreference": [
+      "kb-knowledge-47195fbf0fec",
+      "kb-method-04febec438d3",
+      "kb-method-582ed26652fc",
+      "kb-run-5240ef73f295"
+    ],
+    "csk5062xiaodufanreference": [
+      "kb-knowledge-9142c79255dc",
+      "kb-method-331aa77b4b97",
+      "kb-run-1228458a8e3b"
     ],
     "csk6": [
       "kb-bug-aaacbd2d3429",
@@ -242,6 +497,10 @@
     ],
     "evidencekeeping": [
       "kb-method-7675c53f29b4"
+    ],
+    "evidencerepository": [
+      "kb-knowledge-6d9e826a7340",
+      "kb-method-6d5f2638c113"
     ],
     "exit2": [
       "kb-bug-cdb93160a496"
@@ -411,6 +670,10 @@
     "invocationmissing": [
       "kb-bug-cdb93160a496"
     ],
+    "isolationproduct": [
+      "kb-knowledge-47195fbf0fec",
+      "kb-knowledge-9142c79255dc"
+    ],
     "jenkinswork": [
       "kb-knowledge-67fc2594f781",
       "kb-knowledge-76e83bb2a187",
@@ -471,6 +734,12 @@
     "mideacsk6wb01": [
       "kb-knowledge-b9b8093f628c"
     ],
+    "mideapolarisreference": [
+      "kb-knowledge-32faf5587ad3",
+      "kb-knowledge-4034f5eb0971",
+      "kb-method-50c9cc438db7",
+      "kb-run-a620317a2fd2"
+    ],
     "mideapost": [
       "kb-knowledge-82d350d32daa"
     ],
@@ -484,6 +753,30 @@
       "kb-knowledge-84602a2f32dc",
       "kb-method-c3adcba01df0",
       "kb-run-c4408aab0464"
+    ],
+    "needsconfirmation": [
+      "kb-knowledge-32faf5587ad3",
+      "kb-knowledge-4034f5eb0971",
+      "kb-knowledge-47195fbf0fec",
+      "kb-knowledge-6a7f2e762b40",
+      "kb-knowledge-6d9e826a7340",
+      "kb-knowledge-9142c79255dc",
+      "kb-method-04febec438d3",
+      "kb-method-10c162c0755b",
+      "kb-method-2852c7325db9",
+      "kb-method-28ac45deffcb",
+      "kb-method-2ce234d14b3c",
+      "kb-method-331aa77b4b97",
+      "kb-method-50c9cc438db7",
+      "kb-method-582ed26652fc",
+      "kb-method-629cd23d1714",
+      "kb-method-6d504de99090",
+      "kb-method-6d5f2638c113",
+      "kb-method-7a55ce606183",
+      "kb-method-a7d13b47c68b",
+      "kb-method-a8d4b386c8b3",
+      "kb-method-b8df276b901e",
+      "kb-method-cad0322932ad"
     ],
     "noah191": [
       "kb-knowledge-b05d900e1c6b"
@@ -516,6 +809,18 @@
       "kb-run-b617d06cf033",
       "kb-run-c4408aab0464",
       "kb-run-c821d773a205"
+    ],
+    "noahsarkreferencemethods": [
+      "kb-method-10c162c0755b",
+      "kb-method-2852c7325db9",
+      "kb-method-2ce234d14b3c",
+      "kb-method-629cd23d1714",
+      "kb-method-6d504de99090",
+      "kb-method-a7d13b47c68b",
+      "kb-method-a8d4b386c8b3",
+      "kb-method-b8df276b901e",
+      "kb-method-cad0322932ad",
+      "kb-run-8e3127c7cb77"
     ],
     "noretry": [
       "kb-method-7675c53f29b4"
@@ -602,6 +907,21 @@
       "kb-knowledge-4871f3474f8c",
       "kb-knowledge-99ced0adc4e3",
       "kb-method-c3adcba01df0"
+    ],
+    "productduyacurtain": [
+      "kb-knowledge-47195fbf0fec",
+      "kb-method-04febec438d3",
+      "kb-method-582ed26652fc"
+    ],
+    "productfa2": [
+      "kb-knowledge-32faf5587ad3"
+    ],
+    "productvenusws63": [
+      "kb-knowledge-32faf5587ad3"
+    ],
+    "productxiaodufan": [
+      "kb-knowledge-9142c79255dc",
+      "kb-method-331aa77b4b97"
     ],
     "profile": [
       "kb-bug-cdb93160a496"
@@ -762,6 +1082,24 @@
     "projectcontrolplane": [
       "kb-knowledge-263318a6f30a"
     ],
+    "projectcsk3021": [
+      "kb-knowledge-6d9e826a7340",
+      "kb-method-28ac45deffcb"
+    ],
+    "projectcsk3022": [
+      "kb-knowledge-6a7f2e762b40",
+      "kb-method-6d5f2638c113",
+      "kb-method-7a55ce606183"
+    ],
+    "projectcsk5062duyacurtain": [
+      "kb-knowledge-47195fbf0fec",
+      "kb-method-04febec438d3",
+      "kb-method-582ed26652fc"
+    ],
+    "projectcsk5062xiaodufan": [
+      "kb-knowledge-9142c79255dc",
+      "kb-method-331aa77b4b97"
+    ],
     "projectcskflashtest": [
       "kb-knowledge-4fd5f42ad8ac",
       "kb-knowledge-a21615df5eb0"
@@ -830,6 +1168,11 @@
     ],
     "projectmideacsk6wb01": [
       "kb-knowledge-b9b8093f628c"
+    ],
+    "projectmideapolaris": [
+      "kb-knowledge-32faf5587ad3",
+      "kb-knowledge-4034f5eb0971",
+      "kb-method-50c9cc438db7"
     ],
     "projectmideapost": [
       "kb-knowledge-82d350d32daa"
@@ -964,6 +1307,21 @@
     "retrievalfusion": [
       "kb-method-3ca9cffd32cc"
     ],
+    "reusecrossproject": [
+      "kb-method-04febec438d3",
+      "kb-method-10c162c0755b",
+      "kb-method-2852c7325db9",
+      "kb-method-2ce234d14b3c",
+      "kb-method-331aa77b4b97",
+      "kb-method-50c9cc438db7",
+      "kb-method-629cd23d1714",
+      "kb-method-6d504de99090",
+      "kb-method-7a55ce606183",
+      "kb-method-a7d13b47c68b",
+      "kb-method-a8d4b386c8b3",
+      "kb-method-b8df276b901e",
+      "kb-method-cad0322932ad"
+    ],
     "run": [
       "kb-run-3bb39adcf103",
       "kb-run-3d971a515eae"
@@ -979,6 +1337,18 @@
     ],
     "scanpenapitestmain": [
       "kb-knowledge-d133dabbd009"
+    ],
+    "scopefunction": [
+      "kb-method-6d504de99090"
+    ],
+    "scopeproductprofile": [
+      "kb-knowledge-6a7f2e762b40"
+    ],
+    "searchprojectfirst": [
+      "kb-method-cad0322932ad"
+    ],
+    "searchwiderecall": [
+      "kb-method-cad0322932ad"
     ],
     "serial": [
       "kb-method-660cafc58c2b"
@@ -1081,6 +1451,34 @@
       "kb-run-3228baa6c3f6",
       "kb-run-96ecdf985bf1"
     ],
+    "testtypeacceptance": [
+      "kb-method-629cd23d1714"
+    ],
+    "testtypeactivepassive": [
+      "kb-method-10c162c0755b",
+      "kb-method-7a55ce606183"
+    ],
+    "testtypeattribution": [
+      "kb-method-2852c7325db9"
+    ],
+    "testtypeboundary": [
+      "kb-knowledge-6d9e826a7340",
+      "kb-method-582ed26652fc",
+      "kb-method-6d5f2638c113",
+      "kb-method-b8df276b901e"
+    ],
+    "testtypeeventchain": [
+      "kb-method-50c9cc438db7"
+    ],
+    "testtypeevidence": [
+      "kb-method-a7d13b47c68b"
+    ],
+    "testtypepreflight": [
+      "kb-method-2ce234d14b3c"
+    ],
+    "testtypestatecleanup": [
+      "kb-method-28ac45deffcb"
+    ],
     "topology": [
       "kb-knowledge-84602a2f32dc",
       "kb-method-c3adcba01df0",
@@ -1105,6 +1503,40 @@
     ],
     "unicodeerror": [
       "kb-bug-1b7861b4d79f"
+    ],
+    "usageplaninput": [
+      "kb-method-04febec438d3",
+      "kb-method-28ac45deffcb",
+      "kb-method-331aa77b4b97",
+      "kb-method-50c9cc438db7",
+      "kb-method-582ed26652fc",
+      "kb-method-6d504de99090",
+      "kb-method-7a55ce606183",
+      "kb-method-a7d13b47c68b"
+    ],
+    "usagereference": [
+      "kb-knowledge-32faf5587ad3",
+      "kb-knowledge-4034f5eb0971",
+      "kb-knowledge-47195fbf0fec",
+      "kb-knowledge-6a7f2e762b40",
+      "kb-knowledge-6d9e826a7340",
+      "kb-knowledge-9142c79255dc",
+      "kb-method-04febec438d3",
+      "kb-method-10c162c0755b",
+      "kb-method-2852c7325db9",
+      "kb-method-28ac45deffcb",
+      "kb-method-2ce234d14b3c",
+      "kb-method-331aa77b4b97",
+      "kb-method-50c9cc438db7",
+      "kb-method-582ed26652fc",
+      "kb-method-629cd23d1714",
+      "kb-method-6d504de99090",
+      "kb-method-6d5f2638c113",
+      "kb-method-7a55ce606183",
+      "kb-method-a7d13b47c68b",
+      "kb-method-a8d4b386c8b3",
+      "kb-method-b8df276b901e",
+      "kb-method-cad0322932ad"
     ],
     "uutswitch1": [
       "kb-knowledge-4871f3474f8c"
@@ -1153,6 +1585,9 @@
       "kb-method-fd3858d4baad",
       "kb-run-3228baa6c3f6",
       "kb-run-96ecdf985bf1"
+    ],
+    "warningcrossprojectprotocol": [
+      "kb-knowledge-9142c79255dc"
     ],
     "wfburnsinglevenusa": [
       "kb-knowledge-4871f3474f8c"

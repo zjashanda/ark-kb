@@ -1,0 +1,50 @@
+{
+  "schema": "ark.delivery.v1",
+  "run_id": "inventory-20261126-csk5062-duya-reference",
+  "idempotency_key": "28f21b804161abcffa26a04d3de2b74ad480a31f06458910a1618b7c228816dc",
+  "archive_status": "pending",
+  "kb_ingest_status": "recorded",
+  "kb_entry_ids": [
+    "kb-knowledge-47195fbf0fec",
+    "kb-method-04febec438d3",
+    "kb-method-582ed26652fc",
+    "kb-run-5240ef73f295"
+  ],
+  "kb_query_back_status": "pass",
+  "retry": {
+    "attempts": 0,
+    "last_error": ""
+  },
+  "updated_at": "2026-11-26 10:54:20",
+  "dims": {
+    "capability": [],
+    "project": "csk5062-duya-curtain-reference",
+    "device": "CSK5062杜亚窗帘",
+    "firmware": null,
+    "profile": "",
+    "skill": "ark-kb"
+  },
+  "kb_query_back_at": "2026-11-26 10:54:20",
+  "kb_query_back_hits": [
+    "kb-knowledge-47195fbf0fec",
+    "kb-method-04febec438d3",
+    "kb-method-582ed26652fc",
+    "kb-run-5240ef73f295",
+    "kb-run-c4408aab0464",
+    "kb-method-2dc428e31410",
+    "kb-method-10c162c0755b",
+    "kb-method-2852c7325db9",
+    "kb-method-2ce234d14b3c",
+    "kb-method-629cd23d1714",
+    "kb-method-6d504de99090",
+    "kb-method-a7d13b47c68b",
+    "kb-method-a8d4b386c8b3",
+    "kb-method-b8df276b901e",
+    "kb-method-cad0322932ad",
+    "kb-run-8e3127c7cb77",
+    "kb-run-b617d06cf033",
+    "kb-run-c821d773a205",
+    "kb-run-3839715d5592",
+    "kb-bug-7a4682a3b07c"
+  ]
+}
