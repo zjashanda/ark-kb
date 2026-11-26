@@ -286,6 +286,42 @@ python -m lstest.scripts.longrun start --name ota --work-dir work --infinite --d
 - **长任务必须 `--detach`**：否则阻塞工具调用，任务被判卡死
 - **一轮一条命令**：用 `{round}` 占位，项目只实现「跑一轮」，循环交给引擎
 
+### 参数由智能体填写（强制）
+
+长跑参数不是固定的，**由你（智能体）根据任务目标填写**，规则如下：
+
+| 参数 | 怎么填 | 禁止 |
+|---|---|---|
+| `--rounds` | 目标次数只能来自 Issue 描述或用户明确指令 | 不得自行编造；缺失时先问，不要猜 |
+| `--duration` | 用户给时长时用（如 `4h`），与 rounds 二选一 | 不得同时给 rounds 和 duration |
+| `--infinite` | 只有用户明确要求“持续监控/不要停”才用 | 不得默认无限 |
+| `--milestone-every` | `max(10, 目标次数/10)`，让里程碑有节奏 | 不得省略（默认 50 可能整场只有一次） |
+| `--issue` | 必填本任务 Issue ID，里程碑回到任务 | 不得留空 |
+| `--detach` | 长任务必须加，立刻返回 pid | 不得省略（会阻塞工具调用） |
+| `--work-dir` | 固定任务目录下的 `work` | 不得写临时目录 |
+
+三档参考：
+
+```bash
+# 调试：1 轮，确认流程通
+--rounds 1
+
+# 短测：2-5 轮，可前台跑完
+--rounds 3
+
+# 压测：按目标次数，必须 detach + 里程碑 + issue
+--rounds 500 --milestone-every 50 --issue <issue-id> --detach
+```
+
+启动后必须做三件事：
+
+1. 立刻 `status` 回读，确认 `status=running` 且 `completed` 在增长
+2. 把实际参数写进 `plan.md` 与 `task.json` 的 `inputs`
+3. 收尾时汇总：总轮次、PASS/FAIL、每轮均耗时、异常次数
+
+反例（都会出问题）：省略 `--rounds` → 默认 1 轮，任务被误判完成；省略 `--issue` → 里程碑没人看见；
+省略 `--detach` → 工具调用阻塞，被判卡死；自己改目标次数 → 与 Issue 要求不符。
+
 ## 阶段性标记位复查（强制）
 
 每个阶段结束（首轮调试完成、每轮压测结束、任务收尾前）必须执行一次：
