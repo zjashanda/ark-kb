@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-device",
-  "generated_at": "2026-11-26T13:00:51Z",
+  "generated_at": "2026-11-27T05:45:18Z",
   "keys": {
     "agentlinux": [
       "kb-knowledge-60d65219fd43",
@@ -91,6 +91,9 @@
     ],
     "海信001": [
       "kb-knowledge-32a7e1e76fd0"
+    ],
+    "纯离线天猫精灵csk3022": [
+      "kb-knowledge-2d8442f3e20e"
     ]
   }
 }

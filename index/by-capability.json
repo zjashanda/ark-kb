@@ -1,7 +1,7 @@
 {
   "schema": "index.v1",
   "index": "by-capability",
-  "generated_at": "2026-11-26T13:00:51Z",
+  "generated_at": "2026-11-27T05:45:18Z",
   "keys": {
     "070200duya上下电压测": [
       "kb-knowledge-88c26f79e24e"
@@ -407,7 +407,11 @@
       "kb-run-1d34ab37f6b5"
     ],
     "csk3022": [
+      "kb-knowledge-2d8442f3e20e",
       "kb-method-62b4b75074db"
+    ],
+    "csk3022offline": [
+      "kb-knowledge-2d8442f3e20e"
     ],
     "csk3022reference": [
       "kb-knowledge-6a7f2e762b40",
@@ -741,7 +745,11 @@
       "kb-knowledge-5913806ca3f5",
       "kb-knowledge-ac4460ce8b31",
       "kb-knowledge-cae96a3e7d2a",
+      "kb-method-c076dd03cc51",
       "kb-method-dd7b81cb6577"
+    ],
+    "lstestprofiles": [
+      "kb-method-c076dd03cc51"
     ],
     "markerdiscoveryloop": [
       "kb-method-03b45ce7ac87"
@@ -1003,7 +1011,8 @@
       "kb-method-331aa77b4b97"
     ],
     "profile": [
-      "kb-bug-cdb93160a496"
+      "kb-bug-cdb93160a496",
+      "kb-method-c076dd03cc51"
     ],
     "project070200duya上下电压测": [
       "kb-knowledge-88c26f79e24e"
@@ -1774,6 +1783,9 @@
     "中文分词": [
       "kb-bug-51037bf99028"
     ],
+    "串口": [
+      "kb-knowledge-2d8442f3e20e"
+    ],
     "人工授权": [
       "kb-method-6afd289b08ff"
     ],
@@ -1790,6 +1802,15 @@
     "台架": [
       "kb-knowledge-0e8f85cddf7a",
       "kb-knowledge-1cbdc4c52cf2"
+    ],
+    "基类": [
+      "kb-method-c076dd03cc51"
+    ],
+    "复用": [
+      "kb-method-c076dd03cc51"
+    ],
+    "奥普001": [
+      "kb-knowledge-2d8442f3e20e"
     ],
     "工控机配置": [
       "kb-knowledge-641b221d9aa3",
@@ -1828,6 +1849,12 @@
     "离线语音": [
       "kb-method-677defa1dbca"
     ],
+    "纯离线天猫精灵": [
+      "kb-knowledge-2d8442f3e20e"
+    ],
+    "芯片族": [
+      "kb-method-c076dd03cc51"
+    ],
     "规范": [
       "kb-knowledge-d81c3d1877cc"
     ],
@@ -1845,6 +1872,9 @@
     ],
     "音量边界": [
       "kb-method-62b4b75074db"
+    ],
+    "项目画像": [
+      "kb-knowledge-2d8442f3e20e"
     ]
   }
 }
